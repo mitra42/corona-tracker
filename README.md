@@ -2,6 +2,11 @@
 
 The core idea is a simple, viral, way to track contacts. 
 
+This idea isn't even half-baked yet, it may be a terrible idea, 
+or someone else might be doing it, or there may be a gotcha I've missed. 
+
+Critique is very welcome - mitra@mitra.biz or post to an issue in Git.
+
 ### How it works 
 #### "check-in"
 
@@ -34,8 +39,23 @@ The design is intended to be viral - i.e.
 * as a business owner, transit driver, meeting organizer, 
   you can print out the QR code - which attracts attention of users
 * as a user, you can click even if the business has no visible QR code
+* Its useful even if its only one event with 50 people. 
 
-### Challenges
+### Technology
+
+QR code gets a URL - URL contains a random number for the code. 
+Location is tracked at same time, giving us two ways to get a place.
+
+We can use registration, cookies, 
+or browser fingerprinting to identify a person. 
+We encourage registration to allow for notifications, but don't require it
+in order to reduce privacy concerns (especially in oppressive regimes)
+
+Matching contacts is a bit harder, can start naive 
+and add some AI once we find someone once we find people who know what they are 
+doing. 
+
+#### Challenges
 
 I think the core tech is relatively easy, 
 but I see (at least) the following challenges, 
@@ -43,6 +63,7 @@ and at this point I'm certain I've missed some.
 
 * What the algorithm is for an "overlap" i.e. person A was in this location, 
   person B came later.
+* Handling unregistered users (cookie &/or browser fingerprinting)
 * Human factors - like how to word notifications
 * I'm Not sure how well QR scanning works on iPhones,
   may need to go to a bookmark then scan
@@ -51,7 +72,7 @@ and at this point I'm certain I've missed some.
 * Should be internationalized - would probably get help with this. 
 * Legal and privacy disclaimers. 
 
-### Technology choices
+#### Technology choices
 
 I think this starts off as a simple React website, 
 (I chose React simply because I know it, and we don't have time to go through 
