@@ -7,6 +7,8 @@ or someone else might be doing it, or there may be a gotcha I've missed.
 
 Critique is very welcome - mitra@mitra.biz or post to an issue in Git.
 
+NOTE - THIS IS GOING TO GET AN UPDATE AFTER THE MEETING WITH Ric ESP RELATING TO LOCATION DAA
+
 ### How it works 
 #### "check-in"
 
