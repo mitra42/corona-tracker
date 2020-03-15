@@ -1,5 +1,8 @@
 /*
   Main client file for corona-tracker, keep it simple and call stuff from other files !
+
+  This is just a framework currently (15Mar), being used for experiments.
+
  */
 process.env.DEBUG="corona-tracker:*";
 import React from 'react';

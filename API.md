@@ -11,7 +11,8 @@ need careful management.
 - Database schema - what data is stored
 - Database query API - the interface to a layer sitting on top of the data, so that data 
   storage can be changed without changing the code that uses it. 
-- Local Storage - how data stored locally, possibly with its own data query API
+- Local Storage - how data stored on the browser, possibly with its own data query API
+- Interface to location tracking data via some plugins - see /server/tracers/template.js
 - what else?
 
 ## URI definition
@@ -34,3 +35,6 @@ Straw-person idea, will edit as first cut is built
 #### /consents?... Information about what I consent to. 
 This would align with any privacy statement, consent can be withdrawn at any time. 
 
+## LOCATION PLUGINS
+
+We need a consistent API that can be used with plugins 

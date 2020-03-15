@@ -3,6 +3,7 @@
  */
 const debug = require('debug')('corona-tracker:browserlib');
 
+// TODO this is just being tested
 function testPosition(cb) {
   navigator.geolocation.getCurrentPosition(
     (pos) => {

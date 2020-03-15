@@ -2,33 +2,29 @@
 
 The core idea is a simple, viral, way to track contacts. 
 
-This idea isn't even half-baked yet, it may be a terrible idea, 
-or someone else might be doing it, or there may be a gotcha I've missed. 
+This idea is still half-baked, it may be a terrible idea, 
+or someone else might be doing it, or there may be a gotcha we've missed. 
 
-Critique is very welcome - mitra@mitra.biz or post to an issue in Git.
-
-NOTE - THIS IS GOING TO GET AN UPDATE AFTER THE MEETING WITH Ric ESP RELATING TO LOCATION DAA
+Critique is very welcome - post to an issue in Git.
 
 ### How it works 
-There are two versions of the thinking currently. I'm leaning to option B
 
-#### Option A "check-in"
+We will collect data by a variety of means, these will include:
 
-Once its up and running, a participant might: 
-* enter an event, a store or a train carriage.
-* see a visibly posted sign with a QR code
-* scan that code into their browser
+* interfacing to tracking data collected by, for example, exercise trackers.
+* a webpage that can be kept open,
+* (possibly) QR codes that could be scanned at a particular venue. 
 
-No further action is required, but the page offers options to:
-* Download a QR code to post somewhere else
-* Register - if a first time user - can enter email (or SMS) for notifications.
-* Check for anywhere else you've been in case of reports
+#### APIs to trackers
 
-If there is no QR code, we'll suggest nearby ones (maybe in same business);
-and if there are node we'll just use location, 
-and suggest they printout a QR code, or suggest it to the business/venue.
+Our prefered tracking method is to tie into something already doing 
+the tracking via its API. 
+In particular this handles some of the issues around battery consumption
+of an always-on web page using the location chips. 
 
-#### Option B "continual tracking"
+TODO More details to come here
+
+#### Web page loction tracking
 
 * A participant opens a webpage
 * The security dialog asks if they want to share contact info
@@ -36,6 +32,18 @@ and suggest they printout a QR code, or suggest it to the business/venue.
   - the person has moved some reasonable distance - maybe 10 meters ?
   - they have been at that new location for at least 5 minutes
   - it sends time they left the prev location, and time arrived at new one
+
+#### QR Code checkins
+
+The is probably the least useful way, but might be an entry point or
+server the specific need of getting all the people (participants and non participants) 
+at an event. 
+
+Once its up and running, a participant might: 
+* enter an event, a store or a train carriage.
+* see a visibly posted sign with a QR code
+* scan that code into their browser
+
 
 #### When someone is positive
 
@@ -66,22 +74,34 @@ The QR version is intended to be viral - i.e.
 The location-tracker version doesnt have the virality, but its easy of participation
 and saturation of Covid news may make it easy to get out there. 
 
+The API based versions have the advantage of using apps people probably already have.
+
 ### Technology
 
-#### QR version
-QR code gets a URL - URL contains a random number for the code. 
-Location is tracked at same time, giving us two ways to get a place.
+#### API version
+The user accesses the website, identifies which exervise trackers they have, 
+and can follow links to install one if they have none. 
+After that point the system will access the data via the tracker's API.
+At worst case we'd copy the data from the tracker's API and pre-process for searching.
 
 #### Location tracking version
 A web page runs a Javascript loop, which fetches location from the browser.
 It runs a quick algorithm to see if its a "new" location, and if so sends a single
 packet to the backend. 
 
+#### QR version
+QR code gets a URL - URL contains a random number for the code. 
+Location is tracked at same time, giving us two ways to get a place.
+
 #### Both
-We can use registration, cookies, 
-or browser fingerprinting to identify a person. 
-We encourage registration to allow for notifications, but don't require it
-in order to reduce privacy concerns (especially in oppressive regimes)
+
+At first use, we generate a unique id, 
+and either store that in browser local storage or use a cookie.
+
+The customer can optionally register, and add notification information. 
+This is fully optional to allow for privacy concerns that may vary from place to place.
+
+If the person isn't registered, then they can visit the webpage to get updates.
 
 Matching contacts is a bit harder, can start naive 
 and add some AI once we find someone once we find people who know what they are 
@@ -116,10 +136,13 @@ possibly go to a React-Native app, but I've never used that and I'm not sure
 how slow the approval process is to get it up and running. 
 I also don't know if you can put a download on the site to do this. 
 
-Back end could either be
+For stored data, the back end could either be
 * sqlite, then scaling to another SQL DB.
 * simple text file since 90% is adding something to a list - 
   but as it scales searching this could bring scaling issues.
+
+Ideally we wont have to store much data, because it will scale through apps 
+that themselves hold data. 
 
 #### Money
 
