@@ -158,3 +158,28 @@ Note there is no money involved, no plan to sell data so the balance is between:
 - keeping people's private lives private
 - doing whatever we can to support people trying to slow spread of the virus.
 
+## Installation
+
+To install the Proof Of Concept (not even close to a MVP!). 
+Assuming you have git and node.
+```
+git clone "https://github.com/mitra42/corona-tracker"
+cd corona-tracker
+yarn install
+cd src 
+node ./Main.js
+open https://localhost:5000 # Should open in your browser
+```
+
+## Development cycle
+This will be improved, and may break, but at this early stage ... 
+
+Make some edits then ....
+```
+cd corona-tracker/languages
+./languagebuild.js
+cd ../src
+./webpack --mode development
+```
+Then reload the browser window
+ 
