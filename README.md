@@ -2,14 +2,18 @@
 
 The core idea is a simple, viral, way to track contacts. 
 
-This idea is still half-baked, it may be a terrible idea, 
-or someone else might be doing it, or there may be a gotcha we've missed. 
+The idea is evolving rapidly, faster than I can retype it below ! 
 
-Critique is very welcome - post to an issue in Git.
+We are definately focused on using existing trackers 
+and then figuring out how to use APIs and data sets they have 
+to do correlation and contact matching. 
+
+Critique is very welcome - please post to an issue in 
+the [https://github.com/mitra42/corona-tracker](Git repo).
 
 ### How it works 
 
-We will collect data by a variety of means, these will include:
+We will collect data by a variety of means, these may include:
 
 * interfacing to tracking data collected by, for example, exercise trackers.
 * a webpage that can be kept open,
@@ -22,10 +26,10 @@ the tracking via its API.
 In particular this handles some of the issues around battery consumption
 of an always-on web page using the location chips. 
 
-TODO More details to come here
+It may also allow us to offload the contact matching. 
 
-#### Web page loction tracking
-
+#### Web page location tracking
+(Update - web page location is deprioritised and might not happen if we get trackers to work)
 * A participant opens a webpage
 * The security dialog asks if they want to share contact info
 * As long as the web page is running, it sends location info if 
@@ -34,6 +38,7 @@ TODO More details to come here
   - it sends time they left the prev location, and time arrived at new one
 
 #### QR Code checkins
+(Update - QR is unlikely to happen)
 
 The is probably the least useful way, but might be an entry point or
 server the specific need of getting all the people (participants and non participants) 
@@ -65,16 +70,18 @@ Some of these may be obvious from above or below, but some still need baking in 
 
 ### Getting it out there.
 
+(Update - QRis deprioritised and might not happen)
 The QR version is intended to be viral - i.e.
 * as a business owner, transit driver, meeting organizer, 
   you can print out the QR code - which attracts attention of users
 * as a user, you can click even if the business has no visible QR code
 * Its useful even if its only one event with 50 people. 
 
-The location-tracker version doesnt have the virality, but its easy of participation
+(Update - web based geo-location deprioritised and might not happen if we can get tracker apps to work well)
+The web based geo-location version doesnt have the virality, but its easy of participation
 and saturation of Covid news may make it easy to get out there. 
 
-The API based versions have the advantage of using apps people probably already have.
+The tracker app API based versions have the advantage of using apps people probably already have.
 
 ### Technology
 
@@ -85,15 +92,17 @@ After that point the system will access the data via the tracker's API.
 At worst case we'd copy the data from the tracker's API and pre-process for searching.
 
 #### Location tracking version
+(Update - web page location is deprioritised and might not happen if we get trackers to work)
 A web page runs a Javascript loop, which fetches location from the browser.
 It runs a quick algorithm to see if its a "new" location, and if so sends a single
 packet to the backend. 
 
 #### QR version
+(Update - QR is unlikely to happen)
 QR code gets a URL - URL contains a random number for the code. 
 Location is tracked at same time, giving us two ways to get a place.
 
-#### Both
+#### All
 
 At first use, we generate a unique id, 
 and either store that in browser local storage or use a cookie.
@@ -131,6 +140,7 @@ I think this starts off as a simple React website,
 a learning cycle). 
 Web components would be possible if someone has the skills.
 
+_(Update - QR code unlikely to happen so shouldn't need this)_
 Because of potential issues getting it to scan QR codes on iPhone it could
 possibly go to a React-Native app, but I've never used that and I'm not sure
 how slow the approval process is to get it up and running. 
