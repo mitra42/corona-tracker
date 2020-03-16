@@ -1,4 +1,4 @@
-/* global DwebArchive, DWebTransports */
+/* global DwebTransports */
 import waterfall from 'async/waterfall';
 import React from 'react';
 

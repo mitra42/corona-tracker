@@ -30,4 +30,4 @@ function getCredentials({ user }) {
     an API will be provided to allow these functions to store persistently (e.g. in the sqlite)
 }
 
-export { searchUserPositions };
+exports = module.exports = { searchUserPositions };

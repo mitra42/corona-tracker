@@ -11,7 +11,7 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.3",
-    "@internetarchive/dweb-transports": "^0.2.19",
+    "@internetarchive/dweb-transports": "^0.2.20",
     "@stratumn/canonicaljson": "^1.0.3",
     "async": "^3.2.0",
     "debug": "^4.1.1",
