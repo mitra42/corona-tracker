@@ -9,7 +9,7 @@ const express = require('express'); // http://expressjs.com/
 const morgan = require('morgan'); // https://www.npmjs.com/package/morgan
 const DwebTransports = require('@internetarchive/dweb-transports'); // Also sets this as a global
 // TODO-CT const { appContent, appList, appSelect } = require('./sqllib.js');
-const { appIsrael2Takeout } = require('./apps');
+const { appDataset, appIsrael2Takeout, appKorea12Takeout, appKorea22Takeout } = require('./apps');
 
 const config = {
   morgan: ':method :url :req[range] :status :res[content-length] :response-time ms',
@@ -32,7 +32,7 @@ app.get('/languages/:file', (req, res) => res.sendFile(req.params.file,
   err => { if (err) { res.status(404).send(err.message); } }));
 
 // Feel free to add more sandbox lines - move them once tested
-app.get('/sandbox/israel2takeout', appIsrael2Takeout);
+app.get('/sandbox/data/:dataset', appDataset)
 
 const server = app.listen(config.port); // Intentionally same port as Python gateway defaults to, api should converge
 debug('Server starting on port %s', config.port);

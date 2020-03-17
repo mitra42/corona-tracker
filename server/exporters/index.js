@@ -1,6 +1,7 @@
 // ADD-IMPORTER - add line here to import
-const googleTakeout = require('./googleTakeout');
+const takeout = require('./googleTakeout');
+const googletakeout = takeout;
 
 // ADD-IMPORTER - add import name here
-exports = module.exports = { googleTakeout };
+exports = module.exports = { takeout, googletakeout };
 

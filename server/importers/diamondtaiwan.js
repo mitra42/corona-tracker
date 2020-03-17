@@ -1,17 +1,19 @@
-/*
-  This file can be copied and then filled out for each importer
- */
 /* global DwebTransports */
-
-/*
-  This file imports the Xxx data to a common format
-
-  Its based (heavily) on XX Where you got any code from ...
-  If it breaks, we are in touch with them.
+/**
+ * Convert a KML file into Takeout timeline JSON format.
+ * Copied and adapted from https://github.com/yjlou/2019-nCov/tree/master/kml
+ * This dataset is the Diamond Princess visit to Taiwan
+ *
+ * This file imports the Diamond.kml data to a common format
+ *
+ * TODO split this file into a common KML importer plus any parameterization
+ * TODO carry enough info into the "common" format to allow a KML exporter to rebuild the head and foot of the KML file.
 */
-const debug = require('debug')('corona-tracker:importers-xxx');
+
+const debug = require('debug')('corona-tracker:importers-diamondtaiwan');
 const DwebTransports = require('@internetarchive/dweb-transports');
-const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
+const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonLatLngFromFloat, commonTimeFromMS } = require('./utils');
+const kmlParser = require('./diamond/parsers.js');
 
 // Utilities - candidates for importers/utils.js
 
@@ -43,9 +45,9 @@ const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromM
  */
 
 const config = {
-  dataUrl: 'https:xxx',
-  TIME_OFFSET: XX * 60 * 60 * 1000, // e.g. 2 for Israel which is GMT+2
-  siteShortName: 'Xxx'
+  dataUrl: 'https://raw.githubusercontent.com/yjlou/2019-nCov/master/kml/Diamond.kml',
+  TIME_OFFSET: 0 * 60 * 60 * 1000, // e.g. 2 for Israel which is GMT+2
+  siteShortName: 'Diamond'
 }
 
 /**
@@ -57,10 +59,10 @@ const config = {
 function fetchDataFromRemoteServer(cb) {
   DwebTransports.httptools.GET(config.dataUrl, {}, (err, res) => {
     if (err) {
-      debug('%s.fetchDataFromRemoteServer failed %s', siteShortName, err.message);
+      debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
       cb(err);
     } else {
-      cb(null, typeof res === 'string' ? JSON.parse(res) : res); // Return object no matter if server gives us it or not
+      cb(null, res);
     }
   });
 }
@@ -87,6 +89,15 @@ function fetchDataFromRemoteServer(cb) {
  * @returns {{comments: (*|string), lng: number, start: *, name: string | string, end: *, place: (*|string), lat: number}|undefined}
  */
 function convertOnePointToCommonFormat(record) {
+  const start = commonTimeFromMS(record.begin * 1000 - config.TIME_OFFSET);
+  const end = commonTimeFromMS(record.begin * 1000 - config.TIME_OFFSET);
+  const lat = commonLatLngFromFloat(record.lat);
+  const lng = commonLatLngFromFloat(record.lng);
+  const name = [record.name, record.description && record.description.split('#!metadata')[0]].filter(o=>!!o).join(' ');
+  const place = { address: record.address };
+  return {
+    lat, lng, start, end, name, place
+  };
 }
 
 /**
@@ -96,7 +107,9 @@ function convertOnePointToCommonFormat(record) {
  */
 function convertImportToCommonFormat(imp) {
   // This is just an example
-  const ii = imp.features; // Find the point array
+  const ii = kmlParser.parseKml(imp);
+  debug('Loaded %s points from %s', ii.length, config.siteShortName);
+
   const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.
   const bounding_box = boundingBoxFromCommonArray(positions); // Get a bounding box
@@ -108,3 +121,4 @@ function convertImportToCommonFormat(imp) {
 }
 
 exports = module.exports = { fetchDataFromRemoteServer, convertImportToCommonFormat };
+

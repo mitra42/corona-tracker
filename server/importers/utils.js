@@ -2,14 +2,16 @@
 
 // Converting various common formats (uncommon formats are in individual importers)
 // Currently we use an integer which is latitude or longitude * 10^7
+function commonLatLngFromFloat(fl) {
+  return Math.round(fl * 1e7);
+}
 function commonLatLngFromFloatString(fl) {
-  return Math.round(parseFloat(fl) * 1e7);
+  return commonLatLngFromFloat(parseFloat(fl));
 }
 // Currently we use milliseconds since (WHEN?)
 function commonTimeFromMS(ms) {
   return ms;
 }
-
 
 /** Class BoundingBox - stolen from 2019-nCov.meta.js
  *
@@ -61,5 +63,5 @@ function boundingBoxFromCommonArray(oo) {
   return box.get();
 }
 exports = module.exports = {
-  BoundingBox, boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS
+  BoundingBox, boundingBoxFromCommonArray, commonLatLngFromFloat, commonLatLngFromFloatString, commonTimeFromMS
 }

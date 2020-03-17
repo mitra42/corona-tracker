@@ -1,8 +1,6 @@
 /*
   This file imports the Israel data to a common format
 
-  TODO - when working, backport to template.js with comments
-
   Its based (heavily) on https://github.com/yjlou/2019-nCov/tree/master/countries/israel from the https://pandemic.events site.
   If it breaks, we are in touch with them.
 */
@@ -27,7 +25,7 @@ const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromM
       start,  MS since (when) (same as Google Takeout format, and Israel timestamp when adjusted for GMT
       end,    MS since (when) (same as Google Takeout format, and Israel timestamp when adjusted for GMT
       name,   Of patient as provided by country
-      place,  Human readable name of location
+      place { address, address_name, address_english, province, city, type},  Human readable names of location
       comments  Any comments from the data
     }
   ]
@@ -40,20 +38,21 @@ const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromM
  */
 
 
-const dataUrl = 'https://services5.arcgis.com/dlrDjz89gx9qyfev/arcgis/rest/services/Corona_Exposure_View/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&maxRecordCountFactor=4&outSR=4326&resultOffset=0&resultRecordCount=8000&cacheHint=true';
-
-const timeUtils = {
+const config = {
+  dataUrl: 'https://services5.arcgis.com/dlrDjz89gx9qyfev/arcgis/rest/services/Corona_Exposure_View/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&maxRecordCountFactor=4&outSR=4326&resultOffset=0&resultRecordCount=8000&cacheHint=true',
   TIME_OFFSET: 2 * 60 * 60 * 1000, // GMT+2 Israel time
-};
-
-/*
-  Return an object of the internal format of the server.
-  TODO needs a test function
+  siteShortName: 'Israel'
+}
+/**
+ * Return an object of the internal format of the server.
+ * TODO needs a test function
+ *
+ * @param cb(err, json obj in Israel's format
  */
 function fetchDataFromRemoteServer(cb) {
-  DwebTransports.httptools.GET(dataUrl, {}, (err, res) => {
+  DwebTransports.httptools.GET(config.dataUrl, {}, (err, res) => {
     if (err) {
-      debug('israel.fetchDataFromRemoteServer failed %s', err.message);
+      debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
       cb(err);
     } else {
       cb(null, typeof res === 'string' ? JSON.parse(res) : res); // Return object no matter if server gives us it or not
@@ -61,29 +60,36 @@ function fetchDataFromRemoteServer(cb) {
   });
 }
 
+/**
+ * This function isn't required but its useful - it should convert one record in the incoming data
+ * into one in the common format, or undefined if the data isn't valid.
+ *
+ * @param record {
+ *  u'attributes': {
+ *    u'Comments': u'...',
+ *    u'Name': u'\u05d7\u05d5\u05dc\u05d4 15',
+ *    u'OBJECTID': 1201,
+ *    u'POINT_X': 34.80773124,
+ *    u'POINT_Y': 32.11549963,
+ *    u'Place': u'...',
+ *    u'fromTime': 1583144100000,  // this is 10:15 Israel time
+ *    u'sourceOID': 1,
+ *    u'stayTimes': u'10:15-11:15',
+ *    u'toTime': 1583147700000  // this is 11:15 Israel time
+ *  },
+ *  u'geometry': {u'x': 34.807731241000056, u'y': 32.115499628000066}
+ * }
+ * @returns {{comments: (*|string), lng: number, start: *, name: string | string, end: *, place: (*|string), lat: number}|undefined}
+ */
 function convertOnePointToCommonFormat(record) {
-  // record = {
-  //   u'attributes': {
-  //     u'Comments': u'...',
-  //     u'Name': u'\u05d7\u05d5\u05dc\u05d4 15',
-  //     u'OBJECTID': 1201,
-  //     u'POINT_X': 34.80773124,
-  //     u'POINT_Y': 32.11549963,
-  //     u'Place': u'...',
-  //     u'fromTime': 1583144100000,  // this is 10:15 Israel time
-  //     u'sourceOID': 1,
-  //     u'stayTimes': u'10:15-11:15',
-  //     u'toTime': 1583147700000  // this is 11:15 Israel time
-  //   },
-  //   u'geometry': {u'x': 34.807731241000056, u'y': 32.115499628000066}}
-  // }
+
   const { attributes, geometry } = record;
   const lat = commonLatLngFromFloatString(geometry.y);
   const lng = commonLatLngFromFloatString(geometry.x);
 
   // TODO(stimim): Should we add some margin before and after the record day? (check on 2019-nCovc.israel.converter.js in case changed)
-  const start = commonTimeFromMS(attributes.fromTime - timeUtils.TIME_OFFSET);
-  const end = commonTimeFromMS(attributes.toTime - timeUtils.TIME_OFFSET);
+  const start = commonTimeFromMS(attributes.fromTime - config.TIME_OFFSET);
+  const end = commonTimeFromMS(attributes.toTime - config.TIME_OFFSET);
 
   // Sanity checks
   if (!start) {
@@ -107,21 +113,26 @@ function convertOnePointToCommonFormat(record) {
     start,
     end,
     name: attributes.Name || '',
-    place: attributes.Place || '',
+    place: { address_name: attributes.Place },
     comments: attributes.Comments || '',
   });
 }
 
+/**
+ *
+ * @param import data in the format provided by the site
+ * @returns {{bounding_box: ({top: *, left: *, bottom: *, right: *}|{top: *, left: *, bottom: *, right: *}), meta: {source: {name: string, retrieved: number, url: string}}, positions: *}}
+ */
 function convertImportToCommonFormat(imp) {
-  // TODO Note - this is using the format from 2019-nCov, it might not be what we want for our common format
-  const ii = imp.features;
-  const positions = ii.map(record => convertOnePointToCommonFormat(record))
+  // This is just an example
+  const ii = imp.features; // Find the point array
+  const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.
-  const bounding_box = boundingBoxFromCommonArray(positions);
-  return {
+  const bounding_box = boundingBoxFromCommonArray(positions); // Get a bounding box
+  return { // Return in common format
     positions,
     bounding_box,
-    meta: { source: { name: 'Israel infected data', url: dataUrl, retrieved: (new Date()).getTime() } }
+    meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }
 

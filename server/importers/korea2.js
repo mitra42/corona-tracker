@@ -1,25 +1,28 @@
 /*
   This file can be copied and then filled out for each importer
+
  */
 /* global DwebTransports */
 
 /*
-  This file imports the Xxx data to a common format
+/*
+  This file imports the second Korean dataset to a common format
 
-  Its based (heavily) on XX Where you got any code from ...
+  TODO - when working, backport to template.js with comments
+  Dataset is from https://github.com/jihoo-kim/Coronavirus-Dataset/
+  Its based (heavily) on https://github.com/yjlou/2019-nCov/tree/master/countries/korea/coronavirus-dataset-converter.js from the https://pandemic.events site.
   If it breaks, we are in touch with them.
 */
-const debug = require('debug')('corona-tracker:importers-xxx');
+const debug = require('debug')('corona-tracker:importers-korea2');
 const DwebTransports = require('@internetarchive/dweb-transports');
+const csv_parse = require("csv-parse/lib/sync");
 const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
-
 // Utilities - candidates for importers/utils.js
-
 
 // End of possible utilities
 
 /* Common formats:
-  time is represented (in 2019-nCov as MS since (WHEN?)
+  time is represented (in 2019-nCov as MS since (WHEN?) (this is as used in Google Takeout, Javascript and the Israeli data
   lat and lng are represented as integers lat*10^7
   for now we'll use the same, but use the conversion functions in ./util.js
 {
@@ -43,24 +46,30 @@ const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromM
  */
 
 const config = {
-  dataUrl: 'https:xxx',
-  TIME_OFFSET: XX * 60 * 60 * 1000, // e.g. 2 for Israel which is GMT+2
-  siteShortName: 'Xxx'
+  dataUrl: 'https://raw.githubusercontent.com/jihoo-kim/Coronavirus-Dataset/master/route.csv',
+  TIME_OFFSET: 9 * 60 * 60 * 1000, // e.g. 9 for Korea which is GMT+9;
+  siteShortName: 'Korea2'
 }
 
 /**
  * Return an object of the internal format of the server.
  * TODO needs a test function
  *
- * @param cb(err, json obj in Xxx's format
+ * @param cb(err, json obj in Korea2's format
  */
 function fetchDataFromRemoteServer(cb) {
-  DwebTransports.httptools.GET(config.dataUrl, {}, (err, res) => {
+  DwebTransports.httptools.GET(config.dataUrl, {}, (err, input_text) => {
     if (err) {
-      debug('%s.fetchDataFromRemoteServer failed %s', siteShortName, err.message);
+      debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
       cb(err);
     } else {
-      cb(null, typeof res === 'string' ? JSON.parse(res) : res); // Return object no matter if server gives us it or not
+      // Its a CSV file
+      const records = csv_parse(input_text, {
+        bom: true,  // currently the CSV doesn't have BOM, just in case.
+        columns: true,
+        skip_empty_lines: true,
+      });
+      cb(null, records);
     }
   });
 }
@@ -69,24 +78,23 @@ function fetchDataFromRemoteServer(cb) {
  * This function isn't required but its useful - it should convert one record in the incoming data
  * into one in the common format, or undefined if the data isn't valid.
  *
- * @param record {
- *  u'attributes': {
- *    u'Comments': u'...',
- *    u'Name': u'\u05d7\u05d5\u05dc\u05d4 15',
- *    u'OBJECTID': 1201,
- *    u'POINT_X': 34.80773124,
- *    u'POINT_Y': 32.11549963,
- *    u'Place': u'...',
- *    u'fromTime': 1583144100000,  // this is 10:15 Israel time
- *    u'sourceOID': 1,
- *    u'stayTimes': u'10:15-11:15',
- *    u'toTime': 1583147700000  // this is 11:15 Israel time
- *  },
- *  u'geometry': {u'x': 34.807731241000056, u'y': 32.115499628000066}
- * }
  * @returns {{comments: (*|string), lng: number, start: *, name: string | string, end: *, place: (*|string), lat: number}|undefined}
  */
 function convertOnePointToCommonFormat(record) {
+  // date is in format YYYY-MM-DD korean time.
+  const timestamp = (new Date(record.date)).getTime() - config.TIME_OFFSET;
+  return ({
+    lat: commonLatLngFromFloatString(record.latitude),
+    lng: commonLatLngFromFloatString(record.longitude),
+    start: commonTimeFromMS(timestamp),
+    end: commonTimeFromMS(timestamp + 24 * 60 * 60 * 1000),
+    name: `Case${record.patient_id}`,
+    place: {
+      province: record.province,
+      city: record.city,
+      type: record.visit,
+    }
+  });
 }
 
 /**
@@ -96,7 +104,7 @@ function convertOnePointToCommonFormat(record) {
  */
 function convertImportToCommonFormat(imp) {
   // This is just an example
-  const ii = imp.features; // Find the point array
+  const ii = imp; // Find the point array - its at the top for Korea2 since came from CSV
   const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.
   const bounding_box = boundingBoxFromCommonArray(positions); // Get a bounding box
