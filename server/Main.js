@@ -31,8 +31,10 @@ app.get('/languages/:file', (req, res) => res.sendFile(req.params.file,
   { root: config.languages },
   err => { if (err) { res.status(404).send(err.message); } }));
 
+// Data conversions
+app.get('/data/:dataset', appDataset)
+
 // Feel free to add more sandbox lines - move them once tested
-app.get('/sandbox/data/:dataset', appDataset)
 
 const server = app.listen(config.port); // Intentionally same port as Python gateway defaults to, api should converge
 debug('Server starting on port %s', config.port);
