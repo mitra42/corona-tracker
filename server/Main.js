@@ -9,16 +9,31 @@ process.env.DEBUG = 'corona-tracker:*';
 const debug = require('debug')('corona-tracker:Main');
 const express = require('express'); // http://expressjs.com/
 const morgan = require('morgan'); // https://www.npmjs.com/package/morgan
+const getopts = require('getopts');
 const DwebTransports = require('@internetarchive/dweb-transports'); // Also sets this as a global
 // TODO-CT const { appContent, appList, appSelect } = require('./sqllib.js');
 const { appDataset, appIsrael2Takeout, appKorea12Takeout, appKorea22Takeout } = require('./apps');
 
+const optsInt = ["port"];
+const opts = getopts(process.argv.slice(2), {
+  alias: { h: 'help', p: 'port' },
+  boolean: ['h'],
+  default: { "port": 5000 },
+  "unknown": option => { console.log("Unknown option", option, ", 'node Main.js -h' for help"); process.exit()}
+});
+const help = `
+usage: node ./Main.js [--port]
+  --port 80: Run on another port - typically 80 for http, defaults to 5000
+`;
+if (opts.help) { console.log(help); process.exit(); }
+
 const config = {
   morgan: ':method :url :req[range] :status :res[content-length] :response-time ms',
-  port: 5000,
+  port: opts.port,
   static: process.cwd() + '/../dist',
   languages: process.cwd() + '/../languages/json',
 };
+
 const app = express();
 
 app.use(morgan(config.morgan)); // TODO write to a file then recycle that log file (see https://www.npmjs.com/package/morgan )
