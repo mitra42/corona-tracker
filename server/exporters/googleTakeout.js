@@ -1,7 +1,6 @@
 /*
-  This file can be copied and then filled out for each importer
+  This is based on template.js
 */
-// TODO back merge this into template.js
 
 function convertOneCommonToExportFormat(obj) {
   const { name = '', place = {}, comments = '' } = obj;
