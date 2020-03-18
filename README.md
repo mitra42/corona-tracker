@@ -3,7 +3,8 @@
 Note the idea is evolving rapidly, faster than I can get around to update this README
 so please check for updates! 
 
-We hope to have the data converter up on a server by sometime on 16 March.
+The data converter is now live on http://c19.mitra.biz/ 
+(yes it should be on https - hopefully tomorrow)
 
 The core idea is a simple, viral, way to improve tracking contacts. 
 
@@ -14,7 +15,8 @@ but principle among them at the moment is to work with the free fitness trackers
 
 A key missing component has been data sets, we've found a few, all in different formats,
 so as part of the project we are building an interchange to make any dataset we can find
-available in multiple formats so that others can use it. 
+available in multiple formats so that others can use it.  
+Links to demonstrate are on http://c19.mitra.biz/
 
 Critique of any part of this is very welcome - please post to an issue in 
 the [https://github.com/mitra42/corona-tracker](Git repo).
@@ -158,7 +160,12 @@ Note there is no money involved, no plan to sell data so the balance is between:
 To install the Proof Of Concept (not even close to a MVP!). 
 Assuming you have git and node.
 ```
-git clone "https://github.com/mitra42/corona-tracker"
+git clone "https://github.com/mitra42/corona-tracker.git"
+cd corona-tracker
+PORT=80 USESUPERVISOR=1 RUNUSER=mitra ./install.sh
+
+# Apologies, but it requires root at the moment .... if you are happy to run on
+# A non root port, and have already installed node, yarn, 
 cd corona-tracker
 yarn install
 cd server 
@@ -168,8 +175,8 @@ node ./Main.js
 # To open the browser based app - still very early explorations
 open https://localhost:5000 
 
-# To run a data converter 
-open https://localhost:5000/data/
+# To run a data converter for example to get the Korea2 dataset in Google Takeout format
+open https://localhost:5000/data/korea2?output=takeout
 ```
 
 ## Development cycle
