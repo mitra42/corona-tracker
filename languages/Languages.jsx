@@ -3,6 +3,7 @@ import waterfall from 'async/waterfall';
 import React from 'react';
 
 const debug = require('debug')('corona-tracker:languages');
+const DwebTransports = require('@internetarchive/dweb-transports');
 
 // utilities - also duplicated in dweb-archivecontroller/Util and ia-components/util
 function ObjectFromEntries(arr) { return arr.reduce((res, kv) => (res[kv[0]] = kv[1], res), {}); } // [[ k0, v0],[k1,v1] => {k0:v0, k1:v1}

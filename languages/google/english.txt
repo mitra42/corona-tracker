@@ -1,2 +1,2 @@
-Welcome to the COVID-19 tracker
-Once you have clicked on the permissions dialog this page will start sharing your Location anonymously with our database
+Welcome to the COVID-19 tracker site
+This site is a work in progress and is not intended to be accessed through a UI.
