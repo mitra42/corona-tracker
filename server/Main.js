@@ -1,6 +1,8 @@
 /*
 Quick and dirty sqlite server
 
+# TODO-PORT this will run on port 5000, Main.js should be parameterised so can take an argument for the port
+
 Uses a library of functions
  */
 process.env.DEBUG = 'corona-tracker:*';
