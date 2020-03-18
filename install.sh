@@ -37,10 +37,10 @@ pushd server
 if [ -z "${USESUPERVISOR:-}"]; then
   sudo node ./Main.js --port ${PORT:-${DEFAULTPORT}}&
 else
-  cat ./supervisor.conf | sed -e "s:/app/server:${PWD}:g" | sed -e "s/USER=root/USER=${RUNUSER:=${DEFAULTUSER}}/g" | sed -e "s/Main.js/Main.js --port ${PORT:-${DEFAULTPORT}}"| sudo tee - /etc/supervisor/conf.d/supervisor-corona-tracker.conf >>/dev/null
-  sudo /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
-endif
-popd server
+  cat ./supervisor.conf | sed -e "s:/app/server:${PWD}:g" | sed -e "s/USER=root/USER=${RUNUSER:=${DEFAULTUSER}}/g" | sed -e "s/Main.js/Main.js --port ${PORT:-${DEFAULTPORT}}/"| sudo tee - /etc/supervisor/conf.d/supervisor-corona-tracker.conf >>/dev/null
+  sudo supervisorctl reload || sudo /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+fi
+popd
 
 # TODO-PORT Main.js will be parameterised then remove comment above about ports
 
