@@ -14,6 +14,7 @@ const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromM
 // TODO - this is temporary
 const inp = require('./korea1/coronamap.site-input');
 // Utilities - candidates for importers/utils.js
+const mimetype = 'application/json';
 
 // End of possible utilities
 
@@ -127,4 +128,4 @@ function convertImportToCommonFormat(imp) {
   };
 }
 
-exports = module.exports = { fetchDataFromRemoteServer, convertImportToCommonFormat };
+exports = module.exports = { mimetype, fetchDataFromRemoteServer, convertImportToCommonFormat };

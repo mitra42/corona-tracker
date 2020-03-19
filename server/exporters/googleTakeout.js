@@ -27,4 +27,6 @@ function convertCommonToExportFormat(obj) {
   };
 }
 
-exports = module.exports = { convertCommonToExportFormat };
+const mimetype = 'application/json';
+
+exports = module.exports = { mimetype, convertCommonToExportFormat };

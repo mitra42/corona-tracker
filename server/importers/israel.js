@@ -8,6 +8,8 @@ const debug = require('debug')('corona-tracker:importers-israel');
 const DwebTransports = require('@internetarchive/dweb-transports');
 const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
 
+const mimetype = 'application/json';
+
 // Utilities - candidates for importers/utils.js
 
 
@@ -136,5 +138,4 @@ function convertImportToCommonFormat(imp) {
     meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }
-
-exports = module.exports = { fetchDataFromRemoteServer, convertImportToCommonFormat };
+exports = module.exports = { mimetype, fetchDataFromRemoteServer, convertImportToCommonFormat };

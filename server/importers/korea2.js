@@ -15,6 +15,7 @@ const DwebTransports = require('@internetarchive/dweb-transports');
 const csvParse = require('csv-parse/lib/sync');
 const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
 // Utilities - candidates for importers/utils.js
+const mimetype = 'text/csv';
 
 // End of possible utilities
 
@@ -111,4 +112,4 @@ function convertImportToCommonFormat(imp) {
   };
 }
 
-exports = module.exports = { fetchDataFromRemoteServer, convertImportToCommonFormat };
+exports = module.exports = { mimetype, fetchDataFromRemoteServer, convertImportToCommonFormat };

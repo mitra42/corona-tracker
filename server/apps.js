@@ -6,11 +6,19 @@ const debug = require('debug')('corona-tracker:apps');
 const importers = require('./importers');
 const exporters = require('./exporters');
 
+function sendIt(res, mimetype, exported) {
+  if (mimetype === 'application/json') { // exported should be an object
+    res.json(exported);
+  } else {
+    res.set('Content-type', mimetype);
+    res.send(exported);
+  }
+}
+
 function appDataset(req, res) {
   const { dataset } = req.params;
   const { output } = req.query;
   // TODO treat dataset: korea as korea1 + korea2 - handle "groups"
-  // TODO treat output: common or output:original as expected
   const specialExport = ['common', 'original'].includes(output);
   const importer = importers[dataset];
   const exporter = !specialExport && exporters[output];
@@ -26,18 +34,14 @@ function appDataset(req, res) {
       } else {
         try {
           if (output === 'original') {
-            if (typeof imported === "Object") {
-              res.json(imported);
-            } else {
-              res.send(imported);
-            }
+            sendIt(res, importer.mimetype, imported);
           } else {
             const common = importer.convertImportToCommonFormat(imported);
             if (output === 'common') {
-              res.json(common);
+              sendIt(res, 'application/json', common);
             } else {
               const exported = exporter.convertCommonToExportFormat(common);
-              res.json(exported);
+              sendIt(res, exporter.mimetype, exported);
             }
           }
         } catch (err0) {
