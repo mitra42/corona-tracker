@@ -104,9 +104,9 @@ function convertOnePointToCommonFormat(record) {
     end: commonTimeFromMS(timestamp + 24 * 60 * 60 * 1000),
     name: record.name,
     place: {
-      address: 'GS수퍼마켓 안동용상점',
-      address_name: '경북 안동시 용상동 600-12',
-      address_english: 'GS Supermarket Andong Yongshop',
+      address: record.address,
+      address_name: record.address_name,
+      address_english: record.address_english,
     }
   });
 }

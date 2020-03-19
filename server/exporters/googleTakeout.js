@@ -21,7 +21,7 @@ function convertOneCommonToExportFormat(obj) {
   };
 }
 
-function convertCommonToExportFormat(obj) {
+function convertCommonToExportFormat(obj, { dataset } = {}) {
   return {
     timelineObjects: obj.positions.map(o => convertOneCommonToExportFormat(o))
   };

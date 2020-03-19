@@ -40,7 +40,7 @@ function appDataset(req, res) {
             if (output === 'common') {
               sendIt(res, 'application/json', common);
             } else {
-              const exported = exporter.convertCommonToExportFormat(common);
+              const exported = exporter.convertCommonToExportFormat(common, { dataset });
               sendIt(res, exporter.mimetype, exported);
             }
           }

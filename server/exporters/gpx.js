@@ -17,7 +17,9 @@ function convertOneCommonToExportFormat(obj) {
   const t1 = isoTimeFromCommonTime(obj.start);
   const t2 = isoTimeFromCommonTime(obj.end);
   const name = obj.name.replace('\n', ' ');
-  return [t1, t2].map(t => `        <trkpt lat="${lat}" lon="${lon}"><time>${t}</time><name>${name}</name></trkpt>`).join('\n');
+  const {place} = obj;
+  const desc = [place.address_name, place.type, place.address, place.address_english, place.province, place.city, obj.comments].filter(s => !!s).join('; ')
+  return [t1, t2].map(t => `        <trkpt lat="${lat}" lon="${lon}"><time>${t}</time><name>${name}</name><desc></desc></trkpt>`).join('\n');
 }
 
 function convertBounds(o) {
@@ -31,10 +33,14 @@ function convertBounds(o) {
  * @returns {{timelineObjects: {placeVisit: {duration: {startTimestampMs: *, endTimestampMs: *}, location: {longitudeE7: *, name: string, latitudeE7: *}}}[]}}
  */
 
-function convertCommonToExportFormat(obj) {
+function convertCommonToExportFormat(obj, { dataset } = {}) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.0">
   <name>${obj.meta.source.name}</name>
+  <url>https://c19.mitra.biz/data/${dataset}?output=gpx</url>
+  <ulrname>Covid Tracker: ${obj.meta.source.name}</urlname>
+  <time>${isoTimeFromCommonTime(obj.meta.source.retrieved)}</time>
+  <keywords>Covid19</keywords>
   <trk>
     <name>${obj.meta.source.name}</name>
     <number>1</number>

@@ -26,7 +26,7 @@ function convertOneCommonToExportFormat(obj) {
  * @returns {{timelineObjects: {placeVisit: {duration: {startTimestampMs: *, endTimestampMs: *}, location: {longitudeE7: *, name: string, latitudeE7: *}}}[]}}
  */
 
-function convertCommonToExportFormat(obj) {
+function convertCommonToExportFormat(obj, { dataset } = {}) {
   return {
     xxx: obj.positions.map(o => convertOneCommonToExportFormat(o))
   };
