@@ -21,14 +21,11 @@ DEFAULTUSER=root
 ######## END OF CONFIGURATION #################
 
 # Make sure to get get a recent node, Ubuntu is back at 8.x !
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt-get update
-sudo apt-get -y install nodejs curl supervisor webpack
-
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |sudo apt-key add - \
-    &&  echo "deb https://dl.yarnpkg.com/debian/ stable main" |sudo tee /etc/apt/sources.list.d/yarn.list \
-    &&  sudo apt-get update \
-    &&  sudo apt-get -y install yarn npm
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - \
+  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |sudo apt-key add - \
+  &&  echo "deb https://dl.yarnpkg.com/debian/ stable main" |sudo tee /etc/apt/sources.list.d/yarn.list \
+  &&  sudo apt-get update \
+  &&  sudo apt-get -y install nodejs curl supervisor webpack yarn npm
 
 yarn install
 webpack --mode development
@@ -36,10 +33,10 @@ webpack --mode development
 pushd server
 ./build.sh # Runs update.sh as well
 
-if [ -z "${USESUPERVISOR:-}"]; then
+if [ -z "${USESUPERVISOR:-}" ]; then
   sudo node ./Main.js --port ${PORT:-${DEFAULTPORT}}&
 else
   cat ./supervisor.conf | sed -e "s:/app/server:${PWD}:g" | sed -e "s/USER=root/USER=${RUNUSER:=${DEFAULTUSER}}/g" | sed -e "s/Main.js/Main.js --port ${PORT:-${DEFAULTPORT}}/"| sudo tee - /etc/supervisor/conf.d/supervisor-corona-tracker.conf >>/dev/null
-  sudo supervisorctl reload || sudo /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+  sudo supervisorctl reload && sudo supervisorctl restart corona-tracker || sudo /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
 fi
 popd
