@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./client.jsx");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/client.jsx");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "../languages/Languages.jsx":
-/*!**********************************!*\
-  !*** ../languages/Languages.jsx ***!
-  \**********************************/
+/***/ "./languages/Languages.jsx":
+/*!*********************************!*\
+  !*** ./languages/Languages.jsx ***!
+  \*********************************/
 /*! exports provided: languages, languageConfig, currentISO, getLanguage, I18nSpan, setLanguage, I18n, I18nStr, I18nIcon */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -104,18 +104,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18n", function() { return I18n; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nStr", function() { return I18nStr; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nIcon", function() { return I18nIcon; });
-/* harmony import */ var async_waterfall__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! async/waterfall */ "../node_modules/async/waterfall.js");
+/* harmony import */ var async_waterfall__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! async/waterfall */ "./node_modules/async/waterfall.js");
 /* harmony import */ var async_waterfall__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(async_waterfall__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
 
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('corona-tracker:languages');
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('corona-tracker:languages');
 
-const DwebTransports = __webpack_require__(/*! @internetarchive/dweb-transports */ "../node_modules/@internetarchive/dweb-transports/index.js"); // utilities - also duplicated in dweb-archivecontroller/Util and ia-components/util
+const DwebTransports = __webpack_require__(/*! @internetarchive/dweb-transports */ "./node_modules/@internetarchive/dweb-transports/index.js"); // utilities - also duplicated in dweb-archivecontroller/Util and ia-components/util
 
 
 function ObjectFromEntries(arr) {
@@ -328,14 +328,14 @@ class I18nIcon extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
 }
 
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports sync recursive":
-/*!*************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports sync ***!
-  \*************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports sync recursive":
+/*!************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports sync ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -347,14 +347,14 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = "../node_modules/@internetarchive/dweb-transports sync recursive";
+webpackEmptyContext.id = "./node_modules/@internetarchive/dweb-transports sync recursive";
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/Errors.js":
-/*!******************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/Errors.js ***!
-  \******************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/Errors.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/Errors.js ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -412,29 +412,29 @@ exports = module.exports = {
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/Transport.js":
-/*!*********************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/Transport.js ***!
-  \*********************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/Transport.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/Transport.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* eslint-disable camelcase, indent */
-const waterfall = __webpack_require__(/*! async/waterfall */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/waterfall.js");
+const waterfall = __webpack_require__(/*! async/waterfall */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/waterfall.js");
 
-const Url = __webpack_require__(/*! url */ "../node_modules/url/url.js");
+const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const stream = __webpack_require__(/*! readable-stream */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/readable-browser.js");
+const stream = __webpack_require__(/*! readable-stream */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/readable-browser.js");
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:transport');
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:transport');
 
 const {
   IntentionallyUnimplementedError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "../node_modules/@internetarchive/dweb-transports/Transports.js");
+const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js");
 
 function delay(ms, val) {
   return new Promise(resolve => {
@@ -472,18 +472,18 @@ class Transport {
         debug('Requiring %s', r);
         /* eslint-disable-next-line import/no-dynamic-require, global-require */
 
-        __webpack_require__("../node_modules/@internetarchive/dweb-transports sync recursive")(r);
+        __webpack_require__("./node_modules/@internetarchive/dweb-transports sync recursive")(r);
       });
     } else if (typeof requires === "object") {
       Object.entries(requires).map(kv => {
         debug("Requiring %s %s", t, s);
         /* eslint-disable-next-line import/no-dynamic-require, global-require */
 
-        global[kv[0]] = __webpack_require__("../node_modules/@internetarchive/dweb-transports sync recursive")(kv[1]);
+        global[kv[0]] = __webpack_require__("./node_modules/@internetarchive/dweb-transports sync recursive")(kv[1]);
       });
     } else if (typeof requires === "string") {
       /* eslint-disable-next-line import/no-dynamic-require, global-require */
-      __webpack_require__("../node_modules/@internetarchive/dweb-transports sync recursive")(requires);
+      __webpack_require__("./node_modules/@internetarchive/dweb-transports sync recursive")(requires);
     }
   }
 
@@ -1017,35 +1017,35 @@ Transport.STATUS_PAUSED = 4; // It was launched, probably connected, but now pau
 
 Transport.STATUSTEXT = ["Connected", "Failed", "Starting", "Loaded", "Paused"];
 exports = module.exports = Transport;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/TransportFLUENCE.js":
-/*!****************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/TransportFLUENCE.js ***!
-  \****************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/TransportFLUENCE.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/TransportFLUENCE.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Url = __webpack_require__(/*! url */ "../node_modules/url/url.js");
+const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const Transport = __webpack_require__(/*! ./Transport */ "../node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "../node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
 const {
   TransportError,
   CodingError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); //const fluence = require('fluence');
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); //const fluence = require('fluence');
 
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:fluence');
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:fluence');
 
 const defaultOptions = {
   nodeUrl: 'https://ia-redis.fluence.one',
@@ -1349,10 +1349,10 @@ exports = module.exports = TransportFLUENCE;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/TransportGUN.js":
-/*!************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/TransportGUN.js ***!
-  \************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/TransportGUN.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/TransportGUN.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1365,7 +1365,7 @@ This Transport layers uses GUN.
 
 See https://github.com/internetarchive/dweb-mirror/issues/43 for meta issue
 */
-const Url = __webpack_require__(/*! url */ "../node_modules/url/url.js");
+const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
 process.env.GUN_ENV = 'false';
 /* This should be done in the caller (see dweb-archive/archive.html for example)
@@ -1388,25 +1388,25 @@ require('gun/lib/store.js');
 require('gun/lib/rindexed.js');
 */
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:gun');
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:gun');
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); // Other Dweb modules
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); // Other Dweb modules
 
 
 const {
   TransportError,
   CodingError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "../node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "../node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const utils = __webpack_require__(/*! ./utils */ "../node_modules/@internetarchive/dweb-transports/utils.js"); // Utility functions
+const utils = __webpack_require__(/*! ./utils */ "./node_modules/@internetarchive/dweb-transports/utils.js"); // Utility functions
 // Utility packages (ours) And one-liners
 // unused currently: function delay(ms, val) { return new Promise(resolve => {setTimeout(() => { resolve(val); },ms)})}
 
@@ -1809,36 +1809,36 @@ Transports._transportclasses.GUN = TransportGUN; // Defines global.Gun
 
 TransportGUN.requires = TransportGUN.scripts = ['gun/gun.js', 'gun/lib/path.js', 'gun/lib/radix.js', 'gun/lib/radisk.js', 'gun/lib/store.js', 'gun/lib/rindexed.js'];
 exports = module.exports = TransportGUN;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/TransportHASH.js":
-/*!*************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/TransportHASH.js ***!
-  \*************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/TransportHASH.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/TransportHASH.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Transport = __webpack_require__(/*! ./Transport */ "../node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "../node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const httptools = __webpack_require__(/*! ./httptools */ "../node_modules/@internetarchive/dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
+const httptools = __webpack_require__(/*! ./httptools */ "./node_modules/@internetarchive/dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
 
 
 const {
   CodingError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js");
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js");
 
-const Url = __webpack_require__(/*! url */ "../node_modules/url/url.js");
+const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:hash');
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:hash');
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs");
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs");
 
 defaultHashOptions = {
   urlbase: 'https://dweb.me' // Note this was running dweb-gateway, but wont be much longer, this will need reimplementing if going to be used
@@ -2235,27 +2235,27 @@ exports = module.exports = TransportHASH;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/TransportHTTP.js":
-/*!*************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/TransportHTTP.js ***!
-  \*************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/TransportHTTP.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/TransportHTTP.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Transport = __webpack_require__(/*! ./Transport */ "../node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "../node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const httptools = __webpack_require__(/*! ./httptools */ "../node_modules/@internetarchive/dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
+const httptools = __webpack_require__(/*! ./httptools */ "./node_modules/@internetarchive/dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
 
 
-const Url = __webpack_require__(/*! url */ "../node_modules/url/url.js");
+const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const stream = __webpack_require__(/*! readable-stream */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/readable-browser.js");
+const stream = __webpack_require__(/*! readable-stream */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/readable-browser.js");
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:http'); //TODO-SPLIT pull /arc out of here, then dont need by default to hearbeat to dweb.me
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:http'); //TODO-SPLIT pull /arc out of here, then dont need by default to hearbeat to dweb.me
 
 
 defaulthttpoptions = {
@@ -2507,10 +2507,10 @@ exports = module.exports = TransportHTTP;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/TransportIPFS.js":
-/*!*************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/TransportIPFS.js ***!
-  \*************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/TransportIPFS.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/TransportIPFS.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2524,12 +2524,12 @@ See https://github.com/ipfs/js-ipfs but note its often out of date relative to t
 */
 // TODO-IPFS Note API changes in https://github.com/ipfs/js-ipfs/issues/1721 probably all ipfs.files -> ipfs.
 // Library packages other than IPFS
-const Url = __webpack_require__(/*! url */ "../node_modules/url/url.js");
+const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:ipfs'); // Local packages
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:ipfs'); // Local packages
 
 
-const httptools = __webpack_require__(/*! ./httptools */ "../node_modules/@internetarchive/dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
+const httptools = __webpack_require__(/*! ./httptools */ "./node_modules/@internetarchive/dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
 // IPFS components
 
 
@@ -2545,16 +2545,16 @@ let IPFS; // TODO-SPLIT move this line lower when fix structure
 const {
   CodingError,
   TransportError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "../node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "../node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const utils = __webpack_require__(/*! ./utils */ "../node_modules/@internetarchive/dweb-transports/utils.js"); // Utility functions
+const utils = __webpack_require__(/*! ./utils */ "./node_modules/@internetarchive/dweb-transports/utils.js"); // Utility functions
 
 
 const defaultoptions = {
@@ -3114,14 +3114,14 @@ TransportIPFS.requires = ['ipfs', 'ipfs-http-client'];
 Transports._transportclasses["IPFS"] = TransportIPFS; // noinspection JSUndefinedPropertyAssignment
 
 exports = module.exports = TransportIPFS;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../buffer/index.js */ "../node_modules/buffer/index.js").Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/TransportWEBTORRENT.js":
-/*!*******************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/TransportWEBTORRENT.js ***!
-  \*******************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/TransportWEBTORRENT.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/TransportWEBTORRENT.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3141,21 +3141,21 @@ Y Lists have listeners and generate events - see docs at ...
 // Require in consumer;
 // const WebTorrent = require('webtorrent');
 // const Url = require('url');
-const path = __webpack_require__(/*! path */ "../node_modules/path-browserify/index.js");
+const path = __webpack_require__(/*! path */ "./node_modules/path-browserify/index.js");
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:webtorrent'); // Other Dweb modules
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:webtorrent'); // Other Dweb modules
 
 
 const {
   CodingError,
   TransportError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "../node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "../node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
 const defaultoptions = {};
@@ -3190,7 +3190,7 @@ class TransportWEBTORRENT extends Transport {
       const wrtc = 'wrtc'; // Define string to avoid error in webpack when wrtc not installed
       // eslint-disable-next-line import/no-dynamic-require, global-require
 
-      this.wrtc = __webpack_require__("../node_modules/@internetarchive/dweb-transports sync recursive")(wrtc); // Will be undefined if not installed, used by setup0
+      this.wrtc = __webpack_require__("./node_modules/@internetarchive/dweb-transports sync recursive")(wrtc); // Will be undefined if not installed, used by setup0
     } catch (err) {
       debug('wrtc requested but not present'); // Allow to continue without wrtc
     }
@@ -3571,21 +3571,21 @@ TransportWEBTORRENT.requires = ['webtorrent']; // Note wrtc loaded in loadIntoNo
 
 exports = module.exports = TransportWEBTORRENT;
 /* Code review by Mitra 2019-12-29 */
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "../node_modules/buffer/index.js").Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/TransportWOLK.js":
-/*!*************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/TransportWOLK.js ***!
-  \*************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/TransportWOLK.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/TransportWOLK.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
 This Transport layers uses Wolk NoSQL + Cloudstore.
 */
-const Url = __webpack_require__(/*! url */ "../node_modules/url/url.js");
+const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 /*
 if( typeof window === 'undefined' ) {
   WOLK = require("wolkjs").FS;
@@ -3595,21 +3595,21 @@ if( typeof window === 'undefined' ) {
 */
 
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs");
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs");
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:wolk'); // Other Dweb modules
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:wolk'); // Other Dweb modules
 
 
 const {
   TransportError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "../node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "../node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
 let defaultoptions = {
@@ -3880,10 +3880,10 @@ exports = module.exports = TransportWOLK;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/TransportYJS.js":
-/*!************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/TransportYJS.js ***!
-  \************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/TransportYJS.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/TransportYJS.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3894,11 +3894,11 @@ This Transport layers builds on the YJS DB and uses IPFS as its transport.
 
 Y Lists have listeners and generate events - see docs at ...
 */
-const Url = __webpack_require__(/*! url */ "../node_modules/url/url.js");
+const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const debugyjs = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:yjs');
+const debugyjs = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:yjs');
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); //const Y = require('yjs/dist/y.js'); // Explicity require of dist/y.js to get around a webpack warning but causes different error in YJS
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); //const Y = require('yjs/dist/y.js'); // Explicity require of dist/y.js to get around a webpack warning but causes different error in YJS
 
 /* See TransportYJS.requires at bottom
 const Y = require('yjs');
@@ -3925,16 +3925,16 @@ function delay(ms, val) {
 const {
   CodingError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "../node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "../node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const utils = __webpack_require__(/*! ./utils */ "../node_modules/@internetarchive/dweb-transports/utils.js"); // Utility functions
+const utils = __webpack_require__(/*! ./utils */ "./node_modules/@internetarchive/dweb-transports/utils.js"); // Utility functions
 
 
 let defaultoptions = {
@@ -4337,32 +4337,32 @@ TransportYJS.scripts = ["yjs/dist/y.js", "y-array/dist/y-array.js", "y-memory/di
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/Transports.js":
-/*!**********************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/Transports.js ***!
-  \**********************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/Transports.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/Transports.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable indent, quotes */
-const Url = __webpack_require__(/*! url */ "../node_modules/url/url.js");
+const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
 const {
   TransportError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js"); // const utils = require('./utils');
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // const utils = require('./utils');
 
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports');
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports');
 
-const httptools = __webpack_require__(/*! ./httptools */ "../node_modules/@internetarchive/dweb-transports/httptools.js");
+const httptools = __webpack_require__(/*! ./httptools */ "./node_modules/@internetarchive/dweb-transports/httptools.js");
 
-const each = __webpack_require__(/*! async/each */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/each.js");
+const each = __webpack_require__(/*! async/each */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/each.js");
 
-const detectSeries = __webpack_require__(/*! async/detectSeries */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/detectSeries.js");
+const detectSeries = __webpack_require__(/*! async/detectSeries */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/detectSeries.js");
 
-const map = __webpack_require__(/*! async/map */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/map.js");
+const map = __webpack_require__(/*! async/map */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/map.js");
 
-const EventTarget = __webpack_require__(/*! ./eventHandling.js */ "../node_modules/@internetarchive/dweb-transports/eventHandling.js");
+const EventTarget = __webpack_require__(/*! ./eventHandling.js */ "./node_modules/@internetarchive/dweb-transports/eventHandling.js");
 
 class Transports {
   /*
@@ -5356,10 +5356,10 @@ exports = module.exports = Transports;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/eventHandling.js":
-/*!*************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/eventHandling.js ***!
-  \*************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/eventHandling.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/eventHandling.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -5471,23 +5471,23 @@ exports = module.exports = EventTarget;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/httptools.js":
-/*!*********************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/httptools.js ***!
-  \*********************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/httptools.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/httptools.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {const nodefetch = __webpack_require__(/*! node-fetch */ 0); // Note, were using node-fetch-npm which had a warning in webpack see https://github.com/bitinn/node-fetch/issues/421 and is intended for clients
 
 
-const debug = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js")('dweb-transports:httptools');
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:httptools');
 
-const queue = __webpack_require__(/*! async/queue */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/queue.js");
+const queue = __webpack_require__(/*! async/queue */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/queue.js");
 
 const {
   TransportError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
 // var fetch,Headers,Request;
 // if (typeof(Window) === "undefined") {
 
@@ -5823,38 +5823,38 @@ exports = module.exports = {
   GET,
   p_POST
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "../node_modules/buffer/index.js").Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/index.js":
-/*!*****************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/index.js ***!
-  \*****************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/index.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/index.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Order is significant as should search earlier ones first
 // put IPFS before Webtorrent for showcasing, as Webtorrent works in some cases IPFS doesnt so that way we exercise both
-const DwebTransports = __webpack_require__(/*! ./Transports.js */ "../node_modules/@internetarchive/dweb-transports/Transports.js"); // SEE-OTHER-ADDTRANSPORT
+const DwebTransports = __webpack_require__(/*! ./Transports.js */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // SEE-OTHER-ADDTRANSPORT
 
 
-__webpack_require__(/*! ./TransportHTTP.js */ "../node_modules/@internetarchive/dweb-transports/TransportHTTP.js"); // Can access via window.DwebTransports._transportclasses["HTTP"]
+__webpack_require__(/*! ./TransportHTTP.js */ "./node_modules/@internetarchive/dweb-transports/TransportHTTP.js"); // Can access via window.DwebTransports._transportclasses["HTTP"]
 
 
-__webpack_require__(/*! ./TransportIPFS.js */ "../node_modules/@internetarchive/dweb-transports/TransportIPFS.js");
+__webpack_require__(/*! ./TransportIPFS.js */ "./node_modules/@internetarchive/dweb-transports/TransportIPFS.js");
 
-__webpack_require__(/*! ./TransportYJS.js */ "../node_modules/@internetarchive/dweb-transports/TransportYJS.js");
+__webpack_require__(/*! ./TransportYJS.js */ "./node_modules/@internetarchive/dweb-transports/TransportYJS.js");
 
-__webpack_require__(/*! ./TransportWEBTORRENT.js */ "../node_modules/@internetarchive/dweb-transports/TransportWEBTORRENT.js");
+__webpack_require__(/*! ./TransportWEBTORRENT.js */ "./node_modules/@internetarchive/dweb-transports/TransportWEBTORRENT.js");
 
-__webpack_require__(/*! ./TransportWOLK.js */ "../node_modules/@internetarchive/dweb-transports/TransportWOLK.js");
+__webpack_require__(/*! ./TransportWOLK.js */ "./node_modules/@internetarchive/dweb-transports/TransportWOLK.js");
 
-__webpack_require__(/*! ./TransportGUN.js */ "../node_modules/@internetarchive/dweb-transports/TransportGUN.js");
+__webpack_require__(/*! ./TransportGUN.js */ "./node_modules/@internetarchive/dweb-transports/TransportGUN.js");
 
-__webpack_require__(/*! ./TransportHASH.js */ "../node_modules/@internetarchive/dweb-transports/TransportHASH.js");
+__webpack_require__(/*! ./TransportHASH.js */ "./node_modules/@internetarchive/dweb-transports/TransportHASH.js");
 
-__webpack_require__(/*! ./TransportFLUENCE.js */ "../node_modules/@internetarchive/dweb-transports/TransportFLUENCE.js");
+__webpack_require__(/*! ./TransportFLUENCE.js */ "./node_modules/@internetarchive/dweb-transports/TransportFLUENCE.js");
 
 if (typeof window !== "undefined") {
   window.DwebTransports = DwebTransports;
@@ -5864,10 +5864,10 @@ exports = module.exports = DwebTransports;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/asyncify.js":
-/*!***************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/asyncify.js ***!
-  \***************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/asyncify.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/asyncify.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5879,15 +5879,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = asyncify;
 
-var _isObject = __webpack_require__(/*! lodash/isObject */ "../node_modules/lodash/isObject.js");
+var _isObject = __webpack_require__(/*! lodash/isObject */ "./node_modules/lodash/isObject.js");
 
 var _isObject2 = _interopRequireDefault(_isObject);
 
-var _initialParams = __webpack_require__(/*! ./internal/initialParams */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/initialParams.js");
+var _initialParams = __webpack_require__(/*! ./internal/initialParams */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/initialParams.js");
 
 var _initialParams2 = _interopRequireDefault(_initialParams);
 
-var _setImmediate = __webpack_require__(/*! ./internal/setImmediate */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js");
+var _setImmediate = __webpack_require__(/*! ./internal/setImmediate */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js");
 
 var _setImmediate2 = _interopRequireDefault(_setImmediate);
 
@@ -5993,10 +5993,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/detectLimit.js":
-/*!******************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/detectLimit.js ***!
-  \******************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/detectLimit.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/detectLimit.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6007,19 +6007,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _identity = __webpack_require__(/*! lodash/identity */ "../node_modules/lodash/identity.js");
+var _identity = __webpack_require__(/*! lodash/identity */ "./node_modules/lodash/identity.js");
 
 var _identity2 = _interopRequireDefault(_identity);
 
-var _createTester = __webpack_require__(/*! ./internal/createTester */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/createTester.js");
+var _createTester = __webpack_require__(/*! ./internal/createTester */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/createTester.js");
 
 var _createTester2 = _interopRequireDefault(_createTester);
 
-var _doParallelLimit = __webpack_require__(/*! ./internal/doParallelLimit */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallelLimit.js");
+var _doParallelLimit = __webpack_require__(/*! ./internal/doParallelLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallelLimit.js");
 
 var _doParallelLimit2 = _interopRequireDefault(_doParallelLimit);
 
-var _findGetResult = __webpack_require__(/*! ./internal/findGetResult */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/findGetResult.js");
+var _findGetResult = __webpack_require__(/*! ./internal/findGetResult */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/findGetResult.js");
 
 var _findGetResult2 = _interopRequireDefault(_findGetResult);
 
@@ -6057,10 +6057,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/detectSeries.js":
-/*!*******************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/detectSeries.js ***!
-  \*******************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/detectSeries.js":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/detectSeries.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6071,11 +6071,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _detectLimit = __webpack_require__(/*! ./detectLimit */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/detectLimit.js");
+var _detectLimit = __webpack_require__(/*! ./detectLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/detectLimit.js");
 
 var _detectLimit2 = _interopRequireDefault(_detectLimit);
 
-var _doLimit = __webpack_require__(/*! ./internal/doLimit */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js");
+var _doLimit = __webpack_require__(/*! ./internal/doLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js");
 
 var _doLimit2 = _interopRequireDefault(_doLimit);
 
@@ -6111,10 +6111,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/each.js":
-/*!***********************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/each.js ***!
-  \***********************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/each.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/each.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6126,15 +6126,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = eachLimit;
 
-var _eachOf = __webpack_require__(/*! ./eachOf */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js");
+var _eachOf = __webpack_require__(/*! ./eachOf */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js");
 
 var _eachOf2 = _interopRequireDefault(_eachOf);
 
-var _withoutIndex = __webpack_require__(/*! ./internal/withoutIndex */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/withoutIndex.js");
+var _withoutIndex = __webpack_require__(/*! ./internal/withoutIndex */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/withoutIndex.js");
 
 var _withoutIndex2 = _interopRequireDefault(_withoutIndex);
 
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -6210,10 +6210,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js":
-/*!*************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js ***!
-  \*************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6229,35 +6229,35 @@ exports.default = function (coll, iteratee, callback) {
   eachOfImplementation(coll, (0, _wrapAsync2.default)(iteratee), callback);
 };
 
-var _isArrayLike = __webpack_require__(/*! lodash/isArrayLike */ "../node_modules/lodash/isArrayLike.js");
+var _isArrayLike = __webpack_require__(/*! lodash/isArrayLike */ "./node_modules/lodash/isArrayLike.js");
 
 var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
 
-var _breakLoop = __webpack_require__(/*! ./internal/breakLoop */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js");
+var _breakLoop = __webpack_require__(/*! ./internal/breakLoop */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js");
 
 var _breakLoop2 = _interopRequireDefault(_breakLoop);
 
-var _eachOfLimit = __webpack_require__(/*! ./eachOfLimit */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/eachOfLimit.js");
+var _eachOfLimit = __webpack_require__(/*! ./eachOfLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOfLimit.js");
 
 var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
 
-var _doLimit = __webpack_require__(/*! ./internal/doLimit */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js");
+var _doLimit = __webpack_require__(/*! ./internal/doLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js");
 
 var _doLimit2 = _interopRequireDefault(_doLimit);
 
-var _noop = __webpack_require__(/*! lodash/noop */ "../node_modules/lodash/noop.js");
+var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _once = __webpack_require__(/*! ./internal/once */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js");
+var _once = __webpack_require__(/*! ./internal/once */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js");
 
 var _once2 = _interopRequireDefault(_once);
 
-var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
+var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -6337,10 +6337,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/eachOfLimit.js":
-/*!******************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/eachOfLimit.js ***!
-  \******************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOfLimit.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOfLimit.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6352,11 +6352,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = eachOfLimit;
 
-var _eachOfLimit2 = __webpack_require__(/*! ./internal/eachOfLimit */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js");
+var _eachOfLimit2 = __webpack_require__(/*! ./internal/eachOfLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js");
 
 var _eachOfLimit3 = _interopRequireDefault(_eachOfLimit2);
 
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -6395,10 +6395,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/DoublyLinkedList.js":
-/*!********************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/DoublyLinkedList.js ***!
-  \********************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/DoublyLinkedList.js":
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/DoublyLinkedList.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6501,10 +6501,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js":
-/*!*************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js ***!
-  \*************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6521,10 +6521,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/createTester.js":
-/*!****************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/createTester.js ***!
-  \****************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/createTester.js":
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/createTester.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6536,11 +6536,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _createTester;
 
-var _noop = __webpack_require__(/*! lodash/noop */ "../node_modules/lodash/noop.js");
+var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _breakLoop = __webpack_require__(/*! ./breakLoop */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js");
+var _breakLoop = __webpack_require__(/*! ./breakLoop */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js");
 
 var _breakLoop2 = _interopRequireDefault(_breakLoop);
 
@@ -6581,10 +6581,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js":
-/*!***********************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js ***!
-  \***********************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6606,10 +6606,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallel.js":
-/*!**************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallel.js ***!
-  \**************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallel.js":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallel.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6621,11 +6621,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = doParallel;
 
-var _eachOf = __webpack_require__(/*! ../eachOf */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js");
+var _eachOf = __webpack_require__(/*! ../eachOf */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js");
 
 var _eachOf2 = _interopRequireDefault(_eachOf);
 
-var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -6645,10 +6645,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallelLimit.js":
-/*!*******************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallelLimit.js ***!
-  \*******************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallelLimit.js":
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallelLimit.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6660,11 +6660,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = doParallelLimit;
 
-var _eachOfLimit = __webpack_require__(/*! ./eachOfLimit */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js");
+var _eachOfLimit = __webpack_require__(/*! ./eachOfLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js");
 
 var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
 
-var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -6684,10 +6684,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js":
-/*!***************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js ***!
-  \***************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6699,23 +6699,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _eachOfLimit;
 
-var _noop = __webpack_require__(/*! lodash/noop */ "../node_modules/lodash/noop.js");
+var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _once = __webpack_require__(/*! ./once */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js");
+var _once = __webpack_require__(/*! ./once */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js");
 
 var _once2 = _interopRequireDefault(_once);
 
-var _iterator = __webpack_require__(/*! ./iterator */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/iterator.js");
+var _iterator = __webpack_require__(/*! ./iterator */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/iterator.js");
 
 var _iterator2 = _interopRequireDefault(_iterator);
 
-var _onlyOnce = __webpack_require__(/*! ./onlyOnce */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
+var _onlyOnce = __webpack_require__(/*! ./onlyOnce */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
-var _breakLoop = __webpack_require__(/*! ./breakLoop */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js");
+var _breakLoop = __webpack_require__(/*! ./breakLoop */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js");
 
 var _breakLoop2 = _interopRequireDefault(_breakLoop);
 
@@ -6783,10 +6783,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/findGetResult.js":
-/*!*****************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/findGetResult.js ***!
-  \*****************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/findGetResult.js":
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/findGetResult.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6806,10 +6806,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/getIterator.js":
-/*!***************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/getIterator.js ***!
-  \***************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/getIterator.js":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/getIterator.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6829,10 +6829,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/initialParams.js":
-/*!*****************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/initialParams.js ***!
-  \*****************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/initialParams.js":
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/initialParams.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6853,7 +6853,7 @@ exports.default = function (fn) {
   };
 };
 
-var _slice = __webpack_require__(/*! ./slice */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js");
+var _slice = __webpack_require__(/*! ./slice */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js");
 
 var _slice2 = _interopRequireDefault(_slice);
 
@@ -6867,10 +6867,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/iterator.js":
-/*!************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/iterator.js ***!
-  \************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/iterator.js":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/iterator.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6882,15 +6882,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = iterator;
 
-var _isArrayLike = __webpack_require__(/*! lodash/isArrayLike */ "../node_modules/lodash/isArrayLike.js");
+var _isArrayLike = __webpack_require__(/*! lodash/isArrayLike */ "./node_modules/lodash/isArrayLike.js");
 
 var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
 
-var _getIterator = __webpack_require__(/*! ./getIterator */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/getIterator.js");
+var _getIterator = __webpack_require__(/*! ./getIterator */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/getIterator.js");
 
 var _getIterator2 = _interopRequireDefault(_getIterator);
 
-var _keys = __webpack_require__(/*! lodash/keys */ "../node_modules/lodash/keys.js");
+var _keys = __webpack_require__(/*! lodash/keys */ "./node_modules/lodash/keys.js");
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -6950,10 +6950,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/map.js":
-/*!*******************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/map.js ***!
-  \*******************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/map.js":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/map.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6965,11 +6965,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _asyncMap;
 
-var _noop = __webpack_require__(/*! lodash/noop */ "../node_modules/lodash/noop.js");
+var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -7003,10 +7003,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js":
-/*!********************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js ***!
-  \********************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7031,10 +7031,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js":
-/*!************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js ***!
-  \************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7059,10 +7059,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/queue.js":
-/*!*********************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/queue.js ***!
-  \*********************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/queue.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/queue.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7074,31 +7074,31 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = queue;
 
-var _baseIndexOf = __webpack_require__(/*! lodash/_baseIndexOf */ "../node_modules/lodash/_baseIndexOf.js");
+var _baseIndexOf = __webpack_require__(/*! lodash/_baseIndexOf */ "./node_modules/lodash/_baseIndexOf.js");
 
 var _baseIndexOf2 = _interopRequireDefault(_baseIndexOf);
 
-var _isArray = __webpack_require__(/*! lodash/isArray */ "../node_modules/lodash/isArray.js");
+var _isArray = __webpack_require__(/*! lodash/isArray */ "./node_modules/lodash/isArray.js");
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
-var _noop = __webpack_require__(/*! lodash/noop */ "../node_modules/lodash/noop.js");
+var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _onlyOnce = __webpack_require__(/*! ./onlyOnce */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
+var _onlyOnce = __webpack_require__(/*! ./onlyOnce */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
-var _setImmediate = __webpack_require__(/*! ./setImmediate */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js");
+var _setImmediate = __webpack_require__(/*! ./setImmediate */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js");
 
 var _setImmediate2 = _interopRequireDefault(_setImmediate);
 
-var _DoublyLinkedList = __webpack_require__(/*! ./DoublyLinkedList */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/DoublyLinkedList.js");
+var _DoublyLinkedList = __webpack_require__(/*! ./DoublyLinkedList */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/DoublyLinkedList.js");
 
 var _DoublyLinkedList2 = _interopRequireDefault(_DoublyLinkedList);
 
-var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -7292,10 +7292,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js":
-/*!****************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js ***!
-  \****************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js":
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7309,7 +7309,7 @@ exports.hasNextTick = exports.hasSetImmediate = undefined;
 exports.fallback = fallback;
 exports.wrap = wrap;
 
-var _slice = __webpack_require__(/*! ./slice */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js");
+var _slice = __webpack_require__(/*! ./slice */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js");
 
 var _slice2 = _interopRequireDefault(_slice);
 
@@ -7348,14 +7348,14 @@ if (hasSetImmediate) {
 }
 
 exports.default = wrap(_defer);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js":
-/*!*********************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js ***!
-  \*********************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7383,10 +7383,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/withoutIndex.js":
-/*!****************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/withoutIndex.js ***!
-  \****************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/withoutIndex.js":
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/withoutIndex.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7408,10 +7408,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js":
-/*!*************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js ***!
-  \*************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7423,7 +7423,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isAsync = undefined;
 
-var _asyncify = __webpack_require__(/*! ../asyncify */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/asyncify.js");
+var _asyncify = __webpack_require__(/*! ../asyncify */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/asyncify.js");
 
 var _asyncify2 = _interopRequireDefault(_asyncify);
 
@@ -7448,10 +7448,10 @@ exports.isAsync = isAsync;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/map.js":
-/*!**********************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/map.js ***!
-  \**********************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/map.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/map.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7462,11 +7462,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _doParallel = __webpack_require__(/*! ./internal/doParallel */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallel.js");
+var _doParallel = __webpack_require__(/*! ./internal/doParallel */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallel.js");
 
 var _doParallel2 = _interopRequireDefault(_doParallel);
 
-var _map = __webpack_require__(/*! ./internal/map */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/map.js");
+var _map = __webpack_require__(/*! ./internal/map */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/map.js");
 
 var _map2 = _interopRequireDefault(_map);
 
@@ -7518,10 +7518,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/queue.js":
-/*!************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/queue.js ***!
-  \************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/queue.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/queue.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7540,11 +7540,11 @@ exports.default = function (worker, concurrency) {
   }, concurrency, 1);
 };
 
-var _queue = __webpack_require__(/*! ./internal/queue */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/queue.js");
+var _queue = __webpack_require__(/*! ./internal/queue */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/queue.js");
 
 var _queue2 = _interopRequireDefault(_queue);
 
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -7663,10 +7663,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/async/waterfall.js":
-/*!****************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/async/waterfall.js ***!
-  \****************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/waterfall.js":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/waterfall.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7702,27 +7702,27 @@ exports.default = function (tasks, callback) {
   nextTask([]);
 };
 
-var _isArray = __webpack_require__(/*! lodash/isArray */ "../node_modules/lodash/isArray.js");
+var _isArray = __webpack_require__(/*! lodash/isArray */ "./node_modules/lodash/isArray.js");
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
-var _noop = __webpack_require__(/*! lodash/noop */ "../node_modules/lodash/noop.js");
+var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _once = __webpack_require__(/*! ./internal/once */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js");
+var _once = __webpack_require__(/*! ./internal/once */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js");
 
 var _once2 = _interopRequireDefault(_once);
 
-var _slice = __webpack_require__(/*! ./internal/slice */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js");
+var _slice = __webpack_require__(/*! ./internal/slice */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js");
 
 var _slice2 = _interopRequireDefault(_slice);
 
-var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
+var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -7793,10 +7793,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js":
-/*!*******************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js ***!
-  \*******************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js":
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7933,10 +7933,10 @@ module.exports.codes = codes;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js":
-/*!***********************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js ***!
-  \***********************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7982,11 +7982,11 @@ var objectKeys = Object.keys || function (obj) {
 
 module.exports = Duplex;
 
-var Readable = __webpack_require__(/*! ./_stream_readable */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_readable.js");
+var Readable = __webpack_require__(/*! ./_stream_readable */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_readable.js");
 
-var Writable = __webpack_require__(/*! ./_stream_writable */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_writable.js");
+var Writable = __webpack_require__(/*! ./_stream_writable */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_writable.js");
 
-__webpack_require__(/*! inherits */ "../node_modules/inherits/inherits_browser.js")(Duplex, Readable);
+__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(Duplex, Readable);
 
 {
   // Allow the keys array to be GC'ed.
@@ -8080,14 +8080,14 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
     this._writableState.destroyed = value;
   }
 });
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_passthrough.js":
-/*!****************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_passthrough.js ***!
-  \****************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_passthrough.js":
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_passthrough.js ***!
+  \***************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8119,9 +8119,9 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
 
 module.exports = PassThrough;
 
-var Transform = __webpack_require__(/*! ./_stream_transform */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_transform.js");
+var Transform = __webpack_require__(/*! ./_stream_transform */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_transform.js");
 
-__webpack_require__(/*! inherits */ "../node_modules/inherits/inherits_browser.js")(PassThrough, Transform);
+__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(PassThrough, Transform);
 
 function PassThrough(options) {
   if (!(this instanceof PassThrough)) return new PassThrough(options);
@@ -8134,10 +8134,10 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_readable.js":
-/*!*************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_readable.js ***!
-  \*************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_readable.js":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_readable.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8173,7 +8173,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 /*<replacement>*/
 
-var EE = __webpack_require__(/*! events */ "../node_modules/events/events.js").EventEmitter;
+var EE = __webpack_require__(/*! events */ "./node_modules/events/events.js").EventEmitter;
 
 var EElistenerCount = function EElistenerCount(emitter, type) {
   return emitter.listeners(type).length;
@@ -8183,11 +8183,11 @@ var EElistenerCount = function EElistenerCount(emitter, type) {
 /*<replacement>*/
 
 
-var Stream = __webpack_require__(/*! ./internal/streams/stream */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js");
+var Stream = __webpack_require__(/*! ./internal/streams/stream */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js");
 /*</replacement>*/
 
 
-var Buffer = __webpack_require__(/*! buffer */ "../node_modules/buffer/index.js").Buffer;
+var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js").Buffer;
 
 var OurUint8Array = global.Uint8Array || function () {};
 
@@ -8213,14 +8213,14 @@ if (debugUtil && debugUtil.debuglog) {
 /*</replacement>*/
 
 
-var BufferList = __webpack_require__(/*! ./internal/streams/buffer_list */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/buffer_list.js");
+var BufferList = __webpack_require__(/*! ./internal/streams/buffer_list */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/buffer_list.js");
 
-var destroyImpl = __webpack_require__(/*! ./internal/streams/destroy */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js");
+var destroyImpl = __webpack_require__(/*! ./internal/streams/destroy */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js");
 
-var _require = __webpack_require__(/*! ./internal/streams/state */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js"),
+var _require = __webpack_require__(/*! ./internal/streams/state */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js"),
     getHighWaterMark = _require.getHighWaterMark;
 
-var _require$codes = __webpack_require__(/*! ../errors */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
+var _require$codes = __webpack_require__(/*! ../errors */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
     ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
     ERR_STREAM_PUSH_AFTER_EOF = _require$codes.ERR_STREAM_PUSH_AFTER_EOF,
     ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
@@ -8231,7 +8231,7 @@ var StringDecoder;
 var createReadableStreamAsyncIterator;
 var from;
 
-__webpack_require__(/*! inherits */ "../node_modules/inherits/inherits_browser.js")(Readable, Stream);
+__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(Readable, Stream);
 
 var errorOrDestroy = destroyImpl.errorOrDestroy;
 var kProxyEvents = ['error', 'close', 'destroy', 'pause', 'resume'];
@@ -8248,7 +8248,7 @@ function prependListener(emitter, event, fn) {
 }
 
 function ReadableState(options, stream, isDuplex) {
-  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
   options = options || {}; // Duplex streams are both readable and writable, but share
   // the same options object.
   // However, some cases require setting options to different
@@ -8304,14 +8304,14 @@ function ReadableState(options, stream, isDuplex) {
   this.encoding = null;
 
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ "../node_modules/string_decoder/lib/string_decoder.js").StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ "./node_modules/string_decoder/lib/string_decoder.js").StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
 }
 
 function Readable(options) {
-  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
   if (!(this instanceof Readable)) return new Readable(options); // Checking for a Stream.Duplex instance is faster here instead of inside
   // the ReadableState constructor, at least with V8 6.5
 
@@ -8466,7 +8466,7 @@ Readable.prototype.isPaused = function () {
 
 
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ "../node_modules/string_decoder/lib/string_decoder.js").StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ "./node_modules/string_decoder/lib/string_decoder.js").StringDecoder;
   var decoder = new StringDecoder(enc);
   this._readableState.decoder = decoder; // If setEncoding(null), decoder.encoding equals utf8
 
@@ -9150,7 +9150,7 @@ Readable.prototype.wrap = function (stream) {
 if (typeof Symbol === 'function') {
   Readable.prototype[Symbol.asyncIterator] = function () {
     if (createReadableStreamAsyncIterator === undefined) {
-      createReadableStreamAsyncIterator = __webpack_require__(/*! ./internal/streams/async_iterator */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/async_iterator.js");
+      createReadableStreamAsyncIterator = __webpack_require__(/*! ./internal/streams/async_iterator */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/async_iterator.js");
     }
 
     return createReadableStreamAsyncIterator(this);
@@ -9252,7 +9252,7 @@ function endReadableNT(state, stream) {
 if (typeof Symbol === 'function') {
   Readable.from = function (iterable, opts) {
     if (from === undefined) {
-      from = __webpack_require__(/*! ./internal/streams/from */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/from-browser.js");
+      from = __webpack_require__(/*! ./internal/streams/from */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/from-browser.js");
     }
 
     return from(Readable, iterable, opts);
@@ -9266,14 +9266,14 @@ function indexOf(xs, x) {
 
   return -1;
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../../../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_transform.js":
-/*!**************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_transform.js ***!
-  \**************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_transform.js":
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_transform.js ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9343,15 +9343,15 @@ function indexOf(xs, x) {
 
 module.exports = Transform;
 
-var _require$codes = __webpack_require__(/*! ../errors */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
+var _require$codes = __webpack_require__(/*! ../errors */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
     ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
     ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
     ERR_TRANSFORM_ALREADY_TRANSFORMING = _require$codes.ERR_TRANSFORM_ALREADY_TRANSFORMING,
     ERR_TRANSFORM_WITH_LENGTH_0 = _require$codes.ERR_TRANSFORM_WITH_LENGTH_0;
 
-var Duplex = __webpack_require__(/*! ./_stream_duplex */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+var Duplex = __webpack_require__(/*! ./_stream_duplex */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
 
-__webpack_require__(/*! inherits */ "../node_modules/inherits/inherits_browser.js")(Transform, Duplex);
+__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(Transform, Duplex);
 
 function afterTransform(er, data) {
   var ts = this._transformState;
@@ -9482,10 +9482,10 @@ function done(stream, er, data) {
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_writable.js":
-/*!*************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_writable.js ***!
-  \*************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_writable.js":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_writable.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9549,17 +9549,17 @@ Writable.WritableState = WritableState;
 /*<replacement>*/
 
 var internalUtil = {
-  deprecate: __webpack_require__(/*! util-deprecate */ "../node_modules/util-deprecate/browser.js")
+  deprecate: __webpack_require__(/*! util-deprecate */ "./node_modules/util-deprecate/browser.js")
 };
 /*</replacement>*/
 
 /*<replacement>*/
 
-var Stream = __webpack_require__(/*! ./internal/streams/stream */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js");
+var Stream = __webpack_require__(/*! ./internal/streams/stream */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js");
 /*</replacement>*/
 
 
-var Buffer = __webpack_require__(/*! buffer */ "../node_modules/buffer/index.js").Buffer;
+var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js").Buffer;
 
 var OurUint8Array = global.Uint8Array || function () {};
 
@@ -9571,12 +9571,12 @@ function _isUint8Array(obj) {
   return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 
-var destroyImpl = __webpack_require__(/*! ./internal/streams/destroy */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js");
+var destroyImpl = __webpack_require__(/*! ./internal/streams/destroy */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js");
 
-var _require = __webpack_require__(/*! ./internal/streams/state */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js"),
+var _require = __webpack_require__(/*! ./internal/streams/state */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js"),
     getHighWaterMark = _require.getHighWaterMark;
 
-var _require$codes = __webpack_require__(/*! ../errors */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
+var _require$codes = __webpack_require__(/*! ../errors */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
     ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
     ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
     ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
@@ -9588,12 +9588,12 @@ var _require$codes = __webpack_require__(/*! ../errors */ "../node_modules/@inte
 
 var errorOrDestroy = destroyImpl.errorOrDestroy;
 
-__webpack_require__(/*! inherits */ "../node_modules/inherits/inherits_browser.js")(Writable, Stream);
+__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(Writable, Stream);
 
 function nop() {}
 
 function WritableState(options, stream, isDuplex) {
-  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
   options = options || {}; // Duplex streams are both readable and writable, but share
   // the same options object.
   // However, some cases require setting options to different
@@ -9719,7 +9719,7 @@ if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.protot
 }
 
 function Writable(options) {
-  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js"); // Writable ctor is applied to Duplexes, too.
+  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js"); // Writable ctor is applied to Duplexes, too.
   // `realHasInstance` is necessary because using plain `instanceof`
   // would return false, as no `_writableState` property is attached.
   // Trying to use the custom `instanceof` for Writable here will also break the
@@ -10187,14 +10187,14 @@ Writable.prototype._undestroy = destroyImpl.undestroy;
 Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../../../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/async_iterator.js":
-/*!****************************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/async_iterator.js ***!
-  \****************************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/async_iterator.js":
+/*!***************************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/async_iterator.js ***!
+  \***************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10218,7 +10218,7 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var finished = __webpack_require__(/*! ./end-of-stream */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
+var finished = __webpack_require__(/*! ./end-of-stream */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
 
 var kLastResolve = Symbol('lastResolve');
 var kLastReject = Symbol('lastReject');
@@ -10419,14 +10419,14 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 };
 
 module.exports = createReadableStreamAsyncIterator;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/buffer_list.js":
-/*!*************************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/buffer_list.js ***!
-  \*************************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/buffer_list.js":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/buffer_list.js ***!
+  \************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10504,7 +10504,7 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
-var _require = __webpack_require__(/*! buffer */ "../node_modules/buffer/index.js"),
+var _require = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js"),
     Buffer = _require.Buffer;
 
 var _require2 = __webpack_require__(/*! util */ 2),
@@ -10701,10 +10701,10 @@ module.exports = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js":
-/*!*********************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js ***!
-  \*********************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js ***!
+  \********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10814,14 +10814,14 @@ module.exports = {
   undestroy: undestroy,
   errorOrDestroy: errorOrDestroy
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js":
-/*!***************************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js ***!
-  \***************************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js ***!
+  \**************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10830,7 +10830,7 @@ module.exports = {
 // permission from the author, Mathias Buus (@mafintosh).
 
 
-var ERR_STREAM_PREMATURE_CLOSE = __webpack_require__(/*! ../../../errors */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes.ERR_STREAM_PREMATURE_CLOSE;
+var ERR_STREAM_PREMATURE_CLOSE = __webpack_require__(/*! ../../../errors */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes.ERR_STREAM_PREMATURE_CLOSE;
 
 function once(callback) {
   var called = false;
@@ -10933,10 +10933,10 @@ module.exports = eos;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/from-browser.js":
-/*!**************************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/from-browser.js ***!
-  \**************************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/from-browser.js":
+/*!*************************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/from-browser.js ***!
+  \*************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10946,10 +10946,10 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/pipeline.js":
-/*!**********************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/pipeline.js ***!
-  \**********************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/pipeline.js":
+/*!*********************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/pipeline.js ***!
+  \*********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10969,7 +10969,7 @@ function once(callback) {
   };
 }
 
-var _require$codes = __webpack_require__(/*! ../../../errors */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
+var _require$codes = __webpack_require__(/*! ../../../errors */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
     ERR_MISSING_ARGS = _require$codes.ERR_MISSING_ARGS,
     ERR_STREAM_DESTROYED = _require$codes.ERR_STREAM_DESTROYED;
 
@@ -10988,7 +10988,7 @@ function destroyer(stream, reading, writing, callback) {
   stream.on('close', function () {
     closed = true;
   });
-  if (eos === undefined) eos = __webpack_require__(/*! ./end-of-stream */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
+  if (eos === undefined) eos = __webpack_require__(/*! ./end-of-stream */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
   eos(stream, {
     readable: reading,
     writable: writing
@@ -11054,17 +11054,17 @@ module.exports = pipeline;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js":
-/*!*******************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js ***!
-  \*******************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js ***!
+  \******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var ERR_INVALID_OPT_VALUE = __webpack_require__(/*! ../../../errors */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes.ERR_INVALID_OPT_VALUE;
+var ERR_INVALID_OPT_VALUE = __webpack_require__(/*! ../../../errors */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/errors-browser.js").codes.ERR_INVALID_OPT_VALUE;
 
 function highWaterMarkFrom(options, isDuplex, duplexKey) {
   return options.highWaterMark != null ? options.highWaterMark : isDuplex ? options[duplexKey] : null;
@@ -11092,47 +11092,47 @@ module.exports = {
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js":
-/*!****************************************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js ***!
-  \****************************************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js":
+/*!***************************************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js ***!
+  \***************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! events */ "../node_modules/events/events.js").EventEmitter;
+module.exports = __webpack_require__(/*! events */ "./node_modules/events/events.js").EventEmitter;
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/readable-browser.js":
-/*!*********************************************************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/readable-browser.js ***!
-  \*********************************************************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/readable-browser.js":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/readable-browser.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ./lib/_stream_readable.js */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_readable.js");
+exports = module.exports = __webpack_require__(/*! ./lib/_stream_readable.js */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_readable.js");
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(/*! ./lib/_stream_writable.js */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_writable.js");
-exports.Duplex = __webpack_require__(/*! ./lib/_stream_duplex.js */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
-exports.Transform = __webpack_require__(/*! ./lib/_stream_transform.js */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_transform.js");
-exports.PassThrough = __webpack_require__(/*! ./lib/_stream_passthrough.js */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_passthrough.js");
-exports.finished = __webpack_require__(/*! ./lib/internal/streams/end-of-stream.js */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
-exports.pipeline = __webpack_require__(/*! ./lib/internal/streams/pipeline.js */ "../node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/pipeline.js");
+exports.Writable = __webpack_require__(/*! ./lib/_stream_writable.js */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_writable.js");
+exports.Duplex = __webpack_require__(/*! ./lib/_stream_duplex.js */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+exports.Transform = __webpack_require__(/*! ./lib/_stream_transform.js */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_transform.js");
+exports.PassThrough = __webpack_require__(/*! ./lib/_stream_passthrough.js */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/_stream_passthrough.js");
+exports.finished = __webpack_require__(/*! ./lib/internal/streams/end-of-stream.js */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
+exports.pipeline = __webpack_require__(/*! ./lib/internal/streams/pipeline.js */ "./node_modules/@internetarchive/dweb-transports/node_modules/readable-stream/lib/internal/streams/pipeline.js");
 
 /***/ }),
 
-/***/ "../node_modules/@internetarchive/dweb-transports/utils.js":
-/*!*****************************************************************!*\
-  !*** ../node_modules/@internetarchive/dweb-transports/utils.js ***!
-  \*****************************************************************/
+/***/ "./node_modules/@internetarchive/dweb-transports/utils.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@internetarchive/dweb-transports/utils.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 const {
   CodingError,
   TimeoutError
-} = __webpack_require__(/*! ./Errors */ "../node_modules/@internetarchive/dweb-transports/Errors.js");
+} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js");
 
 utils = {}; //utility functions
 // ==== OBJECT ORIENTED JAVASCRIPT ===============
@@ -11222,10 +11222,10 @@ exports = module.exports = utils;
 
 /***/ }),
 
-/***/ "../node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs":
-/*!*********************************************************************!*\
-  !*** ../node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs ***!
-  \*********************************************************************/
+/***/ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs":
+/*!********************************************************************!*\
+  !*** ./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs ***!
+  \********************************************************************/
 /*! exports provided: stringify, parse */
 /***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
 
@@ -11233,7 +11233,7 @@ exports = module.exports = utils;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringify", function() { return stringify; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parse", function() { return parse; });
-/* harmony import */ var bignumber_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bignumber.js */ "../node_modules/bignumber.js/bignumber.js");
+/* harmony import */ var bignumber_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bignumber.js */ "./node_modules/bignumber.js/bignumber.js");
 
 
 /*
@@ -12173,10 +12173,10 @@ function stringify(value, replacer, space) {
 
 /***/ }),
 
-/***/ "../node_modules/async/asyncify.js":
-/*!*****************************************!*\
-  !*** ../node_modules/async/asyncify.js ***!
-  \*****************************************/
+/***/ "./node_modules/async/asyncify.js":
+/*!****************************************!*\
+  !*** ./node_modules/async/asyncify.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12188,15 +12188,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = asyncify;
 
-var _initialParams = __webpack_require__(/*! ./internal/initialParams */ "../node_modules/async/internal/initialParams.js");
+var _initialParams = __webpack_require__(/*! ./internal/initialParams */ "./node_modules/async/internal/initialParams.js");
 
 var _initialParams2 = _interopRequireDefault(_initialParams);
 
-var _setImmediate = __webpack_require__(/*! ./internal/setImmediate */ "../node_modules/async/internal/setImmediate.js");
+var _setImmediate = __webpack_require__(/*! ./internal/setImmediate */ "./node_modules/async/internal/setImmediate.js");
 
 var _setImmediate2 = _interopRequireDefault(_setImmediate);
 
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/async/internal/wrapAsync.js");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
@@ -12312,10 +12312,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/async/internal/awaitify.js":
-/*!**************************************************!*\
-  !*** ../node_modules/async/internal/awaitify.js ***!
-  \**************************************************/
+/***/ "./node_modules/async/internal/awaitify.js":
+/*!*************************************************!*\
+  !*** ./node_modules/async/internal/awaitify.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12353,10 +12353,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/async/internal/initialParams.js":
-/*!*******************************************************!*\
-  !*** ../node_modules/async/internal/initialParams.js ***!
-  \*******************************************************/
+/***/ "./node_modules/async/internal/initialParams.js":
+/*!******************************************************!*\
+  !*** ./node_modules/async/internal/initialParams.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12380,10 +12380,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/async/internal/once.js":
-/*!**********************************************!*\
-  !*** ../node_modules/async/internal/once.js ***!
-  \**********************************************/
+/***/ "./node_modules/async/internal/once.js":
+/*!*********************************************!*\
+  !*** ./node_modules/async/internal/once.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12411,10 +12411,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/async/internal/onlyOnce.js":
-/*!**************************************************!*\
-  !*** ../node_modules/async/internal/onlyOnce.js ***!
-  \**************************************************/
+/***/ "./node_modules/async/internal/onlyOnce.js":
+/*!*************************************************!*\
+  !*** ./node_modules/async/internal/onlyOnce.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12439,10 +12439,10 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "../node_modules/async/internal/setImmediate.js":
-/*!******************************************************!*\
-  !*** ../node_modules/async/internal/setImmediate.js ***!
-  \******************************************************/
+/***/ "./node_modules/async/internal/setImmediate.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/async/internal/setImmediate.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12477,14 +12477,14 @@ if (hasSetImmediate) {
 }
 
 exports.default = wrap(_defer);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/async/internal/wrapAsync.js":
-/*!***************************************************!*\
-  !*** ../node_modules/async/internal/wrapAsync.js ***!
-  \***************************************************/
+/***/ "./node_modules/async/internal/wrapAsync.js":
+/*!**************************************************!*\
+  !*** ./node_modules/async/internal/wrapAsync.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12496,7 +12496,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isAsyncIterable = exports.isAsyncGenerator = exports.isAsync = undefined;
 
-var _asyncify = __webpack_require__(/*! ../asyncify */ "../node_modules/async/asyncify.js");
+var _asyncify = __webpack_require__(/*! ../asyncify */ "./node_modules/async/asyncify.js");
 
 var _asyncify2 = _interopRequireDefault(_asyncify);
 
@@ -12530,10 +12530,10 @@ exports.isAsyncIterable = isAsyncIterable;
 
 /***/ }),
 
-/***/ "../node_modules/async/waterfall.js":
-/*!******************************************!*\
-  !*** ../node_modules/async/waterfall.js ***!
-  \******************************************/
+/***/ "./node_modules/async/waterfall.js":
+/*!*****************************************!*\
+  !*** ./node_modules/async/waterfall.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12544,19 +12544,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _once = __webpack_require__(/*! ./internal/once */ "../node_modules/async/internal/once.js");
+var _once = __webpack_require__(/*! ./internal/once */ "./node_modules/async/internal/once.js");
 
 var _once2 = _interopRequireDefault(_once);
 
-var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "../node_modules/async/internal/onlyOnce.js");
+var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "./node_modules/async/internal/onlyOnce.js");
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../node_modules/async/internal/wrapAsync.js");
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/async/internal/wrapAsync.js");
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
-var _awaitify = __webpack_require__(/*! ./internal/awaitify */ "../node_modules/async/internal/awaitify.js");
+var _awaitify = __webpack_require__(/*! ./internal/awaitify */ "./node_modules/async/internal/awaitify.js");
 
 var _awaitify2 = _interopRequireDefault(_awaitify);
 
@@ -12653,10 +12653,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "../node_modules/base64-js/index.js":
-/*!******************************************!*\
-  !*** ../node_modules/base64-js/index.js ***!
-  \******************************************/
+/***/ "./node_modules/base64-js/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/base64-js/index.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12783,10 +12783,10 @@ function fromByteArray(uint8) {
 
 /***/ }),
 
-/***/ "../node_modules/bignumber.js/bignumber.js":
-/*!*************************************************!*\
-  !*** ../node_modules/bignumber.js/bignumber.js ***!
-  \*************************************************/
+/***/ "./node_modules/bignumber.js/bignumber.js":
+/*!************************************************!*\
+  !*** ./node_modules/bignumber.js/bignumber.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15463,10 +15463,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;;
 
 /***/ }),
 
-/***/ "../node_modules/buffer/index.js":
-/*!***************************************!*\
-  !*** ../node_modules/buffer/index.js ***!
-  \***************************************/
+/***/ "./node_modules/buffer/index.js":
+/*!**************************************!*\
+  !*** ./node_modules/buffer/index.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15481,11 +15481,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;;
 /* eslint-disable no-proto */
 
 
-var base64 = __webpack_require__(/*! base64-js */ "../node_modules/base64-js/index.js");
+var base64 = __webpack_require__(/*! base64-js */ "./node_modules/base64-js/index.js");
 
-var ieee754 = __webpack_require__(/*! ieee754 */ "../node_modules/ieee754/index.js");
+var ieee754 = __webpack_require__(/*! ieee754 */ "./node_modules/ieee754/index.js");
 
-var isArray = __webpack_require__(/*! isarray */ "../node_modules/isarray/index.js");
+var isArray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js");
 
 exports.Buffer = Buffer;
 exports.SlowBuffer = SlowBuffer;
@@ -17324,14 +17324,14 @@ function blitBuffer(src, dst, offset, length) {
 function isnan(val) {
   return val !== val; // eslint-disable-line no-self-compare
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "../node_modules/debug/src/browser.js":
-/*!********************************************!*\
-  !*** ../node_modules/debug/src/browser.js ***!
-  \********************************************/
+/***/ "./node_modules/debug/src/browser.js":
+/*!*******************************************!*\
+  !*** ./node_modules/debug/src/browser.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17495,7 +17495,7 @@ function localstorage() {
   }
 }
 
-module.exports = __webpack_require__(/*! ./common */ "../node_modules/debug/src/common.js")(exports);
+module.exports = __webpack_require__(/*! ./common */ "./node_modules/debug/src/common.js")(exports);
 const {
   formatters
 } = module.exports;
@@ -17510,14 +17510,14 @@ formatters.j = function (v) {
     return '[UnexpectedJSONParseError]: ' + error.message;
   }
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/debug/src/common.js":
-/*!*******************************************!*\
-  !*** ../node_modules/debug/src/common.js ***!
-  \*******************************************/
+/***/ "./node_modules/debug/src/common.js":
+/*!******************************************!*\
+  !*** ./node_modules/debug/src/common.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17532,7 +17532,7 @@ function setup(env) {
   createDebug.disable = disable;
   createDebug.enable = enable;
   createDebug.enabled = enabled;
-  createDebug.humanize = __webpack_require__(/*! ms */ "../node_modules/ms/index.js");
+  createDebug.humanize = __webpack_require__(/*! ms */ "./node_modules/ms/index.js");
   Object.keys(env).forEach(key => {
     createDebug[key] = env[key];
   });
@@ -17783,10 +17783,10 @@ module.exports = setup;
 
 /***/ }),
 
-/***/ "../node_modules/events/events.js":
-/*!****************************************!*\
-  !*** ../node_modules/events/events.js ***!
-  \****************************************/
+/***/ "./node_modules/events/events.js":
+/*!***************************************!*\
+  !*** ./node_modules/events/events.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18201,10 +18201,10 @@ function unwrapListeners(arr) {
 
 /***/ }),
 
-/***/ "../node_modules/ieee754/index.js":
-/*!****************************************!*\
-  !*** ../node_modules/ieee754/index.js ***!
-  \****************************************/
+/***/ "./node_modules/ieee754/index.js":
+/*!***************************************!*\
+  !*** ./node_modules/ieee754/index.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18299,10 +18299,10 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ }),
 
-/***/ "../node_modules/inherits/inherits_browser.js":
-/*!****************************************************!*\
-  !*** ../node_modules/inherits/inherits_browser.js ***!
-  \****************************************************/
+/***/ "./node_modules/inherits/inherits_browser.js":
+/*!***************************************************!*\
+  !*** ./node_modules/inherits/inherits_browser.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18338,10 +18338,10 @@ if (typeof Object.create === 'function') {
 
 /***/ }),
 
-/***/ "../node_modules/isarray/index.js":
-/*!****************************************!*\
-  !*** ../node_modules/isarray/index.js ***!
-  \****************************************/
+/***/ "./node_modules/isarray/index.js":
+/*!***************************************!*\
+  !*** ./node_modules/isarray/index.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18353,14 +18353,14 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_Symbol.js":
-/*!*****************************************!*\
-  !*** ../node_modules/lodash/_Symbol.js ***!
-  \*****************************************/
+/***/ "./node_modules/lodash/_Symbol.js":
+/*!****************************************!*\
+  !*** ./node_modules/lodash/_Symbol.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(/*! ./_root */ "../node_modules/lodash/_root.js");
+var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
 /** Built-in value references. */
 
 
@@ -18369,19 +18369,19 @@ module.exports = Symbol;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_arrayLikeKeys.js":
-/*!************************************************!*\
-  !*** ../node_modules/lodash/_arrayLikeKeys.js ***!
-  \************************************************/
+/***/ "./node_modules/lodash/_arrayLikeKeys.js":
+/*!***********************************************!*\
+  !*** ./node_modules/lodash/_arrayLikeKeys.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseTimes = __webpack_require__(/*! ./_baseTimes */ "../node_modules/lodash/_baseTimes.js"),
-    isArguments = __webpack_require__(/*! ./isArguments */ "../node_modules/lodash/isArguments.js"),
-    isArray = __webpack_require__(/*! ./isArray */ "../node_modules/lodash/isArray.js"),
-    isBuffer = __webpack_require__(/*! ./isBuffer */ "../node_modules/lodash/isBuffer.js"),
-    isIndex = __webpack_require__(/*! ./_isIndex */ "../node_modules/lodash/_isIndex.js"),
-    isTypedArray = __webpack_require__(/*! ./isTypedArray */ "../node_modules/lodash/isTypedArray.js");
+var baseTimes = __webpack_require__(/*! ./_baseTimes */ "./node_modules/lodash/_baseTimes.js"),
+    isArguments = __webpack_require__(/*! ./isArguments */ "./node_modules/lodash/isArguments.js"),
+    isArray = __webpack_require__(/*! ./isArray */ "./node_modules/lodash/isArray.js"),
+    isBuffer = __webpack_require__(/*! ./isBuffer */ "./node_modules/lodash/isBuffer.js"),
+    isIndex = __webpack_require__(/*! ./_isIndex */ "./node_modules/lodash/_isIndex.js"),
+    isTypedArray = __webpack_require__(/*! ./isTypedArray */ "./node_modules/lodash/isTypedArray.js");
 /** Used for built-in method references. */
 
 
@@ -18424,10 +18424,10 @@ module.exports = arrayLikeKeys;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_baseFindIndex.js":
-/*!************************************************!*\
-  !*** ../node_modules/lodash/_baseFindIndex.js ***!
-  \************************************************/
+/***/ "./node_modules/lodash/_baseFindIndex.js":
+/*!***********************************************!*\
+  !*** ./node_modules/lodash/_baseFindIndex.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18459,16 +18459,16 @@ module.exports = baseFindIndex;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_baseGetTag.js":
-/*!*********************************************!*\
-  !*** ../node_modules/lodash/_baseGetTag.js ***!
-  \*********************************************/
+/***/ "./node_modules/lodash/_baseGetTag.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_baseGetTag.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(/*! ./_Symbol */ "../node_modules/lodash/_Symbol.js"),
-    getRawTag = __webpack_require__(/*! ./_getRawTag */ "../node_modules/lodash/_getRawTag.js"),
-    objectToString = __webpack_require__(/*! ./_objectToString */ "../node_modules/lodash/_objectToString.js");
+var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js"),
+    getRawTag = __webpack_require__(/*! ./_getRawTag */ "./node_modules/lodash/_getRawTag.js"),
+    objectToString = __webpack_require__(/*! ./_objectToString */ "./node_modules/lodash/_objectToString.js");
 /** `Object#toString` result references. */
 
 
@@ -18497,16 +18497,16 @@ module.exports = baseGetTag;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_baseIndexOf.js":
-/*!**********************************************!*\
-  !*** ../node_modules/lodash/_baseIndexOf.js ***!
-  \**********************************************/
+/***/ "./node_modules/lodash/_baseIndexOf.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_baseIndexOf.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseFindIndex = __webpack_require__(/*! ./_baseFindIndex */ "../node_modules/lodash/_baseFindIndex.js"),
-    baseIsNaN = __webpack_require__(/*! ./_baseIsNaN */ "../node_modules/lodash/_baseIsNaN.js"),
-    strictIndexOf = __webpack_require__(/*! ./_strictIndexOf */ "../node_modules/lodash/_strictIndexOf.js");
+var baseFindIndex = __webpack_require__(/*! ./_baseFindIndex */ "./node_modules/lodash/_baseFindIndex.js"),
+    baseIsNaN = __webpack_require__(/*! ./_baseIsNaN */ "./node_modules/lodash/_baseIsNaN.js"),
+    strictIndexOf = __webpack_require__(/*! ./_strictIndexOf */ "./node_modules/lodash/_strictIndexOf.js");
 /**
  * The base implementation of `_.indexOf` without `fromIndex` bounds checks.
  *
@@ -18526,15 +18526,15 @@ module.exports = baseIndexOf;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_baseIsArguments.js":
-/*!**************************************************!*\
-  !*** ../node_modules/lodash/_baseIsArguments.js ***!
-  \**************************************************/
+/***/ "./node_modules/lodash/_baseIsArguments.js":
+/*!*************************************************!*\
+  !*** ./node_modules/lodash/_baseIsArguments.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "../node_modules/lodash/_baseGetTag.js"),
-    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "../node_modules/lodash/isObjectLike.js");
+var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
+    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "./node_modules/lodash/isObjectLike.js");
 /** `Object#toString` result references. */
 
 
@@ -18555,10 +18555,10 @@ module.exports = baseIsArguments;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_baseIsNaN.js":
-/*!********************************************!*\
-  !*** ../node_modules/lodash/_baseIsNaN.js ***!
-  \********************************************/
+/***/ "./node_modules/lodash/_baseIsNaN.js":
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_baseIsNaN.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18577,16 +18577,16 @@ module.exports = baseIsNaN;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_baseIsTypedArray.js":
-/*!***************************************************!*\
-  !*** ../node_modules/lodash/_baseIsTypedArray.js ***!
-  \***************************************************/
+/***/ "./node_modules/lodash/_baseIsTypedArray.js":
+/*!**************************************************!*\
+  !*** ./node_modules/lodash/_baseIsTypedArray.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "../node_modules/lodash/_baseGetTag.js"),
-    isLength = __webpack_require__(/*! ./isLength */ "../node_modules/lodash/isLength.js"),
-    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "../node_modules/lodash/isObjectLike.js");
+var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
+    isLength = __webpack_require__(/*! ./isLength */ "./node_modules/lodash/isLength.js"),
+    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "./node_modules/lodash/isObjectLike.js");
 /** `Object#toString` result references. */
 
 
@@ -18635,15 +18635,15 @@ module.exports = baseIsTypedArray;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_baseKeys.js":
-/*!*******************************************!*\
-  !*** ../node_modules/lodash/_baseKeys.js ***!
-  \*******************************************/
+/***/ "./node_modules/lodash/_baseKeys.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_baseKeys.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isPrototype = __webpack_require__(/*! ./_isPrototype */ "../node_modules/lodash/_isPrototype.js"),
-    nativeKeys = __webpack_require__(/*! ./_nativeKeys */ "../node_modules/lodash/_nativeKeys.js");
+var isPrototype = __webpack_require__(/*! ./_isPrototype */ "./node_modules/lodash/_isPrototype.js"),
+    nativeKeys = __webpack_require__(/*! ./_nativeKeys */ "./node_modules/lodash/_nativeKeys.js");
 /** Used for built-in method references. */
 
 
@@ -18679,10 +18679,10 @@ module.exports = baseKeys;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_baseTimes.js":
-/*!********************************************!*\
-  !*** ../node_modules/lodash/_baseTimes.js ***!
-  \********************************************/
+/***/ "./node_modules/lodash/_baseTimes.js":
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_baseTimes.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18710,10 +18710,10 @@ module.exports = baseTimes;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_baseUnary.js":
-/*!********************************************!*\
-  !*** ../node_modules/lodash/_baseUnary.js ***!
-  \********************************************/
+/***/ "./node_modules/lodash/_baseUnary.js":
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_baseUnary.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18734,28 +18734,28 @@ module.exports = baseUnary;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_freeGlobal.js":
-/*!*********************************************!*\
-  !*** ../node_modules/lodash/_freeGlobal.js ***!
-  \*********************************************/
+/***/ "./node_modules/lodash/_freeGlobal.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_freeGlobal.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
 var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
 module.exports = freeGlobal;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_getRawTag.js":
-/*!********************************************!*\
-  !*** ../node_modules/lodash/_getRawTag.js ***!
-  \********************************************/
+/***/ "./node_modules/lodash/_getRawTag.js":
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_getRawTag.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(/*! ./_Symbol */ "../node_modules/lodash/_Symbol.js");
+var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js");
 /** Used for built-in method references. */
 
 
@@ -18807,10 +18807,10 @@ module.exports = getRawTag;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_isIndex.js":
-/*!******************************************!*\
-  !*** ../node_modules/lodash/_isIndex.js ***!
-  \******************************************/
+/***/ "./node_modules/lodash/_isIndex.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_isIndex.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18838,10 +18838,10 @@ module.exports = isIndex;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_isPrototype.js":
-/*!**********************************************!*\
-  !*** ../node_modules/lodash/_isPrototype.js ***!
-  \**********************************************/
+/***/ "./node_modules/lodash/_isPrototype.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_isPrototype.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18865,14 +18865,14 @@ module.exports = isPrototype;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_nativeKeys.js":
-/*!*********************************************!*\
-  !*** ../node_modules/lodash/_nativeKeys.js ***!
-  \*********************************************/
+/***/ "./node_modules/lodash/_nativeKeys.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_nativeKeys.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(/*! ./_overArg */ "../node_modules/lodash/_overArg.js");
+var overArg = __webpack_require__(/*! ./_overArg */ "./node_modules/lodash/_overArg.js");
 /* Built-in method references for those with the same name as other `lodash` methods. */
 
 
@@ -18881,14 +18881,14 @@ module.exports = nativeKeys;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_nodeUtil.js":
-/*!*******************************************!*\
-  !*** ../node_modules/lodash/_nodeUtil.js ***!
-  \*******************************************/
+/***/ "./node_modules/lodash/_nodeUtil.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_nodeUtil.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "../node_modules/lodash/_freeGlobal.js");
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "./node_modules/lodash/_freeGlobal.js");
 /** Detect free variable `exports`. */
 
 
@@ -18919,14 +18919,14 @@ var nodeUtil = function () {
 }();
 
 module.exports = nodeUtil;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "../node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_objectToString.js":
-/*!*************************************************!*\
-  !*** ../node_modules/lodash/_objectToString.js ***!
-  \*************************************************/
+/***/ "./node_modules/lodash/_objectToString.js":
+/*!************************************************!*\
+  !*** ./node_modules/lodash/_objectToString.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18955,10 +18955,10 @@ module.exports = objectToString;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_overArg.js":
-/*!******************************************!*\
-  !*** ../node_modules/lodash/_overArg.js ***!
-  \******************************************/
+/***/ "./node_modules/lodash/_overArg.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_overArg.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -18980,14 +18980,14 @@ module.exports = overArg;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_root.js":
-/*!***************************************!*\
-  !*** ../node_modules/lodash/_root.js ***!
-  \***************************************/
+/***/ "./node_modules/lodash/_root.js":
+/*!**************************************!*\
+  !*** ./node_modules/lodash/_root.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "../node_modules/lodash/_freeGlobal.js");
+var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "./node_modules/lodash/_freeGlobal.js");
 /** Detect free variable `self`. */
 
 
@@ -18999,10 +18999,10 @@ module.exports = root;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/_strictIndexOf.js":
-/*!************************************************!*\
-  !*** ../node_modules/lodash/_strictIndexOf.js ***!
-  \************************************************/
+/***/ "./node_modules/lodash/_strictIndexOf.js":
+/*!***********************************************!*\
+  !*** ./node_modules/lodash/_strictIndexOf.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19033,10 +19033,10 @@ module.exports = strictIndexOf;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/identity.js":
-/*!******************************************!*\
-  !*** ../node_modules/lodash/identity.js ***!
-  \******************************************/
+/***/ "./node_modules/lodash/identity.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/identity.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19064,15 +19064,15 @@ module.exports = identity;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/isArguments.js":
-/*!*********************************************!*\
-  !*** ../node_modules/lodash/isArguments.js ***!
-  \*********************************************/
+/***/ "./node_modules/lodash/isArguments.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/isArguments.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsArguments = __webpack_require__(/*! ./_baseIsArguments */ "../node_modules/lodash/_baseIsArguments.js"),
-    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "../node_modules/lodash/isObjectLike.js");
+var baseIsArguments = __webpack_require__(/*! ./_baseIsArguments */ "./node_modules/lodash/_baseIsArguments.js"),
+    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "./node_modules/lodash/isObjectLike.js");
 /** Used for built-in method references. */
 
 
@@ -19111,10 +19111,10 @@ module.exports = isArguments;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/isArray.js":
-/*!*****************************************!*\
-  !*** ../node_modules/lodash/isArray.js ***!
-  \*****************************************/
+/***/ "./node_modules/lodash/isArray.js":
+/*!****************************************!*\
+  !*** ./node_modules/lodash/isArray.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19146,15 +19146,15 @@ module.exports = isArray;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/isArrayLike.js":
-/*!*********************************************!*\
-  !*** ../node_modules/lodash/isArrayLike.js ***!
-  \*********************************************/
+/***/ "./node_modules/lodash/isArrayLike.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/isArrayLike.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(/*! ./isFunction */ "../node_modules/lodash/isFunction.js"),
-    isLength = __webpack_require__(/*! ./isLength */ "../node_modules/lodash/isLength.js");
+var isFunction = __webpack_require__(/*! ./isFunction */ "./node_modules/lodash/isFunction.js"),
+    isLength = __webpack_require__(/*! ./isLength */ "./node_modules/lodash/isLength.js");
 /**
  * Checks if `value` is array-like. A value is considered array-like if it's
  * not a function and has a `value.length` that's an integer greater than or
@@ -19190,15 +19190,15 @@ module.exports = isArrayLike;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/isBuffer.js":
-/*!******************************************!*\
-  !*** ../node_modules/lodash/isBuffer.js ***!
-  \******************************************/
+/***/ "./node_modules/lodash/isBuffer.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/isBuffer.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(/*! ./_root */ "../node_modules/lodash/_root.js"),
-    stubFalse = __webpack_require__(/*! ./stubFalse */ "../node_modules/lodash/stubFalse.js");
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js"),
+    stubFalse = __webpack_require__(/*! ./stubFalse */ "./node_modules/lodash/stubFalse.js");
 /** Detect free variable `exports`. */
 
 
@@ -19235,19 +19235,19 @@ var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
 
 var isBuffer = nativeIsBuffer || stubFalse;
 module.exports = isBuffer;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "../node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
-/***/ "../node_modules/lodash/isFunction.js":
-/*!********************************************!*\
-  !*** ../node_modules/lodash/isFunction.js ***!
-  \********************************************/
+/***/ "./node_modules/lodash/isFunction.js":
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/isFunction.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "../node_modules/lodash/_baseGetTag.js"),
-    isObject = __webpack_require__(/*! ./isObject */ "../node_modules/lodash/isObject.js");
+var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
+    isObject = __webpack_require__(/*! ./isObject */ "./node_modules/lodash/isObject.js");
 /** `Object#toString` result references. */
 
 
@@ -19288,10 +19288,10 @@ module.exports = isFunction;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/isLength.js":
-/*!******************************************!*\
-  !*** ../node_modules/lodash/isLength.js ***!
-  \******************************************/
+/***/ "./node_modules/lodash/isLength.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/isLength.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19332,10 +19332,10 @@ module.exports = isLength;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/isObject.js":
-/*!******************************************!*\
-  !*** ../node_modules/lodash/isObject.js ***!
-  \******************************************/
+/***/ "./node_modules/lodash/isObject.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/isObject.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19373,10 +19373,10 @@ module.exports = isObject;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/isObjectLike.js":
-/*!**********************************************!*\
-  !*** ../node_modules/lodash/isObjectLike.js ***!
-  \**********************************************/
+/***/ "./node_modules/lodash/isObjectLike.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/isObjectLike.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19412,16 +19412,16 @@ module.exports = isObjectLike;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/isTypedArray.js":
-/*!**********************************************!*\
-  !*** ../node_modules/lodash/isTypedArray.js ***!
-  \**********************************************/
+/***/ "./node_modules/lodash/isTypedArray.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/isTypedArray.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsTypedArray = __webpack_require__(/*! ./_baseIsTypedArray */ "../node_modules/lodash/_baseIsTypedArray.js"),
-    baseUnary = __webpack_require__(/*! ./_baseUnary */ "../node_modules/lodash/_baseUnary.js"),
-    nodeUtil = __webpack_require__(/*! ./_nodeUtil */ "../node_modules/lodash/_nodeUtil.js");
+var baseIsTypedArray = __webpack_require__(/*! ./_baseIsTypedArray */ "./node_modules/lodash/_baseIsTypedArray.js"),
+    baseUnary = __webpack_require__(/*! ./_baseUnary */ "./node_modules/lodash/_baseUnary.js"),
+    nodeUtil = __webpack_require__(/*! ./_nodeUtil */ "./node_modules/lodash/_nodeUtil.js");
 /* Node.js helper references. */
 
 
@@ -19449,16 +19449,16 @@ module.exports = isTypedArray;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/keys.js":
-/*!**************************************!*\
-  !*** ../node_modules/lodash/keys.js ***!
-  \**************************************/
+/***/ "./node_modules/lodash/keys.js":
+/*!*************************************!*\
+  !*** ./node_modules/lodash/keys.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeKeys = __webpack_require__(/*! ./_arrayLikeKeys */ "../node_modules/lodash/_arrayLikeKeys.js"),
-    baseKeys = __webpack_require__(/*! ./_baseKeys */ "../node_modules/lodash/_baseKeys.js"),
-    isArrayLike = __webpack_require__(/*! ./isArrayLike */ "../node_modules/lodash/isArrayLike.js");
+var arrayLikeKeys = __webpack_require__(/*! ./_arrayLikeKeys */ "./node_modules/lodash/_arrayLikeKeys.js"),
+    baseKeys = __webpack_require__(/*! ./_baseKeys */ "./node_modules/lodash/_baseKeys.js"),
+    isArrayLike = __webpack_require__(/*! ./isArrayLike */ "./node_modules/lodash/isArrayLike.js");
 /**
  * Creates an array of the own enumerable property names of `object`.
  *
@@ -19497,10 +19497,10 @@ module.exports = keys;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/noop.js":
-/*!**************************************!*\
-  !*** ../node_modules/lodash/noop.js ***!
-  \**************************************/
+/***/ "./node_modules/lodash/noop.js":
+/*!*************************************!*\
+  !*** ./node_modules/lodash/noop.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19523,10 +19523,10 @@ module.exports = noop;
 
 /***/ }),
 
-/***/ "../node_modules/lodash/stubFalse.js":
-/*!*******************************************!*\
-  !*** ../node_modules/lodash/stubFalse.js ***!
-  \*******************************************/
+/***/ "./node_modules/lodash/stubFalse.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/stubFalse.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19551,10 +19551,10 @@ module.exports = stubFalse;
 
 /***/ }),
 
-/***/ "../node_modules/ms/index.js":
-/*!***********************************!*\
-  !*** ../node_modules/ms/index.js ***!
-  \***********************************/
+/***/ "./node_modules/ms/index.js":
+/*!**********************************!*\
+  !*** ./node_modules/ms/index.js ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19740,10 +19740,10 @@ function plural(ms, msAbs, n, name) {
 
 /***/ }),
 
-/***/ "../node_modules/node-libs-browser/node_modules/punycode/punycode.js":
-/*!***************************************************************************!*\
-  !*** ../node_modules/node-libs-browser/node_modules/punycode/punycode.js ***!
-  \***************************************************************************/
+/***/ "./node_modules/node-libs-browser/node_modules/punycode/punycode.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/node-libs-browser/node_modules/punycode/punycode.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20291,14 +20291,14 @@ function plural(ms, msAbs, n, name) {
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else {}
 })(this);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/module.js */ "../node_modules/webpack/buildin/module.js")(module), __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module), __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "../node_modules/object-assign/index.js":
-/*!**********************************************!*\
-  !*** ../node_modules/object-assign/index.js ***!
-  \**********************************************/
+/***/ "./node_modules/object-assign/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/object-assign/index.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20401,10 +20401,10 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 /***/ }),
 
-/***/ "../node_modules/path-browserify/index.js":
-/*!************************************************!*\
-  !*** ../node_modules/path-browserify/index.js ***!
-  \************************************************/
+/***/ "./node_modules/path-browserify/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/path-browserify/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20726,14 +20726,14 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../node_modules/process/browser.js":
-/*!******************************************!*\
-  !*** ../node_modules/process/browser.js ***!
-  \******************************************/
+/***/ "./node_modules/process/browser.js":
+/*!*****************************************!*\
+  !*** ./node_modules/process/browser.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -20948,10 +20948,10 @@ process.umask = function () {
 
 /***/ }),
 
-/***/ "../node_modules/prop-types/checkPropTypes.js":
-/*!****************************************************!*\
-  !*** ../node_modules/prop-types/checkPropTypes.js ***!
-  \****************************************************/
+/***/ "./node_modules/prop-types/checkPropTypes.js":
+/*!***************************************************!*\
+  !*** ./node_modules/prop-types/checkPropTypes.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20967,7 +20967,7 @@ process.umask = function () {
 var printWarning = function () {};
 
 if (true) {
-  var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "../node_modules/prop-types/lib/ReactPropTypesSecret.js");
+  var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "./node_modules/prop-types/lib/ReactPropTypesSecret.js");
 
   var loggedTypeFailures = {};
   var has = Function.call.bind(Object.prototype.hasOwnProperty);
@@ -21054,10 +21054,10 @@ module.exports = checkPropTypes;
 
 /***/ }),
 
-/***/ "../node_modules/prop-types/lib/ReactPropTypesSecret.js":
-/*!**************************************************************!*\
-  !*** ../node_modules/prop-types/lib/ReactPropTypesSecret.js ***!
-  \**************************************************************/
+/***/ "./node_modules/prop-types/lib/ReactPropTypesSecret.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/prop-types/lib/ReactPropTypesSecret.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21075,10 +21075,10 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ "../node_modules/querystring-es3/decode.js":
-/*!*************************************************!*\
-  !*** ../node_modules/querystring-es3/decode.js ***!
-  \*************************************************/
+/***/ "./node_modules/querystring-es3/decode.js":
+/*!************************************************!*\
+  !*** ./node_modules/querystring-es3/decode.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21171,10 +21171,10 @@ var isArray = Array.isArray || function (xs) {
 
 /***/ }),
 
-/***/ "../node_modules/querystring-es3/encode.js":
-/*!*************************************************!*\
-  !*** ../node_modules/querystring-es3/encode.js ***!
-  \*************************************************/
+/***/ "./node_modules/querystring-es3/encode.js":
+/*!************************************************!*\
+  !*** ./node_modules/querystring-es3/encode.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21270,25 +21270,25 @@ var objectKeys = Object.keys || function (obj) {
 
 /***/ }),
 
-/***/ "../node_modules/querystring-es3/index.js":
-/*!************************************************!*\
-  !*** ../node_modules/querystring-es3/index.js ***!
-  \************************************************/
+/***/ "./node_modules/querystring-es3/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/querystring-es3/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(/*! ./decode */ "../node_modules/querystring-es3/decode.js");
-exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ "../node_modules/querystring-es3/encode.js");
+exports.decode = exports.parse = __webpack_require__(/*! ./decode */ "./node_modules/querystring-es3/decode.js");
+exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ "./node_modules/querystring-es3/encode.js");
 
 /***/ }),
 
-/***/ "../node_modules/react-dom/cjs/react-dom.development.js":
-/*!**************************************************************!*\
-  !*** ../node_modules/react-dom/cjs/react-dom.development.js ***!
-  \**************************************************************/
+/***/ "./node_modules/react-dom/cjs/react-dom.development.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/react-dom/cjs/react-dom.development.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21300,7 +21300,7 @@ exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ "../nod
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */if(true){(function(){'use strict';var React=__webpack_require__(/*! react */ "../node_modules/react/index.js");var _assign=__webpack_require__(/*! object-assign */ "../node_modules/object-assign/index.js");var Scheduler=__webpack_require__(/*! scheduler */ "../node_modules/scheduler/index.js");var checkPropTypes=__webpack_require__(/*! prop-types/checkPropTypes */ "../node_modules/prop-types/checkPropTypes.js");var tracing=__webpack_require__(/*! scheduler/tracing */ "../node_modules/scheduler/tracing.js");var ReactSharedInternals=React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;// Prevent newer renderers from RTE when used with older react package versions.
+ */if(true){(function(){'use strict';var React=__webpack_require__(/*! react */ "./node_modules/react/index.js");var _assign=__webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");var Scheduler=__webpack_require__(/*! scheduler */ "./node_modules/scheduler/index.js");var checkPropTypes=__webpack_require__(/*! prop-types/checkPropTypes */ "./node_modules/prop-types/checkPropTypes.js");var tracing=__webpack_require__(/*! scheduler/tracing */ "./node_modules/scheduler/tracing.js");var ReactSharedInternals=React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;// Prevent newer renderers from RTE when used with older react package versions.
 // Current owner and dispatcher used to share the same ref,
 // but PR #14548 split them out to better support the react-debug-tools package.
 if(!ReactSharedInternals.hasOwnProperty('ReactCurrentDispatcher')){ReactSharedInternals.ReactCurrentDispatcher={current:null};}if(!ReactSharedInternals.hasOwnProperty('ReactCurrentBatchConfig')){ReactSharedInternals.ReactCurrentBatchConfig={suspense:null};}// by calls to these methods by a Babel plugin.
@@ -25430,10 +25430,10 @@ console.info('%cDownload the React DevTools '+'for a better development experien
 
 /***/ }),
 
-/***/ "../node_modules/react-dom/index.js":
-/*!******************************************!*\
-  !*** ../node_modules/react-dom/index.js ***!
-  \******************************************/
+/***/ "./node_modules/react-dom/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/react-dom/index.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25468,15 +25468,15 @@ function checkDCE() {
 }
 
 if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/react-dom.development.js */ "../node_modules/react-dom/cjs/react-dom.development.js");
+  module.exports = __webpack_require__(/*! ./cjs/react-dom.development.js */ "./node_modules/react-dom/cjs/react-dom.development.js");
 }
 
 /***/ }),
 
-/***/ "../node_modules/react/cjs/react.development.js":
-/*!******************************************************!*\
-  !*** ../node_modules/react/cjs/react.development.js ***!
-  \******************************************************/
+/***/ "./node_modules/react/cjs/react.development.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react/cjs/react.development.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25495,9 +25495,9 @@ if (true) {
   (function () {
     'use strict';
 
-    var _assign = __webpack_require__(/*! object-assign */ "../node_modules/object-assign/index.js");
+    var _assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
 
-    var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "../node_modules/prop-types/checkPropTypes.js");
+    var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "./node_modules/prop-types/checkPropTypes.js");
 
     var ReactVersion = '16.13.0'; // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
     // nor polyfill, then a plain number is used for performance.
@@ -27360,10 +27360,10 @@ if (true) {
 
 /***/ }),
 
-/***/ "../node_modules/react/index.js":
-/*!**************************************!*\
-  !*** ../node_modules/react/index.js ***!
-  \**************************************/
+/***/ "./node_modules/react/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/react/index.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27371,20 +27371,20 @@ if (true) {
 
 
 if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/react.development.js */ "../node_modules/react/cjs/react.development.js");
+  module.exports = __webpack_require__(/*! ./cjs/react.development.js */ "./node_modules/react/cjs/react.development.js");
 }
 
 /***/ }),
 
-/***/ "../node_modules/safe-buffer/index.js":
-/*!********************************************!*\
-  !*** ../node_modules/safe-buffer/index.js ***!
-  \********************************************/
+/***/ "./node_modules/safe-buffer/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/safe-buffer/index.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(/*! buffer */ "../node_modules/buffer/index.js");
+var buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js");
 
 var Buffer = buffer.Buffer; // alternative to using Object.keys for old browsers
 
@@ -27456,10 +27456,10 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 /***/ }),
 
-/***/ "../node_modules/scheduler/cjs/scheduler-tracing.development.js":
-/*!**********************************************************************!*\
-  !*** ../node_modules/scheduler/cjs/scheduler-tracing.development.js ***!
-  \**********************************************************************/
+/***/ "./node_modules/scheduler/cjs/scheduler-tracing.development.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/scheduler/cjs/scheduler-tracing.development.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27814,10 +27814,10 @@ if (true) {
 
 /***/ }),
 
-/***/ "../node_modules/scheduler/cjs/scheduler.development.js":
-/*!**************************************************************!*\
-  !*** ../node_modules/scheduler/cjs/scheduler.development.js ***!
-  \**************************************************************/
+/***/ "./node_modules/scheduler/cjs/scheduler.development.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/scheduler/cjs/scheduler.development.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28679,10 +28679,10 @@ if (true) {
 
 /***/ }),
 
-/***/ "../node_modules/scheduler/index.js":
-/*!******************************************!*\
-  !*** ../node_modules/scheduler/index.js ***!
-  \******************************************/
+/***/ "./node_modules/scheduler/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/scheduler/index.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28690,15 +28690,15 @@ if (true) {
 
 
 if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/scheduler.development.js */ "../node_modules/scheduler/cjs/scheduler.development.js");
+  module.exports = __webpack_require__(/*! ./cjs/scheduler.development.js */ "./node_modules/scheduler/cjs/scheduler.development.js");
 }
 
 /***/ }),
 
-/***/ "../node_modules/scheduler/tracing.js":
-/*!********************************************!*\
-  !*** ../node_modules/scheduler/tracing.js ***!
-  \********************************************/
+/***/ "./node_modules/scheduler/tracing.js":
+/*!*******************************************!*\
+  !*** ./node_modules/scheduler/tracing.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28706,15 +28706,15 @@ if (false) {} else {
 
 
 if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ "../node_modules/scheduler/cjs/scheduler-tracing.development.js");
+  module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ "./node_modules/scheduler/cjs/scheduler-tracing.development.js");
 }
 
 /***/ }),
 
-/***/ "../node_modules/string_decoder/lib/string_decoder.js":
-/*!************************************************************!*\
-  !*** ../node_modules/string_decoder/lib/string_decoder.js ***!
-  \************************************************************/
+/***/ "./node_modules/string_decoder/lib/string_decoder.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/string_decoder/lib/string_decoder.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28742,7 +28742,7 @@ if (false) {} else {
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(/*! safe-buffer */ "../node_modules/safe-buffer/index.js").Buffer;
+var Buffer = __webpack_require__(/*! safe-buffer */ "./node_modules/safe-buffer/index.js").Buffer;
 /*</replacement>*/
 
 
@@ -29063,10 +29063,10 @@ function simpleEnd(buf) {
 
 /***/ }),
 
-/***/ "../node_modules/url/url.js":
-/*!**********************************!*\
-  !*** ../node_modules/url/url.js ***!
-  \**********************************/
+/***/ "./node_modules/url/url.js":
+/*!*********************************!*\
+  !*** ./node_modules/url/url.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29093,9 +29093,9 @@ function simpleEnd(buf) {
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-var punycode = __webpack_require__(/*! punycode */ "../node_modules/node-libs-browser/node_modules/punycode/punycode.js");
+var punycode = __webpack_require__(/*! punycode */ "./node_modules/node-libs-browser/node_modules/punycode/punycode.js");
 
-var util = __webpack_require__(/*! ./util */ "../node_modules/url/util.js");
+var util = __webpack_require__(/*! ./util */ "./node_modules/url/util.js");
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -29164,7 +29164,7 @@ slashedProtocol = {
   'gopher:': true,
   'file:': true
 },
-    querystring = __webpack_require__(/*! querystring */ "../node_modules/querystring-es3/index.js");
+    querystring = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -29801,10 +29801,10 @@ Url.prototype.parseHost = function () {
 
 /***/ }),
 
-/***/ "../node_modules/url/util.js":
-/*!***********************************!*\
-  !*** ../node_modules/url/util.js ***!
-  \***********************************/
+/***/ "./node_modules/url/util.js":
+/*!**********************************!*\
+  !*** ./node_modules/url/util.js ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29828,10 +29828,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "../node_modules/util-deprecate/browser.js":
-/*!*************************************************!*\
-  !*** ../node_modules/util-deprecate/browser.js ***!
-  \*************************************************/
+/***/ "./node_modules/util-deprecate/browser.js":
+/*!************************************************!*\
+  !*** ./node_modules/util-deprecate/browser.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29903,14 +29903,14 @@ function config(name) {
   if (null == val) return false;
   return String(val).toLowerCase() === 'true';
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "../node_modules/webpack/buildin/global.js":
-/*!*************************************************!*\
-  !*** ../node_modules/webpack/buildin/global.js ***!
-  \*************************************************/
+/***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -29935,10 +29935,10 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "../node_modules/webpack/buildin/module.js":
-/*!*************************************************!*\
-  !*** ../node_modules/webpack/buildin/module.js ***!
-  \*************************************************/
+/***/ "./node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -29969,20 +29969,20 @@ module.exports = function (module) {
 
 /***/ }),
 
-/***/ "./client.jsx":
-/*!********************!*\
-  !*** ./client.jsx ***!
-  \********************/
+/***/ "./src/client.jsx":
+/*!************************!*\
+  !*** ./src/client.jsx ***!
+  \************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "../node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _languages_Languages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../languages/Languages */ "../languages/Languages.jsx");
+/* harmony import */ var _languages_Languages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../languages/Languages */ "./languages/Languages.jsx");
 /*
   Main client file for corona-tracker, keep it simple and call stuff from other files !
 
@@ -30047,7 +30047,7 @@ window.coronaTrackerStart = function () {
     react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Home, null), document.getElementById('root'));
   });
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/process/browser.js */ "../node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 

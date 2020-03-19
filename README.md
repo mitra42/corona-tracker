@@ -189,11 +189,11 @@ cd corona-tracker/languages
 ./languagebuild.js
 
 # To rebuild the UI
-cd ../src
-./webpack --mode development
+cd corona-tracker
+webpack --mode development
 
 # If you've changed any batch processing on the server.
-cd ../server
+cd corona-tracker/server
 ./build.sh
 ```
 Then reload the browser window

@@ -2,7 +2,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: __dirname + '/client.jsx',
+  entry: __dirname + '/src/client.jsx',
   module: {
     rules: [
       {
@@ -45,7 +45,7 @@ module.exports = {
   },
   output: {
     filename: 'client.js',
-    path: __dirname + '/../dist'
+    path: __dirname + '/dist'
   },
   // plugins: [HTMLWebpackPluginConfig]
 

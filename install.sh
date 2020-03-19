@@ -31,10 +31,8 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |sudo apt-key add - \
     &&  sudo apt-get -y install yarn npm
 
 yarn install
+webpack --mode development
 
-pushd src
-  webpack --mode development
-popd
 pushd server
 ./build.sh # Runs update.sh as well
 
