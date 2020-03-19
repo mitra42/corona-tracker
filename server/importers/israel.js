@@ -43,7 +43,8 @@ const mimetype = 'application/json';
 const config = {
   dataUrl: 'https://services5.arcgis.com/dlrDjz89gx9qyfev/arcgis/rest/services/Corona_Exposure_View/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&maxRecordCountFactor=4&outSR=4326&resultOffset=0&resultRecordCount=8000&cacheHint=true',
   TIME_OFFSET: 2 * 60 * 60 * 1000, // GMT+2 Israel time
-  siteShortName: 'Israel'
+  siteShortName: 'Israel',
+  siteDescription: 'Israel infections data',
 };
 
 /**
@@ -135,7 +136,7 @@ function convertImportToCommonFormat(imp) {
   return { // Return in common format
     positions,
     bounding_box: boundingBoxFromCommonArray(positions), // Get a bounding box
-    meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
+    meta: { name: config.siteShortName, description: config.siteDescription, source: { name: config.siteDescription, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }
 exports = module.exports = { mimetype, fetchDataFromRemoteServer, convertImportToCommonFormat };

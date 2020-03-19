@@ -45,7 +45,8 @@ const mimetype = 'application/json';
 const config = {
   dataUrl: 'https://coronamap.site/javascripts/ndata.js',
   TIME_OFFSET: 9 * 60 * 60 * 1000, // e.g. 9 for Korea which is GMT+9;
-  siteShortName: 'Korea1'
+  siteShortName: 'Korea1',
+  siteDescription: 'Korean infection data'
 };
 
 /**
@@ -124,7 +125,7 @@ function convertImportToCommonFormat(imp) {
   return { // Return in common format
     positions,
     bounding_box: boundingBoxFromCommonArray(positions), // Get a bounding box
-    meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
+    meta: { name: config.siteShortName, description: config.siteDescription, source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }
 

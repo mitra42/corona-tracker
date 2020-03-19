@@ -46,7 +46,8 @@ const mimetype = 'text/csv';
 const config = {
   dataUrl: 'https://raw.githubusercontent.com/jihoo-kim/Coronavirus-Dataset/master/route.csv',
   TIME_OFFSET: 9 * 60 * 60 * 1000, // e.g. 9 for Korea which is GMT+9;
-  siteShortName: 'Korea2'
+  siteShortName: 'Korea2',
+  siteDescription: 'Coronavirus Dataset from Jihoo-Kim'
 };
 
 /**
@@ -108,7 +109,7 @@ function convertImportToCommonFormat(imp) {
   return { // Return in common format
     positions,
     bounding_box: boundingBoxFromCommonArray(positions), // Get a bounding box
-    meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
+    meta: { name: config.siteShortName, description: config.siteDescription, source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }
 

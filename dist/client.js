@@ -30032,6 +30032,9 @@ const Home = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(re
 }, {
   name: 'GPX',
   key: 'gpx'
+}, {
+  name: 'KML',
+  key: 'kml'
 }].map(outp => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
   key: outp.key
 }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {

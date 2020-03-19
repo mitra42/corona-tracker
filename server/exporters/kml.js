@@ -1,13 +1,16 @@
 /*
-  This file can be copied and then filled out for each importer
+Generic outputer for KML
+See https://developers.google.com/kml/documentation/kmlreference
+*/
 
-  Then please merge any changes back into here
- */
 
+const { addressFromCommon, floatFromCommonLat, floatFromCommonLng, isoTimeFromCommonTime } = require('./utils');
+
+const mimetype = 'application/vnd.google-earth.kml+xml; charset=UTF-8';
 
 /**
  * This function should take a single record in the common format and convert to the wanted format
- * In the case of KML we will return a json-ized xml that can then be generically expandsed into XML/*
+ * In the case of KML we will return a json-ized xml that can then be generically expanded into XML/*
  * <Placemark>
  *   <name>台北市西門町</name>
  *   <address>台北市西門町</address>
@@ -23,10 +26,16 @@
  */
 
 function convertOneCommonToExportFormat(obj) {
-  const { name = '', place = {}, comments = '' } = obj;
-  return {
-
-  };
+  const { name = '', lng, lat, start, end } = obj;
+  const address = addressFromCommon(obj);
+  // TODO-KML this <styleUrl> points back at something in the head, of the KML doc which we lose going to common
+  return `      <Placemark>
+        <name>${name}</name>
+        <address>${address}</address>
+        <styleUrl>#pushpin</styleUrl>
+        <Point><coordinates>${floatFromCommonLng(lng)},${floatFromCommonLat(lat)},0</coordinates></Point>
+        <TimeSpan><begin>${isoTimeFromCommonTime(start)}</begin><end>${isoTimeFromCommonTime(end)}</end></TimeSpan>
+      </Placemark>`;
 }
 
 /**
@@ -37,10 +46,27 @@ function convertOneCommonToExportFormat(obj) {
  * @returns {{timelineObjects: {placeVisit: {duration: {startTimestampMs: *, endTimestampMs: *}, location: {longitudeE7: *, name: string, latitudeE7: *}}}[]}}
  */
 
-function convertCommonToExportFormat(obj, { dataset} = {}) {
-  return {
-    xxx: obj.positions.map(o => convertOneCommonToExportFormat(o))
-  };
+function convertCommonToExportFormat(obj, { dataset } = {}) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+    <name>${obj.meta.name}</name>
+    <description>${obj.meta.description}</description>
+    <Style id="pushpin">
+      <IconStyle id="mystyle">
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+          <scale>1.0</scale>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Folder>
+      <name>Places</name>
+${obj.positions.map(o => convertOneCommonToExportFormat(o)).join('\n')}
+    </Folder>
+  </Document>
+  </kml>
+`;
 }
 
-exports = module.exports = { convertCommonToExportFormat };
+exports = module.exports = { mimetype, convertCommonToExportFormat };

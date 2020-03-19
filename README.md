@@ -3,8 +3,7 @@
 Note the idea is evolving rapidly, faster than I can get around to update this README
 so please check for updates! 
 
-The data converter is now live on http://c19.mitra.biz/ 
-(yes it should be on https - hopefully tomorrow)
+The data converter is now live on https://c19.mitra.biz/ 
 
 The core idea is a simple, viral, way to improve tracking contacts. 
 
@@ -17,6 +16,7 @@ A key missing component has been data sets, we've found a few, all in different 
 so as part of the project we are building an interchange to make any dataset we can find
 available in multiple formats so that others can use it.  
 Links to demonstrate are on http://c19.mitra.biz/
+and at this point it can output in Google Takeout, GPX, and KML.
 
 Critique of any part of this is very welcome - please post to an issue in 
 the [https://github.com/mitra42/corona-tracker](Git repo).

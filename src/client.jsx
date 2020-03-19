@@ -43,7 +43,8 @@ const Home = () => (
                 { name: 'Original', key: 'original' },
                 { name: 'Internal', key: 'common' },
                 { name: 'Google Takeout', key: 'takeout' },
-                { name: 'GPX', key: 'gpx' }
+                { name: 'GPX', key: 'gpx' },
+                { name: 'KML', key: 'kml' },
               ].map(outp => (
                 <td key={outp.key}>
                   <a href={`/data/${dataset.key}?output=${outp.key}`}>

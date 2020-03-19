@@ -2,7 +2,7 @@
  * https://www.topografix.com/gpx_manual.asp
  */
 
-const { floatFromCommonLng, floatFromCommonLat, isoTimeFromCommonTime } = require('./utils');
+const { addressFromCommon, floatFromCommonLng, floatFromCommonLat, isoTimeFromCommonTime } = require('./utils');
 
 /**
  * This function should take a single record in the common format and convert to the wanted format
@@ -17,9 +17,8 @@ function convertOneCommonToExportFormat(obj) {
   const t1 = isoTimeFromCommonTime(obj.start);
   const t2 = isoTimeFromCommonTime(obj.end);
   const name = obj.name.replace('\n', ' ');
-  const {place} = obj;
-  const desc = [place.address_name, place.type, place.address, place.address_english, place.province, place.city, obj.comments].filter(s => !!s).join('; ')
-  return [t1, t2].map(t => `        <trkpt lat="${lat}" lon="${lon}"><time>${t}</time><name>${name}</name><desc></desc></trkpt>`).join('\n');
+  const desc = [addressFromCommon(obj, '; '), obj.comments].filter(s => !!s).join('; ');
+  return [t1, t2].map(t => `        <trkpt lat="${lat}" lon="${lon}"><time>${t}</time><name>${name}</name><desc>${desc}</desc></trkpt>`).join('\n');
 }
 
 function convertBounds(o) {

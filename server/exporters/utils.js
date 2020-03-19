@@ -10,4 +10,21 @@ function floatFromCommonLng(lng) {
 function isoTimeFromCommonTime(ms) {
   return (new Date(ms)).toISOString();
 }
-exports = module.exports = { floatFromCommonLat, floatFromCommonLng, isoTimeFromCommonTime };
+
+// longInt is the format we use in common for lat and lng so these are easy.
+const longIntFromCommonLat = (lat) => lat;
+const longIntFromCommonLng = (lng) => lng;
+// Time in Milliseconds is what we use for time so also easy
+const timeMS = (t) => t;
+
+/**
+ * Convert a common data item into a address as a one-line string, it should handle different combination of address fields.
+ * @param obj
+ * @returns {string}
+ */
+function addressFromCommon(obj, sep) {
+  const { place } = obj;
+  return [place.address_name, place.type, place.address, place.address_english, place.city, place.province].filter(s => !!s).join(sep);
+}
+exports = module.exports = {
+  floatFromCommonLat, floatFromCommonLng, isoTimeFromCommonTime, longIntFromCommonLat, longIntFromCommonLng, timeMS, addressFromCommon };

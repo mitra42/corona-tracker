@@ -1,21 +1,22 @@
 /*
   This is based on template.js
 */
+const { addressFromCommon, longIntFromCommonLat, longIntFromCommonLng, timeMS } = require('./utils');
 
 function convertOneCommonToExportFormat(obj) {
   const { name = '', place = {}, comments = '' } = obj;
   return {
     placeVisit: {
       location: {
-        latitudeE7: obj.lat,
-        longitudeE7: obj.lng,
+        latitudeE7: longIntFromCommonLat(obj.lat),
+        longitudeE7: longIntFromCommonLng(obj.lng),
         // place.address_name is in israeli and korea1; address and address_english in korea1, comments in israeli
         // province, city, place in korea2
-        name: [name, place.address_name, place.type, place.address, place.address_english, place.province, place.city, comments].filter(s => !!s).join('\n')
+        name: [name, addressFromCommon('\n'), comments].filter(s => !!s).join('\n')
       },
       duration: {
-        startTimestampMs: obj.start,
-        endTimestampMs: obj.end,
+        startTimestampMs: timeMS(obj.start),
+        endTimestampMs: timeMS(obj.end),
       },
     }
   };

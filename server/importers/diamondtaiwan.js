@@ -48,7 +48,8 @@ const mimetype = 'application/vnd. google-earth. kml+xml';
 const config = {
   dataUrl: 'https://raw.githubusercontent.com/yjlou/2019-nCov/master/kml/Diamond.kml',
   TIME_OFFSET: 0 * 60 * 60 * 1000, // e.g. 2 for Israel which is GMT+2
-  siteShortName: 'Diamond'
+  siteShortName: 'DiamondTaiwan',
+  siteDescription: 'Diamond Princess tour of Taiwan',
 };
 
 /**
@@ -113,10 +114,11 @@ function convertImportToCommonFormat(imp) {
 
   const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.
+  // TODO-KML get name and description from KML
   return { // Return in common format
     positions,
     bounding_box: boundingBoxFromCommonArray(positions), // Get a bounding box
-    meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
+    meta: { name: config.siteShortName, description: config.siteDescription, source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }
 
