@@ -22,7 +22,7 @@ DEFAULTUSER=root
 # Make sure to get get a recent node, Ubuntu is back at 8.x !
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get update
-sudo apt-get -y install nodejs curl supervisor
+sudo apt-get -y install nodejs curl supervisor webpack
 
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |sudo apt-key add - \
     &&  echo "deb https://dl.yarnpkg.com/debian/ stable main" |sudo tee /etc/apt/sources.list.d/yarn.list \
@@ -31,6 +31,9 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |sudo apt-key add - \
 
 yarn install
 
+pushd src
+  webpack --mode development
+popd
 pushd server
 ./build.sh # Runs update.sh as well
 
