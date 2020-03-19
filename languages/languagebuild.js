@@ -10,7 +10,6 @@ const each = require('async/each');
 
 const sourceFileName = 'google/_.txt';
 const source = [];
-const sourceMetadata = [];
 
 /**
  * @param name filename to read
@@ -93,16 +92,16 @@ function writeOutput(name, cb) {
   });
 }
 
-  // SEE-OTHER-ADDLANGUAGE - note cant import this from languages as may include ones here before built
-  // noinspection UnnecessaryLocalVariableJS
-  const fulllanguages = ['english', 'french'];
-  let thisbuild = fulllanguages;
-  thisbuild = ['english']; // Uncomment this to only rebuild english while testing before translating
-  waterfall([
-    cb => readSource(cb),
-    cb2 => each(thisbuild,
-      (l, cb1) => writeOutput(l, cb1),
-      (unusedErr) => cb2),
-  ], (unusedErr, unusedRes) => {
-    console.log('DONE');
-  });
+// SEE-OTHER-ADDLANGUAGE - note cant import this from languages as may include ones here before built
+// noinspection UnnecessaryLocalVariableJS
+const fulllanguages = ['english', 'french'];
+let thisbuild = fulllanguages;
+thisbuild = ['english']; // Uncomment this to only rebuild english while testing before translating
+waterfall([
+  cb => readSource(cb),
+  cb2 => each(thisbuild,
+    (l, cb1) => writeOutput(l, cb1),
+    (unusedErr) => cb2),
+], (unusedErr, unusedRes) => {
+  console.log('DONE');
+});

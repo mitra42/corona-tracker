@@ -1,16 +1,14 @@
 /*
   This file can be copied and then filled out for each importer
  */
-/* global DwebTransports */
 
-/*
 /*
   This file imports the first Korean dataset to a common format
 
   Its based (heavily) on https://github.com/yjlou/2019-nCov/tree/master/countries/korea from the https://pandemic.events site.
   If it breaks, we are in touch with them.
 */
-const debug = require('debug')('corona-tracker:importers-korea1');
+//const debug = require('debug')('corona-tracker:importers-korea1');
 const DwebTransports = require('@internetarchive/dweb-transports');
 const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
 // TODO - this is temporary
@@ -47,7 +45,7 @@ const config = {
   dataUrl: 'https://coronamap.site/javascripts/ndata.js',
   TIME_OFFSET: 9 * 60 * 60 * 1000, // e.g. 9 for Korea which is GMT+9;
   siteShortName: 'Korea1'
-}
+};
 
 /**
  * Return an object of the internal format of the server.
@@ -56,7 +54,7 @@ const config = {
  * @param cb(err, json obj in Korea1's format
  */
 function fetchDataFromRemoteServer(cb) {
-  /* TODO we need the data in json, but currently on in js so including via the require above
+  /* TODO we need the data in json, but currently only available in javascript so including via the require above
   DwebTransports.httptools.GET(config.dataUrl, {}, (err, res) => {
     if (err) {
       debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
@@ -89,7 +87,7 @@ function fetchDataFromRemoteServer(cb) {
  * @returns {{comments: (*|string), lng: number, start: *, name: string | string, end: *, place: (*|string), lat: number}|undefined}
  */
 function KrDateToTimestampMs(year, month, day) {
-  return (new Date(year, month - 1, day)).getTime() - config.TIME_OFFSET
+  return (new Date(year, month - 1, day)).getTime() - config.TIME_OFFSET;
 }
 
 function convertOnePointToCommonFormat(record) {
@@ -105,9 +103,9 @@ function convertOnePointToCommonFormat(record) {
     end: commonTimeFromMS(timestamp + 24 * 60 * 60 * 1000),
     name: record.name,
     place: {
-      address: "GS수퍼마켓 안동용상점",
-      address_name: "경북 안동시 용상동 600-12",
-      address_english: "GS Supermarket Andong Yongshop",
+      address: 'GS수퍼마켓 안동용상점',
+      address_name: '경북 안동시 용상동 600-12',
+      address_english: 'GS Supermarket Andong Yongshop',
     }
   });
 }
@@ -122,10 +120,9 @@ function convertImportToCommonFormat(imp) {
   const ii = imp.position; // Find the point array
   const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.
-  const bounding_box = boundingBoxFromCommonArray(positions); // Get a bounding box
   return { // Return in common format
     positions,
-    bounding_box,
+    bounding_box: boundingBoxFromCommonArray(positions), // Get a bounding box
     meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }

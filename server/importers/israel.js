@@ -42,7 +42,8 @@ const config = {
   dataUrl: 'https://services5.arcgis.com/dlrDjz89gx9qyfev/arcgis/rest/services/Corona_Exposure_View/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&maxRecordCountFactor=4&outSR=4326&resultOffset=0&resultRecordCount=8000&cacheHint=true',
   TIME_OFFSET: 2 * 60 * 60 * 1000, // GMT+2 Israel time
   siteShortName: 'Israel'
-}
+};
+
 /**
  * Return an object of the internal format of the server.
  * TODO needs a test function
@@ -82,7 +83,6 @@ function fetchDataFromRemoteServer(cb) {
  * @returns {{comments: (*|string), lng: number, start: *, name: string | string, end: *, place: (*|string), lat: number}|undefined}
  */
 function convertOnePointToCommonFormat(record) {
-
   const { attributes, geometry } = record;
   const lat = commonLatLngFromFloatString(geometry.y);
   const lng = commonLatLngFromFloatString(geometry.x);
@@ -104,9 +104,11 @@ function convertOnePointToCommonFormat(record) {
     debug(`WARNING: Start time is larger than the end time for ${attributes.Name} : ${attributes.Comments}. Ignored.`);
     return undefined;
   }
+  /*
   if (!attributes.Name) {
     debug(`WARNING: Missing Name ${JSON.stringify(record)}`);
   }
+   */
   return ({
     lat,
     lng,
@@ -128,10 +130,9 @@ function convertImportToCommonFormat(imp) {
   const ii = imp.features; // Find the point array
   const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.
-  const bounding_box = boundingBoxFromCommonArray(positions); // Get a bounding box
   return { // Return in common format
     positions,
-    bounding_box,
+    bounding_box: boundingBoxFromCommonArray(positions), // Get a bounding box
     meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }

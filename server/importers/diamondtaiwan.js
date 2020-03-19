@@ -1,4 +1,3 @@
-/* global DwebTransports */
 /**
  * Convert a KML file into Takeout timeline JSON format.
  * Copied and adapted from https://github.com/yjlou/2019-nCov/tree/master/kml
@@ -12,8 +11,10 @@
 
 const debug = require('debug')('corona-tracker:importers-diamondtaiwan');
 const DwebTransports = require('@internetarchive/dweb-transports');
-const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonLatLngFromFloat, commonTimeFromMS } = require('./utils');
+const { boundingBoxFromCommonArray, commonLatLngFromFloat, commonTimeFromMS } = require('./utils');
+
 const kmlParser = require('./diamond/parsers.js');
+const mimetype = 'application/vnd. google-earth. kml+xml';
 
 // Utilities - candidates for importers/utils.js
 
@@ -48,7 +49,7 @@ const config = {
   dataUrl: 'https://raw.githubusercontent.com/yjlou/2019-nCov/master/kml/Diamond.kml',
   TIME_OFFSET: 0 * 60 * 60 * 1000, // e.g. 2 for Israel which is GMT+2
   siteShortName: 'Diamond'
-}
+};
 
 /**
  * Return an object of the internal format of the server.
@@ -93,7 +94,7 @@ function convertOnePointToCommonFormat(record) {
   const end = commonTimeFromMS(record.begin * 1000 - config.TIME_OFFSET);
   const lat = commonLatLngFromFloat(record.lat);
   const lng = commonLatLngFromFloat(record.lng);
-  const name = [record.name, record.description && record.description.split('#!metadata')[0]].filter(o=>!!o).join(' ');
+  const name = [record.name, record.description && record.description.split('#!metadata')[0]].filter(o => !!o).join(' ');
   const place = { address: record.address };
   return {
     lat, lng, start, end, name, place
@@ -112,13 +113,11 @@ function convertImportToCommonFormat(imp) {
 
   const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.
-  const bounding_box = boundingBoxFromCommonArray(positions); // Get a bounding box
   return { // Return in common format
     positions,
-    bounding_box,
+    bounding_box: boundingBoxFromCommonArray(positions), // Get a bounding box
     meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }
 
-exports = module.exports = { fetchDataFromRemoteServer, convertImportToCommonFormat };
-
+exports = module.exports = { mimetype, fetchDataFromRemoteServer, convertImportToCommonFormat };

@@ -22,5 +22,6 @@ WORKDIR /app/server
 RUN ./build.sh
 
 # when this container is invoked like "docker exec .." this is what that will run
-# TODO-PORT this will run on port 5000, Main.js will be parameterised so pass an argument when that is done.
+# Main.js can be passed arguments to configure it
+# --port nn
 CMD [ "./node_modules/.bin/supervisor", ".", "Main.js" ]

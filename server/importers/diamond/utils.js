@@ -14,7 +14,7 @@
 //
 if(typeof(String.prototype.trim) === "undefined")
 {
-    String.prototype.trim = function() 
+    String.prototype.trim = function()
     {
         return String(this).replace(/^\s+|\s+$/g, '');
     };
@@ -146,14 +146,14 @@ function testShuffleFloat() {
 // converted to JS objectdirectly. This is the helper function to check that.
 //
 function myJsonParse(text) {
+  let data;
   if ((typeof text) == "string") {
-    var data = JSON.parse(text);
+    data = JSON.parse(text);
   } else {
     // Seems like on some servers (e.g. raw.githack.com) the JSON file would be converted to
     // Javascript Object directly.
-    var data = text;
+    data = text;
   }
-
   return data;
 }
 

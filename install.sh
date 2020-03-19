@@ -5,7 +5,8 @@ echo "THIS IS UNTESTED AS OF 2020-03-18"
 # Run git clone https://github.com/mitra42/corona-tracker.git
 # cd corona-tracker
 #
-# To install so that it uses supervisord to restart on crashes, and so it runs on port 80
+# It runs by default, on port 5000 as user root
+# To install so that it uses supervisord to restart on crashes, and so it runs on port 80 under user mitra
 # PORT=80 USESUPERVISOR=1 RUNUSER=mitra ./install.sh
 
 set -x
@@ -44,6 +45,3 @@ else
   sudo supervisorctl reload || sudo /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
 fi
 popd
-
-# TODO-PORT Main.js will be parameterised then remove comment above about ports
-

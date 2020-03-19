@@ -1,7 +1,6 @@
 /*
   This file can be copied and then filled out for each importer
  */
-/* global DwebTransports */
 
 /*
   This file imports the Xxx data to a common format

@@ -1,7 +1,10 @@
-//const debug = require('corona-tracker:importers-utils');
+// const debug = require('corona-tracker:importers-utils');
 
 // Converting various common formats (uncommon formats are in individual importers)
+// These functions to convert from common format are the opposite of functions in exporters/utils.js, so make sure to keep in line.
+
 // Currently we use an integer which is latitude or longitude * 10^7
+// TODO I bet this is going to fail with -ve numbers. If negative Lat add
 function commonLatLngFromFloat(fl) {
   return Math.round(fl * 1e7);
 }
@@ -41,7 +44,7 @@ function BoundingBox() {
       };
     },
   };
-};
+}
 
 /* TODO needs test framework
 function testBoundingBox() {
@@ -64,4 +67,4 @@ function boundingBoxFromCommonArray(oo) {
 }
 exports = module.exports = {
   BoundingBox, boundingBoxFromCommonArray, commonLatLngFromFloat, commonLatLngFromFloatString, commonTimeFromMS
-}
+};

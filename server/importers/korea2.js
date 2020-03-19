@@ -2,20 +2,17 @@
   This file can be copied and then filled out for each importer
 
  */
-/* global DwebTransports */
 
-/*
 /*
   This file imports the second Korean dataset to a common format
 
-  TODO - when working, backport to template.js with comments
   Dataset is from https://github.com/jihoo-kim/Coronavirus-Dataset/
   Its based (heavily) on https://github.com/yjlou/2019-nCov/tree/master/countries/korea/coronavirus-dataset-converter.js from the https://pandemic.events site.
   If it breaks, we are in touch with them.
 */
 const debug = require('debug')('corona-tracker:importers-korea2');
 const DwebTransports = require('@internetarchive/dweb-transports');
-const csv_parse = require("csv-parse/lib/sync");
+const csvParse = require('csv-parse/lib/sync');
 const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
 // Utilities - candidates for importers/utils.js
 
@@ -49,7 +46,7 @@ const config = {
   dataUrl: 'https://raw.githubusercontent.com/jihoo-kim/Coronavirus-Dataset/master/route.csv',
   TIME_OFFSET: 9 * 60 * 60 * 1000, // e.g. 9 for Korea which is GMT+9;
   siteShortName: 'Korea2'
-}
+};
 
 /**
  * Return an object of the internal format of the server.
@@ -58,14 +55,14 @@ const config = {
  * @param cb(err, json obj in Korea2's format
  */
 function fetchDataFromRemoteServer(cb) {
-  DwebTransports.httptools.GET(config.dataUrl, {}, (err, input_text) => {
+  DwebTransports.httptools.GET(config.dataUrl, {}, (err, inputText) => {
     if (err) {
       debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
       cb(err);
     } else {
       // Its a CSV file
-      const records = csv_parse(input_text, {
-        bom: true,  // currently the CSV doesn't have BOM, just in case.
+      const records = csvParse(inputText, {
+        bom: true, // currently the CSV doesn't have BOM, just in case.
         columns: true,
         skip_empty_lines: true,
       });
@@ -107,10 +104,9 @@ function convertImportToCommonFormat(imp) {
   const ii = imp; // Find the point array - its at the top for Korea2 since came from CSV
   const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.
-  const bounding_box = boundingBoxFromCommonArray(positions); // Get a bounding box
   return { // Return in common format
     positions,
-    bounding_box,
+    bounding_box: boundingBoxFromCommonArray(positions), // Get a bounding box
     meta: { source: { name: `${config.siteShortName} infected data`, url: config.dataUrl, retrieved: (new Date()).getTime() } }
   };
 }

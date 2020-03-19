@@ -1,4 +1,3 @@
-/* global DwebTransports */
 import waterfall from 'async/waterfall';
 import React from 'react';
 
@@ -32,6 +31,21 @@ const languageConfig = { // Note the flags are dragged out of the Mac Emoji and 
   pt: { inEnglish: 'Portugese', inLocal: 'Portuguesa', flag: '🇵🇹' },
    */
 };
+
+
+/**
+ *
+ * @param iso if defined will set global.language to this value
+ * @returns {*} new state of global.language
+ */
+function currentISO(iso = undefined) {
+  // Note where we store this might change, so use this if want to set or get the code
+  if (iso) {
+    global.language = iso;
+  }
+  return global.language;
+}
+
 if (!currentISO()) currentISO('en');
 
 /**
@@ -54,24 +68,11 @@ function getLanguage(lang, cb) {
 }
 
 /**
- *
- * @param iso if defined will set global.language to this value
- * @returns {*} new state of global.language
- */
-function currentISO(iso = undefined) {
-  // Note where we store this might change, so use this if want to set or get the code
-  if (iso) {
-    global.language = iso;
-  }
-  return global.language;
-}
-
-/**
  * Set to a supported language, displaying messages on UI and fetching file if needed
  * @param lang
  */
 function setLanguage(lang) {
-  //TODO-I18N const olditem = DwebArchive.page.state.item; // Should be an item, not a message
+  // TODO-I18N const olditem = DwebArchive.page.state.item; // Should be an item, not a message
 
   // Fetch the language file, and while doing so tell the user we are doing so in english and new languages
   DwebArchive.page.setState({
@@ -85,7 +86,7 @@ function setLanguage(lang) {
       if (languages[lang]) {
         setTimeout(cb, 300);
       } else {
-        //TODO-I18N replace this with appropriate code for corona-tracker
+        // TODO-I18N replace this with appropriate code for corona-tracker
         /*
           DwebArchive.page.setState({
             message: <I18nSpan en="Fetching language file for">
@@ -94,37 +95,37 @@ function setLanguage(lang) {
             </I18nSpan>
           });
          */
-          getLanguage(lang, cb);
-        }
-      },
-      (cb) => {
-        //TODO-I18N replace this with appropriate code for corona-tracker
-        /*
-        DwebArchive.page.setState({
-          message: <I18nSpan en="Changing language to">
-            {' '}
-            {languageConfig[lang].inEnglish}
-          </I18nSpan>
-        });
-        */
+        getLanguage(lang, cb);
+      }
+    },
+    (cb) => {
+      // TODO-I18N replace this with appropriate code for corona-tracker
+      /*
+      DwebArchive.page.setState({
+        message: <I18nSpan en="Changing language to">
+          {' '}
+          {languageConfig[lang].inEnglish}
+        </I18nSpan>
+      });
+      */
       setTimeout(cb, 300);
     },
     (cb) => {
       currentISO(lang);
-      //TODO-I18N replace this with appropriate code for corona-tracker
-      //DwebArchive.page.setState({ message: <I18nSpan en="Changing language to">{languageConfig[lang].inLocal}</I18nSpan> });
+      // TODO-I18N replace this with appropriate code for corona-tracker
+      // DwebArchive.page.setState({ message: <I18nSpan en="Changing language to">{languageConfig[lang].inLocal}</I18nSpan> });
       cb(); // No delay here as will also delay after err message
     },
   ], (err) => {
     if (err) {
       // If fails, tell them
       currentISO('en');
-      //TODO-I18N replace this with appropriate code for corona-tracker
+      // TODO-I18N replace this with appropriate code for corona-tracker
       /*
       DwebArchive.page.setState({ message: <I18nSpan en="Failed to set language to">{languageConfig[lang].inEnglish}</I18nSpan> });
        */
     }
-    //TODO-I18N replace this with appropriate code for corona-tracker
+    // TODO-I18N replace this with appropriate code for corona-tracker
     // In both cases wait a short while then redisplay old page
     // setTimeout(() => DwebArchive.page.setState({ item: olditem, message: undefined }), 1000);
   });

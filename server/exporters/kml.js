@@ -17,7 +17,7 @@
  *   </Placemark>
  */
 
-*
+/*
  * @param obj in common format.
  * @returns
  */
