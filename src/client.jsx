@@ -19,7 +19,7 @@ const Home = () => (
   <>
     <h1><I18nSpan en="_welcome1" /></h1>
     <p><I18nSpan en="_welcome2" /></p>
-    <p>At the moment its just a data portal where data can be accessed in different formats.</p>
+    <p>foo At the moment its just a data portal where data can be accessed in different formats.</p>
     <p>
       Please see our
       &nbsp;<a href="https://github.com/mitra42/corona-tracker">github repo</a>&nbsp;
