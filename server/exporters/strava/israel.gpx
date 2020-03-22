@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.0">
+  <name>Israel infections data</name>
+  <url>https://c19.mitra.biz/data/israel?output=gpx</url>
+  <urlname>Covid Tracker: Israel infections data</urlname>
+  <time>2020-03-20T07:17:41.504Z</time>
+  <keywords>Covid19</keywords>
+  <trk>
+    <name>Israel infections data</name>
+    <number>1</number>
+    <trkseg>
+        <trkpt lat="32.013793" lon="34.777206"><time>2020-03-07T11:00:00.000Z</time><name></name><desc>מסעדת ג'פניקה ברחוב צבי תדמור 12 בחולון</desc></trkpt>
+        <trkpt lat="32.013793" lon="34.777206"><time>2020-03-07T12:00:00.000Z</time><name></name><desc>מסעדת ג'פניקה ברחוב צבי תדמור 12 בחולון</desc></trkpt>
+        <trkpt lat="31.8039931" lon="35.1044819"><time>2020-03-07T07:30:00.000Z</time><name></name><desc>בית כנסת חסידים, טלז סטון; שהבת זכור, תפילת שחרית, עזרת גברים</desc></trkpt>
+        <trkpt lat="31.8039931" lon="35.1044819"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>בית כנסת חסידים, טלז סטון; שהבת זכור, תפילת שחרית, עזרת גברים</desc></trkpt>
+        <trkpt lat="32.0492308" lon="34.9536038"><time>2020-03-07T17:30:00.000Z</time><name></name><desc>מוקד רפואי אלעד, רחוב רבי עקיבא</desc></trkpt>
+        <trkpt lat="32.0492308" lon="34.9536038"><time>2020-03-07T18:00:00.000Z</time><name></name><desc>מוקד רפואי אלעד, רחוב רבי עקיבא</desc></trkpt>
+        <trkpt lat="31.782963" lon="35.2119286"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>בית כנסת אוהבי ציון מקור חיים ירושלים</desc></trkpt>
+        <trkpt lat="31.782963" lon="35.2119286"><time>2020-03-07T08:45:00.000Z</time><name></name><desc>בית כנסת אוהבי ציון מקור חיים ירושלים</desc></trkpt>
+        <trkpt lat="32.283594" lon="35.125198"><time>2020-03-06T05:30:00.000Z</time><name></name><desc>עינב; מעון ילדים</desc></trkpt>
+        <trkpt lat="32.283594" lon="35.125198"><time>2020-03-06T13:30:00.000Z</time><name></name><desc>עינב; מעון ילדים</desc></trkpt>
+        <trkpt lat="32.283594" lon="35.125198"><time>2020-03-08T05:30:00.000Z</time><name></name><desc>עינב; מעון ילדים</desc></trkpt>
+        <trkpt lat="32.283594" lon="35.125198"><time>2020-03-08T13:30:00.000Z</time><name></name><desc>עינב; מעון ילדים</desc></trkpt>
+        <trkpt lat="32.3125987" lon="34.9617953"><time>2020-03-08T12:30:00.000Z</time><name></name><desc>סופרמרקט חינם פלוס צומת תנובות </desc></trkpt>
+        <trkpt lat="32.3125987" lon="34.9617953"><time>2020-03-08T13:30:00.000Z</time><name></name><desc>סופרמרקט חינם פלוס צומת תנובות </desc></trkpt>
+        <trkpt lat="32.0891567" lon="34.8668668"><time>2020-03-08T17:00:00.000Z</time><name></name><desc>בית חולים בילינסון ; מעבר דרך חדר מיון לחדר בידוד</desc></trkpt>
+        <trkpt lat="32.0891567" lon="34.8668668"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>בית חולים בילינסון ; מעבר דרך חדר מיון לחדר בידוד</desc></trkpt>
+        <trkpt lat="31.8039931" lon="35.1044819"><time>2020-03-06T16:00:00.000Z</time><name></name><desc>בית כנסת חסידים, טלז סטון </desc></trkpt>
+        <trkpt lat="31.8039931" lon="35.1044819"><time>2020-03-06T16:30:00.000Z</time><name></name><desc>בית כנסת חסידים, טלז סטון </desc></trkpt>
+        <trkpt lat="31.8028986" lon="35.1030422"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>בית כנסת בית ההחלמה, טלז סטון</desc></trkpt>
+        <trkpt lat="31.8028986" lon="35.1030422"><time>2020-03-07T09:30:00.000Z</time><name></name><desc>בית כנסת בית ההחלמה, טלז סטון</desc></trkpt>
+        <trkpt lat="31.3114167" lon="35.3626955"><time>2020-03-06T07:00:00.000Z</time><name></name><desc>מצדה ; כולל רכבל</desc></trkpt>
+        <trkpt lat="31.3114167" lon="35.3626955"><time>2020-03-06T11:00:00.000Z</time><name></name><desc>מצדה ; כולל רכבל</desc></trkpt>
+        <trkpt lat="31.1735258" lon="35.3683902"><time>2020-03-06T15:30:00.000Z</time><name></name><desc>סופרמרקט הורדוס, ים המלח</desc></trkpt>
+        <trkpt lat="31.1735258" lon="35.3683902"><time>2020-03-06T16:00:00.000Z</time><name></name><desc>סופרמרקט הורדוס, ים המלח</desc></trkpt>
+        <trkpt lat="31.7681079" lon="35.3008577"><time>2020-03-07T06:00:00.000Z</time><name></name><desc>בית הכנסת "שיח השדה"', רחוב הצפצפה, מעלה אדומים </desc></trkpt>
+        <trkpt lat="31.7681079" lon="35.3008577"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>בית הכנסת "שיח השדה"', רחוב הצפצפה, מעלה אדומים </desc></trkpt>
+        <trkpt lat="31.765444" lon="35.2987526"><time>2020-03-07T14:30:00.000Z</time><name></name><desc>רחוב דקל 1, מעלה אדומים ; בית כנסת "אהבת ישראל"</desc></trkpt>
+        <trkpt lat="31.765444" lon="35.2987526"><time>2020-03-07T15:00:00.000Z</time><name></name><desc>רחוב דקל 1, מעלה אדומים ; בית כנסת "אהבת ישראל"</desc></trkpt>
+        <trkpt lat="31.8933221" lon="34.8215408"><time>2020-03-06T08:00:00.000Z</time><name></name><desc>חיים סירני 1, רחובות ; סופרמרקט "יש בשכונה" </desc></trkpt>
+        <trkpt lat="31.8933221" lon="34.8215408"><time>2020-03-06T08:15:00.000Z</time><name></name><desc>חיים סירני 1, רחובות ; סופרמרקט "יש בשכונה" </desc></trkpt>
+        <trkpt lat="31.8920809" lon="34.8203911"><time>2020-03-06T12:00:00.000Z</time><name></name><desc>יוסף ויינר 2, רחובות ; סופרמרקט "סופר טוב ומיטב"</desc></trkpt>
+        <trkpt lat="31.8920809" lon="34.8203911"><time>2020-03-06T14:00:00.000Z</time><name></name><desc>יוסף ויינר 2, רחובות ; סופרמרקט "סופר טוב ומיטב"</desc></trkpt>
+        <trkpt lat="31.8901047" lon="34.8190218"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>זכריה מאדר 28, רחובות; בית כנסת בית מנחם צעירים</desc></trkpt>
+        <trkpt lat="31.8901047" lon="34.8190218"><time>2020-03-07T10:00:00.000Z</time><name></name><desc>זכריה מאדר 28, רחובות; בית כנסת בית מנחם צעירים</desc></trkpt>
+        <trkpt lat="31.8933221" lon="34.8215408"><time>2020-03-08T06:45:00.000Z</time><name></name><desc>חיים סירני 1, רחובות ; סופרמרקט "יש בשכונה" </desc></trkpt>
+        <trkpt lat="31.8933221" lon="34.8215408"><time>2020-03-08T06:55:00.000Z</time><name></name><desc>חיים סירני 1, רחובות ; סופרמרקט "יש בשכונה" </desc></trkpt>
+        <trkpt lat="31.8933068" lon="34.8068242"><time>2020-03-09T07:05:00.000Z</time><name></name><desc>קניון רחובות ; קופת חולים לאומית</desc></trkpt>
+        <trkpt lat="31.8933068" lon="34.8068242"><time>2020-03-09T07:40:00.000Z</time><name></name><desc>קניון רחובות ; קופת חולים לאומית</desc></trkpt>
+        <trkpt lat="31.9888689" lon="34.8906928"><time>2020-03-07T16:30:00.000Z</time><name></name><desc>שירותי הסעה לחניון טווח ארוך, נתבג</desc></trkpt>
+        <trkpt lat="31.9888689" lon="34.8906928"><time>2020-03-07T16:45:00.000Z</time><name></name><desc>שירותי הסעה לחניון טווח ארוך, נתבג</desc></trkpt>
+        <trkpt lat="31.8207602" lon="35.2399531"><time>2020-03-06T10:00:00.000Z</time><name></name><desc>רום אופטיק, פסגת זאב, רח' משה דיין</desc></trkpt>
+        <trkpt lat="31.8207602" lon="35.2399531"><time>2020-03-06T10:10:00.000Z</time><name></name><desc>רום אופטיק, פסגת זאב, רח' משה דיין</desc></trkpt>
+        <trkpt lat="31.8197926" lon="35.2502293"><time>2020-03-06T10:10:00.000Z</time><name></name><desc>מעיין 2000, פסגת זאב, רח' משה דיין</desc></trkpt>
+        <trkpt lat="31.8197926" lon="35.2502293"><time>2020-03-06T10:15:00.000Z</time><name></name><desc>מעיין 2000, פסגת זאב, רח' משה דיין</desc></trkpt>
+        <trkpt lat="31.8274767" lon="35.2406655"><time>2020-03-06T10:20:00.000Z</time><name></name><desc>חנות דליקטס "קשטן" פסגת זאב, רח' הששה עשר פינת משה דיין</desc></trkpt>
+        <trkpt lat="31.8274767" lon="35.2406655"><time>2020-03-06T10:30:00.000Z</time><name></name><desc>חנות דליקטס "קשטן" פסגת זאב, רח' הששה עשר פינת משה דיין</desc></trkpt>
+        <trkpt lat="31.9889721" lon="34.8902606"><time>2020-03-07T23:00:00.000Z</time><name></name><desc>שאטל לחניון טווח ארוך בנתב"ג.</desc></trkpt>
+        <trkpt lat="31.9889721" lon="34.8902606"><time>2020-03-08T00:00:00.000Z</time><name></name><desc>שאטל לחניון טווח ארוך בנתב"ג.</desc></trkpt>
+        <trkpt lat="31.7627853" lon="35.2183058"><time>2020-03-06T06:40:00.000Z</time><name></name><desc>קונדיטוריה "לה מולאן דורה" רחוב עמק רפאים 44 ,ירושלים</desc></trkpt>
+        <trkpt lat="31.7627853" lon="35.2183058"><time>2020-03-06T06:50:00.000Z</time><name></name><desc>קונדיטוריה "לה מולאן דורה" רחוב עמק רפאים 44 ,ירושלים</desc></trkpt>
+        <trkpt lat="31.762181" lon="35.214353"><time>2020-03-06T15:00:00.000Z</time><name></name><desc>בית הכנסת שערי השמים, רחוב אמציה ,ירושלים; קומה 1</desc></trkpt>
+        <trkpt lat="31.762181" lon="35.214353"><time>2020-03-06T16:00:00.000Z</time><name></name><desc>בית הכנסת שערי השמים, רחוב אמציה ,ירושלים; קומה 1</desc></trkpt>
+        <trkpt lat="31.762181" lon="35.214353"><time>2020-03-07T06:20:00.000Z</time><name></name><desc>בית הכנסת שערי השמים, רחוב אמציה ,ירושלים; קומה 2</desc></trkpt>
+        <trkpt lat="31.762181" lon="35.214353"><time>2020-03-07T09:00:00.000Z</time><name></name><desc>בית הכנסת שערי השמים, רחוב אמציה ,ירושלים; קומה 2</desc></trkpt>
+        <trkpt lat="31.7536965" lon="35.2110901"><time>2020-03-07T10:50:00.000Z</time><name></name><desc>בית הכנסת ברחוב מקור חיים 42 ,ירושלים.; בין השעות 12:50-13:20 וכן 18:00-18:30 </desc></trkpt>
+        <trkpt lat="31.7536965" lon="35.2110901"><time>2020-03-07T16:30:00.000Z</time><name></name><desc>בית הכנסת ברחוב מקור חיים 42 ,ירושלים.; בין השעות 12:50-13:20 וכן 18:00-18:30 </desc></trkpt>
+        <trkpt lat="31.8207594" lon="35.2399531"><time>2020-03-06T10:00:00.000Z</time><name></name><desc>רום אופטיק" פסגת זאב, רח' משה דיין</desc></trkpt>
+        <trkpt lat="31.8207594" lon="35.2399531"><time>2020-03-06T10:10:00.000Z</time><name></name><desc>רום אופטיק" פסגת זאב, רח' משה דיין</desc></trkpt>
+        <trkpt lat="31.8197896" lon="35.2502356"><time>2020-03-06T10:10:00.000Z</time><name></name><desc>מכלת "מעיין 2000" פסגת זאב, רח' משה דיין</desc></trkpt>
+        <trkpt lat="31.8197896" lon="35.2502356"><time>2020-03-06T10:15:00.000Z</time><name></name><desc>מכלת "מעיין 2000" פסגת זאב, רח' משה דיין</desc></trkpt>
+        <trkpt lat="31.8274788" lon="35.2406633"><time>2020-03-06T10:20:00.000Z</time><name></name><desc>רח' הששה עשר פינת משה דיין, פסגת זאב; חנות דליקטס "קשטן" </desc></trkpt>
+        <trkpt lat="31.8274788" lon="35.2406633"><time>2020-03-06T10:30:00.000Z</time><name></name><desc>רח' הששה עשר פינת משה דיין, פסגת זאב; חנות דליקטס "קשטן" </desc></trkpt>
+        <trkpt lat="31.321079" lon="34.6230639"><time>2020-03-06T09:00:00.000Z</time><name></name><desc>סופרמארקט ויקטורי באופקים</desc></trkpt>
+        <trkpt lat="31.321079" lon="34.6230639"><time>2020-03-06T09:30:00.000Z</time><name></name><desc>סופרמארקט ויקטורי באופקים</desc></trkpt>
+        <trkpt lat="31.318298" lon="34.62063"><time>2020-03-08T07:00:00.000Z</time><name></name><desc>קופ"ח כללית ב' אופקים ;  מבוגרים</desc></trkpt>
+        <trkpt lat="31.318298" lon="34.62063"><time>2020-03-08T08:45:00.000Z</time><name></name><desc>קופ"ח כללית ב' אופקים ;  מבוגרים</desc></trkpt>
+        <trkpt lat="31.4195258" lon="34.6006599"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>מקסטוק" נתיבות</desc></trkpt>
+        <trkpt lat="31.4195258" lon="34.6006599"><time>2020-03-08T18:30:00.000Z</time><name></name><desc>מקסטוק" נתיבות</desc></trkpt>
+        <trkpt lat="31.310954" lon="34.6126154"><time>2020-03-10T06:40:00.000Z</time><name></name><desc>מרפאה כללית אופקים (מישור הגפן)</desc></trkpt>
+        <trkpt lat="31.310954" lon="34.6126154"><time>2020-03-10T07:00:00.000Z</time><name></name><desc>מרפאה כללית אופקים (מישור הגפן)</desc></trkpt>
+        <trkpt lat="31.5290432" lon="34.5872069"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>מתנס חדש, שדרות; חגיגות יום האישה </desc></trkpt>
+        <trkpt lat="31.5290432" lon="34.5872069"><time>2020-03-08T21:59:00.000Z</time><name></name><desc>מתנס חדש, שדרות; חגיגות יום האישה </desc></trkpt>
+        <trkpt lat="32.0281001" lon="34.8670805"><time>2020-03-07T13:45:00.000Z</time><name></name><desc>בית הכנסת רבי יוסף חיים בנווה מונוסון; עזרת נשים</desc></trkpt>
+        <trkpt lat="32.0281001" lon="34.8670805"><time>2020-03-07T14:30:00.000Z</time><name></name><desc>בית הכנסת רבי יוסף חיים בנווה מונוסון; עזרת נשים</desc></trkpt>
+        <trkpt lat="32.0343833" lon="34.848333"><time>2020-03-08T12:00:00.000Z</time><name></name><desc>המפעל 2, אור יהודה; סופרמרקט "יוחננוף</desc></trkpt>
+        <trkpt lat="32.0343833" lon="34.848333"><time>2020-03-08T13:30:00.000Z</time><name></name><desc>המפעל 2, אור יהודה; סופרמרקט "יוחננוף</desc></trkpt>
+        <trkpt lat="32.1140196" lon="34.799379"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>רחוב בארט 6, תל אביב; סופר יהודה</desc></trkpt>
+        <trkpt lat="32.1140196" lon="34.799379"><time>2020-03-08T17:00:00.000Z</time><name></name><desc>רחוב בארט 6, תל אביב; סופר יהודה</desc></trkpt>
+        <trkpt lat="32.1087781" lon="34.8386309"><time>2020-03-09T10:00:00.000Z</time><name></name><desc>הברזל 21, תל אביב; קפה עלמה</desc></trkpt>
+        <trkpt lat="32.1087781" lon="34.8386309"><time>2020-03-09T11:00:00.000Z</time><name></name><desc>הברזל 21, תל אביב; קפה עלמה</desc></trkpt>
+        <trkpt lat="32.0534809" lon="34.7537927"><time>2020-03-06T19:30:00.000Z</time><name></name><desc>מסעדת בית קנדינוף, רחוב הצורפים 14, תל אביב</desc></trkpt>
+        <trkpt lat="32.0534809" lon="34.7537927"><time>2020-03-06T21:30:00.000Z</time><name></name><desc>מסעדת בית קנדינוף, רחוב הצורפים 14, תל אביב</desc></trkpt>
+        <trkpt lat="32.0704826" lon="34.7645591"><time>2020-03-07T06:00:00.000Z</time><name></name><desc>מלון רויאל ביץ, רחוב הירקון 19, תל אביב; ארוחת בוקר</desc></trkpt>
+        <trkpt lat="32.0704826" lon="34.7645591"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>מלון רויאל ביץ, רחוב הירקון 19, תל אביב; ארוחת בוקר</desc></trkpt>
+        <trkpt lat="30.6113989" lon="34.8077184"><time>2020-03-07T16:30:00.000Z</time><name></name><desc>מסעדת מלון בראשית, דרך בראשית 1, מצפה רמון</desc></trkpt>
+        <trkpt lat="30.6113989" lon="34.8077184"><time>2020-03-07T19:00:00.000Z</time><name></name><desc>מסעדת מלון בראשית, דרך בראשית 1, מצפה רמון</desc></trkpt>
+        <trkpt lat="30.6113989" lon="34.8077184"><time>2020-03-08T06:00:00.000Z</time><name></name><desc>מלון בראשית, דרך בראשית 1, מצפה רמון; ארוחת בוקר</desc></trkpt>
+        <trkpt lat="30.6113989" lon="34.8077184"><time>2020-03-08T08:00:00.000Z</time><name></name><desc>מלון בראשית, דרך בראשית 1, מצפה רמון; ארוחת בוקר</desc></trkpt>
+        <trkpt lat="31.1929883" lon="35.3610687"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>מסעדת מלון ישרוטל ים המלח, עין בוקק</desc></trkpt>
+        <trkpt lat="31.1929883" lon="35.3610687"><time>2020-03-08T19:00:00.000Z</time><name></name><desc>מסעדת מלון ישרוטל ים המלח, עין בוקק</desc></trkpt>
+        <trkpt lat="31.1929883" lon="35.3610687"><time>2020-03-09T06:00:00.000Z</time><name></name><desc>ישרוטל ים המלח, עין בוקק; ארוחת בוקר</desc></trkpt>
+        <trkpt lat="31.1929883" lon="35.3610687"><time>2020-03-09T08:00:00.000Z</time><name></name><desc>ישרוטל ים המלח, עין בוקק; ארוחת בוקר</desc></trkpt>
+        <trkpt lat="32.919178" lon="35.068466"><time>2020-03-09T11:00:00.000Z</time><name></name><desc>מסעדת דוניאנא (בונירם), עיר עתיקה 11, עכו</desc></trkpt>
+        <trkpt lat="32.919178" lon="35.068466"><time>2020-03-09T13:00:00.000Z</time><name></name><desc>מסעדת דוניאנא (בונירם), עיר עתיקה 11, עכו</desc></trkpt>
+        <trkpt lat="33.1307642" lon="35.7795795"><time>2020-03-09T17:30:00.000Z</time><name></name><desc>מסעדת הבוקרים, קיבוץ מירום גולן, רמת הגולן</desc></trkpt>
+        <trkpt lat="33.1307642" lon="35.7795795"><time>2020-03-09T19:30:00.000Z</time><name></name><desc>מסעדת הבוקרים, קיבוץ מירום גולן, רמת הגולן</desc></trkpt>
+        <trkpt lat="33.132583" lon="35.777071"><time>2020-03-10T06:00:00.000Z</time><name></name><desc>חדר אוכל של קיבוץ מירום גולן; ארוחת בוקר</desc></trkpt>
+        <trkpt lat="33.132583" lon="35.777071"><time>2020-03-10T07:00:00.000Z</time><name></name><desc>חדר אוכל של קיבוץ מירום גולן; ארוחת בוקר</desc></trkpt>
+        <trkpt lat="32.0642807" lon="34.774554"><time>2020-03-10T18:30:00.000Z</time><name></name><desc>שדרות רוטשילד 45, תל אביב; מסעדת Social Club</desc></trkpt>
+        <trkpt lat="32.0642807" lon="34.774554"><time>2020-03-10T20:00:00.000Z</time><name></name><desc>שדרות רוטשילד 45, תל אביב; מסעדת Social Club</desc></trkpt>
+        <trkpt lat="31.8901154" lon="34.8188747"><time>2020-03-07T09:00:00.000Z</time><name></name><desc>בית כנסת "בית מנחם צעירים" ברח' זכריה מדר 28 רחובות ; עזרת נשים</desc></trkpt>
+        <trkpt lat="31.8901154" lon="34.8188747"><time>2020-03-07T10:00:00.000Z</time><name></name><desc>בית כנסת "בית מנחם צעירים" ברח' זכריה מדר 28 רחובות ; עזרת נשים</desc></trkpt>
+        <trkpt lat="31.8880321" lon="34.8174196"><time>2020-03-07T10:30:00.000Z</time><name></name><desc>גן משחקים - גן הרפתקאות ברחובות</desc></trkpt>
+        <trkpt lat="31.8880321" lon="34.8174196"><time>2020-03-07T11:30:00.000Z</time><name></name><desc>גן משחקים - גן הרפתקאות ברחובות</desc></trkpt>
+        <trkpt lat="31.8933068" lon="34.8068242"><time>2020-03-07T17:00:00.000Z</time><name></name><desc>קניון רחובות רח' בילו 2;  חנות קרולין למקה ( 19:10-19:20); חנות טורקיז (19:25-20:00) </desc></trkpt>
+        <trkpt lat="31.8933068" lon="34.8068242"><time>2020-03-07T18:20:00.000Z</time><name></name><desc>קניון רחובות רח' בילו 2;  חנות קרולין למקה ( 19:10-19:20); חנות טורקיז (19:25-20:00) </desc></trkpt>
+        <trkpt lat="31.8881216" lon="34.8190833"><time>2020-03-09T08:15:00.000Z</time><name></name><desc>ברכול אושיות רחובות</desc></trkpt>
+        <trkpt lat="31.8881216" lon="34.8190833"><time>2020-03-09T08:50:00.000Z</time><name></name><desc>ברכול אושיות רחובות</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-06T11:30:00.000Z</time><name></name><desc>לובי מלון דן פנורמה תל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-06T12:00:00.000Z</time><name></name><desc>לובי מלון דן פנורמה תל אביב</desc></trkpt>
+        <trkpt lat="32.06868" lon="34.76904"><time>2020-03-06T12:00:00.000Z</time><name></name><desc>טיול בשוק הכרמל</desc></trkpt>
+        <trkpt lat="32.06868" lon="34.76904"><time>2020-03-06T13:00:00.000Z</time><name></name><desc>טיול בשוק הכרמל</desc></trkpt>
+        <trkpt lat="32.05877" lon="34.76199"><time>2020-03-06T16:30:00.000Z</time><name></name><desc>מסעדת italkia batahan במתחם התחנה.</desc></trkpt>
+        <trkpt lat="32.05877" lon="34.76199"><time>2020-03-06T18:30:00.000Z</time><name></name><desc>מסעדת italkia batahan במתחם התחנה.</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-07T07:30:00.000Z</time><name></name><desc>ארוחת בוקר במלון דן פנורמה תל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-07T08:30:00.000Z</time><name></name><desc>ארוחת בוקר במלון דן פנורמה תל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-07T11:00:00.000Z</time><name></name><desc>לובי של מלון דן פנורמה בת"א</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-07T12:00:00.000Z</time><name></name><desc>לובי של מלון דן פנורמה בת"א</desc></trkpt>
+        <trkpt lat="32.06107" lon="34.76002"><time>2020-03-07T17:00:00.000Z</time><name></name><desc>מסעדת MANTARAY</desc></trkpt>
+        <trkpt lat="32.06107" lon="34.76002"><time>2020-03-07T19:00:00.000Z</time><name></name><desc>מסעדת MANTARAY</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-08T07:30:00.000Z</time><name></name><desc>ארוחת בוקר במלון דן פנורמה בתל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-08T08:30:00.000Z</time><name></name><desc>ארוחת בוקר במלון דן פנורמה בתל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-08T11:00:00.000Z</time><name></name><desc>שהייה בלובי המלון</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-08T12:00:00.000Z</time><name></name><desc>שהייה בלובי המלון</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-08T16:30:00.000Z</time><name></name><desc>ארוחת ערב במלון דן פנורמה בתל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>ארוחת ערב במלון דן פנורמה בתל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>אולם נגב במלון דן פנורמה בתל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-08T19:00:00.000Z</time><name></name><desc>אולם נגב במלון דן פנורמה בתל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-09T04:30:00.000Z</time><name></name><desc>ארוחת בוקר במלון דן פנורמה בתל אביב</desc></trkpt>
+        <trkpt lat="32.06474" lon="34.76318"><time>2020-03-09T05:15:00.000Z</time><name></name><desc>ארוחת בוקר במלון דן פנורמה בתל אביב</desc></trkpt>
+        <trkpt lat="32.054749" lon="34.752134"><time>2020-03-09T06:30:00.000Z</time><name></name><desc>טיול ביפו ליד מסעדת סנט ג'ורג', יפו העתיקה, סיור בסמטאות, ירידה לכיוון הכנסייה הגדולה סאן פטרוס, הליכה דרך המדרגות לתחנת אוטובוס מול הכניסה לנמל.</desc></trkpt>
+        <trkpt lat="32.054749" lon="34.752134"><time>2020-03-09T08:30:00.000Z</time><name></name><desc>טיול ביפו ליד מסעדת סנט ג'ורג', יפו העתיקה, סיור בסמטאות, ירידה לכיוון הכנסייה הגדולה סאן פטרוס, הליכה דרך המדרגות לתחנת אוטובוס מול הכניסה לנמל.</desc></trkpt>
+        <trkpt lat="32.06868" lon="34.76904"><time>2020-03-09T09:00:00.000Z</time><name></name><desc>הליכה לאורך שוק הכרמל בתל אביב, ללא כניסה לחנויות.</desc></trkpt>
+        <trkpt lat="32.06868" lon="34.76904"><time>2020-03-09T10:00:00.000Z</time><name></name><desc>הליכה לאורך שוק הכרמל בתל אביב, ללא כניסה לחנויות.</desc></trkpt>
+        <trkpt lat="32.50108" lon="34.89232"><time>2020-03-09T10:30:00.000Z</time><name></name><desc>גן לאומי קיסריה</desc></trkpt>
+        <trkpt lat="32.50108" lon="34.89232"><time>2020-03-09T11:30:00.000Z</time><name></name><desc>גן לאומי קיסריה</desc></trkpt>
+        <trkpt lat="32.695082" lon="35.051862"><time>2020-03-09T11:50:00.000Z</time><name></name><desc>מסעדת מיזייד בדאלית אל כרמל; מיקום לא ודאי</desc></trkpt>
+        <trkpt lat="32.695082" lon="35.051862"><time>2020-03-09T12:45:00.000Z</time><name></name><desc>מסעדת מיזייד בדאלית אל כרמל; מיקום לא ודאי</desc></trkpt>
+        <trkpt lat="32.92358" lon="35.07053"><time>2020-03-09T13:30:00.000Z</time><name></name><desc>ביקור באולם האבירים, בעכו</desc></trkpt>
+        <trkpt lat="32.92358" lon="35.07053"><time>2020-03-09T15:00:00.000Z</time><name></name><desc>ביקור באולם האבירים, בעכו</desc></trkpt>
+        <trkpt lat="32.80663" lon="34.98757"><time>2020-03-09T16:00:00.000Z</time><name></name><desc>קבלת חדרים בלובי מלון דן פנורמה,חיפה</desc></trkpt>
+        <trkpt lat="32.80663" lon="34.98757"><time>2020-03-09T17:00:00.000Z</time><name></name><desc>קבלת חדרים בלובי מלון דן פנורמה,חיפה</desc></trkpt>
+        <trkpt lat="32.80663" lon="34.98757"><time>2020-03-09T17:00:00.000Z</time><name></name><desc>ארוחת ערב במלון דן פנורמה, חיפה</desc></trkpt>
+        <trkpt lat="32.80663" lon="34.98757"><time>2020-03-09T18:30:00.000Z</time><name></name><desc>ארוחת ערב במלון דן פנורמה, חיפה</desc></trkpt>
+        <trkpt lat="32.80663" lon="34.98757"><time>2020-03-10T04:30:00.000Z</time><name></name><desc>ארוחת בוקר במלון דן פנורמה, חיפה</desc></trkpt>
+        <trkpt lat="32.80663" lon="34.98757"><time>2020-03-10T05:00:00.000Z</time><name></name><desc>ארוחת בוקר במלון דן פנורמה, חיפה</desc></trkpt>
+        <trkpt lat="32.82723" lon="34.97012"><time>2020-03-10T06:00:00.000Z</time><name></name><desc>כנסיית מינזר סטלה מאריס חיפה.</desc></trkpt>
+        <trkpt lat="32.82723" lon="34.97012"><time>2020-03-10T07:00:00.000Z</time><name></name><desc>כנסיית מינזר סטלה מאריס חיפה.</desc></trkpt>
+        <trkpt lat="32.81136" lon="34.98527"><time>2020-03-10T07:15:00.000Z</time><name></name><desc>תצפית ברח' יפה נוף, ליד גני הבהאיים, חיפה.</desc></trkpt>
+        <trkpt lat="32.81136" lon="34.98527"><time>2020-03-10T07:30:00.000Z</time><name></name><desc>תצפית ברח' יפה נוף, ליד גני הבהאיים, חיפה.</desc></trkpt>
+        <trkpt lat="32.70215" lon="35.29739"><time>2020-03-10T08:30:00.000Z</time><name></name><desc>כנסית הבשורה, נצרת</desc></trkpt>
+        <trkpt lat="32.70215" lon="35.29739"><time>2020-03-10T10:00:00.000Z</time><name></name><desc>כנסית הבשורה, נצרת</desc></trkpt>
+        <trkpt lat="32.702059" lon="35.295353"><time>2020-03-10T10:00:00.000Z</time><name></name><desc>א. צהריים מסעדת מערות הבית החדש בנצרת.</desc></trkpt>
+        <trkpt lat="32.702059" lon="35.295353"><time>2020-03-10T11:00:00.000Z</time><name></name><desc>א. צהריים מסעדת מערות הבית החדש בנצרת.</desc></trkpt>
+        <trkpt lat="32.702059" lon="35.295353"><time>2020-03-10T11:00:00.000Z</time><name></name><desc>ביקור בבית הספר הבפטיסטי כולל אולם הכנסיה</desc></trkpt>
+        <trkpt lat="32.702059" lon="35.295353"><time>2020-03-10T11:40:00.000Z</time><name></name><desc>ביקור בבית הספר הבפטיסטי כולל אולם הכנסיה</desc></trkpt>
+        <trkpt lat="32.74703" lon="35.33844"><time>2020-03-10T12:00:00.000Z</time><name></name><desc>כנסיה החתונה קתולית (פרנסיסקנים)בכפר כנא.</desc></trkpt>
+        <trkpt lat="32.74703" lon="35.33844"><time>2020-03-10T12:40:00.000Z</time><name></name><desc>כנסיה החתונה קתולית (פרנסיסקנים)בכפר כנא.</desc></trkpt>
+        <trkpt lat="32.74703" lon="35.33844"><time>2020-03-10T12:40:00.000Z</time><name></name><desc>ביקור בחנות מזכרות של אנוואר בלאן(באמצע המדרגות לכיוון החניה של האוטובוסים לכנסיה הקתולית בכפר כנא)</desc></trkpt>
+        <trkpt lat="32.74703" lon="35.33844"><time>2020-03-10T13:00:00.000Z</time><name></name><desc>ביקור בחנות מזכרות של אנוואר בלאן(באמצע המדרגות לכיוון החניה של האוטובוסים לכנסיה הקתולית בכפר כנא)</desc></trkpt>
+        <trkpt lat="32.68627" lon="35.39249"><time>2020-03-10T13:50:00.000Z</time><name></name><desc>ביקור בכנסיית ההתגלות בהר תבור</desc></trkpt>
+        <trkpt lat="32.68627" lon="35.39249"><time>2020-03-10T15:00:00.000Z</time><name></name><desc>ביקור בכנסיית ההתגלות בהר תבור</desc></trkpt>
+        <trkpt lat="32.78781" lon="35.54271"><time>2020-03-10T16:00:00.000Z</time><name></name><desc>קבלת חדרים בלובי מלון קיסר טבריה</desc></trkpt>
+        <trkpt lat="32.78781" lon="35.54271"><time>2020-03-10T17:00:00.000Z</time><name></name><desc>קבלת חדרים בלובי מלון קיסר טבריה</desc></trkpt>
+        <trkpt lat="32.78781" lon="35.54271"><time>2020-03-10T17:00:00.000Z</time><name></name><desc>ארוחת ערב במלון קיסר בטבריה</desc></trkpt>
+        <trkpt lat="32.78781" lon="35.54271"><time>2020-03-10T18:30:00.000Z</time><name></name><desc>ארוחת ערב במלון קיסר בטבריה</desc></trkpt>
+        <trkpt lat="32.966331" lon="35.4875"><time>2020-03-06T09:30:00.000Z</time><name></name><desc>סופר בר כל, צפת; מיקום מדוייק לא ידוע</desc></trkpt>
+        <trkpt lat="32.966331" lon="35.4875"><time>2020-03-06T11:00:00.000Z</time><name></name><desc>סופר בר כל, צפת; מיקום מדוייק לא ידוע</desc></trkpt>
+        <trkpt lat="32.9689969" lon="35.5036201"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>בית הכנסת שבט אחים, שכ' כנען, צפת</desc></trkpt>
+        <trkpt lat="32.9689969" lon="35.5036201"><time>2020-03-07T10:30:00.000Z</time><name></name><desc>בית הכנסת שבט אחים, שכ' כנען, צפת</desc></trkpt>
+        <trkpt lat="32.97188" lon="35.50477"><time>2020-03-07T19:00:00.000Z</time><name></name><desc>סופר פארם בשערי העיר, צפת.</desc></trkpt>
+        <trkpt lat="32.97188" lon="35.50477"><time>2020-03-07T19:30:00.000Z</time><name></name><desc>סופר פארם בשערי העיר, צפת.</desc></trkpt>
+        <trkpt lat="32.9638" lon="35.50559"><time>2020-03-08T05:30:00.000Z</time><name></name><desc>מעון יום של חבד של נורית קרומבי, צפת</desc></trkpt>
+        <trkpt lat="32.9638" lon="35.50559"><time>2020-03-08T14:00:00.000Z</time><name></name><desc>מעון יום של חבד של נורית קרומבי, צפת</desc></trkpt>
+        <trkpt lat="33.05186" lon="35.49963"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>ניחום אבלים משפ' הלל, מושב עלמה</desc></trkpt>
+        <trkpt lat="33.05186" lon="35.49963"><time>2020-03-08T16:45:00.000Z</time><name></name><desc>ניחום אבלים משפ' הלל, מושב עלמה</desc></trkpt>
+        <trkpt lat="32.9638" lon="35.50559"><time>2020-03-09T05:30:00.000Z</time><name></name><desc>מעון יום של חבד של נורית קרומבי,צפת</desc></trkpt>
+        <trkpt lat="32.9638" lon="35.50559"><time>2020-03-09T14:00:00.000Z</time><name></name><desc>מעון יום של חבד של נורית קרומבי,צפת</desc></trkpt>
+        <trkpt lat="32.00559" lon="34.95266"><time>2020-03-06T06:00:00.000Z</time><name></name><desc>גן "צבעוני", רחוב שקמה 20 באור יהודה</desc></trkpt>
+        <trkpt lat="32.00559" lon="34.95266"><time>2020-03-06T14:00:00.000Z</time><name></name><desc>גן "צבעוני", רחוב שקמה 20 באור יהודה</desc></trkpt>
+        <trkpt lat="32.02427" lon="34.8623"><time>2020-03-09T16:00:00.000Z</time><name></name><desc>בית הכנסת אוהל אבנר ברחוב דגניה 40 באור יהודה</desc></trkpt>
+        <trkpt lat="32.02427" lon="34.8623"><time>2020-03-09T17:30:00.000Z</time><name></name><desc>בית הכנסת אוהל אבנר ברחוב דגניה 40 באור יהודה</desc></trkpt>
+        <trkpt lat="32.0281081" lon="34.8670708"><time>2020-03-06T16:00:00.000Z</time><name></name><desc>בית כנסת יוסף חיים בנווה מונסון</desc></trkpt>
+        <trkpt lat="32.0281081" lon="34.8670708"><time>2020-03-06T17:00:00.000Z</time><name></name><desc>בית כנסת יוסף חיים בנווה מונסון</desc></trkpt>
+        <trkpt lat="32.0281081" lon="34.8670708"><time>2020-03-07T14:00:00.000Z</time><name></name><desc>בית כנסת יוסף חיים בנווה מונסון</desc></trkpt>
+        <trkpt lat="32.0281081" lon="34.8670708"><time>2020-03-07T15:00:00.000Z</time><name></name><desc>בית כנסת יוסף חיים בנווה מונסון</desc></trkpt>
+        <trkpt lat="32.02535" lon="34.85801"><time>2020-03-08T17:00:00.000Z</time><name></name><desc>מרפאת "כללית סמייל" ברח' יהודה סעדון 120 באור יהודה</desc></trkpt>
+        <trkpt lat="32.02535" lon="34.85801"><time>2020-03-08T17:30:00.000Z</time><name></name><desc>מרפאת "כללית סמייל" ברח' יהודה סעדון 120 באור יהודה</desc></trkpt>
+        <trkpt lat="32.02427" lon="34.8623"><time>2020-03-09T16:00:00.000Z</time><name></name><desc>בית הכנסת אוהל אבנר ברחוב דגניה 40 באור יהודה</desc></trkpt>
+        <trkpt lat="32.02427" lon="34.8623"><time>2020-03-09T17:30:00.000Z</time><name></name><desc>בית הכנסת אוהל אבנר ברחוב דגניה 40 באור יהודה</desc></trkpt>
+        <trkpt lat="32.029618" lon="34.871593"><time>2020-03-07T13:45:00.000Z</time><name></name><desc>בית כנסת יוסף חכם בנוה מונסון, עזרת נשים</desc></trkpt>
+        <trkpt lat="32.029618" lon="34.871593"><time>2020-03-07T14:30:00.000Z</time><name></name><desc>בית כנסת יוסף חכם בנוה מונסון, עזרת נשים</desc></trkpt>
+        <trkpt lat="32.02535" lon="34.85801"><time>2020-03-08T17:00:00.000Z</time><name></name><desc>מרפאת "כללית סמייל" ברח' יהודה סעדון 120 באור יהודה</desc></trkpt>
+        <trkpt lat="32.02535" lon="34.85801"><time>2020-03-08T17:30:00.000Z</time><name></name><desc>מרפאת "כללית סמייל" ברח' יהודה סעדון 120 באור יהודה</desc></trkpt>
+        <trkpt lat="32.06393" lon="34.77975"><time>2020-03-06T11:40:00.000Z</time><name></name><desc>מסעדת טאיזו, דרך מנחם בגין 23, תל אביב</desc></trkpt>
+        <trkpt lat="32.06393" lon="34.77975"><time>2020-03-06T15:00:00.000Z</time><name></name><desc>מסעדת טאיזו, דרך מנחם בגין 23, תל אביב</desc></trkpt>
+        <trkpt lat="31.75658" lon="35.1607"><time>2020-03-06T08:00:00.000Z</time><name></name><desc>סופר "מחסני השוק" בצומת אורה ירושלים בשעות 10:00-10:20</desc></trkpt>
+        <trkpt lat="31.75658" lon="35.1607"><time>2020-03-06T08:20:00.000Z</time><name></name><desc>סופר "מחסני השוק" בצומת אורה ירושלים בשעות 10:00-10:20</desc></trkpt>
+        <trkpt lat="31.78798" lon="35.18901"><time>2020-03-06T09:20:00.000Z</time><name></name><desc>חנות TO GO ברחוב כנפי נשרים בגבעת שאול ירושלים</desc></trkpt>
+        <trkpt lat="31.78798" lon="35.18901"><time>2020-03-06T09:40:00.000Z</time><name></name><desc>חנות TO GO ברחוב כנפי נשרים בגבעת שאול ירושלים</desc></trkpt>
+        <trkpt lat="31.788" lon="35.18838"><time>2020-03-06T09:40:00.000Z</time><name></name><desc>סופר פארם ברחוב כנפי נשרים ירושלים</desc></trkpt>
+        <trkpt lat="31.788" lon="35.18838"><time>2020-03-06T09:50:00.000Z</time><name></name><desc>סופר פארם ברחוב כנפי נשרים ירושלים</desc></trkpt>
+        <trkpt lat="31.788" lon="35.18838"><time>2020-03-06T10:10:00.000Z</time><name></name><desc>סופר פארם ברחוב כנפי נשרים ירושלים</desc></trkpt>
+        <trkpt lat="31.788" lon="35.18838"><time>2020-03-06T10:20:00.000Z</time><name></name><desc>סופר פארם ברחוב כנפי נשרים ירושלים</desc></trkpt>
+        <trkpt lat="31.78552" lon="35.18971"><time>2020-03-06T10:20:00.000Z</time><name></name><desc>"בזאר מיטל" רחוב בית הדפוס 7 ירושלים, "קונדיטורית MOTIS"</desc></trkpt>
+        <trkpt lat="31.78552" lon="35.18971"><time>2020-03-06T10:25:00.000Z</time><name></name><desc>"בזאר מיטל" רחוב בית הדפוס 7 ירושלים, "קונדיטורית MOTIS"</desc></trkpt>
+        <trkpt lat="31.64877" lon="35.11585"><time>2020-03-06T15:00:00.000Z</time><name></name><desc>"ישיבה תיכונית מקור חיים" בקיבוץ כפר עציון</desc></trkpt>
+        <trkpt lat="31.64877" lon="35.11585"><time>2020-03-06T21:59:00.000Z</time><name></name><desc>"ישיבה תיכונית מקור חיים" בקיבוץ כפר עציון</desc></trkpt>
+        <trkpt lat="31.64877" lon="35.11585"><time>2020-03-06T22:00:00.000Z</time><name></name><desc>"ישיבה תיכונית מקור חיים" בקיבוץ כפר עציון</desc></trkpt>
+        <trkpt lat="31.64877" lon="35.11585"><time>2020-03-07T16:30:00.000Z</time><name></name><desc>"ישיבה תיכונית מקור חיים" בקיבוץ כפר עציון</desc></trkpt>
+        <trkpt lat="31.78781" lon="35.19267"><time>2020-03-08T10:00:00.000Z</time><name></name><desc>סניף הבנק הבינלאומי ברחוב כנפי נשרים ירושלים</desc></trkpt>
+        <trkpt lat="31.78781" lon="35.19267"><time>2020-03-08T10:10:00.000Z</time><name></name><desc>סניף הבנק הבינלאומי ברחוב כנפי נשרים ירושלים</desc></trkpt>
+        <trkpt lat="31.75673" lon="35.16673"><time>2020-03-08T12:10:00.000Z</time><name></name><desc>"באגט שילת" רחוב דהומיי ירושלים</desc></trkpt>
+        <trkpt lat="31.75673" lon="35.16673"><time>2020-03-08T12:50:00.000Z</time><name></name><desc>"באגט שילת" רחוב דהומיי ירושלים</desc></trkpt>
+        <trkpt lat="31.75828" lon="35.1653"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>עצרת תפילה בבית הכנסת "זכור לאברהם" ברחוב קולומביה 7 ירושלים</desc></trkpt>
+        <trkpt lat="31.75828" lon="35.1653"><time>2020-03-08T17:50:00.000Z</time><name></name><desc>עצרת תפילה בבית הכנסת "זכור לאברהם" ברחוב קולומביה 7 ירושלים</desc></trkpt>
+        <trkpt lat="31.75388" lon="35.16567"><time>2020-03-09T15:00:00.000Z</time><name></name><desc>בית הכנסת "שירת גנים" רחוב הסביון 9 ירושלים</desc></trkpt>
+        <trkpt lat="31.75388" lon="35.16567"><time>2020-03-09T16:00:00.000Z</time><name></name><desc>בית הכנסת "שירת גנים" רחוב הסביון 9 ירושלים</desc></trkpt>
+        <trkpt lat="31.75593" lon="35.16587"><time>2020-03-10T16:00:00.000Z</time><name></name><desc>קריאת מגילה באולם של המתנ"ס הקהילתי בשכונת קריית מנחם בירושלים; מיקום מדוייק לא ודאי</desc></trkpt>
+        <trkpt lat="31.75593" lon="35.16587"><time>2020-03-10T17:00:00.000Z</time><name></name><desc>קריאת מגילה באולם של המתנ"ס הקהילתי בשכונת קריית מנחם בירושלים; מיקום מדוייק לא ודאי</desc></trkpt>
+        <trkpt lat="31.75388" lon="35.16567"><time>2020-03-11T05:30:00.000Z</time><name></name><desc>בית הכנסת "שירת גנים" סביון 9 ירושלים</desc></trkpt>
+        <trkpt lat="31.75388" lon="35.16567"><time>2020-03-11T06:45:00.000Z</time><name></name><desc>בית הכנסת "שירת גנים" סביון 9 ירושלים</desc></trkpt>
+        <trkpt lat="31.9913814" lon="34.7612746"><time>2020-03-08T10:00:00.000Z</time><name></name><desc>אושר עד, מערב ראשון לציון</desc></trkpt>
+        <trkpt lat="31.9913814" lon="34.7612746"><time>2020-03-08T13:00:00.000Z</time><name></name><desc>אושר עד, מערב ראשון לציון</desc></trkpt>
+        <trkpt lat="31.9754" lon="34.77954"><time>2020-03-08T08:50:00.000Z</time><name></name><desc>סניף "כרמים", קופת חולים כללית, ראשון לציון</desc></trkpt>
+        <trkpt lat="31.9754" lon="34.77954"><time>2020-03-08T09:30:00.000Z</time><name></name><desc>סניף "כרמים", קופת חולים כללית, ראשון לציון</desc></trkpt>
+        <trkpt lat="31.9754" lon="34.77954"><time>2020-03-09T05:00:00.000Z</time><name></name><desc>סניף "כרמים", קופת חולים כללית, ראשון לציון</desc></trkpt>
+        <trkpt lat="31.9754" lon="34.77954"><time>2020-03-09T06:00:00.000Z</time><name></name><desc>סניף "כרמים", קופת חולים כללית, ראשון לציון</desc></trkpt>
+        <trkpt lat="31.984" lon="34.77095"><time>2020-03-09T10:30:00.000Z</time><name></name><desc>סינמה סיטי</desc></trkpt>
+        <trkpt lat="31.984" lon="34.77095"><time>2020-03-09T12:30:00.000Z</time><name></name><desc>סינמה סיטי</desc></trkpt>
+        <trkpt lat="31.98496" lon="34.76878"><time>2020-03-09T10:30:00.000Z</time><name></name><desc>הבנק הבינלאומי, רח' ילדי טהרן, ראשון לציון</desc></trkpt>
+        <trkpt lat="31.98496" lon="34.76878"><time>2020-03-09T11:00:00.000Z</time><name></name><desc>הבנק הבינלאומי, רח' ילדי טהרן, ראשון לציון</desc></trkpt>
+        <trkpt lat="32.09248" lon="34.83795"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>מוקד בטר"ם, בני ברק</desc></trkpt>
+        <trkpt lat="32.09248" lon="34.83795"><time>2020-03-07T10:00:00.000Z</time><name></name><desc>מוקד בטר"ם, בני ברק</desc></trkpt>
+        <trkpt lat="32.10096" lon="34.82694"><time>2020-03-07T10:30:00.000Z</time><name></name><desc>סופר-פארם, קניון איילון</desc></trkpt>
+        <trkpt lat="32.10096" lon="34.82694"><time>2020-03-07T11:30:00.000Z</time><name></name><desc>סופר-פארם, קניון איילון</desc></trkpt>
+        <trkpt lat="32.09248" lon="34.83795"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>מוקד בטר"ם, בני ברק</desc></trkpt>
+        <trkpt lat="32.09248" lon="34.83795"><time>2020-03-07T10:00:00.000Z</time><name></name><desc>מוקד בטר"ם, בני ברק</desc></trkpt>
+        <trkpt lat="32.10096" lon="34.82694"><time>2020-03-07T10:30:00.000Z</time><name></name><desc>סופר-פארם, קניון איילון</desc></trkpt>
+        <trkpt lat="32.10096" lon="34.82694"><time>2020-03-07T11:30:00.000Z</time><name></name><desc>סופר-פארם, קניון איילון</desc></trkpt>
+        <trkpt lat="32.13853" lon="34.84393"><time>2020-03-06T19:00:00.000Z</time><name></name><desc>מוקד רפואה דחופה מכבי, רח' הנצח 3, רמת השרון</desc></trkpt>
+        <trkpt lat="32.13853" lon="34.84393"><time>2020-03-06T19:30:00.000Z</time><name></name><desc>מוקד רפואה דחופה מכבי, רח' הנצח 3, רמת השרון</desc></trkpt>
+        <trkpt lat="32.15162" lon="34.8435"><time>2020-03-06T19:30:00.000Z</time><name></name><desc>סופרפארם צמרות, רח' צמרות 2, הרצליה</desc></trkpt>
+        <trkpt lat="32.15162" lon="34.8435"><time>2020-03-06T20:15:00.000Z</time><name></name><desc>סופרפארם צמרות, רח' צמרות 2, הרצליה</desc></trkpt>
+        <trkpt lat="31.81036" lon="34.66209"><time>2020-03-09T08:30:00.000Z</time><name></name><desc>האורגים 6, אזור התעשיה הקלה, טופ סנטר; פלאפון, סניף אשדוד</desc></trkpt>
+        <trkpt lat="31.81036" lon="34.66209"><time>2020-03-09T09:10:00.000Z</time><name></name><desc>האורגים 6, אזור התעשיה הקלה, טופ סנטר; פלאפון, סניף אשדוד</desc></trkpt>
+        <trkpt lat="31.78952" lon="34.71445"><time>2020-03-09T10:00:00.000Z</time><name></name><desc>סופר "מרקט בעיר", גן יבנה</desc></trkpt>
+        <trkpt lat="31.78952" lon="34.71445"><time>2020-03-09T10:15:00.000Z</time><name></name><desc>סופר "מרקט בעיר", גן יבנה</desc></trkpt>
+        <trkpt lat="32.053722" lon="34.755894"><time>2020-03-07T10:00:00.000Z</time><name></name><desc>מסעדת "אלבי", רחוב עולי ציון 6, תל אביב</desc></trkpt>
+        <trkpt lat="32.053722" lon="34.755894"><time>2020-03-07T15:00:00.000Z</time><name></name><desc>מסעדת "אלבי", רחוב עולי ציון 6, תל אביב</desc></trkpt>
+        <trkpt lat="32.063224" lon="34.772886"><time>2020-03-08T22:00:00.000Z</time><name></name><desc>מועדון "זוזו", שדרות רוטשילד 32, תל אביב; בכל שעות פעילות</desc></trkpt>
+        <trkpt lat="32.063224" lon="34.772886"><time>2020-03-09T21:59:00.000Z</time><name></name><desc>מועדון "זוזו", שדרות רוטשילד 32, תל אביב; בכל שעות פעילות</desc></trkpt>
+        <trkpt lat="32.063224" lon="34.772886"><time>2020-03-09T22:00:00.000Z</time><name></name><desc>מועדון "זוזו", שדרות רוטשילד 32, תל אביב; בכל שעות פעילות</desc></trkpt>
+        <trkpt lat="32.063224" lon="34.772886"><time>2020-03-10T21:59:00.000Z</time><name></name><desc>מועדון "זוזו", שדרות רוטשילד 32, תל אביב; בכל שעות פעילות</desc></trkpt>
+        <trkpt lat="32.042049" lon="34.78097"><time>2020-03-09T10:00:00.000Z</time><name></name><desc>בנק פועלים ברחוב ישראל גורי 34, תל אביב</desc></trkpt>
+        <trkpt lat="32.042049" lon="34.78097"><time>2020-03-09T11:00:00.000Z</time><name></name><desc>בנק פועלים ברחוב ישראל גורי 34, תל אביב</desc></trkpt>
+        <trkpt lat="31.991236" lon="34.774565"><time>2020-03-12T13:00:00.000Z</time><name></name><desc>חנות "מיניסינו" בקניון הזהב, רחוב דויד שחרוב 21, ראשל"צ</desc></trkpt>
+        <trkpt lat="31.991236" lon="34.774565"><time>2020-03-12T14:00:00.000Z</time><name></name><desc>חנות "מיניסינו" בקניון הזהב, רחוב דויד שחרוב 21, ראשל"צ</desc></trkpt>
+        <trkpt lat="31.986691" lon="34.773399"><time>2020-03-09T23:00:00.000Z</time><name></name><desc>מסעדת "סוסו אנד סאן", רח' משה לוי 10, ראשון לציון</desc></trkpt>
+        <trkpt lat="31.986691" lon="34.773399"><time>2020-03-10T00:30:00.000Z</time><name></name><desc>מסעדת "סוסו אנד סאן", רח' משה לוי 10, ראשון לציון</desc></trkpt>
+        <trkpt lat="31.889031" lon="34.963474"><time>2020-03-10T15:00:00.000Z</time><name></name><desc>קולנוע הוט, ישפרו סנטר, מודיעין; סרט "דד שוט"</desc></trkpt>
+        <trkpt lat="31.889031" lon="34.963474"><time>2020-03-10T17:30:00.000Z</time><name></name><desc>קולנוע הוט, ישפרו סנטר, מודיעין; סרט "דד שוט"</desc></trkpt>
+        <trkpt lat="32.075502" lon="34.795572"><time>2020-03-10T09:30:00.000Z</time><name></name><desc>"מחסני חשמל" ברחוב יגאל אלון 127, תל אביב</desc></trkpt>
+        <trkpt lat="32.075502" lon="34.795572"><time>2020-03-10T11:00:00.000Z</time><name></name><desc>"מחסני חשמל" ברחוב יגאל אלון 127, תל אביב</desc></trkpt>
+        <trkpt lat="32.070705" lon="34.783463"><time>2020-03-11T15:00:00.000Z</time><name></name><desc>סינמטק תל אביב; שורות 4-8, מושבים 1-12</desc></trkpt>
+        <trkpt lat="32.070705" lon="34.783463"><time>2020-03-11T16:00:00.000Z</time><name></name><desc>סינמטק תל אביב; שורות 4-8, מושבים 1-12</desc></trkpt>
+        <trkpt lat="32.086409" lon="34.800454"><time>2020-03-10T11:30:00.000Z</time><name></name><desc>"ארקפה" ברחוב מנחם בגין בגין 11, רמת גן</desc></trkpt>
+        <trkpt lat="32.086409" lon="34.800454"><time>2020-03-10T12:30:00.000Z</time><name></name><desc>"ארקפה" ברחוב מנחם בגין בגין 11, רמת גן</desc></trkpt>
+        <trkpt lat="31.534248" lon="35.124398"><time>2020-03-06T06:00:00.000Z</time><name></name><desc>בית הספר "גוונים" בקריית ארבע</desc></trkpt>
+        <trkpt lat="31.534248" lon="35.124398"><time>2020-03-06T07:30:00.000Z</time><name></name><desc>בית הספר "גוונים" בקריית ארבע</desc></trkpt>
+        <trkpt lat="31.528901" lon="35.119111"><time>2020-03-06T07:45:00.000Z</time><name></name><desc>סופרמרקט "דקל" בקריית ארבע</desc></trkpt>
+        <trkpt lat="31.528901" lon="35.119111"><time>2020-03-06T08:15:00.000Z</time><name></name><desc>סופרמרקט "דקל" בקריית ארבע</desc></trkpt>
+        <trkpt lat="31.436784" lon="35.026934"><time>2020-03-08T06:00:00.000Z</time><name></name><desc>בית הספר "דביר" בישוב עתניאל</desc></trkpt>
+        <trkpt lat="31.436784" lon="35.026934"><time>2020-03-08T11:30:00.000Z</time><name></name><desc>בית הספר "דביר" בישוב עתניאל</desc></trkpt>
+        <trkpt lat="31.781123" lon="35.219613"><time>2020-03-09T15:20:00.000Z</time><name></name><desc>בנק מסד רחוב שמאי 16 ירושלים</desc></trkpt>
+        <trkpt lat="31.781123" lon="35.219613"><time>2020-03-09T15:35:00.000Z</time><name></name><desc>בנק מסד רחוב שמאי 16 ירושלים</desc></trkpt>
+        <trkpt lat="31.751716" lon="35.187333"><time>2020-03-09T16:30:00.000Z</time><name></name><desc>קניון מלחה בירושלים; אזור המזון מהיר ובסופר</desc></trkpt>
+        <trkpt lat="31.751716" lon="35.187333"><time>2020-03-09T18:30:00.000Z</time><name></name><desc>קניון מלחה בירושלים; אזור המזון מהיר ובסופר</desc></trkpt>
+        <trkpt lat="31.751716" lon="35.187333"><time>2020-03-10T15:30:00.000Z</time><name></name><desc>קניון מלחה בירושלים</desc></trkpt>
+        <trkpt lat="31.751716" lon="35.187333"><time>2020-03-10T18:30:00.000Z</time><name></name><desc>קניון מלחה בירושלים</desc></trkpt>
+        <trkpt lat="31.6460802" lon="35.1316363"><time>2020-03-11T07:40:00.000Z</time><name></name><desc>"ניו פארם" בקניון שבצומת גוש עציון</desc></trkpt>
+        <trkpt lat="31.6460802" lon="35.1316363"><time>2020-03-11T08:00:00.000Z</time><name></name><desc>"ניו פארם" בקניון שבצומת גוש עציון</desc></trkpt>
+        <trkpt lat="31.76236" lon="35.17127"><time>2020-03-06T22:00:00.000Z</time><name></name><desc>דיור מוגן "מגדל נופים" רחוב הנריטה סאלד 2 ירושלים</desc></trkpt>
+        <trkpt lat="31.76236" lon="35.17127"><time>2020-03-07T21:59:00.000Z</time><name></name><desc>דיור מוגן "מגדל נופים" רחוב הנריטה סאלד 2 ירושלים</desc></trkpt>
+        <trkpt lat="31.76236" lon="35.17127"><time>2020-03-07T22:00:00.000Z</time><name></name><desc>דיור מוגן "מגדל נופים" רחוב הנריטה סאלד 2 ירושלים</desc></trkpt>
+        <trkpt lat="31.76236" lon="35.17127"><time>2020-03-08T21:59:00.000Z</time><name></name><desc>דיור מוגן "מגדל נופים" רחוב הנריטה סאלד 2 ירושלים</desc></trkpt>
+        <trkpt lat="31.76236" lon="35.17127"><time>2020-03-08T22:00:00.000Z</time><name></name><desc>דיור מוגן "מגדל נופים" רחוב הנריטה סאלד 2 ירושלים</desc></trkpt>
+        <trkpt lat="31.76236" lon="35.17127"><time>2020-03-09T21:59:00.000Z</time><name></name><desc>דיור מוגן "מגדל נופים" רחוב הנריטה סאלד 2 ירושלים</desc></trkpt>
+        <trkpt lat="31.76236" lon="35.17127"><time>2020-03-09T22:00:00.000Z</time><name></name><desc>דיור מוגן "מגדל נופים" רחוב הנריטה סאלד 2 ירושלים</desc></trkpt>
+        <trkpt lat="31.76236" lon="35.17127"><time>2020-03-10T21:59:00.000Z</time><name></name><desc>דיור מוגן "מגדל נופים" רחוב הנריטה סאלד 2 ירושלים</desc></trkpt>
+        <trkpt lat="31.76754" lon="35.18687"><time>2020-03-08T05:00:00.000Z</time><name></name><desc>"נופי ירושלים" רחוב שחראי 24 ירושלים; מחלקה סיעודית</desc></trkpt>
+        <trkpt lat="31.76754" lon="35.18687"><time>2020-03-08T13:00:00.000Z</time><name></name><desc>"נופי ירושלים" רחוב שחראי 24 ירושלים; מחלקה סיעודית</desc></trkpt>
+        <trkpt lat="31.7664036" lon="35.1482618"><time>2020-03-06T07:00:00.000Z</time><name></name><desc>קניון בית החולים הדסה עין כרם; סניף רולדין ובסופר</desc></trkpt>
+        <trkpt lat="31.7664036" lon="35.1482618"><time>2020-03-06T08:30:00.000Z</time><name></name><desc>קניון בית החולים הדסה עין כרם; סניף רולדין ובסופר</desc></trkpt>
+        <trkpt lat="31.76956" lon="35.21233"><time>2020-03-07T07:30:00.000Z</time><name></name><desc>בית הכנסת "אוהל רבקה" ברחוב חרל"פ 15</desc></trkpt>
+        <trkpt lat="31.76956" lon="35.21233"><time>2020-03-07T08:30:00.000Z</time><name></name><desc>בית הכנסת "אוהל רבקה" ברחוב חרל"פ 15</desc></trkpt>
+        <trkpt lat="32.7884394" lon="34.9681071"><time>2020-03-06T11:30:00.000Z</time><name></name><desc>סטופמרקט בע"מ, סניף קסטרא דרך משה פלימן 8 חיפה</desc></trkpt>
+        <trkpt lat="32.7884394" lon="34.9681071"><time>2020-03-06T13:30:00.000Z</time><name></name><desc>סטופמרקט בע"מ, סניף קסטרא דרך משה פלימן 8 חיפה</desc></trkpt>
+        <trkpt lat="32.08094" lon="34.76792"><time>2020-03-09T07:30:00.000Z</time><name></name><desc>שגרירות צרפת תל-אביב</desc></trkpt>
+        <trkpt lat="32.08094" lon="34.76792"><time>2020-03-09T08:30:00.000Z</time><name></name><desc>שגרירות צרפת תל-אביב</desc></trkpt>
+        <trkpt lat="32.0744" lon="34.76801"><time>2020-03-09T11:30:00.000Z</time><name></name><desc>מסעדה סינית הונג קונג דים סאם ברחוב בן יהודה 9 תל אביב</desc></trkpt>
+        <trkpt lat="32.0744" lon="34.76801"><time>2020-03-09T12:30:00.000Z</time><name></name><desc>מסעדה סינית הונג קונג דים סאם ברחוב בן יהודה 9 תל אביב</desc></trkpt>
+        <trkpt lat="32.06268" lon="34.76646"><time>2020-03-09T12:30:00.000Z</time><name></name><desc>בגלדריה Anita רחוב שבזי 23 פינת פינס 40 תל אביב</desc></trkpt>
+        <trkpt lat="32.06268" lon="34.76646"><time>2020-03-09T13:00:00.000Z</time><name></name><desc>בגלדריה Anita רחוב שבזי 23 פינת פינס 40 תל אביב</desc></trkpt>
+        <trkpt lat="32.074869" lon="34.801753"><time>2020-03-07T09:30:00.000Z</time><name></name><desc>מכון הכושר Metro, רחוב עליית הנוער 27 פינת התעש 1, גבעתיים; שיעור STAPE SHAPE</desc></trkpt>
+        <trkpt lat="32.074869" lon="34.801753"><time>2020-03-07T10:30:00.000Z</time><name></name><desc>מכון הכושר Metro, רחוב עליית הנוער 27 פינת התעש 1, גבעתיים; שיעור STAPE SHAPE</desc></trkpt>
+        <trkpt lat="32.074869" lon="34.801753"><time>2020-03-09T18:15:00.000Z</time><name></name><desc>מכון הכושר Metro, רחוב עליית הנוער 27 פינת התעש 1, גבעתיים; חוג Station45</desc></trkpt>
+        <trkpt lat="32.074869" lon="34.801753"><time>2020-03-09T19:00:00.000Z</time><name></name><desc>מכון הכושר Metro, רחוב עליית הנוער 27 פינת התעש 1, גבעתיים; חוג Station45</desc></trkpt>
+        <trkpt lat="32.080337" lon="34.817537"><time>2020-03-10T07:30:00.000Z</time><name></name><desc>בית קפה- מאפייה ברחוב קריניצי 23, רמת גן</desc></trkpt>
+        <trkpt lat="32.080337" lon="34.817537"><time>2020-03-10T08:30:00.000Z</time><name></name><desc>בית קפה- מאפייה ברחוב קריניצי 23, רמת גן</desc></trkpt>
+        <trkpt lat="32.053082" lon="34.755714"><time>2020-03-10T18:20:00.000Z</time><name></name><desc>מסעדת אונזה, רחוב רבי חנינא 3 ,תל אביב</desc></trkpt>
+        <trkpt lat="32.053082" lon="34.755714"><time>2020-03-10T19:45:00.000Z</time><name></name><desc>מסעדת אונזה, רחוב רבי חנינא 3 ,תל אביב</desc></trkpt>
+        <trkpt lat="32.052237" lon="34.757469"><time>2020-03-10T20:00:00.000Z</time><name></name><desc>מסעדת כאנפה, רחוב עולי ציון 24</desc></trkpt>
+        <trkpt lat="32.052237" lon="34.757469"><time>2020-03-10T20:30:00.000Z</time><name></name><desc>מסעדת כאנפה, רחוב עולי ציון 24</desc></trkpt>
+        <trkpt lat="32.052642" lon="34.756139"><time>2020-03-09T12:00:00.000Z</time><name></name><desc>"פועה" ברחוב רבי יונתן 8 ביפו</desc></trkpt>
+        <trkpt lat="32.052642" lon="34.756139"><time>2020-03-09T15:00:00.000Z</time><name></name><desc>"פועה" ברחוב רבי יונתן 8 ביפו</desc></trkpt>
+        <trkpt lat="32.095064" lon="34.778684"><time>2020-03-08T17:00:00.000Z</time><name></name><desc>"קולנוע פאר", רח' ישעיהו 1, תל אביב; חדר כושר</desc></trkpt>
+        <trkpt lat="32.095064" lon="34.778684"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>"קולנוע פאר", רח' ישעיהו 1, תל אביב; חדר כושר</desc></trkpt>
+        <trkpt lat="32.095064" lon="34.778684"><time>2020-03-09T17:00:00.000Z</time><name></name><desc>"קולנוע פאר", רח' ישעיהו 1, תל אביב; חדר כושר</desc></trkpt>
+        <trkpt lat="32.095064" lon="34.778684"><time>2020-03-09T18:00:00.000Z</time><name></name><desc>"קולנוע פאר", רח' ישעיהו 1, תל אביב; חדר כושר</desc></trkpt>
+        <trkpt lat="31.946725" lon="34.800998"><time>2020-03-10T18:00:00.000Z</time><name></name><desc>אולם אירועים "גן הוורדים", רח' הרצל 150 בראשל"צ; אירוע</desc></trkpt>
+        <trkpt lat="31.946725" lon="34.800998"><time>2020-03-10T21:00:00.000Z</time><name></name><desc>אולם אירועים "גן הוורדים", רח' הרצל 150 בראשל"צ; אירוע</desc></trkpt>
+        <trkpt lat="31.79666" lon="35.146486"><time>2020-03-07T20:00:00.000Z</time><name></name><desc>קניון רמי לוי במבשרת ציון; גלידה "לה גופרה"</desc></trkpt>
+        <trkpt lat="31.79666" lon="35.146486"><time>2020-03-07T21:00:00.000Z</time><name></name><desc>קניון רמי לוי במבשרת ציון; גלידה "לה גופרה"</desc></trkpt>
+        <trkpt lat="31.79666" lon="35.146486"><time>2020-03-09T12:00:00.000Z</time><name></name><desc>קניון רמי לוי; סניף רמי לוי</desc></trkpt>
+        <trkpt lat="31.79666" lon="35.146486"><time>2020-03-09T14:00:00.000Z</time><name></name><desc>קניון רמי לוי; סניף רמי לוי</desc></trkpt>
+        <trkpt lat="32.08581" lon="34.779175"><time>2020-03-07T19:00:00.000Z</time><name></name><desc>בית קפה "איזי" ברח' ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="32.08581" lon="34.779175"><time>2020-03-07T21:59:00.000Z</time><name></name><desc>בית קפה "איזי" ברח' ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="31.946725" lon="34.800998"><time>2020-03-10T18:00:00.000Z</time><name></name><desc>אולם אירועים "גן הוורדים", רח' הרצל 150 בראשל"צ</desc></trkpt>
+        <trkpt lat="31.946725" lon="34.800998"><time>2020-03-10T21:00:00.000Z</time><name></name><desc>אולם אירועים "גן הוורדים", רח' הרצל 150 בראשל"צ</desc></trkpt>
+        <trkpt lat="32.099393" lon="34.775861"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>נמל תל אביב 19; מכון כושר Fit Hub Croos Namal</desc></trkpt>
+        <trkpt lat="32.099393" lon="34.775861"><time>2020-03-08T19:00:00.000Z</time><name></name><desc>נמל תל אביב 19; מכון כושר Fit Hub Croos Namal</desc></trkpt>
+        <trkpt lat="32.068206" lon="34.782293"><time>2020-03-09T21:00:00.000Z</time><name></name><desc>מועדון Sura Mare, רחוב סעדיה גאון 24, תל אביב; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.068206" lon="34.782293"><time>2020-03-09T21:59:00.000Z</time><name></name><desc>מועדון Sura Mare, רחוב סעדיה גאון 24, תל אביב; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.068206" lon="34.782293"><time>2020-03-09T22:00:00.000Z</time><name></name><desc>מועדון Sura Mare, רחוב סעדיה גאון 24, תל אביב; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.068206" lon="34.782293"><time>2020-03-09T22:30:00.000Z</time><name></name><desc>מועדון Sura Mare, רחוב סעדיה גאון 24, תל אביב; מסיבת פורים</desc></trkpt>
+        <trkpt lat="31.906132" lon="34.990973"><time>2020-03-06T06:00:00.000Z</time><name></name><desc>בית ספר עירוני ה', רח' אבנר חושן 57 מודיעין</desc></trkpt>
+        <trkpt lat="31.906132" lon="34.990973"><time>2020-03-06T09:40:00.000Z</time><name></name><desc>בית ספר עירוני ה', רח' אבנר חושן 57 מודיעין</desc></trkpt>
+        <trkpt lat="31.908272" lon="34.990897"><time>2020-03-06T14:00:00.000Z</time><name></name><desc>רח' פז 3 שכונת קייזר מודיעין; צופים שבט תבור</desc></trkpt>
+        <trkpt lat="31.908272" lon="34.990897"><time>2020-03-06T16:00:00.000Z</time><name></name><desc>רח' פז 3 שכונת קייזר מודיעין; צופים שבט תבור</desc></trkpt>
+        <trkpt lat="31.908272" lon="34.990897"><time>2020-03-07T05:00:00.000Z</time><name></name><desc>רח' פז 3 שכונת קייזר מודיעין; צופים שבט תבור</desc></trkpt>
+        <trkpt lat="31.908272" lon="34.990897"><time>2020-03-07T19:00:00.000Z</time><name></name><desc>רח' פז 3 שכונת קייזר מודיעין; צופים שבט תבור</desc></trkpt>
+        <trkpt lat="31.906132" lon="34.990973"><time>2020-03-08T07:00:00.000Z</time><name></name><desc>בית ספר עירוני ה', רח' אבנר חושן 57 מודיעין; פורימון</desc></trkpt>
+        <trkpt lat="31.906132" lon="34.990973"><time>2020-03-08T10:00:00.000Z</time><name></name><desc>בית ספר עירוני ה', רח' אבנר חושן 57 מודיעין; פורימון</desc></trkpt>
+        <trkpt lat="31.9987826" lon="34.7535281"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>בית עלמין בחולון; לוויה</desc></trkpt>
+        <trkpt lat="31.9987826" lon="34.7535281"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>בית עלמין בחולון; לוויה</desc></trkpt>
+        <trkpt lat="31.908272" lon="34.990897"><time>2020-03-09T05:00:00.000Z</time><name></name><desc>רח' פז 3 שכונת קייזר מודיעין; צופים שבט תבור</desc></trkpt>
+        <trkpt lat="31.908272" lon="34.990897"><time>2020-03-09T19:00:00.000Z</time><name></name><desc>רח' פז 3 שכונת קייזר מודיעין; צופים שבט תבור</desc></trkpt>
+        <trkpt lat="31.906132" lon="34.990973"><time>2020-03-10T04:30:00.000Z</time><name></name><desc>בית ספר עירוני ה', רח' אבנר חושן 57 מודיעין; פורימון</desc></trkpt>
+        <trkpt lat="31.906132" lon="34.990973"><time>2020-03-10T21:00:00.000Z</time><name></name><desc>בית ספר עירוני ה', רח' אבנר חושן 57 מודיעין; פורימון</desc></trkpt>
+        <trkpt lat="32.024148" lon="34.748479"><time>2020-03-11T15:00:00.000Z</time><name></name><desc>רח' צה"ל 2/13 בת ים; ניחום אבלים משפחת טוביאס</desc></trkpt>
+        <trkpt lat="32.024148" lon="34.748479"><time>2020-03-11T20:00:00.000Z</time><name></name><desc>רח' צה"ל 2/13 בת ים; ניחום אבלים משפחת טוביאס</desc></trkpt>
+        <trkpt lat="31.9033" lon="34.995857"><time>2020-03-12T16:25:00.000Z</time><name></name><desc>"מרכז הבשר" ברח' לשם מודיעין</desc></trkpt>
+        <trkpt lat="31.9033" lon="34.995857"><time>2020-03-12T16:35:00.000Z</time><name></name><desc>"מרכז הבשר" ברח' לשם מודיעין</desc></trkpt>
+        <trkpt lat="31.903475" lon="34.9957646"><time>2020-03-12T16:35:00.000Z</time><name></name><desc>"עידן הפרי והירק" ברח' לשם מודיעין</desc></trkpt>
+        <trkpt lat="31.903475" lon="34.9957646"><time>2020-03-12T16:45:00.000Z</time><name></name><desc>"עידן הפרי והירק" ברח' לשם מודיעין</desc></trkpt>
+        <trkpt lat="32.0813614" lon="34.7797516"><time>2020-03-07T20:00:00.000Z</time><name></name><desc>שאטו שועל, מלכי ישראל 19, תל אביב</desc></trkpt>
+        <trkpt lat="32.0813614" lon="34.7797516"><time>2020-03-07T21:00:00.000Z</time><name></name><desc>שאטו שועל, מלכי ישראל 19, תל אביב</desc></trkpt>
+        <trkpt lat="32.068206" lon="34.782293"><time>2020-03-09T21:00:00.000Z</time><name></name><desc>מועדון "Sura Mare", רחוב סעדיה גאון 24, תל אביב; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.068206" lon="34.782293"><time>2020-03-09T21:59:00.000Z</time><name></name><desc>מועדון "Sura Mare", רחוב סעדיה גאון 24, תל אביב; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.068206" lon="34.782293"><time>2020-03-09T22:00:00.000Z</time><name></name><desc>מועדון "Sura Mare", רחוב סעדיה גאון 24, תל אביב; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.068206" lon="34.782293"><time>2020-03-10T01:00:00.000Z</time><name></name><desc>מועדון "Sura Mare", רחוב סעדיה גאון 24, תל אביב; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.4979732" lon="34.890499"><time>2020-03-10T12:00:00.000Z</time><name></name><desc>אולם האירועים "כוכב הים" בקיסריה, קיבוץ שדות ים; מסיבת פורים של המרכז הבינתחומי הרצליה</desc></trkpt>
+        <trkpt lat="32.4979732" lon="34.890499"><time>2020-03-10T17:00:00.000Z</time><name></name><desc>אולם האירועים "כוכב הים" בקיסריה, קיבוץ שדות ים; מסיבת פורים של המרכז הבינתחומי הרצליה</desc></trkpt>
+        <trkpt lat="32.0981" lon="34.774401"><time>2020-03-10T20:00:00.000Z</time><name></name><desc>האנגר 11, נמל תל אביב; מסיבה "רידינג 11"</desc></trkpt>
+        <trkpt lat="32.0981" lon="34.774401"><time>2020-03-10T21:00:00.000Z</time><name></name><desc>האנגר 11, נמל תל אביב; מסיבה "רידינג 11"</desc></trkpt>
+        <trkpt lat="31.983869" lon="34.771646"><time>2020-03-08T11:00:00.000Z</time><name></name><desc>סינמה סיטי, ראשון לציון; חנות Urbanica</desc></trkpt>
+        <trkpt lat="31.983869" lon="34.771646"><time>2020-03-08T11:30:00.000Z</time><name></name><desc>סינמה סיטי, ראשון לציון; חנות Urbanica</desc></trkpt>
+        <trkpt lat="31.98359" lon="34.770987"><time>2020-03-08T11:30:00.000Z</time><name></name><desc>סינמה סיטי, ראשון לציון; בית קפה לנדוור</desc></trkpt>
+        <trkpt lat="31.98359" lon="34.770987"><time>2020-03-08T13:00:00.000Z</time><name></name><desc>סינמה סיטי, ראשון לציון; בית קפה לנדוור</desc></trkpt>
+        <trkpt lat="31.984084" lon="34.77096"><time>2020-03-08T13:00:00.000Z</time><name></name><desc>סינמה סיטי, ראשון לציון; חנות ללין</desc></trkpt>
+        <trkpt lat="31.984084" lon="34.77096"><time>2020-03-08T13:15:00.000Z</time><name></name><desc>סינמה סיטי, ראשון לציון; חנות ללין</desc></trkpt>
+        <trkpt lat="32.087251" lon="34.774753"><time>2020-03-08T19:20:00.000Z</time><name></name><desc>בר פופולר, רחוב דיזינגוף 197, תל אביב</desc></trkpt>
+        <trkpt lat="32.087251" lon="34.774753"><time>2020-03-08T21:00:00.000Z</time><name></name><desc>בר פופולר, רחוב דיזינגוף 197, תל אביב</desc></trkpt>
+        <trkpt lat="32.202419" lon="34.824995"><time>2020-03-10T17:30:00.000Z</time><name></name><desc>מסעדת לירי לאונג', רשפון</desc></trkpt>
+        <trkpt lat="32.202419" lon="34.824995"><time>2020-03-10T19:30:00.000Z</time><name></name><desc>מסעדת לירי לאונג', רשפון</desc></trkpt>
+        <trkpt lat="32.083895" lon="34.856412"><time>2020-03-12T09:00:00.000Z</time><name></name><desc>קונדיטוריה דרימרי, רחוב הסיבים 49, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.083895" lon="34.856412"><time>2020-03-12T10:00:00.000Z</time><name></name><desc>קונדיטוריה דרימרי, רחוב הסיבים 49, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.088982" lon="34.859377"><time>2020-03-12T10:00:00.000Z</time><name></name><desc>סופר פארם במרכז יכין סנטר, רחוב שחם 17, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.088982" lon="34.859377"><time>2020-03-12T10:30:00.000Z</time><name></name><desc>סופר פארם במרכז יכין סנטר, רחוב שחם 17, פתח תקווה</desc></trkpt>
+        <trkpt lat="31.6568731" lon="35.1506021"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>בית הכנסת המרכזי (בית הארון), רחוב הגפן, אפרת; בת מצווה באולם בית הכנסת</desc></trkpt>
+        <trkpt lat="31.6568731" lon="35.1506021"><time>2020-03-08T18:30:00.000Z</time><name></name><desc>בית הכנסת המרכזי (בית הארון), רחוב הגפן, אפרת; בת מצווה באולם בית הכנסת</desc></trkpt>
+        <trkpt lat="31.8648328" lon="34.8165693"><time>2020-03-06T08:00:00.000Z</time><name></name><desc>בית קפה "בנדיקט" רח' בוסי סנט ג'ורג' 9 קרית עקרון בילו סנטר</desc></trkpt>
+        <trkpt lat="31.8648328" lon="34.8165693"><time>2020-03-06T09:30:00.000Z</time><name></name><desc>בית קפה "בנדיקט" רח' בוסי סנט ג'ורג' 9 קרית עקרון בילו סנטר</desc></trkpt>
+        <trkpt lat="31.864902" lon="34.816634"><time>2020-03-06T09:30:00.000Z</time><name></name><desc>חנות רנואר בילו סנטר קרית עקרון</desc></trkpt>
+        <trkpt lat="31.864902" lon="34.816634"><time>2020-03-06T10:00:00.000Z</time><name></name><desc>חנות רנואר בילו סנטר קרית עקרון</desc></trkpt>
+        <trkpt lat="31.853529" lon="34.841284"><time>2020-03-10T09:45:00.000Z</time><name></name><desc>"אמפי פארק יצחקי" מזכרת בתיה; עדלאידע</desc></trkpt>
+        <trkpt lat="31.853529" lon="34.841284"><time>2020-03-10T10:00:00.000Z</time><name></name><desc>"אמפי פארק יצחקי" מזכרת בתיה; עדלאידע</desc></trkpt>
+        <trkpt lat="31.8054356" lon="35.1048882"><time>2020-03-06T15:00:00.000Z</time><name></name><desc>ישיבת "מאורות התורה" בקריית יערים; בית הכנסת</desc></trkpt>
+        <trkpt lat="31.8054356" lon="35.1048882"><time>2020-03-06T15:30:00.000Z</time><name></name><desc>ישיבת "מאורות התורה" בקריית יערים; בית הכנסת</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-06T19:00:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" בקריית יערים; שיעור</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-06T20:00:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" בקריית יערים; שיעור</desc></trkpt>
+        <trkpt lat="31.802774" lon="35.099945"><time>2020-03-07T06:30:00.000Z</time><name></name><desc>בית הכנסת "קול יהודה" בקריית יערים</desc></trkpt>
+        <trkpt lat="31.802774" lon="35.099945"><time>2020-03-07T08:30:00.000Z</time><name></name><desc>בית הכנסת "קול יהודה" בקריית יערים</desc></trkpt>
+        <trkpt lat="31.7111875" lon="34.9968692"><time>2020-03-07T16:30:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו"; התפלל ערבית במניין השני</desc></trkpt>
+        <trkpt lat="31.7111875" lon="34.9968692"><time>2020-03-07T16:45:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו"; התפלל ערבית במניין השני</desc></trkpt>
+        <trkpt lat="31.802774" lon="35.099945"><time>2020-03-10T05:30:00.000Z</time><name></name><desc>בית הכנסת "קול יהודה" בקריית יערים</desc></trkpt>
+        <trkpt lat="31.802774" lon="35.099945"><time>2020-03-10T06:00:00.000Z</time><name></name><desc>בית הכנסת "קול יהודה" בקריית יערים</desc></trkpt>
+        <trkpt lat="31.9032308" lon="34.9958243"><time>2020-03-11T16:30:00.000Z</time><name></name><desc>מרכז הבשר, רח' לשם מודיעין</desc></trkpt>
+        <trkpt lat="31.9032308" lon="34.9958243"><time>2020-03-11T16:35:00.000Z</time><name></name><desc>מרכז הבשר, רח' לשם מודיעין</desc></trkpt>
+        <trkpt lat="31.9036431" lon="34.9958777"><time>2020-03-11T16:40:00.000Z</time><name></name><desc>עידן הפרי והירק רח' לשם מודיעין</desc></trkpt>
+        <trkpt lat="31.9036431" lon="34.9958777"><time>2020-03-11T16:50:00.000Z</time><name></name><desc>עידן הפרי והירק רח' לשם מודיעין</desc></trkpt>
+        <trkpt lat="31.9028746" lon="34.9963337"><time>2020-03-11T16:50:00.000Z</time><name></name><desc>סופר קייזר – רח' אבני החושן מודיעין</desc></trkpt>
+        <trkpt lat="31.9028746" lon="34.9963337"><time>2020-03-11T17:00:00.000Z</time><name></name><desc>סופר קייזר – רח' אבני החושן מודיעין</desc></trkpt>
+        <trkpt lat="31.9056225" lon="35.0076696"><time>2020-03-11T15:00:00.000Z</time><name></name><desc>בית מרקחת קופת חולים מכבי רח' תלתן מודיעין</desc></trkpt>
+        <trkpt lat="31.9056225" lon="35.0076696"><time>2020-03-11T15:15:00.000Z</time><name></name><desc>בית מרקחת קופת חולים מכבי רח' תלתן מודיעין</desc></trkpt>
+        <trkpt lat="31.9053117" lon="34.9953755"><time>2020-03-12T18:45:00.000Z</time><name></name><desc>בית כנסת משכן שלמה, רח' ענבר 17 מודיעין</desc></trkpt>
+        <trkpt lat="31.9053117" lon="34.9953755"><time>2020-03-12T19:00:00.000Z</time><name></name><desc>בית כנסת משכן שלמה, רח' ענבר 17 מודיעין</desc></trkpt>
+        <trkpt lat="31.9030636" lon="34.9964463"><time>2020-03-13T08:10:00.000Z</time><name></name><desc>סופר קייזר – רח' אבני החושן מודיעין</desc></trkpt>
+        <trkpt lat="31.9030636" lon="34.9964463"><time>2020-03-13T08:45:00.000Z</time><name></name><desc>סופר קייזר – רח' אבני החושן מודיעין</desc></trkpt>
+        <trkpt lat="32.964404" lon="35.504986"><time>2020-03-08T06:00:00.000Z</time><name></name><desc>בית כנסת לוי יצחק צפת; תפילת שחרית</desc></trkpt>
+        <trkpt lat="32.964404" lon="35.504986"><time>2020-03-08T08:00:00.000Z</time><name></name><desc>בית כנסת לוי יצחק צפת; תפילת שחרית</desc></trkpt>
+        <trkpt lat="32.9687776" lon="35.5019864"><time>2020-03-09T05:00:00.000Z</time><name></name><desc>בית כנסת משכן נתן צפת; בוקר, צהריים וערב</desc></trkpt>
+        <trkpt lat="32.9687776" lon="35.5019864"><time>2020-03-09T17:00:00.000Z</time><name></name><desc>בית כנסת משכן נתן צפת; בוקר, צהריים וערב</desc></trkpt>
+        <trkpt lat="32.97158" lon="35.50502"><time>2020-03-09T08:30:00.000Z</time><name></name><desc>סופרמרקט יש, צפת</desc></trkpt>
+        <trkpt lat="32.97158" lon="35.50502"><time>2020-03-09T09:15:00.000Z</time><name></name><desc>סופרמרקט יש, צפת</desc></trkpt>
+        <trkpt lat="32.96259" lon="35.4834"><time>2020-03-09T10:00:00.000Z</time><name></name><desc>כולל מרקט חב"ד איזור תעשייה</desc></trkpt>
+        <trkpt lat="32.96259" lon="35.4834"><time>2020-03-09T11:00:00.000Z</time><name></name><desc>כולל מרקט חב"ד איזור תעשייה</desc></trkpt>
+        <trkpt lat="31.98545" lon="34.85732"><time>2020-03-10T07:00:00.000Z</time><name></name><desc>בית כנסת נחום יצחק בכפר חבד; שחרית</desc></trkpt>
+        <trkpt lat="31.98545" lon="34.85732"><time>2020-03-10T09:00:00.000Z</time><name></name><desc>בית כנסת נחום יצחק בכפר חבד; שחרית</desc></trkpt>
+        <trkpt lat="31.94244" lon="34.87561"><time>2020-03-10T19:00:00.000Z</time><name></name><desc>בית כנסת חבד המרכזי, רח' צמח צדק, לוד</desc></trkpt>
+        <trkpt lat="31.94244" lon="34.87561"><time>2020-03-10T20:00:00.000Z</time><name></name><desc>בית כנסת חבד המרכזי, רח' צמח צדק, לוד</desc></trkpt>
+        <trkpt lat="31.86173" lon="34.814"><time>2020-03-06T08:00:00.000Z</time><name></name><desc>בית קפה "בנדיקט" רח' בוסי סנט ג'ורג' 9 קרית עקרון בילו סנטר</desc></trkpt>
+        <trkpt lat="31.86173" lon="34.814"><time>2020-03-06T09:30:00.000Z</time><name></name><desc>בית קפה "בנדיקט" רח' בוסי סנט ג'ורג' 9 קרית עקרון בילו סנטר</desc></trkpt>
+        <trkpt lat="31.89362" lon="34.80716"><time>2020-03-06T09:30:00.000Z</time><name></name><desc>חנות רנואר בילו סנטר קרית עקרון</desc></trkpt>
+        <trkpt lat="31.89362" lon="34.80716"><time>2020-03-06T10:00:00.000Z</time><name></name><desc>חנות רנואר בילו סנטר קרית עקרון</desc></trkpt>
+        <trkpt lat="31.85117" lon="34.83453"><time>2020-03-10T08:30:00.000Z</time><name></name><desc>נתיב השיירות 4, מזכרת בתיה, ישראל; "אמפי פארק יצחקי" מזכרת בתיה, באזור הכניסה הצפון מזרחי</desc></trkpt>
+        <trkpt lat="31.85117" lon="34.83453"><time>2020-03-10T09:30:00.000Z</time><name></name><desc>נתיב השיירות 4, מזכרת בתיה, ישראל; "אמפי פארק יצחקי" מזכרת בתיה, באזור הכניסה הצפון מזרחי</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-06T16:00:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-06T16:30:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-07T06:15:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-07T08:15:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.91152" lon="34.9968"><time>2020-03-07T18:30:00.000Z</time><name></name><desc>עירוני ג' של בני עקיבא במודיעין; ארוע באולם ספורט</desc></trkpt>
+        <trkpt lat="31.91152" lon="34.9968"><time>2020-03-07T19:30:00.000Z</time><name></name><desc>עירוני ג' של בני עקיבא במודיעין; ארוע באולם ספורט</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-08T03:30:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-08T04:00:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-08T16:30:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-08T19:00:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-08T19:30:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-09T03:30:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-09T04:30:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-10T10:45:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.90359" lon="34.99476"><time>2020-03-10T11:00:00.000Z</time><name></name><desc>בית כנסת החושן במודיעין</desc></trkpt>
+        <trkpt lat="31.52121" lon="34.6068"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>רחוב מדריד 1 שדרות; מסיבת יום האישה באולמי "שמיים" בשדרות</desc></trkpt>
+        <trkpt lat="31.52121" lon="34.6068"><time>2020-03-08T21:59:00.000Z</time><name></name><desc>רחוב מדריד 1 שדרות; מסיבת יום האישה באולמי "שמיים" בשדרות</desc></trkpt>
+        <trkpt lat="31.42207" lon="34.59937"><time>2020-03-10T12:00:00.000Z</time><name></name><desc>מרפאת מכבי דנט בנתיבות</desc></trkpt>
+        <trkpt lat="31.42207" lon="34.59937"><time>2020-03-10T18:00:00.000Z</time><name></name><desc>מרפאת מכבי דנט בנתיבות</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-09T03:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-09T05:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-09T10:30:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-09T11:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-09T15:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-09T17:30:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-10T03:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-10T05:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.0380084" lon="34.8859587"><time>2020-03-10T09:00:00.000Z</time><name></name><desc>גן שעשועים ברח' הרצל ביהוד</desc></trkpt>
+        <trkpt lat="32.0380084" lon="34.8859587"><time>2020-03-10T10:00:00.000Z</time><name></name><desc>גן שעשועים ברח' הרצל ביהוד</desc></trkpt>
+        <trkpt lat="32.0338" lon="34.88566"><time>2020-03-10T10:00:00.000Z</time><name></name><desc>בית כנסת "בית אל" יהוד</desc></trkpt>
+        <trkpt lat="32.0338" lon="34.88566"><time>2020-03-10T11:00:00.000Z</time><name></name><desc>בית כנסת "בית אל" יהוד</desc></trkpt>
+        <trkpt lat="32.03161" lon="34.88474"><time>2020-03-10T12:00:00.000Z</time><name></name><desc>רח' גורדון 13, יהוד; סעודת פורים</desc></trkpt>
+        <trkpt lat="32.03161" lon="34.88474"><time>2020-03-10T12:30:00.000Z</time><name></name><desc>רח' גורדון 13, יהוד; סעודת פורים</desc></trkpt>
+        <trkpt lat="32.03546" lon="34.88104"><time>2020-03-10T17:00:00.000Z</time><name></name><desc>בית כנסת "אור אבנר" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03546" lon="34.88104"><time>2020-03-10T17:30:00.000Z</time><name></name><desc>בית כנסת "אור אבנר" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-11T03:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-11T05:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.06005" lon="34.86844"><time>2020-03-11T11:00:00.000Z</time><name></name><desc>בית כנסת "נץ דוד" גני תקווה; תפילה</desc></trkpt>
+        <trkpt lat="32.06005" lon="34.86844"><time>2020-03-11T11:30:00.000Z</time><name></name><desc>בית כנסת "נץ דוד" גני תקווה; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-11T16:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-11T17:30:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.02924" lon="34.88969"><time>2020-03-11T17:30:00.000Z</time><name></name><desc>סופר "כל בו מאיר" וחנות "מוזלים" יהוד</desc></trkpt>
+        <trkpt lat="32.02924" lon="34.88969"><time>2020-03-11T18:00:00.000Z</time><name></name><desc>סופר "כל בו מאיר" וחנות "מוזלים" יהוד</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-12T03:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-12T05:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.0338" lon="34.88566"><time>2020-03-12T15:00:00.000Z</time><name></name><desc>בית כנסת "בית אל" יהוד</desc></trkpt>
+        <trkpt lat="32.0338" lon="34.88566"><time>2020-03-12T16:15:00.000Z</time><name></name><desc>בית כנסת "בית אל" יהוד</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-13T03:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-13T05:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.05602" lon="34.88259"><time>2020-03-13T07:30:00.000Z</time><name></name><desc>מקווה בסביון ברח' הדרים</desc></trkpt>
+        <trkpt lat="32.05602" lon="34.88259"><time>2020-03-13T07:45:00.000Z</time><name></name><desc>מקווה בסביון ברח' הדרים</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-13T10:30:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03719" lon="34.89205"><time>2020-03-13T11:00:00.000Z</time><name></name><desc>בית כנסת "אור לשבים" יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03546" lon="34.88104"><time>2020-03-13T15:30:00.000Z</time><name></name><desc>בית כנסת "אור אבנר", יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.03546" lon="34.88104"><time>2020-03-13T17:00:00.000Z</time><name></name><desc>בית כנסת "אור אבנר", יהוד; תפילה</desc></trkpt>
+        <trkpt lat="32.28543" lon="35.1273311"><time>2020-03-06T05:30:00.000Z</time><name></name><desc>יישוב ענב</desc></trkpt>
+        <trkpt lat="32.28543" lon="35.1273311"><time>2020-03-06T13:30:00.000Z</time><name></name><desc>יישוב ענב</desc></trkpt>
+        <trkpt lat="32.28543" lon="35.1273311"><time>2020-03-08T05:30:00.000Z</time><name></name><desc>יישוב ענב</desc></trkpt>
+        <trkpt lat="32.28543" lon="35.1273311"><time>2020-03-08T13:30:00.000Z</time><name></name><desc>יישוב ענב</desc></trkpt>
+        <trkpt lat="31.8429752" lon="35.2491978"><time>2020-03-07T06:30:00.000Z</time><name></name><desc>בית הכנסת "היכל ברונה" ,רחוב זווין בשכונת נווה יעקב; בית הכנסת "היכל ברונה" שבתוך מבנה המשותף לבית הכנסת "חפץ חיים" ובית הכנסת "אהבת חסד</desc></trkpt>
+        <trkpt lat="31.8429752" lon="35.2491978"><time>2020-03-07T08:30:00.000Z</time><name></name><desc>בית הכנסת "היכל ברונה" ,רחוב זווין בשכונת נווה יעקב; בית הכנסת "היכל ברונה" שבתוך מבנה המשותף לבית הכנסת "חפץ חיים" ובית הכנסת "אהבת חסד</desc></trkpt>
+        <trkpt lat="32.8601734" lon="35.2597675"><time>2020-03-06T06:00:00.000Z</time><name></name><desc>מועדון כפרי משגב; חדר כושר</desc></trkpt>
+        <trkpt lat="32.8601734" lon="35.2597675"><time>2020-03-06T08:00:00.000Z</time><name></name><desc>מועדון כפרי משגב; חדר כושר</desc></trkpt>
+        <trkpt lat="32.8601734" lon="35.2597675"><time>2020-03-06T08:00:00.000Z</time><name></name><desc>מועדון כפרי משגב; מסעדת "תבל"</desc></trkpt>
+        <trkpt lat="32.8601734" lon="35.2597675"><time>2020-03-06T08:30:00.000Z</time><name></name><desc>מועדון כפרי משגב; מסעדת "תבל"</desc></trkpt>
+        <trkpt lat="32.8080368" lon="34.9866066"><time>2020-03-06T11:00:00.000Z</time><name></name><desc>לון Bay view חיפה; בר מצווה</desc></trkpt>
+        <trkpt lat="32.8080368" lon="34.9866066"><time>2020-03-06T13:00:00.000Z</time><name></name><desc>לון Bay view חיפה; בר מצווה</desc></trkpt>
+        <trkpt lat="32.8533253" lon="35.240568"><time>2020-03-06T20:00:00.000Z</time><name></name><desc>מועדון פאבלה משופץ במנוף; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.8533253" lon="35.240568"><time>2020-03-06T21:59:00.000Z</time><name></name><desc>מועדון פאבלה משופץ במנוף; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.8533253" lon="35.240568"><time>2020-03-06T22:00:00.000Z</time><name></name><desc>מועדון פאבלה משופץ במנוף; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.8533253" lon="35.240568"><time>2020-03-07T00:00:00.000Z</time><name></name><desc>מועדון פאבלה משופץ במנוף; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.878163" lon="35.269294"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>יישוב יובלים; תהלוכת פורים עדליידע בישוב יובלים: המתנה ברחבת מבנה התעשייה ביובלים, תהלוכה ממבנה התעשייה למרכז הישוב ומופע פורימון באמפי הקטן</desc></trkpt>
+        <trkpt lat="32.878163" lon="35.269294"><time>2020-03-07T10:00:00.000Z</time><name></name><desc>יישוב יובלים; תהלוכת פורים עדליידע בישוב יובלים: המתנה ברחבת מבנה התעשייה ביובלים, תהלוכה ממבנה התעשייה למרכז הישוב ומופע פורימון באמפי הקטן</desc></trkpt>
+        <trkpt lat="32.8601172" lon="35.2588866"><time>2020-03-08T15:00:00.000Z</time><name></name><desc>מועדון הטניס משגב; הפנינג פורים</desc></trkpt>
+        <trkpt lat="32.8601172" lon="35.2588866"><time>2020-03-08T17:00:00.000Z</time><name></name><desc>מועדון הטניס משגב; הפנינג פורים</desc></trkpt>
+        <trkpt lat="32.8601734" lon="35.2597675"><time>2020-03-09T11:30:00.000Z</time><name></name><desc>מועדון כפרי משגב; חדר כושר</desc></trkpt>
+        <trkpt lat="32.8601734" lon="35.2597675"><time>2020-03-09T13:45:00.000Z</time><name></name><desc>מועדון כפרי משגב; חדר כושר</desc></trkpt>
+        <trkpt lat="32.7896944" lon="35.0406276"><time>2020-03-10T08:00:00.000Z</time><name></name><desc>לייזר טאג חיפה</desc></trkpt>
+        <trkpt lat="32.7896944" lon="35.0406276"><time>2020-03-10T10:00:00.000Z</time><name></name><desc>לייזר טאג חיפה</desc></trkpt>
+        <trkpt lat="31.7632291" lon="35.1969778"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>בית הכנסת "חברת משניות שיף שול" רחוב אביעד 10 ירושלים; גם בגינה הציבורית הסמוכה לו</desc></trkpt>
+        <trkpt lat="31.7632291" lon="35.1969778"><time>2020-03-07T08:30:00.000Z</time><name></name><desc>בית הכנסת "חברת משניות שיף שול" רחוב אביעד 10 ירושלים; גם בגינה הציבורית הסמוכה לו</desc></trkpt>
+        <trkpt lat="31.7641922" lon="35.1947682"><time>2020-03-12T13:15:00.000Z</time><name></name><desc>מעיין 2000 סניף גבעת מרדכי רחוב שח"ל 58 ירושלים</desc></trkpt>
+        <trkpt lat="31.7641922" lon="35.1947682"><time>2020-03-12T15:30:00.000Z</time><name></name><desc>מעיין 2000 סניף גבעת מרדכי רחוב שח"ל 58 ירושלים</desc></trkpt>
+        <trkpt lat="32.146349" lon="34.885985"><time>2020-03-08T12:00:00.000Z</time><name></name><desc>בית קפה "גן סיפור" רח' הציונות 7 הוד השרון</desc></trkpt>
+        <trkpt lat="32.146349" lon="34.885985"><time>2020-03-08T14:00:00.000Z</time><name></name><desc>בית קפה "גן סיפור" רח' הציונות 7 הוד השרון</desc></trkpt>
+        <trkpt lat="32.0622202" lon="34.7748855"><time>2020-03-07T22:30:00.000Z</time><name></name><desc>מועדון "כולי עלמא" רח' מקווה ישראל 10, ת"א</desc></trkpt>
+        <trkpt lat="32.0622202" lon="34.7748855"><time>2020-03-08T01:00:00.000Z</time><name></name><desc>מועדון "כולי עלמא" רח' מקווה ישראל 10, ת"א</desc></trkpt>
+        <trkpt lat="32.0769206" lon="34.7815956"><time>2020-03-09T13:30:00.000Z</time><name></name><desc>בית קפה נונה רח' אבן גבירול 44, ת"א</desc></trkpt>
+        <trkpt lat="32.0769206" lon="34.7815956"><time>2020-03-09T14:30:00.000Z</time><name></name><desc>בית קפה נונה רח' אבן גבירול 44, ת"א</desc></trkpt>
+        <trkpt lat="32.060795" lon="34.782718"><time>2020-03-09T19:00:00.000Z</time><name></name><desc>אולם "שבע" רח' הצפירה 21, ת"א; אירוע</desc></trkpt>
+        <trkpt lat="32.060795" lon="34.782718"><time>2020-03-09T21:59:00.000Z</time><name></name><desc>אולם "שבע" רח' הצפירה 21, ת"א; אירוע</desc></trkpt>
+        <trkpt lat="32.060795" lon="34.782718"><time>2020-03-09T22:00:00.000Z</time><name></name><desc>אולם "שבע" רח' הצפירה 21, ת"א; אירוע</desc></trkpt>
+        <trkpt lat="32.060795" lon="34.782718"><time>2020-03-10T00:00:00.000Z</time><name></name><desc>אולם "שבע" רח' הצפירה 21, ת"א; אירוע</desc></trkpt>
+        <trkpt lat="32.4837" lon="34.889488"><time>2020-03-10T13:00:00.000Z</time><name></name><desc>אולם אירועים "כוכב הים" בקיבוץ שדות ים; מסיבת פורים של המרכז הבינתחומי</desc></trkpt>
+        <trkpt lat="32.4837" lon="34.889488"><time>2020-03-10T16:30:00.000Z</time><name></name><desc>אולם אירועים "כוכב הים" בקיבוץ שדות ים; מסיבת פורים של המרכז הבינתחומי</desc></trkpt>
+        <trkpt lat="32.1552478" lon="34.8943859"><time>2020-03-11T17:30:00.000Z</time><name></name><desc>"טאבון" רח' רמתיים 90, הוד השרון</desc></trkpt>
+        <trkpt lat="32.1552478" lon="34.8943859"><time>2020-03-11T18:30:00.000Z</time><name></name><desc>"טאבון" רח' רמתיים 90, הוד השרון</desc></trkpt>
+        <trkpt lat="32.0980854" lon="34.7743963"><time>2020-03-10T22:30:00.000Z</time><name></name><desc>מסיבה ב"האנגר 11" רח' יורדי הסירה 1, ת"א</desc></trkpt>
+        <trkpt lat="32.0980854" lon="34.7743963"><time>2020-03-11T02:30:00.000Z</time><name></name><desc>מסיבה ב"האנגר 11" רח' יורדי הסירה 1, ת"א</desc></trkpt>
+        <trkpt lat="32.601246" lon="35.295659"><time>2020-03-11T17:30:00.000Z</time><name></name><desc>ולמי אצולת העמק, עפולה; מסיבה</desc></trkpt>
+        <trkpt lat="32.601246" lon="35.295659"><time>2020-03-11T21:59:00.000Z</time><name></name><desc>ולמי אצולת העמק, עפולה; מסיבה</desc></trkpt>
+        <trkpt lat="32.601246" lon="35.295659"><time>2020-03-10T22:00:00.000Z</time><name></name><desc>אולמי אצולת העמק, עפולה; מסיבה</desc></trkpt>
+        <trkpt lat="32.601246" lon="35.295659"><time>2020-03-10T22:30:00.000Z</time><name></name><desc>אולמי אצולת העמק, עפולה; מסיבה</desc></trkpt>
+        <trkpt lat="32.7134837" lon="35.335905"><time>2020-03-12T12:00:00.000Z</time><name></name><desc>מרכז המזון, נוף הגליל; במחלקות ירקות, חטיפים, מאפים ודברי חלב</desc></trkpt>
+        <trkpt lat="32.7134837" lon="35.335905"><time>2020-03-12T13:00:00.000Z</time><name></name><desc>מרכז המזון, נוף הגליל; במחלקות ירקות, חטיפים, מאפים ודברי חלב</desc></trkpt>
+        <trkpt lat="32.6210762" lon="35.3165964"><time>2020-03-13T15:00:00.000Z</time><name></name><desc>מלר"ד נשים מרכז רפואי העמק</desc></trkpt>
+        <trkpt lat="32.6210762" lon="35.3165964"><time>2020-03-13T15:45:00.000Z</time><name></name><desc>מלר"ד נשים מרכז רפואי העמק</desc></trkpt>
+        <trkpt lat="32.6210762" lon="35.3165964"><time>2020-03-13T18:30:00.000Z</time><name></name><desc>מלר"ד פנימי מרכז רפואי העמק</desc></trkpt>
+        <trkpt lat="32.6210762" lon="35.3165964"><time>2020-03-13T19:50:00.000Z</time><name></name><desc>מלר"ד פנימי מרכז רפואי העמק</desc></trkpt>
+        <trkpt lat="32.6210762" lon="35.3165964"><time>2020-03-14T21:55:00.000Z</time><name></name><desc>מלר"ד פנימי מרכז רפואי העמק</desc></trkpt>
+        <trkpt lat="32.6210762" lon="35.3165964"><time>2020-03-14T21:59:00.000Z</time><name></name><desc>מלר"ד פנימי מרכז רפואי העמק</desc></trkpt>
+        <trkpt lat="32.6210762" lon="35.3165964"><time>2020-03-14T22:00:00.000Z</time><name></name><desc>מלר"ד פנימי מרכז רפואי העמק</desc></trkpt>
+        <trkpt lat="32.6210762" lon="35.3165964"><time>2020-03-15T02:30:00.000Z</time><name></name><desc>מלר"ד פנימי מרכז רפואי העמק</desc></trkpt>
+        <trkpt lat="31.8195152" lon="35.2533911"><time>2020-03-10T19:00:00.000Z</time><name></name><desc>בית הכנסת "אוהל יוסף ושרה" ברחוב יצחק טוניק 24 ירושלים</desc></trkpt>
+        <trkpt lat="31.8195152" lon="35.2533911"><time>2020-03-10T19:40:00.000Z</time><name></name><desc>בית הכנסת "אוהל יוסף ושרה" ברחוב יצחק טוניק 24 ירושלים</desc></trkpt>
+        <trkpt lat="31.8195152" lon="35.2533911"><time>2020-03-11T05:15:00.000Z</time><name></name><desc>בית הכנסת "אוהל יוסף ושרה" ברחוב יצחק טוניק 24 ירושלים</desc></trkpt>
+        <trkpt lat="31.8195152" lon="35.2533911"><time>2020-03-11T07:00:00.000Z</time><name></name><desc>בית הכנסת "אוהל יוסף ושרה" ברחוב יצחק טוניק 24 ירושלים</desc></trkpt>
+        <trkpt lat="31.2479757" lon="34.8119079"><time>2020-03-07T07:00:00.000Z</time><name></name><desc>בריאותא באר שבע ברחוב יצחק נפחא 25; מתחם One Plaza</desc></trkpt>
+        <trkpt lat="31.2479757" lon="34.8119079"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>בריאותא באר שבע ברחוב יצחק נפחא 25; מתחם One Plaza</desc></trkpt>
+        <trkpt lat="31.318298" lon="34.62063"><time>2020-03-08T07:00:00.000Z</time><name></name><desc>בריאות כללית מרפאת אופקים ב'; כולל בית מרקחת</desc></trkpt>
+        <trkpt lat="31.318298" lon="34.62063"><time>2020-03-08T08:45:00.000Z</time><name></name><desc>בריאות כללית מרפאת אופקים ב'; כולל בית מרקחת</desc></trkpt>
+        <trkpt lat="31.2434531" lon="34.8106207"><time>2020-03-07T08:00:00.000Z</time><name></name><desc>סופר פארם סניף ביג באר שבע</desc></trkpt>
+        <trkpt lat="31.2434531" lon="34.8106207"><time>2020-03-07T08:30:00.000Z</time><name></name><desc>סופר פארם סניף ביג באר שבע</desc></trkpt>
+        <trkpt lat="31.2591051" lon="34.8020335"><time>2020-03-08T15:00:00.000Z</time><name></name><desc>מרכז הרפואי סורוקה; מרפאת כאב</desc></trkpt>
+        <trkpt lat="31.2591051" lon="34.8020335"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>מרכז הרפואי סורוקה; מרפאת כאב</desc></trkpt>
+        <trkpt lat="32.6117973" lon="35.2902586"><time>2020-03-08T16:30:00.000Z</time><name></name><desc>בית מרקחת של קופת חולים כללית בעומר</desc></trkpt>
+        <trkpt lat="32.6117973" lon="35.2902586"><time>2020-03-08T17:00:00.000Z</time><name></name><desc>בית מרקחת של קופת חולים כללית בעומר</desc></trkpt>
+        <trkpt lat="31.0673949" lon="35.0371667"><time>2020-03-08T17:00:00.000Z</time><name></name><desc>מיראז׳ מוקד רפואה דחופה בדימונה</desc></trkpt>
+        <trkpt lat="31.0673949" lon="35.0371667"><time>2020-03-08T18:30:00.000Z</time><name></name><desc>מיראז׳ מוקד רפואה דחופה בדימונה</desc></trkpt>
+        <trkpt lat="31.2591051" lon="34.8020335"><time>2020-03-08T21:00:00.000Z</time><name></name><desc>מיון פנימי במרכז רפואי סורוקה</desc></trkpt>
+        <trkpt lat="31.2591051" lon="34.8020335"><time>2020-03-08T21:59:00.000Z</time><name></name><desc>מיון פנימי במרכז רפואי סורוקה</desc></trkpt>
+        <trkpt lat="31.2591051" lon="34.8020335"><time>2020-03-08T22:00:00.000Z</time><name></name><desc>מיון פנימי במרכז רפואי סורוקה</desc></trkpt>
+        <trkpt lat="31.2591051" lon="34.8020335"><time>2020-03-09T03:00:00.000Z</time><name></name><desc>מיון פנימי במרכז רפואי סורוקה</desc></trkpt>
+        <trkpt lat="31.06055" lon="35.01982"><time>2020-03-09T14:00:00.000Z</time><name></name><desc>בית מרקחת בסופרפארם בקניון דימונה</desc></trkpt>
+        <trkpt lat="31.06055" lon="35.01982"><time>2020-03-09T14:10:00.000Z</time><name></name><desc>בית מרקחת בסופרפארם בקניון דימונה</desc></trkpt>
+        <trkpt lat="31.2391033" lon="34.7927131"><time>2020-03-09T23:00:00.000Z</time><name></name><desc>ברקה בבאר שבע; מסיבת פורים</desc></trkpt>
+        <trkpt lat="31.2391033" lon="34.7927131"><time>2020-03-10T00:30:00.000Z</time><name></name><desc>ברקה בבאר שבע; מסיבת פורים</desc></trkpt>
+        <trkpt lat="31.2391033" lon="34.7927131"><time>2020-03-10T23:00:00.000Z</time><name></name><desc>ברקה בבאר שבע; מסיבת פורים</desc></trkpt>
+        <trkpt lat="31.2391033" lon="34.7927131"><time>2020-03-11T01:30:00.000Z</time><name></name><desc>ברקה בבאר שבע; מסיבת פורים</desc></trkpt>
+        <trkpt lat="32.1068666" lon="34.8928326"><time>2020-03-08T10:00:00.000Z</time><name></name><desc>שופרסל – אזור תעשייה סגולה</desc></trkpt>
+        <trkpt lat="32.1068666" lon="34.8928326"><time>2020-03-08T11:00:00.000Z</time><name></name><desc>שופרסל – אזור תעשייה סגולה</desc></trkpt>
+        <trkpt lat="31.9881597" lon="34.7698124"><time>2020-03-06T08:00:00.000Z</time><name></name><desc>קיר טיפוס iclimb בראשון לציון, נדב בסקין 12</desc></trkpt>
+        <trkpt lat="31.9881597" lon="34.7698124"><time>2020-03-06T11:00:00.000Z</time><name></name><desc>קיר טיפוס iclimb בראשון לציון, נדב בסקין 12</desc></trkpt>
+        <trkpt lat="32.1823231" lon="34.8954868"><time>2020-03-07T09:00:00.000Z</time><name></name><desc>בית חולים מאיר; מיון אאג</desc></trkpt>
+        <trkpt lat="32.1823231" lon="34.8954868"><time>2020-03-07T11:30:00.000Z</time><name></name><desc>בית חולים מאיר; מיון אאג</desc></trkpt>
+        <trkpt lat="32.174777" lon="34.927808"><time>2020-03-07T14:00:00.000Z</time><name></name><desc>קיר טיפוס iclimb כפר סבא, מתחם בולדרלנד, רחוב התעשיה 16</desc></trkpt>
+        <trkpt lat="32.174777" lon="34.927808"><time>2020-03-07T15:30:00.000Z</time><name></name><desc>קיר טיפוס iclimb כפר סבא, מתחם בולדרלנד, רחוב התעשיה 16</desc></trkpt>
+        <trkpt lat="32.1786667" lon="34.90622"><time>2020-03-07T15:45:00.000Z</time><name></name><desc>"קפה המדרחוב" כפר סבא</desc></trkpt>
+        <trkpt lat="32.1786667" lon="34.90622"><time>2020-03-07T16:30:00.000Z</time><name></name><desc>"קפה המדרחוב" כפר סבא</desc></trkpt>
+        <trkpt lat="31.7725827" lon="35.165976"><time>2020-03-08T14:00:00.000Z</time><name></name><desc>בית אבות בית גיל הזהב בירושלים; ביקור גם בפלאפל שלום ירושלים</desc></trkpt>
+        <trkpt lat="31.7725827" lon="35.165976"><time>2020-03-08T15:30:00.000Z</time><name></name><desc>בית אבות בית גיל הזהב בירושלים; ביקור גם בפלאפל שלום ירושלים</desc></trkpt>
+        <trkpt lat="31.8889695" lon="34.9662916"><time>2020-03-08T17:30:00.000Z</time><name></name><desc>מקס סטוק ישפרו סנטר מודיעין</desc></trkpt>
+        <trkpt lat="31.8889695" lon="34.9662916"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>מקס סטוק ישפרו סנטר מודיעין</desc></trkpt>
+        <trkpt lat="31.907639" lon="34.9982069"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>מרכז קייזר מודיעין – חנות תחפושות בלגאן, וגלידה גולדה</desc></trkpt>
+        <trkpt lat="31.907639" lon="34.9982069"><time>2020-03-08T19:30:00.000Z</time><name></name><desc>מרכז קייזר מודיעין – חנות תחפושות בלגאן, וגלידה גולדה</desc></trkpt>
+        <trkpt lat="31.8995812" lon="35.0088323"><time>2020-03-09T16:15:00.000Z</time><name></name><desc>קניון עזריאלי מודיעין חנות קולומביה</desc></trkpt>
+        <trkpt lat="31.8995812" lon="35.0088323"><time>2020-03-09T16:45:00.000Z</time><name></name><desc>קניון עזריאלי מודיעין חנות קולומביה</desc></trkpt>
+        <trkpt lat="31.9147222" lon="35.0163889"><time>2020-03-09T16:45:00.000Z</time><name></name><desc>מסעדת גריל 443</desc></trkpt>
+        <trkpt lat="31.9147222" lon="35.0163889"><time>2020-03-09T17:30:00.000Z</time><name></name><desc>מסעדת גריל 443</desc></trkpt>
+        <trkpt lat="32.0075853" lon="34.7568866"><time>2020-03-09T17:30:00.000Z</time><name></name><desc>רחוב דליה 23 בת ים; אימון ג'יו ג'יטצו</desc></trkpt>
+        <trkpt lat="32.0075853" lon="34.7568866"><time>2020-03-09T19:00:00.000Z</time><name></name><desc>רחוב דליה 23 בת ים; אימון ג'יו ג'יטצו</desc></trkpt>
+        <trkpt lat="31.904235" lon="34.995147"><time>2020-03-09T20:00:00.000Z</time><name></name><desc>פופא טבקו, רחוב האודם 23, מודיעין</desc></trkpt>
+        <trkpt lat="31.904235" lon="34.995147"><time>2020-03-09T20:15:00.000Z</time><name></name><desc>פופא טבקו, רחוב האודם 23, מודיעין</desc></trkpt>
+        <trkpt lat="31.7522435" lon="35.2089085"><time>2020-03-10T22:00:00.000Z</time><name></name><desc>מועדון האומן בירושלים</desc></trkpt>
+        <trkpt lat="31.7522435" lon="35.2089085"><time>2020-03-10T23:30:00.000Z</time><name></name><desc>מועדון האומן בירושלים</desc></trkpt>
+        <trkpt lat="32.0666557" lon="34.770356"><time>2020-03-11T06:30:00.000Z</time><name></name><desc>קפה נורדאו ת"א רחוב נחלת בנימין 27</desc></trkpt>
+        <trkpt lat="32.0666557" lon="34.770356"><time>2020-03-11T07:30:00.000Z</time><name></name><desc>קפה נורדאו ת"א רחוב נחלת בנימין 27</desc></trkpt>
+        <trkpt lat="32.0692149" lon="34.7712593"><time>2020-03-11T07:30:00.000Z</time><name></name><desc>רחוב ברנר 5 תל אביב; סדנת מומנטום</desc></trkpt>
+        <trkpt lat="32.0692149" lon="34.7712593"><time>2020-03-11T15:30:00.000Z</time><name></name><desc>רחוב ברנר 5 תל אביב; סדנת מומנטום</desc></trkpt>
+        <trkpt lat="32.0858079" lon="34.7791748"><time>2020-03-06T14:00:00.000Z</time><name></name><desc>בית קפה איזי קפה, רחוב ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="32.0858079" lon="34.7791748"><time>2020-03-06T15:00:00.000Z</time><name></name><desc>בית קפה איזי קפה, רחוב ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="32.0952951" lon="34.7839011"><time>2020-03-06T19:30:00.000Z</time><name></name><desc>מסעדת אל וסינו, אבן גבירול 129, תל אביב</desc></trkpt>
+        <trkpt lat="32.0952951" lon="34.7839011"><time>2020-03-06T21:59:00.000Z</time><name></name><desc>מסעדת אל וסינו, אבן גבירול 129, תל אביב</desc></trkpt>
+        <trkpt lat="32.0812349" lon="34.789707"><time>2020-03-07T18:00:00.000Z</time><name></name><desc>קניון ויצמן, רחוב ויצמן 14, תל אביב</desc></trkpt>
+        <trkpt lat="32.0812349" lon="34.789707"><time>2020-03-07T19:00:00.000Z</time><name></name><desc>קניון ויצמן, רחוב ויצמן 14, תל אביב</desc></trkpt>
+        <trkpt lat="32.0858079" lon="34.7791748"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>בית קפה איזי קפה, רחוב ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="32.0858079" lon="34.7791748"><time>2020-03-08T17:00:00.000Z</time><name></name><desc>בית קפה איזי קפה, רחוב ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="32.0838211" lon="34.776231"><time>2020-03-11T08:00:00.000Z</time><name></name><desc>בית קפה איטס בית חנה, רחוב אד"ם הכהן 1, תל אביב</desc></trkpt>
+        <trkpt lat="32.0838211" lon="34.776231"><time>2020-03-11T09:00:00.000Z</time><name></name><desc>בית קפה איטס בית חנה, רחוב אד"ם הכהן 1, תל אביב</desc></trkpt>
+        <trkpt lat="32.0858079" lon="34.7791748"><time>2020-03-11T16:00:00.000Z</time><name></name><desc>בית קפה איזי קפה, רחוב ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="32.0858079" lon="34.7791748"><time>2020-03-11T17:00:00.000Z</time><name></name><desc>בית קפה איזי קפה, רחוב ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="32.0813804" lon="34.7896212"><time>2020-03-12T14:00:00.000Z</time><name></name><desc>קניון ויצמן, רחוב ויצמן 14, תל אביב</desc></trkpt>
+        <trkpt lat="32.0813804" lon="34.7896212"><time>2020-03-12T15:00:00.000Z</time><name></name><desc>קניון ויצמן, רחוב ויצמן 14, תל אביב</desc></trkpt>
+        <trkpt lat="32.0861406" lon="34.7790996"><time>2020-03-13T10:00:00.000Z</time><name></name><desc>שופרסל, רחוב ארלוזורוב 53, תל אביב</desc></trkpt>
+        <trkpt lat="32.0861406" lon="34.7790996"><time>2020-03-13T11:00:00.000Z</time><name></name><desc>שופרסל, רחוב ארלוזורוב 53, תל אביב</desc></trkpt>
+        <trkpt lat="32.0858079" lon="34.7791748"><time>2020-03-14T07:00:00.000Z</time><name></name><desc>בית קפה איזי קפה, רחוב ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="32.0858079" lon="34.7791748"><time>2020-03-14T08:00:00.000Z</time><name></name><desc>בית קפה איזי קפה, רחוב ארלוזורוב 76, תל אביב</desc></trkpt>
+        <trkpt lat="31.9915199" lon="34.8498459"><time>2020-03-08T12:30:00.000Z</time><name></name><desc>מקווה בית כנסת בית מנחם כפר חב"ד; מקווה</desc></trkpt>
+        <trkpt lat="31.9915199" lon="34.8498459"><time>2020-03-08T13:00:00.000Z</time><name></name><desc>מקווה בית כנסת בית מנחם כפר חב"ד; מקווה</desc></trkpt>
+        <trkpt lat="31.9915199" lon="34.8498459"><time>2020-03-08T13:00:00.000Z</time><name></name><desc>ית כנסת בית מנחם כפר חב"ד</desc></trkpt>
+        <trkpt lat="31.9915199" lon="34.8498459"><time>2020-03-08T14:30:00.000Z</time><name></name><desc>ית כנסת בית מנחם כפר חב"ד</desc></trkpt>
+        <trkpt lat="32.8304939" lon="35.0675388"><time>2020-03-08T17:30:00.000Z</time><name></name><desc>ישיבת חב"ד קריית שמואל</desc></trkpt>
+        <trkpt lat="32.8304939" lon="35.0675388"><time>2020-03-08T21:59:00.000Z</time><name></name><desc>ישיבת חב"ד קריית שמואל</desc></trkpt>
+        <trkpt lat="32.8304939" lon="35.0675388"><time>2020-03-08T22:00:00.000Z</time><name></name><desc>ישיבת חב"ד קריית שמואל</desc></trkpt>
+        <trkpt lat="32.8304939" lon="35.0675388"><time>2020-03-09T21:59:00.000Z</time><name></name><desc>ישיבת חב"ד קריית שמואל</desc></trkpt>
+        <trkpt lat="32.8304939" lon="35.0675388"><time>2020-03-09T22:00:00.000Z</time><name></name><desc>ישיבת חב"ד קריית שמואל</desc></trkpt>
+        <trkpt lat="32.8304939" lon="35.0675388"><time>2020-03-10T18:00:00.000Z</time><name></name><desc>ישיבת חב"ד קריית שמואל</desc></trkpt>
+        <trkpt lat="32.7604815" lon="34.9736717"><time>2020-03-10T18:00:00.000Z</time><name></name><desc>בית חב"ד טירת הכרמל</desc></trkpt>
+        <trkpt lat="32.7604815" lon="34.9736717"><time>2020-03-10T21:59:00.000Z</time><name></name><desc>בית חב"ד טירת הכרמל</desc></trkpt>
+        <trkpt lat="32.7604815" lon="34.9736717"><time>2020-03-10T22:00:00.000Z</time><name></name><desc>בית חב"ד טירת הכרמל</desc></trkpt>
+        <trkpt lat="32.7604815" lon="34.9736717"><time>2020-03-10T23:00:00.000Z</time><name></name><desc>בית חב"ד טירת הכרמל</desc></trkpt>
+        <trkpt lat="32.0684862" lon="34.7941454"><time>2020-03-11T15:30:00.000Z</time><name></name><desc>מכון כושר F45 Trainig Yigal Alon, מגדל אלון 2, רחוב יגאל אלון 94, תל אביב</desc></trkpt>
+        <trkpt lat="32.0684862" lon="34.7941454"><time>2020-03-11T16:20:00.000Z</time><name></name><desc>מכון כושר F45 Trainig Yigal Alon, מגדל אלון 2, רחוב יגאל אלון 94, תל אביב</desc></trkpt>
+        <trkpt lat="32.0684862" lon="34.7941454"><time>2020-03-12T06:15:00.000Z</time><name></name><desc>מכון כושר F45 Trainig Yigal Alon, מגדל אלון 2, רחוב יגאל אלון 94, תל אביב</desc></trkpt>
+        <trkpt lat="32.0684862" lon="34.7941454"><time>2020-03-12T07:00:00.000Z</time><name></name><desc>מכון כושר F45 Trainig Yigal Alon, מגדל אלון 2, רחוב יגאל אלון 94, תל אביב</desc></trkpt>
+        <trkpt lat="32.090279" lon="34.775529"><time>2020-03-12T17:30:00.000Z</time><name></name><desc>בר "קוקטילים 223", רחוב דיזינגוף 223, תל אביב</desc></trkpt>
+        <trkpt lat="32.090279" lon="34.775529"><time>2020-03-12T19:30:00.000Z</time><name></name><desc>בר "קוקטילים 223", רחוב דיזינגוף 223, תל אביב</desc></trkpt>
+        <trkpt lat="32.0950616" lon="34.7786835"><time>2020-03-13T07:00:00.000Z</time><name></name><desc>מועדון כושר "קולנוע פאר", רחוב ישעיה 1, תל אביב</desc></trkpt>
+        <trkpt lat="32.0950616" lon="34.7786835"><time>2020-03-13T08:30:00.000Z</time><name></name><desc>מועדון כושר "קולנוע פאר", רחוב ישעיה 1, תל אביב</desc></trkpt>
+        <trkpt lat="32.0662875" lon="34.7706386"><time>2020-03-13T09:30:00.000Z</time><name></name><desc>בית קפה "בירנבאום", רחוב נחלת בנימין 31, תל אביב</desc></trkpt>
+        <trkpt lat="32.0662875" lon="34.7706386"><time>2020-03-13T11:45:00.000Z</time><name></name><desc>בית קפה "בירנבאום", רחוב נחלת בנימין 31, תל אביב</desc></trkpt>
+        <trkpt lat="32.0703564" lon="34.7697756"><time>2020-03-13T11:30:00.000Z</time><name></name><desc>בר "סלון ברלין", רחוב נג'רה 15, תל אביב</desc></trkpt>
+        <trkpt lat="32.0703564" lon="34.7697756"><time>2020-03-13T15:30:00.000Z</time><name></name><desc>בר "סלון ברלין", רחוב נג'רה 15, תל אביב</desc></trkpt>
+        <trkpt lat="32.1004684" lon="34.7757166"><time>2020-03-14T08:10:00.000Z</time><name></name><desc>Training Tel Aviv Port מכון כושר F45</desc></trkpt>
+        <trkpt lat="32.1004684" lon="34.7757166"><time>2020-03-14T09:20:00.000Z</time><name></name><desc>Training Tel Aviv Port מכון כושר F45</desc></trkpt>
+        <trkpt lat="31.6197765" lon="34.7592182"><time>2020-03-09T19:20:00.000Z</time><name></name><desc>בית חב"ד רובע הבנים, קרית גת</desc></trkpt>
+        <trkpt lat="31.6197765" lon="34.7592182"><time>2020-03-09T20:00:00.000Z</time><name></name><desc>בית חב"ד רובע הבנים, קרית גת</desc></trkpt>
+        <trkpt lat="31.612332" lon="34.76598"><time>2020-03-12T10:00:00.000Z</time><name></name><desc>מקווה יחזקאל, קרית גת</desc></trkpt>
+        <trkpt lat="31.612332" lon="34.76598"><time>2020-03-12T10:30:00.000Z</time><name></name><desc>מקווה יחזקאל, קרית גת</desc></trkpt>
+        <trkpt lat="31.609332" lon="34.770308"><time>2020-03-12T18:45:00.000Z</time><name></name><desc>חנות שייפון ליד תחנה מרכזית, קרית גת</desc></trkpt>
+        <trkpt lat="31.609332" lon="34.770308"><time>2020-03-12T19:00:00.000Z</time><name></name><desc>חנות שייפון ליד תחנה מרכזית, קרית גת</desc></trkpt>
+        <trkpt lat="31.612332" lon="34.76598"><time>2020-03-13T07:30:00.000Z</time><name></name><desc>מקווה יחזקאל, קרית גת</desc></trkpt>
+        <trkpt lat="31.612332" lon="34.76598"><time>2020-03-13T08:00:00.000Z</time><name></name><desc>מקווה יחזקאל, קרית גת</desc></trkpt>
+        <trkpt lat="31.612332" lon="34.76598"><time>2020-03-14T08:15:00.000Z</time><name></name><desc>מקווה יחזקאל, קרית גת</desc></trkpt>
+        <trkpt lat="31.612332" lon="34.76598"><time>2020-03-14T08:30:00.000Z</time><name></name><desc>מקווה יחזקאל, קרית גת</desc></trkpt>
+        <trkpt lat="31.6179695" lon="34.7537336"><time>2020-03-15T06:30:00.000Z</time><name></name><desc>קופת חולים מכבי, נתיבות השלום, קרית גת</desc></trkpt>
+        <trkpt lat="31.6179695" lon="34.7537336"><time>2020-03-15T07:30:00.000Z</time><name></name><desc>קופת חולים מכבי, נתיבות השלום, קרית גת</desc></trkpt>
+        <trkpt lat="31.657671" lon="35.1235129"><time>2020-03-12T20:00:00.000Z</time><name></name><desc>בית המדרש ישיבת הר עציון, ישוב אלון שבות</desc></trkpt>
+        <trkpt lat="31.657671" lon="35.1235129"><time>2020-03-12T21:59:00.000Z</time><name></name><desc>בית המדרש ישיבת הר עציון, ישוב אלון שבות</desc></trkpt>
+        <trkpt lat="31.657671" lon="35.1235129"><time>2020-03-11T22:00:00.000Z</time><name></name><desc>בית המדרש ישיבת הר עציון, ישוב אלון שבות</desc></trkpt>
+        <trkpt lat="31.657671" lon="35.1235129"><time>2020-03-11T23:30:00.000Z</time><name></name><desc>בית המדרש ישיבת הר עציון, ישוב אלון שבות</desc></trkpt>
+        <trkpt lat="31.654871" lon="35.125256"><time>2020-03-13T05:20:00.000Z</time><name></name><desc>בית כנסת הישן, ישוב אלון שבות</desc></trkpt>
+        <trkpt lat="31.654871" lon="35.125256"><time>2020-03-13T05:50:00.000Z</time><name></name><desc>בית כנסת הישן, ישוב אלון שבות</desc></trkpt>
+        <trkpt lat="31.657671" lon="35.1235129"><time>2020-03-13T05:50:00.000Z</time><name></name><desc>ישיבת הר עציון ישוב אלון שבות; חדר אוכל</desc></trkpt>
+        <trkpt lat="31.657671" lon="35.1235129"><time>2020-03-13T06:15:00.000Z</time><name></name><desc>ישיבת הר עציון ישוב אלון שבות; חדר אוכל</desc></trkpt>
+        <trkpt lat="31.657671" lon="35.1235129"><time>2020-03-13T06:30:00.000Z</time><name></name><desc>ישיבת הר עציון ישוב אלון שבות; שיעור של הרב בזק</desc></trkpt>
+        <trkpt lat="31.657671" lon="35.1235129"><time>2020-03-13T08:00:00.000Z</time><name></name><desc>ישיבת הר עציון ישוב אלון שבות; שיעור של הרב בזק</desc></trkpt>
+        <trkpt lat="31.9004192" lon="35.008295"><time>2020-03-13T09:00:00.000Z</time><name></name><desc>בית הרופאים רח' ערער 9 מודיעין</desc></trkpt>
+        <trkpt lat="31.9004192" lon="35.008295"><time>2020-03-13T09:30:00.000Z</time><name></name><desc>בית הרופאים רח' ערער 9 מודיעין</desc></trkpt>
+        <trkpt lat="31.9006391" lon="35.0078202"><time>2020-03-13T09:30:00.000Z</time><name></name><desc>סופר פארם קניון עזריאלי מודיעין</desc></trkpt>
+        <trkpt lat="31.9006391" lon="35.0078202"><time>2020-03-13T10:00:00.000Z</time><name></name><desc>סופר פארם קניון עזריאלי מודיעין</desc></trkpt>
+        <trkpt lat="31.7735728" lon="35.1654302"><time>2020-03-13T14:00:00.000Z</time><name></name><desc>קבלת פנים באירוע משפחתי במרכז ציפורי יער ירושלים</desc></trkpt>
+        <trkpt lat="31.7735728" lon="35.1654302"><time>2020-03-13T14:30:00.000Z</time><name></name><desc>קבלת פנים באירוע משפחתי במרכז ציפורי יער ירושלים</desc></trkpt>
+        <trkpt lat="31.9079376" lon="34.9910315"><time>2020-03-11T08:30:00.000Z</time><name></name><desc>שוק פורים תנועת נוער בני עקיבא סניף מקש ברח' פז 612 מודיעין</desc></trkpt>
+        <trkpt lat="31.9079376" lon="34.9910315"><time>2020-03-11T10:30:00.000Z</time><name></name><desc>שוק פורים תנועת נוער בני עקיבא סניף מקש ברח' פז 612 מודיעין</desc></trkpt>
+        <trkpt lat="31.8890274" lon="34.9634743"><time>2020-03-11T17:30:00.000Z</time><name></name><desc>בית קולנוע "הוט סינמה" בישפרו סנטר מודיעין; הסרט "סוניק" הקרנה שהחלה ב- 19.30, אולם מס' 3</desc></trkpt>
+        <trkpt lat="31.8890274" lon="34.9634743"><time>2020-03-11T19:20:00.000Z</time><name></name><desc>בית קולנוע "הוט סינמה" בישפרו סנטר מודיעין; הסרט "סוניק" הקרנה שהחלה ב- 19.30, אולם מס' 3</desc></trkpt>
+        <trkpt lat="31.9078573" lon="34.9931828"><time>2020-03-12T05:50:00.000Z</time><name></name><desc>בית ספר "דרכי יהודה" רח' יהלום 52 מודיעין</desc></trkpt>
+        <trkpt lat="31.9078573" lon="34.9931828"><time>2020-03-12T10:45:00.000Z</time><name></name><desc>בית ספר "דרכי יהודה" רח' יהלום 52 מודיעין</desc></trkpt>
+        <trkpt lat="31.7726242" lon="35.1661169"><time>2020-03-12T14:00:00.000Z</time><name></name><desc>קבלת פנים באירוע משפחתי במרכז ציפורי יער ירושלים</desc></trkpt>
+        <trkpt lat="31.7726242" lon="35.1661169"><time>2020-03-12T14:30:00.000Z</time><name></name><desc>קבלת פנים באירוע משפחתי במרכז ציפורי יער ירושלים</desc></trkpt>
+        <trkpt lat="31.8884565" lon="34.9615246"><time>2020-03-12T20:00:00.000Z</time><name></name><desc>בית קפה "מיכליס" ישפרו סנטר מודיעין</desc></trkpt>
+        <trkpt lat="31.8884565" lon="34.9615246"><time>2020-03-12T21:59:00.000Z</time><name></name><desc>בית קפה "מיכליס" ישפרו סנטר מודיעין</desc></trkpt>
+        <trkpt lat="31.7726607" lon="35.1662027"><time>2020-03-13T14:00:00.000Z</time><name></name><desc>קבלת פנים באירוע משפחתי במרכז ציפורי יער ירושלים</desc></trkpt>
+        <trkpt lat="31.7726607" lon="35.1662027"><time>2020-03-13T14:30:00.000Z</time><name></name><desc>קבלת פנים באירוע משפחתי במרכז ציפורי יער ירושלים</desc></trkpt>
+        <trkpt lat="31.97055" lon="34.79345"><time>2020-03-12T06:30:00.000Z</time><name></name><desc>בי"ס עמית עמל מקיף ג' רחוב המתנדבים 6 ראשון לציון; אירוע "יום המדע"</desc></trkpt>
+        <trkpt lat="31.97055" lon="34.79345"><time>2020-03-12T10:20:00.000Z</time><name></name><desc>בי"ס עמית עמל מקיף ג' רחוב המתנדבים 6 ראשון לציון; אירוע "יום המדע"</desc></trkpt>
+        <trkpt lat="31.96769" lon="34.8201"><time>2020-03-12T15:30:00.000Z</time><name></name><desc>מרכז לנוער "באלנס" בי"ס רביבים רחוב גוש עציון 23 ראשון לציון</desc></trkpt>
+        <trkpt lat="31.96769" lon="34.8201"><time>2020-03-12T18:30:00.000Z</time><name></name><desc>מרכז לנוער "באלנס" בי"ס רביבים רחוב גוש עציון 23 ראשון לציון</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-06T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-06T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-07T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-07T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-07T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-07T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-08T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-08T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-09T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-09T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-09T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-09T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-10T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-10T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-10T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-10T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-11T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-11T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-11T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-11T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-12T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-12T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-12T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-12T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.07883" lon="34.87598"><time>2020-03-11T14:00:00.000Z</time><name></name><desc>סופרמרקט "גנים", רח' לוחמי הגטאות 33, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.07883" lon="34.87598"><time>2020-03-11T18:00:00.000Z</time><name></name><desc>סופרמרקט "גנים", רח' לוחמי הגטאות 33, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.09077" lon="34.8573"><time>2020-03-12T21:00:00.000Z</time><name></name><desc>פאב "דרינק פוינט", רח' הסיבים 7, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.09077" lon="34.8573"><time>2020-03-12T21:59:00.000Z</time><name></name><desc>פאב "דרינק פוינט", רח' הסיבים 7, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.09077" lon="34.8573"><time>2020-03-12T22:00:00.000Z</time><name></name><desc>פאב "דרינק פוינט", רח' הסיבים 7, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.09077" lon="34.8573"><time>2020-03-12T23:00:00.000Z</time><name></name><desc>פאב "דרינק פוינט", רח' הסיבים 7, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.08938" lon="34.85699"><time>2020-03-12T23:00:00.000Z</time><name></name><desc>מסעדת "אבולעפיה", רח' הסיבים 19, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.08938" lon="34.85699"><time>2020-03-12T23:30:00.000Z</time><name></name><desc>מסעדת "אבולעפיה", רח' הסיבים 19, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.0866294" lon="34.8148886"><time>2020-03-08T11:00:00.000Z</time><name></name><desc>סופרמרקט "מגה בעיר", רחוב הרצל 75 , רמת גן</desc></trkpt>
+        <trkpt lat="32.0866294" lon="34.8148886"><time>2020-03-08T12:00:00.000Z</time><name></name><desc>סופרמרקט "מגה בעיר", רחוב הרצל 75 , רמת גן</desc></trkpt>
+        <trkpt lat="32.08566" lon="34.81025"><time>2020-03-16T17:00:00.000Z</time><name></name><desc>"שוויצריה הקטנה" ברחוב ביאליק 79 רמת גן</desc></trkpt>
+        <trkpt lat="32.08566" lon="34.81025"><time>2020-03-16T17:30:00.000Z</time><name></name><desc>"שוויצריה הקטנה" ברחוב ביאליק 79 רמת גן</desc></trkpt>
+        <trkpt lat="32.08573" lon="34.81161"><time>2020-03-16T17:00:00.000Z</time><name></name><desc>סופר פארם בקניון ביאליק , רחוב ביאליק 79 רמת גן</desc></trkpt>
+        <trkpt lat="32.08573" lon="34.81161"><time>2020-03-16T18:00:00.000Z</time><name></name><desc>סופר פארם בקניון ביאליק , רחוב ביאליק 79 רמת גן</desc></trkpt>
+        <trkpt lat="31.97055" lon="34.79345"><time>2020-03-12T06:30:00.000Z</time><name></name><desc>בי"ס עמית עמל מקיף ג' רחוב המתנדבים 6 ראשון לציון; אירוע "יום המדע"</desc></trkpt>
+        <trkpt lat="31.97055" lon="34.79345"><time>2020-03-12T10:20:00.000Z</time><name></name><desc>בי"ס עמית עמל מקיף ג' רחוב המתנדבים 6 ראשון לציון; אירוע "יום המדע"</desc></trkpt>
+        <trkpt lat="31.96769" lon="34.8201"><time>2020-03-12T15:30:00.000Z</time><name></name><desc>מרכז לנוער "באלנס" בי"ס רביבים רחוב גוש עציון 23 ראשון לציון</desc></trkpt>
+        <trkpt lat="31.96769" lon="34.8201"><time>2020-03-12T18:30:00.000Z</time><name></name><desc>מרכז לנוער "באלנס" בי"ס רביבים רחוב גוש עציון 23 ראשון לציון</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-06T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-06T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-07T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-07T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-07T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-07T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-08T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-08T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-09T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-09T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-09T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-09T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-10T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-10T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-10T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-10T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-11T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-11T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-11T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-11T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-12T04:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.08452" lon="34.83942"><time>2020-03-12T06:15:00.000Z</time><name></name><desc>בית הכנסת "נחום" ברחוב השומר פינת היום, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-12T16:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.0855614" lon="34.8362842"><time>2020-03-12T18:00:00.000Z</time><name></name><desc>בית הכנסת "אור החיים" ברחוב רבי עקיבא 134, בני ברק</desc></trkpt>
+        <trkpt lat="32.07883" lon="34.87598"><time>2020-03-11T14:00:00.000Z</time><name></name><desc>סופרמרקט "גנים", רח' לוחמי הגטאות 33, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.07883" lon="34.87598"><time>2020-03-11T18:00:00.000Z</time><name></name><desc>סופרמרקט "גנים", רח' לוחמי הגטאות 33, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.09077" lon="34.8573"><time>2020-03-12T21:00:00.000Z</time><name></name><desc>פאב "דרינק פוינט", רח' הסיבים 7, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.09077" lon="34.8573"><time>2020-03-12T21:59:00.000Z</time><name></name><desc>פאב "דרינק פוינט", רח' הסיבים 7, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.09077" lon="34.8573"><time>2020-03-12T22:00:00.000Z</time><name></name><desc>פאב "דרינק פוינט", רח' הסיבים 7, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.09077" lon="34.8573"><time>2020-03-12T23:00:00.000Z</time><name></name><desc>פאב "דרינק פוינט", רח' הסיבים 7, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.08938" lon="34.85699"><time>2020-03-12T23:00:00.000Z</time><name></name><desc>מסעדת "אבולעפיה", רח' הסיבים 19, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.08938" lon="34.85699"><time>2020-03-12T23:30:00.000Z</time><name></name><desc>מסעדת "אבולעפיה", רח' הסיבים 19, פתח תקווה</desc></trkpt>
+        <trkpt lat="32.0866294" lon="34.8148886"><time>2020-03-08T11:00:00.000Z</time><name></name><desc>סופרמרקט "מגה בעיר", רחוב הרצל 75 , רמת גן</desc></trkpt>
+        <trkpt lat="32.0866294" lon="34.8148886"><time>2020-03-08T12:00:00.000Z</time><name></name><desc>סופרמרקט "מגה בעיר", רחוב הרצל 75 , רמת גן</desc></trkpt>
+        <trkpt lat="32.08566" lon="34.81025"><time>2020-03-16T17:00:00.000Z</time><name></name><desc>"שוויצריה הקטנה" ברחוב ביאליק 79 רמת גן</desc></trkpt>
+        <trkpt lat="32.08566" lon="34.81025"><time>2020-03-16T17:30:00.000Z</time><name></name><desc>"שוויצריה הקטנה" ברחוב ביאליק 79 רמת גן</desc></trkpt>
+        <trkpt lat="32.08573" lon="34.81161"><time>2020-03-16T17:00:00.000Z</time><name></name><desc>סופר פארם בקניון ביאליק , רחוב ביאליק 79 רמת גן</desc></trkpt>
+        <trkpt lat="32.08573" lon="34.81161"><time>2020-03-16T18:00:00.000Z</time><name></name><desc>סופר פארם בקניון ביאליק , רחוב ביאליק 79 רמת גן</desc></trkpt>
+        <trkpt lat="31.8690945" lon="34.7449433"><time>2020-03-07T18:30:00.000Z</time><name></name><desc>מוקד "טרם" יבנה, רחוב דואני</desc></trkpt>
+        <trkpt lat="31.8690945" lon="34.7449433"><time>2020-03-07T20:00:00.000Z</time><name></name><desc>מוקד "טרם" יבנה, רחוב דואני</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-08T06:30:00.000Z</time><name></name><desc>קופ"ח כללית רחוב הפלמ"ח 17 רחובות; קומה א'</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-08T07:15:00.000Z</time><name></name><desc>קופ"ח כללית רחוב הפלמ"ח 17 רחובות; קומה א'</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-11T09:00:00.000Z</time><name></name><desc>קופ"ח כללית רחוב הפלמ"ח 17 רחובות; קומה א'</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-11T09:40:00.000Z</time><name></name><desc>קופ"ח כללית רחוב הפלמ"ח 17 רחובות; קומה א'</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-12T06:00:00.000Z</time><name></name><desc>קופ"ח כללית רחוב הפלמ"ח 17 רחובות; קומה א'</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-12T06:30:00.000Z</time><name></name><desc>קופ"ח כללית רחוב הפלמ"ח 17 רחובות; קומה א'</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-13T06:00:00.000Z</time><name></name><desc>קופ"ח כללית רחוב הפלמ"ח 17 רחובות; קומה א'</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-13T06:30:00.000Z</time><name></name><desc>קופ"ח כללית רחוב הפלמ"ח 17 רחובות; קומה א'</desc></trkpt>
+        <trkpt lat="31.8944963" lon="34.8040921"><time>2020-03-13T06:50:00.000Z</time><name></name><desc>קופ"ח כללית "רמז" רחוב דוד רמז 71 רחובות; יחידת אולטרסאונד</desc></trkpt>
+        <trkpt lat="31.8944963" lon="34.8040921"><time>2020-03-13T07:00:00.000Z</time><name></name><desc>קופ"ח כללית "רמז" רחוב דוד רמז 71 רחובות; יחידת אולטרסאונד</desc></trkpt>
+        <trkpt lat="31.8944963" lon="34.8040921"><time>2020-03-13T07:00:00.000Z</time><name></name><desc>מרפאת עיניים קופ"ח כללית "רמז" רחוב דוד רמז 71 רחובות</desc></trkpt>
+        <trkpt lat="31.8944963" lon="34.8040921"><time>2020-03-13T07:40:00.000Z</time><name></name><desc>מרפאת עיניים קופ"ח כללית "רמז" רחוב דוד רמז 71 רחובות</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-13T08:00:00.000Z</time><name></name><desc>קופ"ח כללית רחוב פלמ"ח 17 רחובות קומה א'</desc></trkpt>
+        <trkpt lat="31.895434" lon="34.822608"><time>2020-03-13T08:30:00.000Z</time><name></name><desc>קופ"ח כללית רחוב פלמ"ח 17 רחובות קומה א'</desc></trkpt>
+        <trkpt lat="32.0632222" lon="34.7728861"><time>2020-03-06T21:00:00.000Z</time><name></name><desc>מועדון זוזו, רח' רוטשילד תל אביב</desc></trkpt>
+        <trkpt lat="32.0632222" lon="34.7728861"><time>2020-03-06T21:59:00.000Z</time><name></name><desc>מועדון זוזו, רח' רוטשילד תל אביב</desc></trkpt>
+        <trkpt lat="32.0632222" lon="34.7728861"><time>2020-03-06T22:00:00.000Z</time><name></name><desc>מועדון זוזו, רח' רוטשילד תל אביב</desc></trkpt>
+        <trkpt lat="32.0632222" lon="34.7728861"><time>2020-03-07T00:00:00.000Z</time><name></name><desc>מועדון זוזו, רח' רוטשילד תל אביב</desc></trkpt>
+        <trkpt lat="31.891463" lon="34.7333639"><time>2020-03-08T22:00:00.000Z</time><name></name><desc>אולמי עדיה, יבנה; מסיבת פורים</desc></trkpt>
+        <trkpt lat="31.891463" lon="34.7333639"><time>2020-03-09T01:30:00.000Z</time><name></name><desc>אולמי עדיה, יבנה; מסיבת פורים</desc></trkpt>
+        <trkpt lat="31.7954104" lon="34.704389"><time>2020-03-11T16:45:00.000Z</time><name></name><desc>קופת חולים כללית, גן יבנה</desc></trkpt>
+        <trkpt lat="31.7954104" lon="34.704389"><time>2020-03-11T17:15:00.000Z</time><name></name><desc>קופת חולים כללית, גן יבנה</desc></trkpt>
+        <trkpt lat="31.7952815" lon="34.704494"><time>2020-03-11T17:15:00.000Z</time><name></name><desc>סופרפארם קניון פרנדלי, גן יבנה</desc></trkpt>
+        <trkpt lat="31.7952815" lon="34.704494"><time>2020-03-11T18:00:00.000Z</time><name></name><desc>סופרפארם קניון פרנדלי, גן יבנה</desc></trkpt>
+        <trkpt lat="32.0703525" lon="34.7831716"><time>2020-03-08T19:00:00.000Z</time><name></name><desc>סופרמרקט "ויקטורי", רחוב הארבעה 6 תל אביב</desc></trkpt>
+        <trkpt lat="32.0703525" lon="34.7831716"><time>2020-03-08T19:45:00.000Z</time><name></name><desc>סופרמרקט "ויקטורי", רחוב הארבעה 6 תל אביב</desc></trkpt>
+        <trkpt lat="32.0787578" lon="34.7741486"><time>2020-03-13T11:00:00.000Z</time><name></name><desc>חנות BO-E , דיזנגוף 96 תל אביב</desc></trkpt>
+        <trkpt lat="32.0787578" lon="34.7741486"><time>2020-03-13T11:30:00.000Z</time><name></name><desc>חנות BO-E , דיזנגוף 96 תל אביב</desc></trkpt>
+        <trkpt lat="32.6810612" lon="35.2300388"><time>2020-03-06T06:00:00.000Z</time><name></name><desc>ישיבה מתיבתא מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6810612" lon="35.2300388"><time>2020-03-06T13:00:00.000Z</time><name></name><desc>ישיבה מתיבתא מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6778551" lon="35.2384017"><time>2020-03-06T15:00:00.000Z</time><name></name><desc>בית כנסת יוצאי אירופה מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6778551" lon="35.2384017"><time>2020-03-06T16:00:00.000Z</time><name></name><desc>בית כנסת יוצאי אירופה מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6803306" lon="35.2342582"><time>2020-03-07T03:30:00.000Z</time><name></name><desc>בית כנסת מעלות ניסים מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6803306" lon="35.2342582"><time>2020-03-07T05:30:00.000Z</time><name></name><desc>בית כנסת מעלות ניסים מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6810612" lon="35.2300388"><time>2020-03-08T06:00:00.000Z</time><name></name><desc>ישיבה מתיבתא מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6810612" lon="35.2300388"><time>2020-03-08T13:00:00.000Z</time><name></name><desc>ישיבה מתיבתא מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6771198" lon="35.2387855"><time>2020-03-08T14:00:00.000Z</time><name></name><desc>מועדון נוער "אור ישראלי" מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6771198" lon="35.2387855"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>מועדון נוער "אור ישראלי" מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6810612" lon="35.2300388"><time>2020-03-09T06:00:00.000Z</time><name></name><desc>ישיבה מתיבתא מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6810612" lon="35.2300388"><time>2020-03-09T13:00:00.000Z</time><name></name><desc>ישיבה מתיבתא מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6771198" lon="35.2387855"><time>2020-03-08T14:00:00.000Z</time><name></name><desc>מועדון נוער "אור ישראלי" מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6771198" lon="35.2387855"><time>2020-03-08T18:00:00.000Z</time><name></name><desc>מועדון נוער "אור ישראלי" מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6815318" lon="35.2378135"><time>2020-03-09T18:30:00.000Z</time><name></name><desc>מועדון נוער אור ישראלי</desc></trkpt>
+        <trkpt lat="32.6815318" lon="35.2378135"><time>2020-03-09T21:59:00.000Z</time><name></name><desc>מועדון נוער אור ישראלי</desc></trkpt>
+        <trkpt lat="32.6815318" lon="35.2378135"><time>2020-03-09T22:00:00.000Z</time><name></name><desc>מועדון נוער אור ישראלי</desc></trkpt>
+        <trkpt lat="32.6815318" lon="35.2378135"><time>2020-03-10T00:00:00.000Z</time><name></name><desc>מועדון נוער אור ישראלי</desc></trkpt>
+        <trkpt lat="32.6771198" lon="35.2387855"><time>2020-03-10T14:00:00.000Z</time><name></name><desc>מועדון נוער "אור ישראלי" מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6771198" lon="35.2387855"><time>2020-03-10T19:00:00.000Z</time><name></name><desc>מועדון נוער "אור ישראלי" מגדל העמק</desc></trkpt>
+        <trkpt lat="32.606796" lon="35.2912687"><time>2020-03-11T08:00:00.000Z</time><name></name><desc>מס הכנסה עפולה</desc></trkpt>
+        <trkpt lat="32.606796" lon="35.2912687"><time>2020-03-11T09:00:00.000Z</time><name></name><desc>מס הכנסה עפולה</desc></trkpt>
+        <trkpt lat="32.674337" lon="35.242389"><time>2020-03-12T06:30:00.000Z</time><name></name><desc>בית כנסת חב"ד מגדל העמק</desc></trkpt>
+        <trkpt lat="32.674337" lon="35.242389"><time>2020-03-12T07:00:00.000Z</time><name></name><desc>בית כנסת חב"ד מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6803306" lon="35.2342582"><time>2020-03-14T06:30:00.000Z</time><name></name><desc>בית כנסת מעלות ניסים מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6803306" lon="35.2342582"><time>2020-03-14T07:30:00.000Z</time><name></name><desc>בית כנסת מעלות ניסים מגדל העמק</desc></trkpt>
+        <trkpt lat="32.675096" lon="35.249885"><time>2020-03-15T08:00:00.000Z</time><name></name><desc>מרפאה של קופ"ח כללית נוף העמק, מגדל העמק</desc></trkpt>
+        <trkpt lat="32.675096" lon="35.249885"><time>2020-03-15T09:00:00.000Z</time><name></name><desc>מרפאה של קופ"ח כללית נוף העמק, מגדל העמק</desc></trkpt>
+        <trkpt lat="32.6778114" lon="35.2417497"><time>2020-03-15T18:30:00.000Z</time><name></name><desc>שארה מוקד רפואה דחופה במגדל העמק</desc></trkpt>
+        <trkpt lat="32.6778114" lon="35.2417497"><time>2020-03-15T18:40:00.000Z</time><name></name><desc>שארה מוקד רפואה דחופה במגדל העמק</desc></trkpt>
+        <trkpt lat="31.7966962" lon="35.1464704"><time>2020-03-07T19:30:00.000Z</time><name></name><desc>"פוקס הום" בקניון "רמי לוי" מבשרת ציון</desc></trkpt>
+        <trkpt lat="31.7966962" lon="35.1464704"><time>2020-03-07T20:00:00.000Z</time><name></name><desc>"פוקס הום" בקניון "רמי לוי" מבשרת ציון</desc></trkpt>
+        <trkpt lat="31.7858114" lon="35.188369"><time>2020-03-08T06:00:00.000Z</time><name></name><desc>בית הספר "דרכי שרה" רחוב בית הדפוס ירושלים</desc></trkpt>
+        <trkpt lat="31.7858114" lon="35.188369"><time>2020-03-08T12:00:00.000Z</time><name></name><desc>בית הספר "דרכי שרה" רחוב בית הדפוס ירושלים</desc></trkpt>
+        <trkpt lat="31.7891868" lon="35.1759442"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>הופעה באודיטוריום "נווה ירושלים" רחוב בית יצחק 1 ירושלים</desc></trkpt>
+        <trkpt lat="31.7891868" lon="35.1759442"><time>2020-03-08T21:00:00.000Z</time><name></name><desc>הופעה באודיטוריום "נווה ירושלים" רחוב בית יצחק 1 ירושלים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-09T16:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-09T17:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-10T08:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" מניין נשים רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-10T09:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" מניין נשים רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.7858114" lon="35.188369"><time>2020-03-12T06:00:00.000Z</time><name></name><desc>בית הספר "דרכי שרה" רחוב בית הדפוס ירושלים</desc></trkpt>
+        <trkpt lat="31.7858114" lon="35.188369"><time>2020-03-12T12:00:00.000Z</time><name></name><desc>בית הספר "דרכי שרה" רחוב בית הדפוס ירושלים</desc></trkpt>
+        <trkpt lat="31.7966962" lon="35.1464704"><time>2020-03-07T19:30:00.000Z</time><name></name><desc>"פוקס הום" בקניון "רמי לוי" מבשרת ציון</desc></trkpt>
+        <trkpt lat="31.7966962" lon="35.1464704"><time>2020-03-07T20:00:00.000Z</time><name></name><desc>"פוקס הום" בקניון "רמי לוי" מבשרת ציון</desc></trkpt>
+        <trkpt lat="31.7858114" lon="35.188369"><time>2020-03-08T06:00:00.000Z</time><name></name><desc>בית הספר "דרכי שרה" רחוב בית הדפוס ירושלים</desc></trkpt>
+        <trkpt lat="31.7858114" lon="35.188369"><time>2020-03-08T12:00:00.000Z</time><name></name><desc>בית הספר "דרכי שרה" רחוב בית הדפוס ירושלים</desc></trkpt>
+        <trkpt lat="31.7891868" lon="35.1759442"><time>2020-03-08T16:00:00.000Z</time><name></name><desc>הופעה באודיטוריום "נווה ירושלים" רחוב בית יצחק 1 ירושלים</desc></trkpt>
+        <trkpt lat="31.7891868" lon="35.1759442"><time>2020-03-08T21:00:00.000Z</time><name></name><desc>הופעה באודיטוריום "נווה ירושלים" רחוב בית יצחק 1 ירושלים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-09T16:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-09T17:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-10T08:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" מניין נשים רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-10T09:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" מניין נשים רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.7858114" lon="35.188369"><time>2020-03-12T06:00:00.000Z</time><name></name><desc>בית הספר "דרכי שרה" רחוב בית הדפוס ירושלים</desc></trkpt>
+        <trkpt lat="31.7858114" lon="35.188369"><time>2020-03-12T12:00:00.000Z</time><name></name><desc>בית הספר "דרכי שרה" רחוב בית הדפוס ירושלים</desc></trkpt>
+        <trkpt lat="31.7880423" lon="35.1763226"><time>2020-03-08T06:00:00.000Z</time><name></name><desc>תלמוד תורה "דיברות משה" רחוב קצנלבוגן 83 ירושלים</desc></trkpt>
+        <trkpt lat="31.7880423" lon="35.1763226"><time>2020-03-08T13:00:00.000Z</time><name></name><desc>תלמוד תורה "דיברות משה" רחוב קצנלבוגן 83 ירושלים</desc></trkpt>
+        <trkpt lat="31.7880423" lon="35.1763226"><time>2020-03-09T06:00:00.000Z</time><name></name><desc>תלמוד תורה "דיברות משה" רחוב קצנלבוגן 83 ירושלים</desc></trkpt>
+        <trkpt lat="31.7880423" lon="35.1763226"><time>2020-03-09T13:00:00.000Z</time><name></name><desc>תלמוד תורה "דיברות משה" רחוב קצנלבוגן 83 ירושלים</desc></trkpt>
+        <trkpt lat="31.7880423" lon="35.1763226"><time>2020-03-09T06:00:00.000Z</time><name></name><desc>תלמוד תורה "דיברות משה" רחוב קצנלבוגן 83 ירושלים</desc></trkpt>
+        <trkpt lat="31.7880423" lon="35.1763226"><time>2020-03-09T13:00:00.000Z</time><name></name><desc>תלמוד תורה "דיברות משה" רחוב קצנלבוגן 83 ירושלים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-09T16:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-09T17:15:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-10T06:00:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-10T07:30:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.7880423" lon="35.1763226"><time>2020-03-12T06:00:00.000Z</time><name></name><desc>תלמוד תורה "דיברות משה" רחוב קצנלבוגן 83 ירושלים</desc></trkpt>
+        <trkpt lat="31.7880423" lon="35.1763226"><time>2020-03-12T13:00:00.000Z</time><name></name><desc>תלמוד תורה "דיברות משה" רחוב קצנלבוגן 83 ירושלים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-13T15:00:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-13T16:30:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-14T14:00:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="31.8035901" lon="35.1032978"><time>2020-03-14T16:00:00.000Z</time><name></name><desc>בית הכנסת "דרכי אבותינו" רחוב גורדון 1 קריית יערים</desc></trkpt>
+        <trkpt lat="32.0783695" lon="34.835593"><time>2020-03-06T15:30:00.000Z</time><name></name><desc>בית הכנסת "היכל הברכה", רחוב דבורה הנביאה 14, בני ברק, בין השעות 17:30-19:00</desc></trkpt>
+        <trkpt lat="32.0783695" lon="34.835593"><time>2020-03-06T17:00:00.000Z</time><name></name><desc>בית הכנסת "היכל הברכה", רחוב דבורה הנביאה 14, בני ברק, בין השעות 17:30-19:00</desc></trkpt>
+        <trkpt lat="32.0836284" lon="34.8333664"><time>2020-03-07T06:30:00.000Z</time><name></name><desc>בית הכנסת "הלפרין", רחוב סימטת האר" 3, בני ברק</desc></trkpt>
+        <trkpt lat="32.0836284" lon="34.8333664"><time>2020-03-07T09:00:00.000Z</time><name></name><desc>בית הכנסת "הלפרין", רחוב סימטת האר" 3, בני ברק</desc></trkpt>
+        <trkpt lat="32.0760735" lon="34.8385763"><time>2020-03-11T16:00:00.000Z</time><name></name><desc>בית הכנסת "ויז'ניץ ", רחוב תורת החיים 8, בני ברק</desc></trkpt>
+        <trkpt lat="32.0760735" lon="34.8385763"><time>2020-03-11T17:00:00.000Z</time><name></name><desc>בית הכנסת "ויז'ניץ ", רחוב תורת החיים 8, בני ברק</desc></trkpt>
+        <trkpt lat="32.074059" lon="34.8404918"><time>2020-03-12T15:50:00.000Z</time><name></name><desc>בית הרופאים , רחוב חזון איש 56, בני ברק</desc></trkpt>
+        <trkpt lat="32.074059" lon="34.8404918"><time>2020-03-12T17:00:00.000Z</time><name></name><desc>בית הרופאים , רחוב חזון איש 56, בני ברק</desc></trkpt>
+        <trkpt lat="32.0860237" lon="34.8303992"><time>2020-03-12T17:30:00.000Z</time><name></name><desc>מוקד מכבי , רחוב רבי עקיבא 84, בני ברק</desc></trkpt>
+        <trkpt lat="32.0860237" lon="34.8303992"><time>2020-03-12T19:00:00.000Z</time><name></name><desc>מוקד מכבי , רחוב רבי עקיבא 84, בני ברק</desc></trkpt>
+    </trkseg>
+  </trk>
+  <bounds minLat="30.6113989" minLon="34.5872069" maxLat="33.132583" maxLon="35.7795795" />
+</gpx>
