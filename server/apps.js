@@ -5,6 +5,8 @@
 const debug = require('debug')('corona-tracker:apps');
 const importers = require('./importers');
 const exporters = require('./exporters');
+const { oauthGetCode, oauthGetToken } = require('./oauth');
+const { uploadToStrava } = require('./exporters/strava'); //TODO-STRAVA this will be an exporter (probably)
 
 function sendIt(res, mimetype, exported) {
   if (mimetype === 'application/json') { // exported should be an object
@@ -53,6 +55,58 @@ function appDataset(req, res) {
     });
   }
 }
-exports = module.exports = {
-  appDataset,
-};
+
+/*
+ * This is an upload authenticated via OAUTH so it has 3 phases to it
+ * A:             request code
+ * B: ?code=xxx   request token (json)
+ * C: have token  do the (upload) function.
+ */
+// TODO-STRAVA hook the sending to a file selected from url - i.e. output=strava
+
+const fs = require('fs');
+
+function appUploadToStrava(req, res) {
+  // See https://developers.strava.com/docs/reference/#api-Uploads-createUpload
+  try {
+    const config = {
+      name: 'Strava', // For debug messages etc
+      domainOauthUrl: 'www.strava.com/oauth',
+      clientId: '44623',
+      clientSecret: '2b8f90e1995ea9699af363e140f5aeffb5f17939',
+      external_id: 'upload_from_api', // Maybe should be random, or supplied in req.query
+      protoHostPort: 'http://localhost:5000', // Fiendishly hard to get in express; TODO-STRAVA change to cs19.mitra.biz
+    };
+    if (!req.query.code) {
+      // Stage 1 - get authorization by human and then get code
+      oauthGetCode(req, res, config);
+    } else {
+      // Stage 2 - get token
+      oauthGetToken(req, res, config, (err, authorization) => { // Error handled inside oauthGetToken
+        if (!err) {
+          // Stage 3 - have token
+          //Used for testing: debug("File uploading %O", fs.statSync('./exporters/strava/israel.gpx'));
+          // TODO STRAVA - get the data from COmmon, convert to GPX put in buffer and add to form
+          // formdata.append('file', req.body) // See http://expressjs.com/en/4x/api.html#req will need middleware to get uploaded file, but maybe handle elsewhere
+          uploadToStrava({
+            name: config.name,
+            authorization,
+            str: fs.createReadStream('./exporters/strava/israel.gpx')
+          }, (err, obj) => {
+            debug('%s Upload returned %o', config.name, err || obj);
+            if (err) {
+              res.status(err.response.status)
+                .send(`Strava upload: ${err.response.statusText}`)
+            } else {
+              res.status(200)
+                .send(`Strava Upload activity id: ${obj.id_str}`);
+            }
+          });
+        }
+      });
+    }
+  } catch(err) {
+    debug("Uncaught error in Strava upload %O", err)
+  }
+}
+exports = module.exports = { appDataset, appUploadToStrava };

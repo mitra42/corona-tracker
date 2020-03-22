@@ -26,5 +26,7 @@ function addressFromCommon(obj, sep) {
   const { place } = obj;
   return [place.address_name, place.type, place.address, place.address_english, place.city, place.province].filter(s => !!s).join(sep);
 }
+
 exports = module.exports = {
   floatFromCommonLat, floatFromCommonLng, isoTimeFromCommonTime, longIntFromCommonLat, longIntFromCommonLng, timeMS, addressFromCommon };
+

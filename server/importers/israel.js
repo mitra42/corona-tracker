@@ -5,7 +5,7 @@
   If it breaks, we are in touch with them.
 */
 const debug = require('debug')('corona-tracker:importers-israel');
-const DwebTransports = require('@internetarchive/dweb-transports');
+const { httptools } = require('@internetarchive/dweb-transports');
 const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
 
 const mimetype = 'application/json';
@@ -54,7 +54,7 @@ const config = {
  * @param cb(err, json obj in Israel's format
  */
 function fetchDataFromRemoteServer(cb) {
-  DwebTransports.httptools.GET(config.dataUrl, {}, (err, res) => {
+  httptools.GET(config.dataUrl, {}, (err, res) => {
     if (err) {
       debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
       cb(err);

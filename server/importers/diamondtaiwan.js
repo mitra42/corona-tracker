@@ -10,7 +10,7 @@
 */
 
 const debug = require('debug')('corona-tracker:importers-diamondtaiwan');
-const DwebTransports = require('@internetarchive/dweb-transports');
+const { httptools } = require('@internetarchive/dweb-transports');
 const { boundingBoxFromCommonArray, commonLatLngFromFloat, commonTimeFromMS } = require('./utils');
 
 const kmlParser = require('./diamond/parsers.js');
@@ -59,7 +59,7 @@ const config = {
  * @param cb(err, json obj in Xxx's format
  */
 function fetchDataFromRemoteServer(cb) {
-  DwebTransports.httptools.GET(config.dataUrl, {}, (err, res) => {
+  httptools.GET(config.dataUrl, {}, (err, res) => {
     if (err) {
       debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
       cb(err);

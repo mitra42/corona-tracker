@@ -11,7 +11,7 @@
   If it breaks, we are in touch with them.
 */
 const debug = require('debug')('corona-tracker:importers-korea2');
-const DwebTransports = require('@internetarchive/dweb-transports');
+const { httptools } = require('@internetarchive/dweb-transports');
 const csvParse = require('csv-parse/lib/sync');
 const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
 // Utilities - candidates for importers/utils.js
@@ -57,7 +57,7 @@ const config = {
  * @param cb(err, json obj in Korea2's format
  */
 function fetchDataFromRemoteServer(cb) {
-  DwebTransports.httptools.GET(config.dataUrl, {}, (err, inputText) => {
+  httptools.GET(config.dataUrl, {}, (err, inputText) => {
     if (err) {
       debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
       cb(err);

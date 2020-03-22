@@ -9,7 +9,7 @@
   If it breaks, we are in touch with them.
 */
 const debug = require('debug')('corona-tracker:importers-xxx');
-const DwebTransports = require('@internetarchive/dweb-transports');
+const { httptools } = require('@internetarchive/dweb-transports');
 const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
 
 // Utilities - candidates for importers/utils.js
@@ -54,7 +54,7 @@ const config = {
  * @param cb(err, json obj in Xxx's format
  */
 function fetchDataFromRemoteServer(cb) {
-  DwebTransports.httptools.GET(config.dataUrl, {}, (err, res) => {
+  httptools.GET(config.dataUrl, {}, (err, res) => {
     if (err) {
       debug('%s.fetchDataFromRemoteServer failed %s', siteShortName, err.message);
       cb(err);

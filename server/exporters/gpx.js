@@ -37,7 +37,7 @@ function convertCommonToExportFormat(obj, { dataset } = {}) {
 <gpx version="1.0">
   <name>${obj.meta.source.name}</name>
   <url>https://c19.mitra.biz/data/${dataset}?output=gpx</url>
-  <ulrname>Covid Tracker: ${obj.meta.source.name}</urlname>
+  <urlname>Covid Tracker: ${obj.meta.source.name}</urlname>
   <time>${isoTimeFromCommonTime(obj.meta.source.retrieved)}</time>
   <keywords>Covid19</keywords>
   <trk>

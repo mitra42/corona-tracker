@@ -9,7 +9,7 @@
   If it breaks, we are in touch with them.
 */
 //const debug = require('debug')('corona-tracker:importers-korea1');
-const DwebTransports = require('@internetarchive/dweb-transports');
+const { httptools } = require('@internetarchive/dweb-transports');
 const { boundingBoxFromCommonArray, commonLatLngFromFloatString, commonTimeFromMS } = require('./utils');
 // TODO - this is temporary
 const inp = require('./korea1/coronamap.site-input');
@@ -57,7 +57,7 @@ const config = {
  */
 function fetchDataFromRemoteServer(cb) {
   /* TODO we need the data in json, but currently only available in javascript so including via the require above
-  DwebTransports.httptools.GET(config.dataUrl, {}, (err, res) => {
+  httptools.GET(config.dataUrl, {}, (err, res) => {
     if (err) {
       debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
       cb(err);

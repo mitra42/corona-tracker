@@ -9,7 +9,7 @@ const express = require('express'); // http://expressjs.com/
 const morgan = require('morgan'); // https://www.npmjs.com/package/morgan
 const getopts = require('getopts');
 // TODO-CT const { appContent, appList, appSelect } = require('./sqllib.js'); // Not currently used in UI
-const { appDataset } = require('./apps');
+const { appDataset, appUploadToStrava } = require('./apps');
 
 const optsInt = ["port"];
 const opts = getopts(process.argv.slice(2), {
@@ -35,6 +35,8 @@ const app = express();
 
 app.use(morgan(config.morgan)); // TODO write to a file then recycle that log file (see https://www.npmjs.com/package/morgan ) (supervisor does this if its used)
 app.use(express.json());
+
+// Relating to the front end UI display
 app.get('/', (req, res) => res.sendFile('client.html',
   { root: config.static },
   err => { if (err) { res.status(404).send(err.message); } }));
@@ -46,7 +48,10 @@ app.get('/languages/:file', (req, res) => res.sendFile(req.params.file,
   err => { if (err) { res.status(404).send(err.message); } }));
 
 // Data conversions
-app.get('/data/:dataset', appDataset)
+app.get('/data/:dataset', appDataset);
+
+// Experimental
+app.get('/sandbox/uploadtostrava', appUploadToStrava);
 
 // Feel free to add more sandbox lines - move them once tested
 
