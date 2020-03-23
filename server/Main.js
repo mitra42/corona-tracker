@@ -9,7 +9,7 @@ const express = require('express'); // http://expressjs.com/
 const morgan = require('morgan'); // https://www.npmjs.com/package/morgan
 const getopts = require('getopts');
 // TODO-CT const { appContent, appList, appSelect } = require('./sqllib.js'); // Not currently used in UI
-const { appDataset, appUploadToStrava } = require('./apps');
+const { appDataset } = require('./apps');
 
 const optsInt = ["port"];
 const opts = getopts(process.argv.slice(2), {
@@ -51,7 +51,6 @@ app.get('/languages/:file', (req, res) => res.sendFile(req.params.file,
 app.get('/data/:dataset', appDataset);
 
 // Experimental
-app.get('/sandbox/uploadtostrava', appUploadToStrava);
 
 // Feel free to add more sandbox lines - move them once tested
 

@@ -70,4 +70,4 @@ function appDataset(req, res) {
   }
 }
 
-exports = module.exports = { appDataset, appUploadToStrava };
+exports = module.exports = { appDataset };
