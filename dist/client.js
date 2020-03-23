@@ -86,256 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./languages/Languages.jsx":
-/*!*********************************!*\
-  !*** ./languages/Languages.jsx ***!
-  \*********************************/
-/*! exports provided: languages, languageConfig, currentISO, getLanguage, I18nSpan, setLanguage, I18n, I18nStr, I18nIcon */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "languages", function() { return languages; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "languageConfig", function() { return languageConfig; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "currentISO", function() { return currentISO; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLanguage", function() { return getLanguage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nSpan", function() { return I18nSpan; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLanguage", function() { return setLanguage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18n", function() { return I18n; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nStr", function() { return I18nStr; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nIcon", function() { return I18nIcon; });
-/* harmony import */ var async_waterfall__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! async/waterfall */ "./node_modules/async/waterfall.js");
-/* harmony import */ var async_waterfall__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(async_waterfall__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
-
-
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('corona-tracker:languages');
-
-const DwebTransports = __webpack_require__(/*! @internetarchive/dweb-transports */ "./node_modules/@internetarchive/dweb-transports/index.js"); // utilities - also duplicated in dweb-archivecontroller/Util and ia-components/util
-
-
-function ObjectFromEntries(arr) {
-  return arr.reduce((res, kv) => (res[kv[0]] = kv[1], res), {});
-} // [[ k0, v0],[k1,v1] => {k0:v0, k1:v1}
-
-
-function ObjectFilter(obj, f) {
-  return ObjectFromEntries(Object.entries(obj).filter(kv => f(kv[0], kv[1])));
-}
-/*
-  Implements a first cut at internationalization (I18n) with language files in json, built by languagebuild.
- */
-
-
-const languages = {}; // SEE-OTHER-ADDLANGUAGE
-
-const languageConfig = {
-  // Note the flags are dragged out of the Mac Emoji and Symbol viewer
-  en: {
-    inEnglish: 'English',
-    inLocal: 'English',
-    flag: '🇬🇧'
-  },
-  fr: {
-    inEnglish: 'French',
-    inLocal: 'Française',
-    flag: '🇫🇷'
-  }
-  /*
-  de: { inEnglish: 'German', inLocal: 'Deutsche ', flag: '🇩🇪' },
-  es: { inEnglish: 'Spanish', inLocal: 'Española', flag: '🇪🇸' },
-  hi: { inEnglish: 'Hindi', inLocal: 'हिंदी', flag: '🇮🇳' },
-  id: { inEnglish: 'Indonesian', inLocal: 'Bahasa', flag: '🇮🇩' },
-  it: { inEnglish: 'Italian', inLocal: 'Italiana', flag: '🇮🇹' },
-  ja: { inEnglish: 'Japanese', inLocal: '日本語', flag: '🇯🇵' },
-  mr: { inEnglish: 'Marathi', inLocal: 'मराठी', flag: '🇮🇳' },
-  my: { inEnglish: 'Myanmar', inLocal: 'မြန်မာ', flag: '🇲🇲' },
-  pt: { inEnglish: 'Portugese', inLocal: 'Portuguesa', flag: '🇵🇹' },
-   */
-
-};
-/**
- *
- * @param iso if defined will set global.language to this value
- * @returns {*} new state of global.language
- */
-
-function currentISO(iso = undefined) {
-  // Note where we store this might change, so use this if want to set or get the code
-  if (iso) {
-    global.language = iso;
-  }
-
-  return global.language;
-}
-
-if (!currentISO()) currentISO('en');
-/**
- * Fetch a supported language
- * @param lang
- * @param cb(err)
- */
-
-function getLanguage(lang, cb) {
-  if (!languageConfig[lang]) {
-    cb(new Error('Do not support language: ' + lang));
-  } else if (languages[lang]) {
-    cb(null); // Already gotten
-  } else {
-    const url = ['/languages', languageConfig[lang].inEnglish.toLowerCase() + '.json'].join('/');
-    DwebTransports.httptools.p_GET(url, {}, (err, languageObj) => {
-      if (!err) languages[lang] = languageObj;
-      cb(err);
-    });
-  }
-}
-/**
- * Set to a supported language, displaying messages on UI and fetching file if needed
- * @param lang
- */
-
-
-function setLanguage(lang) {
-  // TODO-I18N const olditem = DwebArchive.page.state.item; // Should be an item, not a message
-  // Fetch the language file, and while doing so tell the user we are doing so in english and new languages
-  DwebArchive.page.setState({
-    message: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(I18nSpan, {
-      en: "Changing language from"
-    }, ' ', languageConfig[currentISO()].inEnglish)
-  });
-  async_waterfall__WEBPACK_IMPORTED_MODULE_0___default()([cb => {
-    if (languages[lang]) {
-      setTimeout(cb, 300);
-    } else {
-      // TODO-I18N replace this with appropriate code for corona-tracker
-
-      /*
-        DwebArchive.page.setState({
-          message: <I18nSpan en="Fetching language file for">
-            {' '}
-            {languageConfig[lang].inEnglish}
-          </I18nSpan>
-        });
-       */
-      getLanguage(lang, cb);
-    }
-  }, cb => {
-    // TODO-I18N replace this with appropriate code for corona-tracker
-
-    /*
-    DwebArchive.page.setState({
-      message: <I18nSpan en="Changing language to">
-        {' '}
-        {languageConfig[lang].inEnglish}
-      </I18nSpan>
-    });
-    */
-    setTimeout(cb, 300);
-  }, cb => {
-    currentISO(lang); // TODO-I18N replace this with appropriate code for corona-tracker
-    // DwebArchive.page.setState({ message: <I18nSpan en="Changing language to">{languageConfig[lang].inLocal}</I18nSpan> });
-
-    cb(); // No delay here as will also delay after err message
-  }], err => {
-    if (err) {
-      // If fails, tell them
-      currentISO('en'); // TODO-I18N replace this with appropriate code for corona-tracker
-
-      /*
-      DwebArchive.page.setState({ message: <I18nSpan en="Failed to set language to">{languageConfig[lang].inEnglish}</I18nSpan> });
-       */
-    } // TODO-I18N replace this with appropriate code for corona-tracker
-    // In both cases wait a short while then redisplay old page
-    // setTimeout(() => DwebArchive.page.setState({ item: olditem, message: undefined }), 1000);
-
-  });
-}
-
-function I18n(messageEnglish) {
-  let l = currentISO();
-  let s = languages[currentISO()][messageEnglish];
-
-  if (!s) {
-    l = 'en';
-    s = languages.en[messageEnglish];
-    debug('%s missing %s', currentISO(), messageEnglish);
-
-    if (!s) {
-      s = messageEnglish; // Render key, its probably right
-
-      debug('en missing %s', messageEnglish);
-    }
-  }
-
-  return {
-    s,
-    l
-  };
-}
-
-function I18nStr(messageEnglish) {
-  return I18n(messageEnglish).s;
-}
-
-class I18nSpan extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
-  /**
-   * <I18nSpan en="Yes" ... />
-   */
-  render() {
-    const {
-      s,
-      l
-    } = I18n(this.props.en);
-    const spanProps = ObjectFilter(this.props, (k, v) => k !== 'en');
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", _extends({
-      lang: l
-    }, spanProps), s, this.props.children);
-  }
-
-}
-
-class I18nIcon extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
-  /**
-   * <I18nIcon
-   *    className="iconochive-xxxx"
-   *    style={}
-   *    iconref=function to use as ref for icon - this is used in NavWebDiv to set a hideable element in the search
-   *    en=ENSTRING
-   *    xs=ENSTRING
-   * >
-   *    optional children of span (already translated) and sr-only
-   * </I18nIcon>
-   */
-  render() {
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-      className: this.props.className,
-      style: this.props.style,
-      ref: this.props.iconref,
-      "aria-hidden": "true"
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(I18nSpan, {
-      className: "sr-only",
-      en: this.props.en
-    }, this.props.children), !this.props.xs ? null : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, "\xA0", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(I18nSpan, {
-      className: "hidden-xs-span",
-      en: this.props.xs
-    })));
-  }
-
-}
-
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports sync recursive":
-/*!************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports sync ***!
-  \************************************************************/
+/***/ "../dweb-transports sync recursive":
+/*!*******************************!*\
+  !*** ../dweb-transports sync ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -347,14 +101,14 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = "./node_modules/@internetarchive/dweb-transports sync recursive";
+webpackEmptyContext.id = "../dweb-transports sync recursive";
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/Errors.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/Errors.js ***!
-  \*****************************************************************/
+/***/ "../dweb-transports/Errors.js":
+/*!************************************!*\
+  !*** ../dweb-transports/Errors.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -412,29 +166,29 @@ exports = module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/Transport.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/Transport.js ***!
-  \********************************************************************/
+/***/ "../dweb-transports/Transport.js":
+/*!***************************************!*\
+  !*** ../dweb-transports/Transport.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* eslint-disable camelcase, indent */
-const waterfall = __webpack_require__(/*! async/waterfall */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/waterfall.js");
+const waterfall = __webpack_require__(/*! async/waterfall */ "../dweb-transports/node_modules/async/waterfall.js");
 
 const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const stream = __webpack_require__(/*! readable-stream */ "./node_modules/readable-stream/readable-browser.js");
+const stream = __webpack_require__(/*! readable-stream */ "../dweb-transports/node_modules/readable-stream/readable-browser.js");
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:transport');
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:transport');
 
 const {
   IntentionallyUnimplementedError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js");
+const Transports = __webpack_require__(/*! ./Transports */ "../dweb-transports/Transports.js");
 
 function delay(ms, val) {
   return new Promise(resolve => {
@@ -472,18 +226,18 @@ class Transport {
         debug('Requiring %s', r);
         /* eslint-disable-next-line import/no-dynamic-require, global-require */
 
-        __webpack_require__("./node_modules/@internetarchive/dweb-transports sync recursive")(r);
+        __webpack_require__("../dweb-transports sync recursive")(r);
       });
     } else if (typeof requires === "object") {
       Object.entries(requires).map(kv => {
         debug("Requiring %s %s", t, s);
         /* eslint-disable-next-line import/no-dynamic-require, global-require */
 
-        global[kv[0]] = __webpack_require__("./node_modules/@internetarchive/dweb-transports sync recursive")(kv[1]);
+        global[kv[0]] = __webpack_require__("../dweb-transports sync recursive")(kv[1]);
       });
     } else if (typeof requires === "string") {
       /* eslint-disable-next-line import/no-dynamic-require, global-require */
-      __webpack_require__("./node_modules/@internetarchive/dweb-transports sync recursive")(requires);
+      __webpack_require__("../dweb-transports sync recursive")(requires);
     }
   }
 
@@ -1017,35 +771,35 @@ Transport.STATUS_PAUSED = 4; // It was launched, probably connected, but now pau
 
 Transport.STATUSTEXT = ["Connected", "Failed", "Starting", "Loaded", "Paused"];
 exports = module.exports = Transport;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../corona-tracker/node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/TransportFLUENCE.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/TransportFLUENCE.js ***!
-  \***************************************************************************/
+/***/ "../dweb-transports/TransportFLUENCE.js":
+/*!**********************************************!*\
+  !*** ../dweb-transports/TransportFLUENCE.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const Transport = __webpack_require__(/*! ./Transport */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport */ "../dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "../dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
 const {
   TransportError,
   CodingError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); //const fluence = require('fluence');
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../dweb-transports/node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); //const fluence = require('fluence');
 
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:fluence');
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:fluence');
 
 const defaultOptions = {
   nodeUrl: 'https://ia-redis.fluence.one',
@@ -1349,10 +1103,10 @@ exports = module.exports = TransportFLUENCE;
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/TransportGUN.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/TransportGUN.js ***!
-  \***********************************************************************/
+/***/ "../dweb-transports/TransportGUN.js":
+/*!******************************************!*\
+  !*** ../dweb-transports/TransportGUN.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1388,25 +1142,25 @@ require('gun/lib/store.js');
 require('gun/lib/rindexed.js');
 */
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:gun');
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:gun');
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); // Other Dweb modules
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../dweb-transports/node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); // Other Dweb modules
 
 
 const {
   TransportError,
   CodingError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "../dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "../dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const utils = __webpack_require__(/*! ./utils */ "./node_modules/@internetarchive/dweb-transports/utils.js"); // Utility functions
+const utils = __webpack_require__(/*! ./utils */ "../dweb-transports/utils.js"); // Utility functions
 // Utility packages (ours) And one-liners
 // unused currently: function delay(ms, val) { return new Promise(resolve => {setTimeout(() => { resolve(val); },ms)})}
 
@@ -1809,36 +1563,36 @@ Transports._transportclasses.GUN = TransportGUN; // Defines global.Gun
 
 TransportGUN.requires = TransportGUN.scripts = ['gun/gun.js', 'gun/lib/path.js', 'gun/lib/radix.js', 'gun/lib/radisk.js', 'gun/lib/store.js', 'gun/lib/rindexed.js'];
 exports = module.exports = TransportGUN;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../corona-tracker/node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/TransportHASH.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/TransportHASH.js ***!
-  \************************************************************************/
+/***/ "../dweb-transports/TransportHASH.js":
+/*!*******************************************!*\
+  !*** ../dweb-transports/TransportHASH.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Transport = __webpack_require__(/*! ./Transport */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport */ "../dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "../dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const httptools = __webpack_require__(/*! ./httptools */ "./node_modules/@internetarchive/dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
+const httptools = __webpack_require__(/*! ./httptools */ "../dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
 
 
 const {
   CodingError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js");
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js");
 
 const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:hash');
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:hash');
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs");
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../dweb-transports/node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs");
 
 defaultHashOptions = {
   urlbase: 'https://dweb.me' // Note this was running dweb-gateway, but wont be much longer, this will need reimplementing if going to be used
@@ -2235,27 +1989,27 @@ exports = module.exports = TransportHASH;
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/TransportHTTP.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/TransportHTTP.js ***!
-  \************************************************************************/
+/***/ "../dweb-transports/TransportHTTP.js":
+/*!*******************************************!*\
+  !*** ../dweb-transports/TransportHTTP.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Transport = __webpack_require__(/*! ./Transport */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport */ "../dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "../dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const httptools = __webpack_require__(/*! ./httptools */ "./node_modules/@internetarchive/dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
+const httptools = __webpack_require__(/*! ./httptools */ "../dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
 
 
 const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const stream = __webpack_require__(/*! readable-stream */ "./node_modules/readable-stream/readable-browser.js");
+const stream = __webpack_require__(/*! readable-stream */ "../dweb-transports/node_modules/readable-stream/readable-browser.js");
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:http'); //TODO-SPLIT pull /arc out of here, then dont need by default to hearbeat to dweb.me
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:http'); //TODO-SPLIT pull /arc out of here, then dont need by default to hearbeat to dweb.me
 
 
 defaulthttpoptions = {
@@ -2507,10 +2261,10 @@ exports = module.exports = TransportHTTP;
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/TransportIPFS.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/TransportIPFS.js ***!
-  \************************************************************************/
+/***/ "../dweb-transports/TransportIPFS.js":
+/*!*******************************************!*\
+  !*** ../dweb-transports/TransportIPFS.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2526,10 +2280,10 @@ See https://github.com/ipfs/js-ipfs but note its often out of date relative to t
 // Library packages other than IPFS
 const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:ipfs'); // Local packages
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:ipfs'); // Local packages
 
 
-const httptools = __webpack_require__(/*! ./httptools */ "./node_modules/@internetarchive/dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
+const httptools = __webpack_require__(/*! ./httptools */ "../dweb-transports/httptools.js"); // Expose some of the httptools so that IPFS can use it as a backup
 // IPFS components
 
 
@@ -2545,16 +2299,16 @@ let IPFS; // TODO-SPLIT move this line lower when fix structure
 const {
   CodingError,
   TransportError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "../dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "../dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const utils = __webpack_require__(/*! ./utils */ "./node_modules/@internetarchive/dweb-transports/utils.js"); // Utility functions
+const utils = __webpack_require__(/*! ./utils */ "../dweb-transports/utils.js"); // Utility functions
 
 
 const defaultoptions = {
@@ -3114,14 +2868,14 @@ TransportIPFS.requires = ['ipfs', 'ipfs-http-client'];
 Transports._transportclasses["IPFS"] = TransportIPFS; // noinspection JSUndefinedPropertyAssignment
 
 exports = module.exports = TransportIPFS;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../corona-tracker/node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../corona-tracker/node_modules/buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/TransportWEBTORRENT.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/TransportWEBTORRENT.js ***!
-  \******************************************************************************/
+/***/ "../dweb-transports/TransportWEBTORRENT.js":
+/*!*************************************************!*\
+  !*** ../dweb-transports/TransportWEBTORRENT.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3143,19 +2897,19 @@ Y Lists have listeners and generate events - see docs at ...
 // const Url = require('url');
 const path = __webpack_require__(/*! path */ "./node_modules/path-browserify/index.js");
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:webtorrent'); // Other Dweb modules
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:webtorrent'); // Other Dweb modules
 
 
 const {
   CodingError,
   TransportError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "../dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "../dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
 const defaultoptions = {};
@@ -3190,7 +2944,7 @@ class TransportWEBTORRENT extends Transport {
       const wrtc = 'wrtc'; // Define string to avoid error in webpack when wrtc not installed
       // eslint-disable-next-line import/no-dynamic-require, global-require
 
-      this.wrtc = __webpack_require__("./node_modules/@internetarchive/dweb-transports sync recursive")(wrtc); // Will be undefined if not installed, used by setup0
+      this.wrtc = __webpack_require__("../dweb-transports sync recursive")(wrtc); // Will be undefined if not installed, used by setup0
     } catch (err) {
       debug('wrtc requested but not present'); // Allow to continue without wrtc
     }
@@ -3571,14 +3325,14 @@ TransportWEBTORRENT.requires = ['webtorrent']; // Note wrtc loaded in loadIntoNo
 
 exports = module.exports = TransportWEBTORRENT;
 /* Code review by Mitra 2019-12-29 */
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../corona-tracker/node_modules/buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/TransportWOLK.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/TransportWOLK.js ***!
-  \************************************************************************/
+/***/ "../dweb-transports/TransportWOLK.js":
+/*!*******************************************!*\
+  !*** ../dweb-transports/TransportWOLK.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3595,21 +3349,21 @@ if( typeof window === 'undefined' ) {
 */
 
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs");
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../dweb-transports/node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs");
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:wolk'); // Other Dweb modules
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:wolk'); // Other Dweb modules
 
 
 const {
   TransportError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "../dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "../dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
 let defaultoptions = {
@@ -3880,10 +3634,10 @@ exports = module.exports = TransportWOLK;
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/TransportYJS.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/TransportYJS.js ***!
-  \***********************************************************************/
+/***/ "../dweb-transports/TransportYJS.js":
+/*!******************************************!*\
+  !*** ../dweb-transports/TransportYJS.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3896,9 +3650,9 @@ Y Lists have listeners and generate events - see docs at ...
 */
 const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
-const debugyjs = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:yjs');
+const debugyjs = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:yjs');
 
-const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); //const Y = require('yjs/dist/y.js'); // Explicity require of dist/y.js to get around a webpack warning but causes different error in YJS
+const canonicaljson = __webpack_require__(/*! @stratumn/canonicaljson */ "../dweb-transports/node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs"); //const Y = require('yjs/dist/y.js'); // Explicity require of dist/y.js to get around a webpack warning but causes different error in YJS
 
 /* See TransportYJS.requires at bottom
 const Y = require('yjs');
@@ -3925,16 +3679,16 @@ function delay(ms, val) {
 const {
   CodingError,
   ToBeImplementedError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js"); // Standard Dweb Errors
 
 
-const Transport = __webpack_require__(/*! ./Transport.js */ "./node_modules/@internetarchive/dweb-transports/Transport.js"); // Base class for TransportXyz
+const Transport = __webpack_require__(/*! ./Transport.js */ "../dweb-transports/Transport.js"); // Base class for TransportXyz
 
 
-const Transports = __webpack_require__(/*! ./Transports */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // Manage all Transports that are loaded
+const Transports = __webpack_require__(/*! ./Transports */ "../dweb-transports/Transports.js"); // Manage all Transports that are loaded
 
 
-const utils = __webpack_require__(/*! ./utils */ "./node_modules/@internetarchive/dweb-transports/utils.js"); // Utility functions
+const utils = __webpack_require__(/*! ./utils */ "../dweb-transports/utils.js"); // Utility functions
 
 
 let defaultoptions = {
@@ -4337,10 +4091,10 @@ TransportYJS.scripts = ["yjs/dist/y.js", "y-array/dist/y-array.js", "y-memory/di
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/Transports.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/Transports.js ***!
-  \*********************************************************************/
+/***/ "../dweb-transports/Transports.js":
+/*!****************************************!*\
+  !*** ../dweb-transports/Transports.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4349,20 +4103,20 @@ const Url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
 const {
   TransportError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // const utils = require('./utils');
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js"); // const utils = require('./utils');
 
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports');
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports');
 
-const httptools = __webpack_require__(/*! ./httptools */ "./node_modules/@internetarchive/dweb-transports/httptools.js");
+const httptools = __webpack_require__(/*! ./httptools */ "../dweb-transports/httptools.js");
 
-const each = __webpack_require__(/*! async/each */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/each.js");
+const each = __webpack_require__(/*! async/each */ "../dweb-transports/node_modules/async/each.js");
 
-const detectSeries = __webpack_require__(/*! async/detectSeries */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/detectSeries.js");
+const detectSeries = __webpack_require__(/*! async/detectSeries */ "../dweb-transports/node_modules/async/detectSeries.js");
 
-const map = __webpack_require__(/*! async/map */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/map.js");
+const map = __webpack_require__(/*! async/map */ "../dweb-transports/node_modules/async/map.js");
 
-const EventTarget = __webpack_require__(/*! ./eventHandling.js */ "./node_modules/@internetarchive/dweb-transports/eventHandling.js");
+const EventTarget = __webpack_require__(/*! ./eventHandling.js */ "../dweb-transports/eventHandling.js");
 
 class Transports {
   /*
@@ -5356,10 +5110,10 @@ exports = module.exports = Transports;
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/eventHandling.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/eventHandling.js ***!
-  \************************************************************************/
+/***/ "../dweb-transports/eventHandling.js":
+/*!*******************************************!*\
+  !*** ../dweb-transports/eventHandling.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -5471,23 +5225,23 @@ exports = module.exports = EventTarget;
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/httptools.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/httptools.js ***!
-  \********************************************************************/
+/***/ "../dweb-transports/httptools.js":
+/*!***************************************!*\
+  !*** ../dweb-transports/httptools.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {const nodefetch = __webpack_require__(/*! node-fetch */ 0); // Note, were using node-fetch-npm which had a warning in webpack see https://github.com/bitinn/node-fetch/issues/421 and is intended for clients
 
 
-const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('dweb-transports:httptools');
+const debug = __webpack_require__(/*! debug */ "../dweb-transports/node_modules/debug/src/browser.js")('dweb-transports:httptools');
 
-const queue = __webpack_require__(/*! async/queue */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/queue.js");
+const queue = __webpack_require__(/*! async/queue */ "../dweb-transports/node_modules/async/queue.js");
 
 const {
   TransportError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js"); // Standard Dweb Errors
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js"); // Standard Dweb Errors
 // var fetch,Headers,Request;
 // if (typeof(Window) === "undefined") {
 
@@ -5590,40 +5344,6 @@ function queuedFetch(req, ms, count, what) {
     });
   });
 }
-/* OBSOLETE - replaced by queuedFetch
-async function loopfetch(req, ms, count, what) {
-  /-*
-  A workaround for a nasty Chrome issue which fails if there is a (cross-origin?) fetch of more than 6 files.  See other WORKAROUND-CHROME-CROSSORIGINFETCH
-  Loops at longer and longer intervals trying
-  req:        Request
-  ms:         Initial wait between polls
-  count:      Max number of times to try (0 means just once)
-  what:       Name of what retrieving for log (usually file name or URL)
-  returns Response:
-   *-/
-  let lasterr;
-  const loopguard = (typeof window !== 'undefined') && window.loopguard; // Optional global parameter, will cancel any loops if changes
-  count = count || 1; // count of 0 actually means 1
-  while (count-- && (loopguard === ((typeof window !== 'undefined') && window.loopguard))) {
-    try {
-      return await fetch(req);
-    } catch (err) {
-      lasterr = err;
-      debug('Delaying %s by %d ms because %s', what, ms, err.message);
-      await new Promise(resolve => { setTimeout(() => { resolve(); }, ms); });
-      ms = Math.floor(ms * (1 + Math.random())); // Spread out delays in case all requesting same time
-    }
-  }
-  console.warn('loopfetch of', what, 'failed');
-  if (loopguard !== ((typeof window !== 'undefined') && window.loopguard)) {
-    debug('Looping exited because of page change %s', what);
-    throw new Error('Looping exited because of page change ' + what);
-  } else {
-    throw (lasterr);
-  }
-}
-*/
-
 /**
  * Fetch a url
  *
@@ -5650,10 +5370,8 @@ async function p_httpfetch(httpurl, init, {
 
     const req = new Request(httpurl, init); // EITHER Use queuedFetch if have async/queue
 
-    const response = await queuedFetch(req, 500, retries, httpurl); // OR Use loopfetch if dont have async/queue and hitting browser Insufficient resources
-    // let response = await loopfetch(req, 500, retries, httpurl);
-    // OR use fetch for simplicity
-    // let response = await fetch(req);
+    const response = await queuedFetch(req, 500, retries, httpurl); // OR use fetch for simplicity
+    // const response = await fetch(req);
     // fetch throws (on Chrome, untested on Firefox or Node) TypeError: Failed to fetch)
     // Note response.body gets a stream and response.blob gets a blob and response.arrayBuffer gets a buffer.
 
@@ -5705,7 +5423,7 @@ async function p_httpfetch(httpurl, init, {
  */
 
 
-function _GET(httpurl, opts = {}, cb) {
+function _GET(httpurl, opts = {}) {
   /*  Locate and return a block, based on its url
       Throws TransportError if fails
       opts {
@@ -5752,7 +5470,7 @@ function GET(httpurl, opts = {}, cb) {
     try {
       cb(null, res);
     } catch (err) {
-      debug('p_GET Uncaught error in callback %O', err);
+      debug('GET Uncaught error in callback %O', err);
     }
   }).catch(err => cb(err));
 }
@@ -5765,9 +5483,9 @@ function p_GET(httpurl, opts = {}, cb) {
   }
 }
 
-function p_POST(httpurl, opts = {}, cb) {
+function _POST(httpurl, opts = {}) {
   /* Locate and return a block, based on its url
-  opts = { data, contenttype, retries }
+  opts = { data, contenttype, headers, retries }
   returns result via promise or cb(err, result)
    */
   // Throws TransportError if fails
@@ -5793,7 +5511,7 @@ function p_POST(httpurl, opts = {}, cb) {
     // https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
     // https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name for headers tat cant be set
     method: 'POST',
-    headers: {},
+    headers: opts.headers || {},
     // headers,
     // body: new Buffer(data),
     body: opts.data,
@@ -5805,56 +5523,69 @@ function p_POST(httpurl, opts = {}, cb) {
 
   };
   if (opts.contenttype) init.headers['Content-Type'] = opts.contenttype;
-  const prom = p_httpfetch(httpurl, init, {
+  return prom = p_httpfetch(httpurl, init, {
     retries
   });
+}
 
+function POST(httpurl, opts = {}, cb) {
+  _POST(httpurl, opts).then(res => {
+    try {
+      cb(null, res);
+    } catch (err) {
+      debug('POST Uncaught error in callback %O', err);
+    }
+  }).catch(err => cb(err));
+}
+
+function p_POST(httpurl, opts = {}, cb) {
   if (cb) {
-    prom.then(res => cb(null, res)).catch(err => cb(err));
+    POST(httpurl, opts, cb);
   } else {
-    return prom;
-  } // Unpromisify pattern v3
-
+    return _POST(httpurl, opts);
+  }
 }
 
 exports = module.exports = {
   p_httpfetch,
   p_GET,
   GET,
-  p_POST
+  p_POST,
+  p_POST,
+  POST
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../corona-tracker/node_modules/buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/index.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/index.js ***!
-  \****************************************************************/
+/***/ "../dweb-transports/index.js":
+/*!***********************************!*\
+  !*** ../dweb-transports/index.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Order is significant as should search earlier ones first
 // put IPFS before Webtorrent for showcasing, as Webtorrent works in some cases IPFS doesnt so that way we exercise both
-const DwebTransports = __webpack_require__(/*! ./Transports.js */ "./node_modules/@internetarchive/dweb-transports/Transports.js"); // SEE-OTHER-ADDTRANSPORT
+const DwebTransports = __webpack_require__(/*! ./Transports.js */ "../dweb-transports/Transports.js"); // SEE-OTHER-ADDTRANSPORT
 
 
-__webpack_require__(/*! ./TransportHTTP.js */ "./node_modules/@internetarchive/dweb-transports/TransportHTTP.js"); // Can access via window.DwebTransports._transportclasses["HTTP"]
+__webpack_require__(/*! ./TransportHTTP.js */ "../dweb-transports/TransportHTTP.js"); // Can access via window.DwebTransports._transportclasses["HTTP"]
 
 
-__webpack_require__(/*! ./TransportIPFS.js */ "./node_modules/@internetarchive/dweb-transports/TransportIPFS.js");
+__webpack_require__(/*! ./TransportIPFS.js */ "../dweb-transports/TransportIPFS.js");
 
-__webpack_require__(/*! ./TransportYJS.js */ "./node_modules/@internetarchive/dweb-transports/TransportYJS.js");
+__webpack_require__(/*! ./TransportYJS.js */ "../dweb-transports/TransportYJS.js");
 
-__webpack_require__(/*! ./TransportWEBTORRENT.js */ "./node_modules/@internetarchive/dweb-transports/TransportWEBTORRENT.js");
+__webpack_require__(/*! ./TransportWEBTORRENT.js */ "../dweb-transports/TransportWEBTORRENT.js");
 
-__webpack_require__(/*! ./TransportWOLK.js */ "./node_modules/@internetarchive/dweb-transports/TransportWOLK.js");
+__webpack_require__(/*! ./TransportWOLK.js */ "../dweb-transports/TransportWOLK.js");
 
-__webpack_require__(/*! ./TransportGUN.js */ "./node_modules/@internetarchive/dweb-transports/TransportGUN.js");
+__webpack_require__(/*! ./TransportGUN.js */ "../dweb-transports/TransportGUN.js");
 
-__webpack_require__(/*! ./TransportHASH.js */ "./node_modules/@internetarchive/dweb-transports/TransportHASH.js");
+__webpack_require__(/*! ./TransportHASH.js */ "../dweb-transports/TransportHASH.js");
 
-__webpack_require__(/*! ./TransportFLUENCE.js */ "./node_modules/@internetarchive/dweb-transports/TransportFLUENCE.js");
+__webpack_require__(/*! ./TransportFLUENCE.js */ "../dweb-transports/TransportFLUENCE.js");
 
 if (typeof window !== "undefined") {
   window.DwebTransports = DwebTransports;
@@ -5864,2039 +5595,10 @@ exports = module.exports = DwebTransports;
 
 /***/ }),
 
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/asyncify.js":
-/*!**************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/asyncify.js ***!
-  \**************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = asyncify;
-
-var _isObject = __webpack_require__(/*! lodash/isObject */ "./node_modules/lodash/isObject.js");
-
-var _isObject2 = _interopRequireDefault(_isObject);
-
-var _initialParams = __webpack_require__(/*! ./internal/initialParams */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/initialParams.js");
-
-var _initialParams2 = _interopRequireDefault(_initialParams);
-
-var _setImmediate = __webpack_require__(/*! ./internal/setImmediate */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js");
-
-var _setImmediate2 = _interopRequireDefault(_setImmediate);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-/**
- * Take a sync function and make it async, passing its return value to a
- * callback. This is useful for plugging sync functions into a waterfall,
- * series, or other async functions. Any arguments passed to the generated
- * function will be passed to the wrapped function (except for the final
- * callback argument). Errors thrown will be passed to the callback.
- *
- * If the function passed to `asyncify` returns a Promise, that promises's
- * resolved/rejected state will be used to call the callback, rather than simply
- * the synchronous return value.
- *
- * This also means you can asyncify ES2017 `async` functions.
- *
- * @name asyncify
- * @static
- * @memberOf module:Utils
- * @method
- * @alias wrapSync
- * @category Util
- * @param {Function} func - The synchronous function, or Promise-returning
- * function to convert to an {@link AsyncFunction}.
- * @returns {AsyncFunction} An asynchronous wrapper of the `func`. To be
- * invoked with `(args..., callback)`.
- * @example
- *
- * // passing a regular synchronous function
- * async.waterfall([
- *     async.apply(fs.readFile, filename, "utf8"),
- *     async.asyncify(JSON.parse),
- *     function (data, next) {
- *         // data is the result of parsing the text.
- *         // If there was a parsing error, it would have been caught.
- *     }
- * ], callback);
- *
- * // passing a function returning a promise
- * async.waterfall([
- *     async.apply(fs.readFile, filename, "utf8"),
- *     async.asyncify(function (contents) {
- *         return db.model.create(contents);
- *     }),
- *     function (model, next) {
- *         // `model` is the instantiated model object.
- *         // If there was an error, this function would be skipped.
- *     }
- * ], callback);
- *
- * // es2017 example, though `asyncify` is not needed if your JS environment
- * // supports async functions out of the box
- * var q = async.queue(async.asyncify(async function(file) {
- *     var intermediateStep = await processFile(file);
- *     return await somePromise(intermediateStep)
- * }));
- *
- * q.push(files);
- */
-
-
-function asyncify(func) {
-  return (0, _initialParams2.default)(function (args, callback) {
-    var result;
-
-    try {
-      result = func.apply(this, args);
-    } catch (e) {
-      return callback(e);
-    } // if result is Promise object
-
-
-    if ((0, _isObject2.default)(result) && typeof result.then === 'function') {
-      result.then(function (value) {
-        invokeCallback(callback, null, value);
-      }, function (err) {
-        invokeCallback(callback, err.message ? err : new Error(err));
-      });
-    } else {
-      callback(null, result);
-    }
-  });
-}
-
-function invokeCallback(callback, error, value) {
-  try {
-    callback(error, value);
-  } catch (e) {
-    (0, _setImmediate2.default)(rethrow, e);
-  }
-}
-
-function rethrow(error) {
-  throw error;
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/detectLimit.js":
-/*!*****************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/detectLimit.js ***!
-  \*****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _identity = __webpack_require__(/*! lodash/identity */ "./node_modules/lodash/identity.js");
-
-var _identity2 = _interopRequireDefault(_identity);
-
-var _createTester = __webpack_require__(/*! ./internal/createTester */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/createTester.js");
-
-var _createTester2 = _interopRequireDefault(_createTester);
-
-var _doParallelLimit = __webpack_require__(/*! ./internal/doParallelLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallelLimit.js");
-
-var _doParallelLimit2 = _interopRequireDefault(_doParallelLimit);
-
-var _findGetResult = __webpack_require__(/*! ./internal/findGetResult */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/findGetResult.js");
-
-var _findGetResult2 = _interopRequireDefault(_findGetResult);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-/**
- * The same as [`detect`]{@link module:Collections.detect} but runs a maximum of `limit` async operations at a
- * time.
- *
- * @name detectLimit
- * @static
- * @memberOf module:Collections
- * @method
- * @see [async.detect]{@link module:Collections.detect}
- * @alias findLimit
- * @category Collections
- * @param {Array|Iterable|Object} coll - A collection to iterate over.
- * @param {number} limit - The maximum number of async operations at a time.
- * @param {AsyncFunction} iteratee - A truth test to apply to each item in `coll`.
- * The iteratee must complete with a boolean value as its result.
- * Invoked with (item, callback).
- * @param {Function} [callback] - A callback which is called as soon as any
- * iteratee returns `true`, or after all the `iteratee` functions have finished.
- * Result will be the first item in the array that passes the truth test
- * (iteratee) or the value `undefined` if none passed. Invoked with
- * (err, result).
- */
-
-
-exports.default = (0, _doParallelLimit2.default)((0, _createTester2.default)(_identity2.default, _findGetResult2.default));
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/detectSeries.js":
-/*!******************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/detectSeries.js ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _detectLimit = __webpack_require__(/*! ./detectLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/detectLimit.js");
-
-var _detectLimit2 = _interopRequireDefault(_detectLimit);
-
-var _doLimit = __webpack_require__(/*! ./internal/doLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js");
-
-var _doLimit2 = _interopRequireDefault(_doLimit);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-/**
- * The same as [`detect`]{@link module:Collections.detect} but runs only a single async operation at a time.
- *
- * @name detectSeries
- * @static
- * @memberOf module:Collections
- * @method
- * @see [async.detect]{@link module:Collections.detect}
- * @alias findSeries
- * @category Collections
- * @param {Array|Iterable|Object} coll - A collection to iterate over.
- * @param {AsyncFunction} iteratee - A truth test to apply to each item in `coll`.
- * The iteratee must complete with a boolean value as its result.
- * Invoked with (item, callback).
- * @param {Function} [callback] - A callback which is called as soon as any
- * iteratee returns `true`, or after all the `iteratee` functions have finished.
- * Result will be the first item in the array that passes the truth test
- * (iteratee) or the value `undefined` if none passed. Invoked with
- * (err, result).
- */
-
-
-exports.default = (0, _doLimit2.default)(_detectLimit2.default, 1);
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/each.js":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/each.js ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = eachLimit;
-
-var _eachOf = __webpack_require__(/*! ./eachOf */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js");
-
-var _eachOf2 = _interopRequireDefault(_eachOf);
-
-var _withoutIndex = __webpack_require__(/*! ./internal/withoutIndex */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/withoutIndex.js");
-
-var _withoutIndex2 = _interopRequireDefault(_withoutIndex);
-
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-/**
- * Applies the function `iteratee` to each item in `coll`, in parallel.
- * The `iteratee` is called with an item from the list, and a callback for when
- * it has finished. If the `iteratee` passes an error to its `callback`, the
- * main `callback` (for the `each` function) is immediately called with the
- * error.
- *
- * Note, that since this function applies `iteratee` to each item in parallel,
- * there is no guarantee that the iteratee functions will complete in order.
- *
- * @name each
- * @static
- * @memberOf module:Collections
- * @method
- * @alias forEach
- * @category Collection
- * @param {Array|Iterable|Object} coll - A collection to iterate over.
- * @param {AsyncFunction} iteratee - An async function to apply to
- * each item in `coll`. Invoked with (item, callback).
- * The array index is not passed to the iteratee.
- * If you need the index, use `eachOf`.
- * @param {Function} [callback] - A callback which is called when all
- * `iteratee` functions have finished, or an error occurs. Invoked with (err).
- * @example
- *
- * // assuming openFiles is an array of file names and saveFile is a function
- * // to save the modified contents of that file:
- *
- * async.each(openFiles, saveFile, function(err){
- *   // if any of the saves produced an error, err would equal that error
- * });
- *
- * // assuming openFiles is an array of file names
- * async.each(openFiles, function(file, callback) {
- *
- *     // Perform operation on file here.
- *     console.log('Processing file ' + file);
- *
- *     if( file.length > 32 ) {
- *       console.log('This file name is too long');
- *       callback('File name too long');
- *     } else {
- *       // Do work to process file here
- *       console.log('File processed');
- *       callback();
- *     }
- * }, function(err) {
- *     // if any of the file processing produced an error, err would equal that error
- *     if( err ) {
- *       // One of the iterations produced an error.
- *       // All processing will now stop.
- *       console.log('A file failed to process');
- *     } else {
- *       console.log('All files have been processed successfully');
- *     }
- * });
- */
-
-
-function eachLimit(coll, iteratee, callback) {
-  (0, _eachOf2.default)(coll, (0, _withoutIndex2.default)((0, _wrapAsync2.default)(iteratee)), callback);
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js":
-/*!************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js ***!
-  \************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (coll, iteratee, callback) {
-  var eachOfImplementation = (0, _isArrayLike2.default)(coll) ? eachOfArrayLike : eachOfGeneric;
-  eachOfImplementation(coll, (0, _wrapAsync2.default)(iteratee), callback);
-};
-
-var _isArrayLike = __webpack_require__(/*! lodash/isArrayLike */ "./node_modules/lodash/isArrayLike.js");
-
-var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
-
-var _breakLoop = __webpack_require__(/*! ./internal/breakLoop */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js");
-
-var _breakLoop2 = _interopRequireDefault(_breakLoop);
-
-var _eachOfLimit = __webpack_require__(/*! ./eachOfLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOfLimit.js");
-
-var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
-
-var _doLimit = __webpack_require__(/*! ./internal/doLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js");
-
-var _doLimit2 = _interopRequireDefault(_doLimit);
-
-var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
-
-var _noop2 = _interopRequireDefault(_noop);
-
-var _once = __webpack_require__(/*! ./internal/once */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js");
-
-var _once2 = _interopRequireDefault(_once);
-
-var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
-
-var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
-
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-} // eachOf implementation optimized for array-likes
-
-
-function eachOfArrayLike(coll, iteratee, callback) {
-  callback = (0, _once2.default)(callback || _noop2.default);
-  var index = 0,
-      completed = 0,
-      length = coll.length;
-
-  if (length === 0) {
-    callback(null);
-  }
-
-  function iteratorCallback(err, value) {
-    if (err) {
-      callback(err);
-    } else if (++completed === length || value === _breakLoop2.default) {
-      callback(null);
-    }
-  }
-
-  for (; index < length; index++) {
-    iteratee(coll[index], index, (0, _onlyOnce2.default)(iteratorCallback));
-  }
-} // a generic version of eachOf which can handle array, object, and iterator cases.
-
-
-var eachOfGeneric = (0, _doLimit2.default)(_eachOfLimit2.default, Infinity);
-/**
- * Like [`each`]{@link module:Collections.each}, except that it passes the key (or index) as the second argument
- * to the iteratee.
- *
- * @name eachOf
- * @static
- * @memberOf module:Collections
- * @method
- * @alias forEachOf
- * @category Collection
- * @see [async.each]{@link module:Collections.each}
- * @param {Array|Iterable|Object} coll - A collection to iterate over.
- * @param {AsyncFunction} iteratee - A function to apply to each
- * item in `coll`.
- * The `key` is the item's key, or index in the case of an array.
- * Invoked with (item, key, callback).
- * @param {Function} [callback] - A callback which is called when all
- * `iteratee` functions have finished, or an error occurs. Invoked with (err).
- * @example
- *
- * var obj = {dev: "/dev.json", test: "/test.json", prod: "/prod.json"};
- * var configs = {};
- *
- * async.forEachOf(obj, function (value, key, callback) {
- *     fs.readFile(__dirname + value, "utf8", function (err, data) {
- *         if (err) return callback(err);
- *         try {
- *             configs[key] = JSON.parse(data);
- *         } catch (e) {
- *             return callback(e);
- *         }
- *         callback();
- *     });
- * }, function (err) {
- *     if (err) console.error(err.message);
- *     // configs is now a map of JSON data
- *     doSomethingWith(configs);
- * });
- */
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOfLimit.js":
-/*!*****************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOfLimit.js ***!
-  \*****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = eachOfLimit;
-
-var _eachOfLimit2 = __webpack_require__(/*! ./internal/eachOfLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js");
-
-var _eachOfLimit3 = _interopRequireDefault(_eachOfLimit2);
-
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-/**
- * The same as [`eachOf`]{@link module:Collections.eachOf} but runs a maximum of `limit` async operations at a
- * time.
- *
- * @name eachOfLimit
- * @static
- * @memberOf module:Collections
- * @method
- * @see [async.eachOf]{@link module:Collections.eachOf}
- * @alias forEachOfLimit
- * @category Collection
- * @param {Array|Iterable|Object} coll - A collection to iterate over.
- * @param {number} limit - The maximum number of async operations at a time.
- * @param {AsyncFunction} iteratee - An async function to apply to each
- * item in `coll`. The `key` is the item's key, or index in the case of an
- * array.
- * Invoked with (item, key, callback).
- * @param {Function} [callback] - A callback which is called when all
- * `iteratee` functions have finished, or an error occurs. Invoked with (err).
- */
-
-
-function eachOfLimit(coll, limit, iteratee, callback) {
-  (0, _eachOfLimit3.default)(limit)(coll, (0, _wrapAsync2.default)(iteratee), callback);
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/DoublyLinkedList.js":
-/*!*******************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/DoublyLinkedList.js ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = DLL; // Simple doubly linked list (https://en.wikipedia.org/wiki/Doubly_linked_list) implementation
-// used for queues. This implementation assumes that the node provided by the user can be modified
-// to adjust the next and last properties. We implement only the minimal functionality
-// for queue support.
-
-function DLL() {
-  this.head = this.tail = null;
-  this.length = 0;
-}
-
-function setInitial(dll, node) {
-  dll.length = 1;
-  dll.head = dll.tail = node;
-}
-
-DLL.prototype.removeLink = function (node) {
-  if (node.prev) node.prev.next = node.next;else this.head = node.next;
-  if (node.next) node.next.prev = node.prev;else this.tail = node.prev;
-  node.prev = node.next = null;
-  this.length -= 1;
-  return node;
-};
-
-DLL.prototype.empty = function () {
-  while (this.head) this.shift();
-
-  return this;
-};
-
-DLL.prototype.insertAfter = function (node, newNode) {
-  newNode.prev = node;
-  newNode.next = node.next;
-  if (node.next) node.next.prev = newNode;else this.tail = newNode;
-  node.next = newNode;
-  this.length += 1;
-};
-
-DLL.prototype.insertBefore = function (node, newNode) {
-  newNode.prev = node.prev;
-  newNode.next = node;
-  if (node.prev) node.prev.next = newNode;else this.head = newNode;
-  node.prev = newNode;
-  this.length += 1;
-};
-
-DLL.prototype.unshift = function (node) {
-  if (this.head) this.insertBefore(this.head, node);else setInitial(this, node);
-};
-
-DLL.prototype.push = function (node) {
-  if (this.tail) this.insertAfter(this.tail, node);else setInitial(this, node);
-};
-
-DLL.prototype.shift = function () {
-  return this.head && this.removeLink(this.head);
-};
-
-DLL.prototype.pop = function () {
-  return this.tail && this.removeLink(this.tail);
-};
-
-DLL.prototype.toArray = function () {
-  var arr = Array(this.length);
-  var curr = this.head;
-
-  for (var idx = 0; idx < this.length; idx++) {
-    arr[idx] = curr.data;
-    curr = curr.next;
-  }
-
-  return arr;
-};
-
-DLL.prototype.remove = function (testFn) {
-  var curr = this.head;
-
-  while (!!curr) {
-    var next = curr.next;
-
-    if (testFn(curr)) {
-      this.removeLink(curr);
-    }
-
-    curr = next;
-  }
-
-  return this;
-};
-
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js":
-/*!************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js ***!
-  \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-}); // A temporary value used to identify if the loop should be broken.
-// See #1064, #1293
-
-exports.default = {};
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/createTester.js":
-/*!***************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/createTester.js ***!
-  \***************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _createTester;
-
-var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
-
-var _noop2 = _interopRequireDefault(_noop);
-
-var _breakLoop = __webpack_require__(/*! ./breakLoop */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js");
-
-var _breakLoop2 = _interopRequireDefault(_breakLoop);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-function _createTester(check, getResult) {
-  return function (eachfn, arr, iteratee, cb) {
-    cb = cb || _noop2.default;
-    var testPassed = false;
-    var testResult;
-    eachfn(arr, function (value, _, callback) {
-      iteratee(value, function (err, result) {
-        if (err) {
-          callback(err);
-        } else if (check(result) && !testResult) {
-          testPassed = true;
-          testResult = getResult(true, value);
-          callback(null, _breakLoop2.default);
-        } else {
-          callback();
-        }
-      });
-    }, function (err) {
-      if (err) {
-        cb(err);
-      } else {
-        cb(null, testPassed ? testResult : getResult(false));
-      }
-    });
-  };
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js":
-/*!**********************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doLimit.js ***!
-  \**********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = doLimit;
-
-function doLimit(fn, limit) {
-  return function (iterable, iteratee, callback) {
-    return fn(iterable, limit, iteratee, callback);
-  };
-}
-
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallel.js":
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallel.js ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = doParallel;
-
-var _eachOf = __webpack_require__(/*! ../eachOf */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/eachOf.js");
-
-var _eachOf2 = _interopRequireDefault(_eachOf);
-
-var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-function doParallel(fn) {
-  return function (obj, iteratee, callback) {
-    return fn(_eachOf2.default, obj, (0, _wrapAsync2.default)(iteratee), callback);
-  };
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallelLimit.js":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallelLimit.js ***!
-  \******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = doParallelLimit;
-
-var _eachOfLimit = __webpack_require__(/*! ./eachOfLimit */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js");
-
-var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
-
-var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-function doParallelLimit(fn) {
-  return function (obj, limit, iteratee, callback) {
-    return fn((0, _eachOfLimit2.default)(limit), obj, (0, _wrapAsync2.default)(iteratee), callback);
-  };
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js":
-/*!**************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/eachOfLimit.js ***!
-  \**************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _eachOfLimit;
-
-var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
-
-var _noop2 = _interopRequireDefault(_noop);
-
-var _once = __webpack_require__(/*! ./once */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js");
-
-var _once2 = _interopRequireDefault(_once);
-
-var _iterator = __webpack_require__(/*! ./iterator */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/iterator.js");
-
-var _iterator2 = _interopRequireDefault(_iterator);
-
-var _onlyOnce = __webpack_require__(/*! ./onlyOnce */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
-
-var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
-
-var _breakLoop = __webpack_require__(/*! ./breakLoop */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/breakLoop.js");
-
-var _breakLoop2 = _interopRequireDefault(_breakLoop);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-function _eachOfLimit(limit) {
-  return function (obj, iteratee, callback) {
-    callback = (0, _once2.default)(callback || _noop2.default);
-
-    if (limit <= 0 || !obj) {
-      return callback(null);
-    }
-
-    var nextElem = (0, _iterator2.default)(obj);
-    var done = false;
-    var running = 0;
-    var looping = false;
-
-    function iterateeCallback(err, value) {
-      running -= 1;
-
-      if (err) {
-        done = true;
-        callback(err);
-      } else if (value === _breakLoop2.default || done && running <= 0) {
-        done = true;
-        return callback(null);
-      } else if (!looping) {
-        replenish();
-      }
-    }
-
-    function replenish() {
-      looping = true;
-
-      while (running < limit && !done) {
-        var elem = nextElem();
-
-        if (elem === null) {
-          done = true;
-
-          if (running <= 0) {
-            callback(null);
-          }
-
-          return;
-        }
-
-        running += 1;
-        iteratee(elem.value, elem.key, (0, _onlyOnce2.default)(iterateeCallback));
-      }
-
-      looping = false;
-    }
-
-    replenish();
-  };
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/findGetResult.js":
-/*!****************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/findGetResult.js ***!
-  \****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _findGetResult;
-
-function _findGetResult(v, x) {
-  return x;
-}
-
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/getIterator.js":
-/*!**************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/getIterator.js ***!
-  \**************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (coll) {
-  return iteratorSymbol && coll[iteratorSymbol] && coll[iteratorSymbol]();
-};
-
-var iteratorSymbol = typeof Symbol === 'function' && Symbol.iterator;
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/initialParams.js":
-/*!****************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/initialParams.js ***!
-  \****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (fn) {
-  return function ()
-  /*...args, callback*/
-  {
-    var args = (0, _slice2.default)(arguments);
-    var callback = args.pop();
-    fn.call(this, args, callback);
-  };
-};
-
-var _slice = __webpack_require__(/*! ./slice */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js");
-
-var _slice2 = _interopRequireDefault(_slice);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/iterator.js":
-/*!***********************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/iterator.js ***!
-  \***********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = iterator;
-
-var _isArrayLike = __webpack_require__(/*! lodash/isArrayLike */ "./node_modules/lodash/isArrayLike.js");
-
-var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
-
-var _getIterator = __webpack_require__(/*! ./getIterator */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/getIterator.js");
-
-var _getIterator2 = _interopRequireDefault(_getIterator);
-
-var _keys = __webpack_require__(/*! lodash/keys */ "./node_modules/lodash/keys.js");
-
-var _keys2 = _interopRequireDefault(_keys);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-function createArrayIterator(coll) {
-  var i = -1;
-  var len = coll.length;
-  return function next() {
-    return ++i < len ? {
-      value: coll[i],
-      key: i
-    } : null;
-  };
-}
-
-function createES2015Iterator(iterator) {
-  var i = -1;
-  return function next() {
-    var item = iterator.next();
-    if (item.done) return null;
-    i++;
-    return {
-      value: item.value,
-      key: i
-    };
-  };
-}
-
-function createObjectIterator(obj) {
-  var okeys = (0, _keys2.default)(obj);
-  var i = -1;
-  var len = okeys.length;
-  return function next() {
-    var key = okeys[++i];
-    return i < len ? {
-      value: obj[key],
-      key: key
-    } : null;
-  };
-}
-
-function iterator(coll) {
-  if ((0, _isArrayLike2.default)(coll)) {
-    return createArrayIterator(coll);
-  }
-
-  var iterator = (0, _getIterator2.default)(coll);
-  return iterator ? createES2015Iterator(iterator) : createObjectIterator(coll);
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/map.js":
-/*!******************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/map.js ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _asyncMap;
-
-var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
-
-var _noop2 = _interopRequireDefault(_noop);
-
-var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-function _asyncMap(eachfn, arr, iteratee, callback) {
-  callback = callback || _noop2.default;
-  arr = arr || [];
-  var results = [];
-  var counter = 0;
-
-  var _iteratee = (0, _wrapAsync2.default)(iteratee);
-
-  eachfn(arr, function (value, _, callback) {
-    var index = counter++;
-
-    _iteratee(value, function (err, v) {
-      results[index] = v;
-      callback(err);
-    });
-  }, function (err) {
-    callback(err, results);
-  });
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js":
-/*!*******************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js ***!
-  \*******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = once;
-
-function once(fn) {
-  return function () {
-    if (fn === null) return;
-    var callFn = fn;
-    fn = null;
-    callFn.apply(this, arguments);
-  };
-}
-
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js":
-/*!***********************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js ***!
-  \***********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = onlyOnce;
-
-function onlyOnce(fn) {
-  return function () {
-    if (fn === null) throw new Error("Callback was already called.");
-    var callFn = fn;
-    fn = null;
-    callFn.apply(this, arguments);
-  };
-}
-
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/queue.js":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/queue.js ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = queue;
-
-var _baseIndexOf = __webpack_require__(/*! lodash/_baseIndexOf */ "./node_modules/lodash/_baseIndexOf.js");
-
-var _baseIndexOf2 = _interopRequireDefault(_baseIndexOf);
-
-var _isArray = __webpack_require__(/*! lodash/isArray */ "./node_modules/lodash/isArray.js");
-
-var _isArray2 = _interopRequireDefault(_isArray);
-
-var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
-
-var _noop2 = _interopRequireDefault(_noop);
-
-var _onlyOnce = __webpack_require__(/*! ./onlyOnce */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
-
-var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
-
-var _setImmediate = __webpack_require__(/*! ./setImmediate */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js");
-
-var _setImmediate2 = _interopRequireDefault(_setImmediate);
-
-var _DoublyLinkedList = __webpack_require__(/*! ./DoublyLinkedList */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/DoublyLinkedList.js");
-
-var _DoublyLinkedList2 = _interopRequireDefault(_DoublyLinkedList);
-
-var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-function queue(worker, concurrency, payload) {
-  if (concurrency == null) {
-    concurrency = 1;
-  } else if (concurrency === 0) {
-    throw new Error('Concurrency must not be zero');
-  }
-
-  var _worker = (0, _wrapAsync2.default)(worker);
-
-  var numRunning = 0;
-  var workersList = [];
-  var processingScheduled = false;
-
-  function _insert(data, insertAtFront, callback) {
-    if (callback != null && typeof callback !== 'function') {
-      throw new Error('task callback must be a function');
-    }
-
-    q.started = true;
-
-    if (!(0, _isArray2.default)(data)) {
-      data = [data];
-    }
-
-    if (data.length === 0 && q.idle()) {
-      // call drain immediately if there are no tasks
-      return (0, _setImmediate2.default)(function () {
-        q.drain();
-      });
-    }
-
-    for (var i = 0, l = data.length; i < l; i++) {
-      var item = {
-        data: data[i],
-        callback: callback || _noop2.default
-      };
-
-      if (insertAtFront) {
-        q._tasks.unshift(item);
-      } else {
-        q._tasks.push(item);
-      }
-    }
-
-    if (!processingScheduled) {
-      processingScheduled = true;
-      (0, _setImmediate2.default)(function () {
-        processingScheduled = false;
-        q.process();
-      });
-    }
-  }
-
-  function _next(tasks) {
-    return function (err) {
-      numRunning -= 1;
-
-      for (var i = 0, l = tasks.length; i < l; i++) {
-        var task = tasks[i];
-        var index = (0, _baseIndexOf2.default)(workersList, task, 0);
-
-        if (index === 0) {
-          workersList.shift();
-        } else if (index > 0) {
-          workersList.splice(index, 1);
-        }
-
-        task.callback.apply(task, arguments);
-
-        if (err != null) {
-          q.error(err, task.data);
-        }
-      }
-
-      if (numRunning <= q.concurrency - q.buffer) {
-        q.unsaturated();
-      }
-
-      if (q.idle()) {
-        q.drain();
-      }
-
-      q.process();
-    };
-  }
-
-  var isProcessing = false;
-  var q = {
-    _tasks: new _DoublyLinkedList2.default(),
-    concurrency: concurrency,
-    payload: payload,
-    saturated: _noop2.default,
-    unsaturated: _noop2.default,
-    buffer: concurrency / 4,
-    empty: _noop2.default,
-    drain: _noop2.default,
-    error: _noop2.default,
-    started: false,
-    paused: false,
-    push: function (data, callback) {
-      _insert(data, false, callback);
-    },
-    kill: function () {
-      q.drain = _noop2.default;
-
-      q._tasks.empty();
-    },
-    unshift: function (data, callback) {
-      _insert(data, true, callback);
-    },
-    remove: function (testFn) {
-      q._tasks.remove(testFn);
-    },
-    process: function () {
-      // Avoid trying to start too many processing operations. This can occur
-      // when callbacks resolve synchronously (#1267).
-      if (isProcessing) {
-        return;
-      }
-
-      isProcessing = true;
-
-      while (!q.paused && numRunning < q.concurrency && q._tasks.length) {
-        var tasks = [],
-            data = [];
-        var l = q._tasks.length;
-        if (q.payload) l = Math.min(l, q.payload);
-
-        for (var i = 0; i < l; i++) {
-          var node = q._tasks.shift();
-
-          tasks.push(node);
-          workersList.push(node);
-          data.push(node.data);
-        }
-
-        numRunning += 1;
-
-        if (q._tasks.length === 0) {
-          q.empty();
-        }
-
-        if (numRunning === q.concurrency) {
-          q.saturated();
-        }
-
-        var cb = (0, _onlyOnce2.default)(_next(tasks));
-
-        _worker(data, cb);
-      }
-
-      isProcessing = false;
-    },
-    length: function () {
-      return q._tasks.length;
-    },
-    running: function () {
-      return numRunning;
-    },
-    workersList: function () {
-      return workersList;
-    },
-    idle: function () {
-      return q._tasks.length + numRunning === 0;
-    },
-    pause: function () {
-      q.paused = true;
-    },
-    resume: function () {
-      if (q.paused === false) {
-        return;
-      }
-
-      q.paused = false;
-      (0, _setImmediate2.default)(q.process);
-    }
-  };
-  return q;
-}
-
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js":
-/*!***************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/setImmediate.js ***!
-  \***************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.hasNextTick = exports.hasSetImmediate = undefined;
-exports.fallback = fallback;
-exports.wrap = wrap;
-
-var _slice = __webpack_require__(/*! ./slice */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js");
-
-var _slice2 = _interopRequireDefault(_slice);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-var hasSetImmediate = exports.hasSetImmediate = typeof setImmediate === 'function' && setImmediate;
-var hasNextTick = exports.hasNextTick = typeof process === 'object' && typeof process.nextTick === 'function';
-
-function fallback(fn) {
-  setTimeout(fn, 0);
-}
-
-function wrap(defer) {
-  return function (fn
-  /*, ...args*/
-  ) {
-    var args = (0, _slice2.default)(arguments, 1);
-    defer(function () {
-      fn.apply(null, args);
-    });
-  };
-}
-
-var _defer;
-
-if (hasSetImmediate) {
-  _defer = setImmediate;
-} else if (hasNextTick) {
-  _defer = process.nextTick;
-} else {
-  _defer = fallback;
-}
-
-exports.default = wrap(_defer);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = slice;
-
-function slice(arrayLike, start) {
-  start = start | 0;
-  var newLen = Math.max(arrayLike.length - start, 0);
-  var newArr = Array(newLen);
-
-  for (var idx = 0; idx < newLen; idx++) {
-    newArr[idx] = arrayLike[start + idx];
-  }
-
-  return newArr;
-}
-
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/withoutIndex.js":
-/*!***************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/withoutIndex.js ***!
-  \***************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _withoutIndex;
-
-function _withoutIndex(iteratee) {
-  return function (value, index, callback) {
-    return iteratee(value, callback);
-  };
-}
-
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js":
-/*!************************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js ***!
-  \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.isAsync = undefined;
-
-var _asyncify = __webpack_require__(/*! ../asyncify */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/asyncify.js");
-
-var _asyncify2 = _interopRequireDefault(_asyncify);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-var supportsSymbol = typeof Symbol === 'function';
-
-function isAsync(fn) {
-  return supportsSymbol && fn[Symbol.toStringTag] === 'AsyncFunction';
-}
-
-function wrapAsync(asyncFn) {
-  return isAsync(asyncFn) ? (0, _asyncify2.default)(asyncFn) : asyncFn;
-}
-
-exports.default = wrapAsync;
-exports.isAsync = isAsync;
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/map.js":
-/*!*********************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/map.js ***!
-  \*********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _doParallel = __webpack_require__(/*! ./internal/doParallel */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/doParallel.js");
-
-var _doParallel2 = _interopRequireDefault(_doParallel);
-
-var _map = __webpack_require__(/*! ./internal/map */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/map.js");
-
-var _map2 = _interopRequireDefault(_map);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-/**
- * Produces a new collection of values by mapping each value in `coll` through
- * the `iteratee` function. The `iteratee` is called with an item from `coll`
- * and a callback for when it has finished processing. Each of these callback
- * takes 2 arguments: an `error`, and the transformed item from `coll`. If
- * `iteratee` passes an error to its callback, the main `callback` (for the
- * `map` function) is immediately called with the error.
- *
- * Note, that since this function applies the `iteratee` to each item in
- * parallel, there is no guarantee that the `iteratee` functions will complete
- * in order. However, the results array will be in the same order as the
- * original `coll`.
- *
- * If `map` is passed an Object, the results will be an Array.  The results
- * will roughly be in the order of the original Objects' keys (but this can
- * vary across JavaScript engines).
- *
- * @name map
- * @static
- * @memberOf module:Collections
- * @method
- * @category Collection
- * @param {Array|Iterable|Object} coll - A collection to iterate over.
- * @param {AsyncFunction} iteratee - An async function to apply to each item in
- * `coll`.
- * The iteratee should complete with the transformed item.
- * Invoked with (item, callback).
- * @param {Function} [callback] - A callback which is called when all `iteratee`
- * functions have finished, or an error occurs. Results is an Array of the
- * transformed items from the `coll`. Invoked with (err, results).
- * @example
- *
- * async.map(['file1','file2','file3'], fs.stat, function(err, results) {
- *     // results is now an array of stats for each file
- * });
- */
-
-
-exports.default = (0, _doParallel2.default)(_map2.default);
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/queue.js":
-/*!***********************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/queue.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (worker, concurrency) {
-  var _worker = (0, _wrapAsync2.default)(worker);
-
-  return (0, _queue2.default)(function (items, cb) {
-    _worker(items[0], cb);
-  }, concurrency, 1);
-};
-
-var _queue = __webpack_require__(/*! ./internal/queue */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/queue.js");
-
-var _queue2 = _interopRequireDefault(_queue);
-
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-module.exports = exports['default'];
-/**
- * A queue of tasks for the worker function to complete.
- * @typedef {Object} QueueObject
- * @memberOf module:ControlFlow
- * @property {Function} length - a function returning the number of items
- * waiting to be processed. Invoke with `queue.length()`.
- * @property {boolean} started - a boolean indicating whether or not any
- * items have been pushed and processed by the queue.
- * @property {Function} running - a function returning the number of items
- * currently being processed. Invoke with `queue.running()`.
- * @property {Function} workersList - a function returning the array of items
- * currently being processed. Invoke with `queue.workersList()`.
- * @property {Function} idle - a function returning false if there are items
- * waiting or being processed, or true if not. Invoke with `queue.idle()`.
- * @property {number} concurrency - an integer for determining how many `worker`
- * functions should be run in parallel. This property can be changed after a
- * `queue` is created to alter the concurrency on-the-fly.
- * @property {Function} push - add a new task to the `queue`. Calls `callback`
- * once the `worker` has finished processing the task. Instead of a single task,
- * a `tasks` array can be submitted. The respective callback is used for every
- * task in the list. Invoke with `queue.push(task, [callback])`,
- * @property {Function} unshift - add a new task to the front of the `queue`.
- * Invoke with `queue.unshift(task, [callback])`.
- * @property {Function} remove - remove items from the queue that match a test
- * function.  The test function will be passed an object with a `data` property,
- * and a `priority` property, if this is a
- * [priorityQueue]{@link module:ControlFlow.priorityQueue} object.
- * Invoked with `queue.remove(testFn)`, where `testFn` is of the form
- * `function ({data, priority}) {}` and returns a Boolean.
- * @property {Function} saturated - a callback that is called when the number of
- * running workers hits the `concurrency` limit, and further tasks will be
- * queued.
- * @property {Function} unsaturated - a callback that is called when the number
- * of running workers is less than the `concurrency` & `buffer` limits, and
- * further tasks will not be queued.
- * @property {number} buffer - A minimum threshold buffer in order to say that
- * the `queue` is `unsaturated`.
- * @property {Function} empty - a callback that is called when the last item
- * from the `queue` is given to a `worker`.
- * @property {Function} drain - a callback that is called when the last item
- * from the `queue` has returned from the `worker`.
- * @property {Function} error - a callback that is called when a task errors.
- * Has the signature `function(error, task)`.
- * @property {boolean} paused - a boolean for determining whether the queue is
- * in a paused state.
- * @property {Function} pause - a function that pauses the processing of tasks
- * until `resume()` is called. Invoke with `queue.pause()`.
- * @property {Function} resume - a function that resumes the processing of
- * queued tasks when the queue is paused. Invoke with `queue.resume()`.
- * @property {Function} kill - a function that removes the `drain` callback and
- * empties remaining tasks from the queue forcing it to go idle. No more tasks
- * should be pushed to the queue after calling this function. Invoke with `queue.kill()`.
- */
-
-/**
- * Creates a `queue` object with the specified `concurrency`. Tasks added to the
- * `queue` are processed in parallel (up to the `concurrency` limit). If all
- * `worker`s are in progress, the task is queued until one becomes available.
- * Once a `worker` completes a `task`, that `task`'s callback is called.
- *
- * @name queue
- * @static
- * @memberOf module:ControlFlow
- * @method
- * @category Control Flow
- * @param {AsyncFunction} worker - An async function for processing a queued task.
- * If you want to handle errors from an individual task, pass a callback to
- * `q.push()`. Invoked with (task, callback).
- * @param {number} [concurrency=1] - An `integer` for determining how many
- * `worker` functions should be run in parallel.  If omitted, the concurrency
- * defaults to `1`.  If the concurrency is `0`, an error is thrown.
- * @returns {module:ControlFlow.QueueObject} A queue object to manage the tasks. Callbacks can
- * attached as certain properties to listen for specific events during the
- * lifecycle of the queue.
- * @example
- *
- * // create a queue object with concurrency 2
- * var q = async.queue(function(task, callback) {
- *     console.log('hello ' + task.name);
- *     callback();
- * }, 2);
- *
- * // assign a callback
- * q.drain = function() {
- *     console.log('all items have been processed');
- * };
- *
- * // add some items to the queue
- * q.push({name: 'foo'}, function(err) {
- *     console.log('finished processing foo');
- * });
- * q.push({name: 'bar'}, function (err) {
- *     console.log('finished processing bar');
- * });
- *
- * // add some items to the queue (batch-wise)
- * q.push([{name: 'baz'},{name: 'bay'},{name: 'bax'}], function(err) {
- *     console.log('finished processing item');
- * });
- *
- * // add some items to the front of the queue
- * q.unshift({name: 'bar'}, function (err) {
- *     console.log('finished processing bar');
- * });
- */
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/node_modules/async/waterfall.js":
-/*!***************************************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/node_modules/async/waterfall.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (tasks, callback) {
-  callback = (0, _once2.default)(callback || _noop2.default);
-  if (!(0, _isArray2.default)(tasks)) return callback(new Error('First argument to waterfall must be an array of functions'));
-  if (!tasks.length) return callback();
-  var taskIndex = 0;
-
-  function nextTask(args) {
-    var task = (0, _wrapAsync2.default)(tasks[taskIndex++]);
-    args.push((0, _onlyOnce2.default)(next));
-    task.apply(null, args);
-  }
-
-  function next(err
-  /*, ...args*/
-  ) {
-    if (err || taskIndex === tasks.length) {
-      return callback.apply(null, arguments);
-    }
-
-    nextTask((0, _slice2.default)(arguments, 1));
-  }
-
-  nextTask([]);
-};
-
-var _isArray = __webpack_require__(/*! lodash/isArray */ "./node_modules/lodash/isArray.js");
-
-var _isArray2 = _interopRequireDefault(_isArray);
-
-var _noop = __webpack_require__(/*! lodash/noop */ "./node_modules/lodash/noop.js");
-
-var _noop2 = _interopRequireDefault(_noop);
-
-var _once = __webpack_require__(/*! ./internal/once */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/once.js");
-
-var _once2 = _interopRequireDefault(_once);
-
-var _slice = __webpack_require__(/*! ./internal/slice */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/slice.js");
-
-var _slice2 = _interopRequireDefault(_slice);
-
-var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/onlyOnce.js");
-
-var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
-
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/@internetarchive/dweb-transports/node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-module.exports = exports['default'];
-/**
- * Runs the `tasks` array of functions in series, each passing their results to
- * the next in the array. However, if any of the `tasks` pass an error to their
- * own callback, the next function is not executed, and the main `callback` is
- * immediately called with the error.
- *
- * @name waterfall
- * @static
- * @memberOf module:ControlFlow
- * @method
- * @category Control Flow
- * @param {Array} tasks - An array of [async functions]{@link AsyncFunction}
- * to run.
- * Each function should complete with any number of `result` values.
- * The `result` values will be passed as arguments, in order, to the next task.
- * @param {Function} [callback] - An optional callback to run once all the
- * functions have completed. This will be passed the results of the last task's
- * callback. Invoked with (err, [results]).
- * @returns undefined
- * @example
- *
- * async.waterfall([
- *     function(callback) {
- *         callback(null, 'one', 'two');
- *     },
- *     function(arg1, arg2, callback) {
- *         // arg1 now equals 'one' and arg2 now equals 'two'
- *         callback(null, 'three');
- *     },
- *     function(arg1, callback) {
- *         // arg1 now equals 'three'
- *         callback(null, 'done');
- *     }
- * ], function (err, result) {
- *     // result now equals 'done'
- * });
- *
- * // Or, with named functions:
- * async.waterfall([
- *     myFirstFunction,
- *     mySecondFunction,
- *     myLastFunction,
- * ], function (err, result) {
- *     // result now equals 'done'
- * });
- * function myFirstFunction(callback) {
- *     callback(null, 'one', 'two');
- * }
- * function mySecondFunction(arg1, arg2, callback) {
- *     // arg1 now equals 'one' and arg2 now equals 'two'
- *     callback(null, 'three');
- * }
- * function myLastFunction(arg1, callback) {
- *     // arg1 now equals 'three'
- *     callback(null, 'done');
- * }
- */
-
-/***/ }),
-
-/***/ "./node_modules/@internetarchive/dweb-transports/utils.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@internetarchive/dweb-transports/utils.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-const {
-  CodingError,
-  TimeoutError
-} = __webpack_require__(/*! ./Errors */ "./node_modules/@internetarchive/dweb-transports/Errors.js");
-
-utils = {}; //utility functions
-// ==== OBJECT ORIENTED JAVASCRIPT ===============
-// This is a general purpose library of functions,
-//Parts of this file (consolearr, and createElement) are duplicated in dweb-transport; dweb-transports and dweb-objects repo
-// Utility function to print a array of items but just show number and last.
-
-utils.consolearr = arr => arr && arr.length > 0 ? [arr.length + " items inc:", arr[arr.length - 1]] : arr;
-
-utils.stringfrom = function (foo, hints = {}) {
-  try {
-    // Generic way to turn anything into a string
-    if (foo.constructor.name === "Url") // Can't use instanceof for some bizarre reason
-      return foo.href;
-    if (typeof foo === "string") return foo;
-    return foo.toString(); // Last chance try and convert to a string based on a method of the object (could check for its existence)
-  } catch (err) {
-    throw new CodingError(`Unable to turn ${foo} into a string ${err.message}`);
-  }
-};
-
-utils.p_timeout = function (promise, ms, errorstr) {
-  /* In a certain period, timeout and reject
-  promise:    A promise we want to watch to completion
-  ms:         Time in milliseconds to allow it to run
-  errorstr:   Error message in reject error
-  throws:     TimeoutError on timeout with message = errorstr
-   */
-  let timer = null;
-  return Promise.race([new Promise((resolve, reject) => {
-    timer = setTimeout(reject, ms, new TimeoutError(errorstr || `Timed out in ${ms}ms`));
-  }), promise.then(value => {
-    clearTimeout(timer);
-    return value;
-  })]);
-};
-
-utils.createElement = function (tag, attrs, children) {
-  // Note arguments is set to tag, attrs, child1, child2 etc
-  // Note identical version in dweb-transport/js/utils.js and dweb-transports/utils.js and dweb-objects/utils.js
-  var element = document.createElement(tag);
-
-  for (let name in attrs) {
-    let attrname = name.toLowerCase() === "classname" ? "class" : name;
-
-    if (name === "dangerouslySetInnerHTML") {
-      element.innerHTML = attrs[name]["__html"];
-      delete attrs.dangerouslySetInnerHTML;
-    }
-
-    if (attrs.hasOwnProperty(name)) {
-      let value = attrs[name];
-
-      if (value === true) {
-        element.setAttribute(attrname, name);
-      } else if (typeof value === "object" && !Array.isArray(value)) {
-        if (["style"].includes(attrname)) {
-          // e.g. style: {fontSize: "124px"}
-          for (let k in value) {
-            element[attrname][k] = value[k];
-          }
-        } else {
-          // Assume we are really trying to set the value to an object, allow it
-          element[attrname] = value; // Wont let us use setAttribute(attrname, value) unclear if because unknow attribute or object
-        }
-      } else if (value !== false && value != null) {
-        element.setAttribute(attrname, value.toString());
-      }
-    }
-  }
-
-  for (let i = 2; i < arguments.length; i++) {
-    // Everything after attrs
-    let child = arguments[i];
-
-    if (!child) {} else if (Array.isArray(child)) {
-      child.map(c => element.appendChild(c.nodeType == null ? document.createTextNode(c.toString()) : c));
-    } else {
-      element.appendChild(child.nodeType == null ? document.createTextNode(child.toString()) : child);
-    }
-  }
-
-  return element;
-};
-
-exports = module.exports = utils;
-
-/***/ }),
-
-/***/ "./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs":
-/*!********************************************************************!*\
-  !*** ./node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs ***!
-  \********************************************************************/
+/***/ "../dweb-transports/node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs":
+/*!*************************************************************************************!*\
+  !*** ../dweb-transports/node_modules/@stratumn/canonicaljson/lib/canonicaljson.mjs ***!
+  \*************************************************************************************/
 /*! exports provided: stringify, parse */
 /***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
 
@@ -7904,7 +5606,7 @@ exports = module.exports = utils;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringify", function() { return stringify; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parse", function() { return parse; });
-/* harmony import */ var bignumber_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bignumber.js */ "./node_modules/bignumber.js/bignumber.js");
+/* harmony import */ var bignumber_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bignumber.js */ "../dweb-transports/node_modules/bignumber.js/bignumber.js");
 
 
 /*
@@ -8844,10 +6546,10 @@ function stringify(value, replacer, space) {
 
 /***/ }),
 
-/***/ "./node_modules/async/asyncify.js":
-/*!****************************************!*\
-  !*** ./node_modules/async/asyncify.js ***!
-  \****************************************/
+/***/ "../dweb-transports/node_modules/async/asyncify.js":
+/*!*********************************************************!*\
+  !*** ../dweb-transports/node_modules/async/asyncify.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8859,15 +6561,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = asyncify;
 
-var _initialParams = __webpack_require__(/*! ./internal/initialParams */ "./node_modules/async/internal/initialParams.js");
+var _isObject = __webpack_require__(/*! lodash/isObject */ "../dweb-transports/node_modules/lodash/isObject.js");
+
+var _isObject2 = _interopRequireDefault(_isObject);
+
+var _initialParams = __webpack_require__(/*! ./internal/initialParams */ "../dweb-transports/node_modules/async/internal/initialParams.js");
 
 var _initialParams2 = _interopRequireDefault(_initialParams);
 
-var _setImmediate = __webpack_require__(/*! ./internal/setImmediate */ "./node_modules/async/internal/setImmediate.js");
+var _setImmediate = __webpack_require__(/*! ./internal/setImmediate */ "../dweb-transports/node_modules/async/internal/setImmediate.js");
 
 var _setImmediate2 = _interopRequireDefault(_setImmediate);
-
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/async/internal/wrapAsync.js");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
@@ -8933,16 +6637,6 @@ function _interopRequireDefault(obj) {
 
 
 function asyncify(func) {
-  if ((0, _wrapAsync.isAsync)(func)) {
-    return function (...args
-    /*, callback*/
-    ) {
-      const callback = args.pop();
-      const promise = func.apply(this, args);
-      return handlePromise(promise, callback);
-    };
-  }
-
   return (0, _initialParams2.default)(function (args, callback) {
     var result;
 
@@ -8953,40 +6647,38 @@ function asyncify(func) {
     } // if result is Promise object
 
 
-    if (result && typeof result.then === 'function') {
-      return handlePromise(result, callback);
+    if ((0, _isObject2.default)(result) && typeof result.then === 'function') {
+      result.then(function (value) {
+        invokeCallback(callback, null, value);
+      }, function (err) {
+        invokeCallback(callback, err.message ? err : new Error(err));
+      });
     } else {
       callback(null, result);
     }
   });
 }
 
-function handlePromise(promise, callback) {
-  return promise.then(value => {
-    invokeCallback(callback, null, value);
-  }, err => {
-    invokeCallback(callback, err && err.message ? err : new Error(err));
-  });
-}
-
 function invokeCallback(callback, error, value) {
   try {
     callback(error, value);
-  } catch (err) {
-    (0, _setImmediate2.default)(e => {
-      throw e;
-    }, err);
+  } catch (e) {
+    (0, _setImmediate2.default)(rethrow, e);
   }
+}
+
+function rethrow(error) {
+  throw error;
 }
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./node_modules/async/internal/awaitify.js":
-/*!*************************************************!*\
-  !*** ./node_modules/async/internal/awaitify.js ***!
-  \*************************************************/
+/***/ "../dweb-transports/node_modules/async/detectLimit.js":
+/*!************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/detectLimit.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8996,38 +6688,833 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = awaitify; // conditionally promisify a function.
-// only return a promise if a callback is omitted
 
-function awaitify(asyncFn, arity = asyncFn.length) {
-  if (!arity) throw new Error('arity is undefined');
+var _identity = __webpack_require__(/*! lodash/identity */ "../dweb-transports/node_modules/lodash/identity.js");
 
-  function awaitable(...args) {
-    if (typeof args[arity - 1] === 'function') {
-      return asyncFn.apply(this, args);
-    }
+var _identity2 = _interopRequireDefault(_identity);
 
-    return new Promise((resolve, reject) => {
-      args[arity - 1] = (err, ...cbArgs) => {
-        if (err) return reject(err);
-        resolve(cbArgs.length > 1 ? cbArgs : cbArgs[0]);
-      };
+var _createTester = __webpack_require__(/*! ./internal/createTester */ "../dweb-transports/node_modules/async/internal/createTester.js");
 
-      asyncFn.apply(this, args);
-    });
-  }
+var _createTester2 = _interopRequireDefault(_createTester);
 
-  return awaitable;
+var _doParallelLimit = __webpack_require__(/*! ./internal/doParallelLimit */ "../dweb-transports/node_modules/async/internal/doParallelLimit.js");
+
+var _doParallelLimit2 = _interopRequireDefault(_doParallelLimit);
+
+var _findGetResult = __webpack_require__(/*! ./internal/findGetResult */ "../dweb-transports/node_modules/async/internal/findGetResult.js");
+
+var _findGetResult2 = _interopRequireDefault(_findGetResult);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+/**
+ * The same as [`detect`]{@link module:Collections.detect} but runs a maximum of `limit` async operations at a
+ * time.
+ *
+ * @name detectLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.detect]{@link module:Collections.detect}
+ * @alias findLimit
+ * @category Collections
+ * @param {Array|Iterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - A truth test to apply to each item in `coll`.
+ * The iteratee must complete with a boolean value as its result.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called as soon as any
+ * iteratee returns `true`, or after all the `iteratee` functions have finished.
+ * Result will be the first item in the array that passes the truth test
+ * (iteratee) or the value `undefined` if none passed. Invoked with
+ * (err, result).
+ */
+
+
+exports.default = (0, _doParallelLimit2.default)((0, _createTester2.default)(_identity2.default, _findGetResult2.default));
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/detectSeries.js":
+/*!*************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/detectSeries.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _detectLimit = __webpack_require__(/*! ./detectLimit */ "../dweb-transports/node_modules/async/detectLimit.js");
+
+var _detectLimit2 = _interopRequireDefault(_detectLimit);
+
+var _doLimit = __webpack_require__(/*! ./internal/doLimit */ "../dweb-transports/node_modules/async/internal/doLimit.js");
+
+var _doLimit2 = _interopRequireDefault(_doLimit);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+/**
+ * The same as [`detect`]{@link module:Collections.detect} but runs only a single async operation at a time.
+ *
+ * @name detectSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.detect]{@link module:Collections.detect}
+ * @alias findSeries
+ * @category Collections
+ * @param {Array|Iterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - A truth test to apply to each item in `coll`.
+ * The iteratee must complete with a boolean value as its result.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called as soon as any
+ * iteratee returns `true`, or after all the `iteratee` functions have finished.
+ * Result will be the first item in the array that passes the truth test
+ * (iteratee) or the value `undefined` if none passed. Invoked with
+ * (err, result).
+ */
+
+
+exports.default = (0, _doLimit2.default)(_detectLimit2.default, 1);
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/each.js":
+/*!*****************************************************!*\
+  !*** ../dweb-transports/node_modules/async/each.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = eachLimit;
+
+var _eachOf = __webpack_require__(/*! ./eachOf */ "../dweb-transports/node_modules/async/eachOf.js");
+
+var _eachOf2 = _interopRequireDefault(_eachOf);
+
+var _withoutIndex = __webpack_require__(/*! ./internal/withoutIndex */ "../dweb-transports/node_modules/async/internal/withoutIndex.js");
+
+var _withoutIndex2 = _interopRequireDefault(_withoutIndex);
+
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../dweb-transports/node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+/**
+ * Applies the function `iteratee` to each item in `coll`, in parallel.
+ * The `iteratee` is called with an item from the list, and a callback for when
+ * it has finished. If the `iteratee` passes an error to its `callback`, the
+ * main `callback` (for the `each` function) is immediately called with the
+ * error.
+ *
+ * Note, that since this function applies `iteratee` to each item in parallel,
+ * there is no guarantee that the iteratee functions will complete in order.
+ *
+ * @name each
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias forEach
+ * @category Collection
+ * @param {Array|Iterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to
+ * each item in `coll`. Invoked with (item, callback).
+ * The array index is not passed to the iteratee.
+ * If you need the index, use `eachOf`.
+ * @param {Function} [callback] - A callback which is called when all
+ * `iteratee` functions have finished, or an error occurs. Invoked with (err).
+ * @example
+ *
+ * // assuming openFiles is an array of file names and saveFile is a function
+ * // to save the modified contents of that file:
+ *
+ * async.each(openFiles, saveFile, function(err){
+ *   // if any of the saves produced an error, err would equal that error
+ * });
+ *
+ * // assuming openFiles is an array of file names
+ * async.each(openFiles, function(file, callback) {
+ *
+ *     // Perform operation on file here.
+ *     console.log('Processing file ' + file);
+ *
+ *     if( file.length > 32 ) {
+ *       console.log('This file name is too long');
+ *       callback('File name too long');
+ *     } else {
+ *       // Do work to process file here
+ *       console.log('File processed');
+ *       callback();
+ *     }
+ * }, function(err) {
+ *     // if any of the file processing produced an error, err would equal that error
+ *     if( err ) {
+ *       // One of the iterations produced an error.
+ *       // All processing will now stop.
+ *       console.log('A file failed to process');
+ *     } else {
+ *       console.log('All files have been processed successfully');
+ *     }
+ * });
+ */
+
+
+function eachLimit(coll, iteratee, callback) {
+  (0, _eachOf2.default)(coll, (0, _withoutIndex2.default)((0, _wrapAsync2.default)(iteratee)), callback);
 }
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./node_modules/async/internal/initialParams.js":
-/*!******************************************************!*\
-  !*** ./node_modules/async/internal/initialParams.js ***!
-  \******************************************************/
+/***/ "../dweb-transports/node_modules/async/eachOf.js":
+/*!*******************************************************!*\
+  !*** ../dweb-transports/node_modules/async/eachOf.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (coll, iteratee, callback) {
+  var eachOfImplementation = (0, _isArrayLike2.default)(coll) ? eachOfArrayLike : eachOfGeneric;
+  eachOfImplementation(coll, (0, _wrapAsync2.default)(iteratee), callback);
+};
+
+var _isArrayLike = __webpack_require__(/*! lodash/isArrayLike */ "../dweb-transports/node_modules/lodash/isArrayLike.js");
+
+var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
+
+var _breakLoop = __webpack_require__(/*! ./internal/breakLoop */ "../dweb-transports/node_modules/async/internal/breakLoop.js");
+
+var _breakLoop2 = _interopRequireDefault(_breakLoop);
+
+var _eachOfLimit = __webpack_require__(/*! ./eachOfLimit */ "../dweb-transports/node_modules/async/eachOfLimit.js");
+
+var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
+
+var _doLimit = __webpack_require__(/*! ./internal/doLimit */ "../dweb-transports/node_modules/async/internal/doLimit.js");
+
+var _doLimit2 = _interopRequireDefault(_doLimit);
+
+var _noop = __webpack_require__(/*! lodash/noop */ "../dweb-transports/node_modules/lodash/noop.js");
+
+var _noop2 = _interopRequireDefault(_noop);
+
+var _once = __webpack_require__(/*! ./internal/once */ "../dweb-transports/node_modules/async/internal/once.js");
+
+var _once2 = _interopRequireDefault(_once);
+
+var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "../dweb-transports/node_modules/async/internal/onlyOnce.js");
+
+var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
+
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../dweb-transports/node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+} // eachOf implementation optimized for array-likes
+
+
+function eachOfArrayLike(coll, iteratee, callback) {
+  callback = (0, _once2.default)(callback || _noop2.default);
+  var index = 0,
+      completed = 0,
+      length = coll.length;
+
+  if (length === 0) {
+    callback(null);
+  }
+
+  function iteratorCallback(err, value) {
+    if (err) {
+      callback(err);
+    } else if (++completed === length || value === _breakLoop2.default) {
+      callback(null);
+    }
+  }
+
+  for (; index < length; index++) {
+    iteratee(coll[index], index, (0, _onlyOnce2.default)(iteratorCallback));
+  }
+} // a generic version of eachOf which can handle array, object, and iterator cases.
+
+
+var eachOfGeneric = (0, _doLimit2.default)(_eachOfLimit2.default, Infinity);
+/**
+ * Like [`each`]{@link module:Collections.each}, except that it passes the key (or index) as the second argument
+ * to the iteratee.
+ *
+ * @name eachOf
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias forEachOf
+ * @category Collection
+ * @see [async.each]{@link module:Collections.each}
+ * @param {Array|Iterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - A function to apply to each
+ * item in `coll`.
+ * The `key` is the item's key, or index in the case of an array.
+ * Invoked with (item, key, callback).
+ * @param {Function} [callback] - A callback which is called when all
+ * `iteratee` functions have finished, or an error occurs. Invoked with (err).
+ * @example
+ *
+ * var obj = {dev: "/dev.json", test: "/test.json", prod: "/prod.json"};
+ * var configs = {};
+ *
+ * async.forEachOf(obj, function (value, key, callback) {
+ *     fs.readFile(__dirname + value, "utf8", function (err, data) {
+ *         if (err) return callback(err);
+ *         try {
+ *             configs[key] = JSON.parse(data);
+ *         } catch (e) {
+ *             return callback(e);
+ *         }
+ *         callback();
+ *     });
+ * }, function (err) {
+ *     if (err) console.error(err.message);
+ *     // configs is now a map of JSON data
+ *     doSomethingWith(configs);
+ * });
+ */
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/eachOfLimit.js":
+/*!************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/eachOfLimit.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = eachOfLimit;
+
+var _eachOfLimit2 = __webpack_require__(/*! ./internal/eachOfLimit */ "../dweb-transports/node_modules/async/internal/eachOfLimit.js");
+
+var _eachOfLimit3 = _interopRequireDefault(_eachOfLimit2);
+
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../dweb-transports/node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+/**
+ * The same as [`eachOf`]{@link module:Collections.eachOf} but runs a maximum of `limit` async operations at a
+ * time.
+ *
+ * @name eachOfLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.eachOf]{@link module:Collections.eachOf}
+ * @alias forEachOfLimit
+ * @category Collection
+ * @param {Array|Iterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - An async function to apply to each
+ * item in `coll`. The `key` is the item's key, or index in the case of an
+ * array.
+ * Invoked with (item, key, callback).
+ * @param {Function} [callback] - A callback which is called when all
+ * `iteratee` functions have finished, or an error occurs. Invoked with (err).
+ */
+
+
+function eachOfLimit(coll, limit, iteratee, callback) {
+  (0, _eachOfLimit3.default)(limit)(coll, (0, _wrapAsync2.default)(iteratee), callback);
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/DoublyLinkedList.js":
+/*!**************************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/DoublyLinkedList.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = DLL; // Simple doubly linked list (https://en.wikipedia.org/wiki/Doubly_linked_list) implementation
+// used for queues. This implementation assumes that the node provided by the user can be modified
+// to adjust the next and last properties. We implement only the minimal functionality
+// for queue support.
+
+function DLL() {
+  this.head = this.tail = null;
+  this.length = 0;
+}
+
+function setInitial(dll, node) {
+  dll.length = 1;
+  dll.head = dll.tail = node;
+}
+
+DLL.prototype.removeLink = function (node) {
+  if (node.prev) node.prev.next = node.next;else this.head = node.next;
+  if (node.next) node.next.prev = node.prev;else this.tail = node.prev;
+  node.prev = node.next = null;
+  this.length -= 1;
+  return node;
+};
+
+DLL.prototype.empty = function () {
+  while (this.head) this.shift();
+
+  return this;
+};
+
+DLL.prototype.insertAfter = function (node, newNode) {
+  newNode.prev = node;
+  newNode.next = node.next;
+  if (node.next) node.next.prev = newNode;else this.tail = newNode;
+  node.next = newNode;
+  this.length += 1;
+};
+
+DLL.prototype.insertBefore = function (node, newNode) {
+  newNode.prev = node.prev;
+  newNode.next = node;
+  if (node.prev) node.prev.next = newNode;else this.head = newNode;
+  node.prev = newNode;
+  this.length += 1;
+};
+
+DLL.prototype.unshift = function (node) {
+  if (this.head) this.insertBefore(this.head, node);else setInitial(this, node);
+};
+
+DLL.prototype.push = function (node) {
+  if (this.tail) this.insertAfter(this.tail, node);else setInitial(this, node);
+};
+
+DLL.prototype.shift = function () {
+  return this.head && this.removeLink(this.head);
+};
+
+DLL.prototype.pop = function () {
+  return this.tail && this.removeLink(this.tail);
+};
+
+DLL.prototype.toArray = function () {
+  var arr = Array(this.length);
+  var curr = this.head;
+
+  for (var idx = 0; idx < this.length; idx++) {
+    arr[idx] = curr.data;
+    curr = curr.next;
+  }
+
+  return arr;
+};
+
+DLL.prototype.remove = function (testFn) {
+  var curr = this.head;
+
+  while (!!curr) {
+    var next = curr.next;
+
+    if (testFn(curr)) {
+      this.removeLink(curr);
+    }
+
+    curr = next;
+  }
+
+  return this;
+};
+
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/breakLoop.js":
+/*!*******************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/breakLoop.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+}); // A temporary value used to identify if the loop should be broken.
+// See #1064, #1293
+
+exports.default = {};
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/createTester.js":
+/*!**********************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/createTester.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _createTester;
+
+var _noop = __webpack_require__(/*! lodash/noop */ "../dweb-transports/node_modules/lodash/noop.js");
+
+var _noop2 = _interopRequireDefault(_noop);
+
+var _breakLoop = __webpack_require__(/*! ./breakLoop */ "../dweb-transports/node_modules/async/internal/breakLoop.js");
+
+var _breakLoop2 = _interopRequireDefault(_breakLoop);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+function _createTester(check, getResult) {
+  return function (eachfn, arr, iteratee, cb) {
+    cb = cb || _noop2.default;
+    var testPassed = false;
+    var testResult;
+    eachfn(arr, function (value, _, callback) {
+      iteratee(value, function (err, result) {
+        if (err) {
+          callback(err);
+        } else if (check(result) && !testResult) {
+          testPassed = true;
+          testResult = getResult(true, value);
+          callback(null, _breakLoop2.default);
+        } else {
+          callback();
+        }
+      });
+    }, function (err) {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, testPassed ? testResult : getResult(false));
+      }
+    });
+  };
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/doLimit.js":
+/*!*****************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/doLimit.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = doLimit;
+
+function doLimit(fn, limit) {
+  return function (iterable, iteratee, callback) {
+    return fn(iterable, limit, iteratee, callback);
+  };
+}
+
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/doParallel.js":
+/*!********************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/doParallel.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = doParallel;
+
+var _eachOf = __webpack_require__(/*! ../eachOf */ "../dweb-transports/node_modules/async/eachOf.js");
+
+var _eachOf2 = _interopRequireDefault(_eachOf);
+
+var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "../dweb-transports/node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+function doParallel(fn) {
+  return function (obj, iteratee, callback) {
+    return fn(_eachOf2.default, obj, (0, _wrapAsync2.default)(iteratee), callback);
+  };
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/doParallelLimit.js":
+/*!*************************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/doParallelLimit.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = doParallelLimit;
+
+var _eachOfLimit = __webpack_require__(/*! ./eachOfLimit */ "../dweb-transports/node_modules/async/internal/eachOfLimit.js");
+
+var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
+
+var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "../dweb-transports/node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+function doParallelLimit(fn) {
+  return function (obj, limit, iteratee, callback) {
+    return fn((0, _eachOfLimit2.default)(limit), obj, (0, _wrapAsync2.default)(iteratee), callback);
+  };
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/eachOfLimit.js":
+/*!*********************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/eachOfLimit.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _eachOfLimit;
+
+var _noop = __webpack_require__(/*! lodash/noop */ "../dweb-transports/node_modules/lodash/noop.js");
+
+var _noop2 = _interopRequireDefault(_noop);
+
+var _once = __webpack_require__(/*! ./once */ "../dweb-transports/node_modules/async/internal/once.js");
+
+var _once2 = _interopRequireDefault(_once);
+
+var _iterator = __webpack_require__(/*! ./iterator */ "../dweb-transports/node_modules/async/internal/iterator.js");
+
+var _iterator2 = _interopRequireDefault(_iterator);
+
+var _onlyOnce = __webpack_require__(/*! ./onlyOnce */ "../dweb-transports/node_modules/async/internal/onlyOnce.js");
+
+var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
+
+var _breakLoop = __webpack_require__(/*! ./breakLoop */ "../dweb-transports/node_modules/async/internal/breakLoop.js");
+
+var _breakLoop2 = _interopRequireDefault(_breakLoop);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+function _eachOfLimit(limit) {
+  return function (obj, iteratee, callback) {
+    callback = (0, _once2.default)(callback || _noop2.default);
+
+    if (limit <= 0 || !obj) {
+      return callback(null);
+    }
+
+    var nextElem = (0, _iterator2.default)(obj);
+    var done = false;
+    var running = 0;
+    var looping = false;
+
+    function iterateeCallback(err, value) {
+      running -= 1;
+
+      if (err) {
+        done = true;
+        callback(err);
+      } else if (value === _breakLoop2.default || done && running <= 0) {
+        done = true;
+        return callback(null);
+      } else if (!looping) {
+        replenish();
+      }
+    }
+
+    function replenish() {
+      looping = true;
+
+      while (running < limit && !done) {
+        var elem = nextElem();
+
+        if (elem === null) {
+          done = true;
+
+          if (running <= 0) {
+            callback(null);
+          }
+
+          return;
+        }
+
+        running += 1;
+        iteratee(elem.value, elem.key, (0, _onlyOnce2.default)(iterateeCallback));
+      }
+
+      looping = false;
+    }
+
+    replenish();
+  };
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/findGetResult.js":
+/*!***********************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/findGetResult.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _findGetResult;
+
+function _findGetResult(v, x) {
+  return x;
+}
+
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/getIterator.js":
+/*!*********************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/getIterator.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (coll) {
+  return iteratorSymbol && coll[iteratorSymbol] && coll[iteratorSymbol]();
+};
+
+var iteratorSymbol = typeof Symbol === 'function' && Symbol.iterator;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/initialParams.js":
+/*!***********************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/initialParams.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9039,22 +7526,169 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (fn) {
-  return function (...args
-  /*, callback*/
-  ) {
+  return function ()
+  /*...args, callback*/
+  {
+    var args = (0, _slice2.default)(arguments);
     var callback = args.pop();
-    return fn.call(this, args, callback);
+    fn.call(this, args, callback);
   };
 };
 
-module.exports = exports["default"];
+var _slice = __webpack_require__(/*! ./slice */ "../dweb-transports/node_modules/async/internal/slice.js");
+
+var _slice2 = _interopRequireDefault(_slice);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+module.exports = exports['default'];
 
 /***/ }),
 
-/***/ "./node_modules/async/internal/once.js":
-/*!*********************************************!*\
-  !*** ./node_modules/async/internal/once.js ***!
-  \*********************************************/
+/***/ "../dweb-transports/node_modules/async/internal/iterator.js":
+/*!******************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/iterator.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = iterator;
+
+var _isArrayLike = __webpack_require__(/*! lodash/isArrayLike */ "../dweb-transports/node_modules/lodash/isArrayLike.js");
+
+var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
+
+var _getIterator = __webpack_require__(/*! ./getIterator */ "../dweb-transports/node_modules/async/internal/getIterator.js");
+
+var _getIterator2 = _interopRequireDefault(_getIterator);
+
+var _keys = __webpack_require__(/*! lodash/keys */ "../dweb-transports/node_modules/lodash/keys.js");
+
+var _keys2 = _interopRequireDefault(_keys);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+function createArrayIterator(coll) {
+  var i = -1;
+  var len = coll.length;
+  return function next() {
+    return ++i < len ? {
+      value: coll[i],
+      key: i
+    } : null;
+  };
+}
+
+function createES2015Iterator(iterator) {
+  var i = -1;
+  return function next() {
+    var item = iterator.next();
+    if (item.done) return null;
+    i++;
+    return {
+      value: item.value,
+      key: i
+    };
+  };
+}
+
+function createObjectIterator(obj) {
+  var okeys = (0, _keys2.default)(obj);
+  var i = -1;
+  var len = okeys.length;
+  return function next() {
+    var key = okeys[++i];
+    return i < len ? {
+      value: obj[key],
+      key: key
+    } : null;
+  };
+}
+
+function iterator(coll) {
+  if ((0, _isArrayLike2.default)(coll)) {
+    return createArrayIterator(coll);
+  }
+
+  var iterator = (0, _getIterator2.default)(coll);
+  return iterator ? createES2015Iterator(iterator) : createObjectIterator(coll);
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/map.js":
+/*!*************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/map.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _asyncMap;
+
+var _noop = __webpack_require__(/*! lodash/noop */ "../dweb-transports/node_modules/lodash/noop.js");
+
+var _noop2 = _interopRequireDefault(_noop);
+
+var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "../dweb-transports/node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+function _asyncMap(eachfn, arr, iteratee, callback) {
+  callback = callback || _noop2.default;
+  arr = arr || [];
+  var results = [];
+  var counter = 0;
+
+  var _iteratee = (0, _wrapAsync2.default)(iteratee);
+
+  eachfn(arr, function (value, _, callback) {
+    var index = counter++;
+
+    _iteratee(value, function (err, v) {
+      results[index] = v;
+      callback(err);
+    });
+  }, function (err) {
+    callback(err, results);
+  });
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/once.js":
+/*!**************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/once.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9067,25 +7701,22 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = once;
 
 function once(fn) {
-  function wrapper(...args) {
+  return function () {
     if (fn === null) return;
     var callFn = fn;
     fn = null;
-    callFn.apply(this, args);
-  }
-
-  Object.assign(wrapper, fn);
-  return wrapper;
+    callFn.apply(this, arguments);
+  };
 }
 
 module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "./node_modules/async/internal/onlyOnce.js":
-/*!*************************************************!*\
-  !*** ./node_modules/async/internal/onlyOnce.js ***!
-  \*************************************************/
+/***/ "../dweb-transports/node_modules/async/internal/onlyOnce.js":
+/*!******************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/onlyOnce.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9098,11 +7729,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = onlyOnce;
 
 function onlyOnce(fn) {
-  return function (...args) {
+  return function () {
     if (fn === null) throw new Error("Callback was already called.");
     var callFn = fn;
     fn = null;
-    callFn.apply(this, args);
+    callFn.apply(this, arguments);
   };
 }
 
@@ -9110,22 +7741,266 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "./node_modules/async/internal/setImmediate.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/async/internal/setImmediate.js ***!
-  \*****************************************************/
+/***/ "../dweb-transports/node_modules/async/internal/queue.js":
+/*!***************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/queue.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = queue;
+
+var _baseIndexOf = __webpack_require__(/*! lodash/_baseIndexOf */ "../dweb-transports/node_modules/lodash/_baseIndexOf.js");
+
+var _baseIndexOf2 = _interopRequireDefault(_baseIndexOf);
+
+var _isArray = __webpack_require__(/*! lodash/isArray */ "../dweb-transports/node_modules/lodash/isArray.js");
+
+var _isArray2 = _interopRequireDefault(_isArray);
+
+var _noop = __webpack_require__(/*! lodash/noop */ "../dweb-transports/node_modules/lodash/noop.js");
+
+var _noop2 = _interopRequireDefault(_noop);
+
+var _onlyOnce = __webpack_require__(/*! ./onlyOnce */ "../dweb-transports/node_modules/async/internal/onlyOnce.js");
+
+var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
+
+var _setImmediate = __webpack_require__(/*! ./setImmediate */ "../dweb-transports/node_modules/async/internal/setImmediate.js");
+
+var _setImmediate2 = _interopRequireDefault(_setImmediate);
+
+var _DoublyLinkedList = __webpack_require__(/*! ./DoublyLinkedList */ "../dweb-transports/node_modules/async/internal/DoublyLinkedList.js");
+
+var _DoublyLinkedList2 = _interopRequireDefault(_DoublyLinkedList);
+
+var _wrapAsync = __webpack_require__(/*! ./wrapAsync */ "../dweb-transports/node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+function queue(worker, concurrency, payload) {
+  if (concurrency == null) {
+    concurrency = 1;
+  } else if (concurrency === 0) {
+    throw new Error('Concurrency must not be zero');
+  }
+
+  var _worker = (0, _wrapAsync2.default)(worker);
+
+  var numRunning = 0;
+  var workersList = [];
+  var processingScheduled = false;
+
+  function _insert(data, insertAtFront, callback) {
+    if (callback != null && typeof callback !== 'function') {
+      throw new Error('task callback must be a function');
+    }
+
+    q.started = true;
+
+    if (!(0, _isArray2.default)(data)) {
+      data = [data];
+    }
+
+    if (data.length === 0 && q.idle()) {
+      // call drain immediately if there are no tasks
+      return (0, _setImmediate2.default)(function () {
+        q.drain();
+      });
+    }
+
+    for (var i = 0, l = data.length; i < l; i++) {
+      var item = {
+        data: data[i],
+        callback: callback || _noop2.default
+      };
+
+      if (insertAtFront) {
+        q._tasks.unshift(item);
+      } else {
+        q._tasks.push(item);
+      }
+    }
+
+    if (!processingScheduled) {
+      processingScheduled = true;
+      (0, _setImmediate2.default)(function () {
+        processingScheduled = false;
+        q.process();
+      });
+    }
+  }
+
+  function _next(tasks) {
+    return function (err) {
+      numRunning -= 1;
+
+      for (var i = 0, l = tasks.length; i < l; i++) {
+        var task = tasks[i];
+        var index = (0, _baseIndexOf2.default)(workersList, task, 0);
+
+        if (index === 0) {
+          workersList.shift();
+        } else if (index > 0) {
+          workersList.splice(index, 1);
+        }
+
+        task.callback.apply(task, arguments);
+
+        if (err != null) {
+          q.error(err, task.data);
+        }
+      }
+
+      if (numRunning <= q.concurrency - q.buffer) {
+        q.unsaturated();
+      }
+
+      if (q.idle()) {
+        q.drain();
+      }
+
+      q.process();
+    };
+  }
+
+  var isProcessing = false;
+  var q = {
+    _tasks: new _DoublyLinkedList2.default(),
+    concurrency: concurrency,
+    payload: payload,
+    saturated: _noop2.default,
+    unsaturated: _noop2.default,
+    buffer: concurrency / 4,
+    empty: _noop2.default,
+    drain: _noop2.default,
+    error: _noop2.default,
+    started: false,
+    paused: false,
+    push: function (data, callback) {
+      _insert(data, false, callback);
+    },
+    kill: function () {
+      q.drain = _noop2.default;
+
+      q._tasks.empty();
+    },
+    unshift: function (data, callback) {
+      _insert(data, true, callback);
+    },
+    remove: function (testFn) {
+      q._tasks.remove(testFn);
+    },
+    process: function () {
+      // Avoid trying to start too many processing operations. This can occur
+      // when callbacks resolve synchronously (#1267).
+      if (isProcessing) {
+        return;
+      }
+
+      isProcessing = true;
+
+      while (!q.paused && numRunning < q.concurrency && q._tasks.length) {
+        var tasks = [],
+            data = [];
+        var l = q._tasks.length;
+        if (q.payload) l = Math.min(l, q.payload);
+
+        for (var i = 0; i < l; i++) {
+          var node = q._tasks.shift();
+
+          tasks.push(node);
+          workersList.push(node);
+          data.push(node.data);
+        }
+
+        numRunning += 1;
+
+        if (q._tasks.length === 0) {
+          q.empty();
+        }
+
+        if (numRunning === q.concurrency) {
+          q.saturated();
+        }
+
+        var cb = (0, _onlyOnce2.default)(_next(tasks));
+
+        _worker(data, cb);
+      }
+
+      isProcessing = false;
+    },
+    length: function () {
+      return q._tasks.length;
+    },
+    running: function () {
+      return numRunning;
+    },
+    workersList: function () {
+      return workersList;
+    },
+    idle: function () {
+      return q._tasks.length + numRunning === 0;
+    },
+    pause: function () {
+      q.paused = true;
+    },
+    resume: function () {
+      if (q.paused === false) {
+        return;
+      }
+
+      q.paused = false;
+      (0, _setImmediate2.default)(q.process);
+    }
+  };
+  return q;
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/setImmediate.js":
+/*!**********************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/setImmediate.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
-/* istanbul ignore file */
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.hasNextTick = exports.hasSetImmediate = undefined;
 exports.fallback = fallback;
 exports.wrap = wrap;
+
+var _slice = __webpack_require__(/*! ./slice */ "../dweb-transports/node_modules/async/internal/slice.js");
+
+var _slice2 = _interopRequireDefault(_slice);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
 var hasSetImmediate = exports.hasSetImmediate = typeof setImmediate === 'function' && setImmediate;
 var hasNextTick = exports.hasNextTick = typeof process === 'object' && typeof process.nextTick === 'function';
 
@@ -9134,7 +8009,14 @@ function fallback(fn) {
 }
 
 function wrap(defer) {
-  return (fn, ...args) => defer(() => fn(...args));
+  return function (fn
+  /*, ...args*/
+  ) {
+    var args = (0, _slice2.default)(arguments, 1);
+    defer(function () {
+      fn.apply(null, args);
+    });
+  };
 }
 
 var _defer;
@@ -9148,14 +8030,14 @@ if (hasSetImmediate) {
 }
 
 exports.default = wrap(_defer);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../corona-tracker/node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "./node_modules/async/internal/wrapAsync.js":
-/*!**************************************************!*\
-  !*** ./node_modules/async/internal/wrapAsync.js ***!
-  \**************************************************/
+/***/ "../dweb-transports/node_modules/async/internal/slice.js":
+/*!***************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/slice.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9165,9 +8047,65 @@ exports.default = wrap(_defer);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isAsyncIterable = exports.isAsyncGenerator = exports.isAsync = undefined;
+exports.default = slice;
 
-var _asyncify = __webpack_require__(/*! ../asyncify */ "./node_modules/async/asyncify.js");
+function slice(arrayLike, start) {
+  start = start | 0;
+  var newLen = Math.max(arrayLike.length - start, 0);
+  var newArr = Array(newLen);
+
+  for (var idx = 0; idx < newLen; idx++) {
+    newArr[idx] = arrayLike[start + idx];
+  }
+
+  return newArr;
+}
+
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/withoutIndex.js":
+/*!**********************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/withoutIndex.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _withoutIndex;
+
+function _withoutIndex(iteratee) {
+  return function (value, index, callback) {
+    return iteratee(value, callback);
+  };
+}
+
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/internal/wrapAsync.js":
+/*!*******************************************************************!*\
+  !*** ../dweb-transports/node_modules/async/internal/wrapAsync.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isAsync = undefined;
+
+var _asyncify = __webpack_require__(/*! ../asyncify */ "../dweb-transports/node_modules/async/asyncify.js");
 
 var _asyncify2 = _interopRequireDefault(_asyncify);
 
@@ -9177,34 +8115,25 @@ function _interopRequireDefault(obj) {
   };
 }
 
+var supportsSymbol = typeof Symbol === 'function';
+
 function isAsync(fn) {
-  return fn[Symbol.toStringTag] === 'AsyncFunction';
-}
-
-function isAsyncGenerator(fn) {
-  return fn[Symbol.toStringTag] === 'AsyncGenerator';
-}
-
-function isAsyncIterable(obj) {
-  return typeof obj[Symbol.asyncIterator] === 'function';
+  return supportsSymbol && fn[Symbol.toStringTag] === 'AsyncFunction';
 }
 
 function wrapAsync(asyncFn) {
-  if (typeof asyncFn !== 'function') throw new Error('expected a function');
   return isAsync(asyncFn) ? (0, _asyncify2.default)(asyncFn) : asyncFn;
 }
 
 exports.default = wrapAsync;
 exports.isAsync = isAsync;
-exports.isAsyncGenerator = isAsyncGenerator;
-exports.isAsyncIterable = isAsyncIterable;
 
 /***/ }),
 
-/***/ "./node_modules/async/waterfall.js":
-/*!*****************************************!*\
-  !*** ./node_modules/async/waterfall.js ***!
-  \*****************************************/
+/***/ "../dweb-transports/node_modules/async/map.js":
+/*!****************************************************!*\
+  !*** ../dweb-transports/node_modules/async/map.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9215,27 +8144,277 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _once = __webpack_require__(/*! ./internal/once */ "./node_modules/async/internal/once.js");
+var _doParallel = __webpack_require__(/*! ./internal/doParallel */ "../dweb-transports/node_modules/async/internal/doParallel.js");
 
-var _once2 = _interopRequireDefault(_once);
+var _doParallel2 = _interopRequireDefault(_doParallel);
 
-var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "./node_modules/async/internal/onlyOnce.js");
+var _map = __webpack_require__(/*! ./internal/map */ "../dweb-transports/node_modules/async/internal/map.js");
 
-var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
-
-var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/async/internal/wrapAsync.js");
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-var _awaitify = __webpack_require__(/*! ./internal/awaitify */ "./node_modules/async/internal/awaitify.js");
-
-var _awaitify2 = _interopRequireDefault(_awaitify);
+var _map2 = _interopRequireDefault(_map);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     default: obj
   };
 }
+/**
+ * Produces a new collection of values by mapping each value in `coll` through
+ * the `iteratee` function. The `iteratee` is called with an item from `coll`
+ * and a callback for when it has finished processing. Each of these callback
+ * takes 2 arguments: an `error`, and the transformed item from `coll`. If
+ * `iteratee` passes an error to its callback, the main `callback` (for the
+ * `map` function) is immediately called with the error.
+ *
+ * Note, that since this function applies the `iteratee` to each item in
+ * parallel, there is no guarantee that the `iteratee` functions will complete
+ * in order. However, the results array will be in the same order as the
+ * original `coll`.
+ *
+ * If `map` is passed an Object, the results will be an Array.  The results
+ * will roughly be in the order of the original Objects' keys (but this can
+ * vary across JavaScript engines).
+ *
+ * @name map
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @category Collection
+ * @param {Array|Iterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * The iteratee should complete with the transformed item.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. Results is an Array of the
+ * transformed items from the `coll`. Invoked with (err, results).
+ * @example
+ *
+ * async.map(['file1','file2','file3'], fs.stat, function(err, results) {
+ *     // results is now an array of stats for each file
+ * });
+ */
+
+
+exports.default = (0, _doParallel2.default)(_map2.default);
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/queue.js":
+/*!******************************************************!*\
+  !*** ../dweb-transports/node_modules/async/queue.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (worker, concurrency) {
+  var _worker = (0, _wrapAsync2.default)(worker);
+
+  return (0, _queue2.default)(function (items, cb) {
+    _worker(items[0], cb);
+  }, concurrency, 1);
+};
+
+var _queue = __webpack_require__(/*! ./internal/queue */ "../dweb-transports/node_modules/async/internal/queue.js");
+
+var _queue2 = _interopRequireDefault(_queue);
+
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../dweb-transports/node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+module.exports = exports['default'];
+/**
+ * A queue of tasks for the worker function to complete.
+ * @typedef {Object} QueueObject
+ * @memberOf module:ControlFlow
+ * @property {Function} length - a function returning the number of items
+ * waiting to be processed. Invoke with `queue.length()`.
+ * @property {boolean} started - a boolean indicating whether or not any
+ * items have been pushed and processed by the queue.
+ * @property {Function} running - a function returning the number of items
+ * currently being processed. Invoke with `queue.running()`.
+ * @property {Function} workersList - a function returning the array of items
+ * currently being processed. Invoke with `queue.workersList()`.
+ * @property {Function} idle - a function returning false if there are items
+ * waiting or being processed, or true if not. Invoke with `queue.idle()`.
+ * @property {number} concurrency - an integer for determining how many `worker`
+ * functions should be run in parallel. This property can be changed after a
+ * `queue` is created to alter the concurrency on-the-fly.
+ * @property {Function} push - add a new task to the `queue`. Calls `callback`
+ * once the `worker` has finished processing the task. Instead of a single task,
+ * a `tasks` array can be submitted. The respective callback is used for every
+ * task in the list. Invoke with `queue.push(task, [callback])`,
+ * @property {Function} unshift - add a new task to the front of the `queue`.
+ * Invoke with `queue.unshift(task, [callback])`.
+ * @property {Function} remove - remove items from the queue that match a test
+ * function.  The test function will be passed an object with a `data` property,
+ * and a `priority` property, if this is a
+ * [priorityQueue]{@link module:ControlFlow.priorityQueue} object.
+ * Invoked with `queue.remove(testFn)`, where `testFn` is of the form
+ * `function ({data, priority}) {}` and returns a Boolean.
+ * @property {Function} saturated - a callback that is called when the number of
+ * running workers hits the `concurrency` limit, and further tasks will be
+ * queued.
+ * @property {Function} unsaturated - a callback that is called when the number
+ * of running workers is less than the `concurrency` & `buffer` limits, and
+ * further tasks will not be queued.
+ * @property {number} buffer - A minimum threshold buffer in order to say that
+ * the `queue` is `unsaturated`.
+ * @property {Function} empty - a callback that is called when the last item
+ * from the `queue` is given to a `worker`.
+ * @property {Function} drain - a callback that is called when the last item
+ * from the `queue` has returned from the `worker`.
+ * @property {Function} error - a callback that is called when a task errors.
+ * Has the signature `function(error, task)`.
+ * @property {boolean} paused - a boolean for determining whether the queue is
+ * in a paused state.
+ * @property {Function} pause - a function that pauses the processing of tasks
+ * until `resume()` is called. Invoke with `queue.pause()`.
+ * @property {Function} resume - a function that resumes the processing of
+ * queued tasks when the queue is paused. Invoke with `queue.resume()`.
+ * @property {Function} kill - a function that removes the `drain` callback and
+ * empties remaining tasks from the queue forcing it to go idle. No more tasks
+ * should be pushed to the queue after calling this function. Invoke with `queue.kill()`.
+ */
+
+/**
+ * Creates a `queue` object with the specified `concurrency`. Tasks added to the
+ * `queue` are processed in parallel (up to the `concurrency` limit). If all
+ * `worker`s are in progress, the task is queued until one becomes available.
+ * Once a `worker` completes a `task`, that `task`'s callback is called.
+ *
+ * @name queue
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {AsyncFunction} worker - An async function for processing a queued task.
+ * If you want to handle errors from an individual task, pass a callback to
+ * `q.push()`. Invoked with (task, callback).
+ * @param {number} [concurrency=1] - An `integer` for determining how many
+ * `worker` functions should be run in parallel.  If omitted, the concurrency
+ * defaults to `1`.  If the concurrency is `0`, an error is thrown.
+ * @returns {module:ControlFlow.QueueObject} A queue object to manage the tasks. Callbacks can
+ * attached as certain properties to listen for specific events during the
+ * lifecycle of the queue.
+ * @example
+ *
+ * // create a queue object with concurrency 2
+ * var q = async.queue(function(task, callback) {
+ *     console.log('hello ' + task.name);
+ *     callback();
+ * }, 2);
+ *
+ * // assign a callback
+ * q.drain = function() {
+ *     console.log('all items have been processed');
+ * };
+ *
+ * // add some items to the queue
+ * q.push({name: 'foo'}, function(err) {
+ *     console.log('finished processing foo');
+ * });
+ * q.push({name: 'bar'}, function (err) {
+ *     console.log('finished processing bar');
+ * });
+ *
+ * // add some items to the queue (batch-wise)
+ * q.push([{name: 'baz'},{name: 'bay'},{name: 'bax'}], function(err) {
+ *     console.log('finished processing item');
+ * });
+ *
+ * // add some items to the front of the queue
+ * q.unshift({name: 'bar'}, function (err) {
+ *     console.log('finished processing bar');
+ * });
+ */
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/async/waterfall.js":
+/*!**********************************************************!*\
+  !*** ../dweb-transports/node_modules/async/waterfall.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (tasks, callback) {
+  callback = (0, _once2.default)(callback || _noop2.default);
+  if (!(0, _isArray2.default)(tasks)) return callback(new Error('First argument to waterfall must be an array of functions'));
+  if (!tasks.length) return callback();
+  var taskIndex = 0;
+
+  function nextTask(args) {
+    var task = (0, _wrapAsync2.default)(tasks[taskIndex++]);
+    args.push((0, _onlyOnce2.default)(next));
+    task.apply(null, args);
+  }
+
+  function next(err
+  /*, ...args*/
+  ) {
+    if (err || taskIndex === tasks.length) {
+      return callback.apply(null, arguments);
+    }
+
+    nextTask((0, _slice2.default)(arguments, 1));
+  }
+
+  nextTask([]);
+};
+
+var _isArray = __webpack_require__(/*! lodash/isArray */ "../dweb-transports/node_modules/lodash/isArray.js");
+
+var _isArray2 = _interopRequireDefault(_isArray);
+
+var _noop = __webpack_require__(/*! lodash/noop */ "../dweb-transports/node_modules/lodash/noop.js");
+
+var _noop2 = _interopRequireDefault(_noop);
+
+var _once = __webpack_require__(/*! ./internal/once */ "../dweb-transports/node_modules/async/internal/once.js");
+
+var _once2 = _interopRequireDefault(_once);
+
+var _slice = __webpack_require__(/*! ./internal/slice */ "../dweb-transports/node_modules/async/internal/slice.js");
+
+var _slice2 = _interopRequireDefault(_slice);
+
+var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "../dweb-transports/node_modules/async/internal/onlyOnce.js");
+
+var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
+
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "../dweb-transports/node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+module.exports = exports['default'];
 /**
  * Runs the `tasks` array of functions in series, each passing their results to
  * the next in the array. However, if any of the `tasks` pass an error to their
@@ -9294,170 +8473,12 @@ function _interopRequireDefault(obj) {
  * }
  */
 
-
-function waterfall(tasks, callback) {
-  callback = (0, _once2.default)(callback);
-  if (!Array.isArray(tasks)) return callback(new Error('First argument to waterfall must be an array of functions'));
-  if (!tasks.length) return callback();
-  var taskIndex = 0;
-
-  function nextTask(args) {
-    var task = (0, _wrapAsync2.default)(tasks[taskIndex++]);
-    task(...args, (0, _onlyOnce2.default)(next));
-  }
-
-  function next(err, ...args) {
-    if (err === false) return;
-
-    if (err || taskIndex === tasks.length) {
-      return callback(err, ...args);
-    }
-
-    nextTask(args);
-  }
-
-  nextTask([]);
-}
-
-exports.default = (0, _awaitify2.default)(waterfall);
-module.exports = exports['default'];
-
 /***/ }),
 
-/***/ "./node_modules/base64-js/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/base64-js/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.byteLength = byteLength;
-exports.toByteArray = toByteArray;
-exports.fromByteArray = fromByteArray;
-var lookup = [];
-var revLookup = [];
-var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array;
-var code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-
-for (var i = 0, len = code.length; i < len; ++i) {
-  lookup[i] = code[i];
-  revLookup[code.charCodeAt(i)] = i;
-} // Support decoding URL-safe base64 strings, as Node.js does.
-// See: https://en.wikipedia.org/wiki/Base64#URL_applications
-
-
-revLookup['-'.charCodeAt(0)] = 62;
-revLookup['_'.charCodeAt(0)] = 63;
-
-function getLens(b64) {
-  var len = b64.length;
-
-  if (len % 4 > 0) {
-    throw new Error('Invalid string. Length must be a multiple of 4');
-  } // Trim off extra bytes after placeholder bytes are found
-  // See: https://github.com/beatgammit/base64-js/issues/42
-
-
-  var validLen = b64.indexOf('=');
-  if (validLen === -1) validLen = len;
-  var placeHoldersLen = validLen === len ? 0 : 4 - validLen % 4;
-  return [validLen, placeHoldersLen];
-} // base64 is 4/3 + up to two characters of the original data
-
-
-function byteLength(b64) {
-  var lens = getLens(b64);
-  var validLen = lens[0];
-  var placeHoldersLen = lens[1];
-  return (validLen + placeHoldersLen) * 3 / 4 - placeHoldersLen;
-}
-
-function _byteLength(b64, validLen, placeHoldersLen) {
-  return (validLen + placeHoldersLen) * 3 / 4 - placeHoldersLen;
-}
-
-function toByteArray(b64) {
-  var tmp;
-  var lens = getLens(b64);
-  var validLen = lens[0];
-  var placeHoldersLen = lens[1];
-  var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen));
-  var curByte = 0; // if there are placeholders, only get up to the last complete 4 chars
-
-  var len = placeHoldersLen > 0 ? validLen - 4 : validLen;
-  var i;
-
-  for (i = 0; i < len; i += 4) {
-    tmp = revLookup[b64.charCodeAt(i)] << 18 | revLookup[b64.charCodeAt(i + 1)] << 12 | revLookup[b64.charCodeAt(i + 2)] << 6 | revLookup[b64.charCodeAt(i + 3)];
-    arr[curByte++] = tmp >> 16 & 0xFF;
-    arr[curByte++] = tmp >> 8 & 0xFF;
-    arr[curByte++] = tmp & 0xFF;
-  }
-
-  if (placeHoldersLen === 2) {
-    tmp = revLookup[b64.charCodeAt(i)] << 2 | revLookup[b64.charCodeAt(i + 1)] >> 4;
-    arr[curByte++] = tmp & 0xFF;
-  }
-
-  if (placeHoldersLen === 1) {
-    tmp = revLookup[b64.charCodeAt(i)] << 10 | revLookup[b64.charCodeAt(i + 1)] << 4 | revLookup[b64.charCodeAt(i + 2)] >> 2;
-    arr[curByte++] = tmp >> 8 & 0xFF;
-    arr[curByte++] = tmp & 0xFF;
-  }
-
-  return arr;
-}
-
-function tripletToBase64(num) {
-  return lookup[num >> 18 & 0x3F] + lookup[num >> 12 & 0x3F] + lookup[num >> 6 & 0x3F] + lookup[num & 0x3F];
-}
-
-function encodeChunk(uint8, start, end) {
-  var tmp;
-  var output = [];
-
-  for (var i = start; i < end; i += 3) {
-    tmp = (uint8[i] << 16 & 0xFF0000) + (uint8[i + 1] << 8 & 0xFF00) + (uint8[i + 2] & 0xFF);
-    output.push(tripletToBase64(tmp));
-  }
-
-  return output.join('');
-}
-
-function fromByteArray(uint8) {
-  var tmp;
-  var len = uint8.length;
-  var extraBytes = len % 3; // if we have 1 byte left, pad 2 bytes
-
-  var parts = [];
-  var maxChunkLength = 16383; // must be multiple of 3
-  // go through the array every three bytes, we'll deal with trailing stuff later
-
-  for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
-    parts.push(encodeChunk(uint8, i, i + maxChunkLength > len2 ? len2 : i + maxChunkLength));
-  } // pad the end with zeros, but make sure to not forget the extra bytes
-
-
-  if (extraBytes === 1) {
-    tmp = uint8[len - 1];
-    parts.push(lookup[tmp >> 2] + lookup[tmp << 4 & 0x3F] + '==');
-  } else if (extraBytes === 2) {
-    tmp = (uint8[len - 2] << 8) + uint8[len - 1];
-    parts.push(lookup[tmp >> 10] + lookup[tmp >> 4 & 0x3F] + lookup[tmp << 2 & 0x3F] + '=');
-  }
-
-  return parts.join('');
-}
-
-/***/ }),
-
-/***/ "./node_modules/bignumber.js/bignumber.js":
-/*!************************************************!*\
-  !*** ./node_modules/bignumber.js/bignumber.js ***!
-  \************************************************/
+/***/ "../dweb-transports/node_modules/bignumber.js/bignumber.js":
+/*!*****************************************************************!*\
+  !*** ../dweb-transports/node_modules/bignumber.js/bignumber.js ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12131,6 +11152,6253 @@ var __WEBPACK_AMD_DEFINE_RESULT__;;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)); // Node.js and other environments that support module.exports.
   } else {}
 })(this);
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/debug/src/browser.js":
+/*!************************************************************!*\
+  !*** ../dweb-transports/node_modules/debug/src/browser.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/* eslint-env browser */
+
+/**
+ * This is the web browser implementation of `debug()`.
+ */
+exports.log = log;
+exports.formatArgs = formatArgs;
+exports.save = save;
+exports.load = load;
+exports.useColors = useColors;
+exports.storage = localstorage();
+/**
+ * Colors.
+ */
+
+exports.colors = ['#0000CC', '#0000FF', '#0033CC', '#0033FF', '#0066CC', '#0066FF', '#0099CC', '#0099FF', '#00CC00', '#00CC33', '#00CC66', '#00CC99', '#00CCCC', '#00CCFF', '#3300CC', '#3300FF', '#3333CC', '#3333FF', '#3366CC', '#3366FF', '#3399CC', '#3399FF', '#33CC00', '#33CC33', '#33CC66', '#33CC99', '#33CCCC', '#33CCFF', '#6600CC', '#6600FF', '#6633CC', '#6633FF', '#66CC00', '#66CC33', '#9900CC', '#9900FF', '#9933CC', '#9933FF', '#99CC00', '#99CC33', '#CC0000', '#CC0033', '#CC0066', '#CC0099', '#CC00CC', '#CC00FF', '#CC3300', '#CC3333', '#CC3366', '#CC3399', '#CC33CC', '#CC33FF', '#CC6600', '#CC6633', '#CC9900', '#CC9933', '#CCCC00', '#CCCC33', '#FF0000', '#FF0033', '#FF0066', '#FF0099', '#FF00CC', '#FF00FF', '#FF3300', '#FF3333', '#FF3366', '#FF3399', '#FF33CC', '#FF33FF', '#FF6600', '#FF6633', '#FF9900', '#FF9933', '#FFCC00', '#FFCC33'];
+/**
+ * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+ * and the Firebug extension (any Firefox version) are known
+ * to support "%c" CSS customizations.
+ *
+ * TODO: add a `localStorage` variable to explicitly enable/disable colors
+ */
+// eslint-disable-next-line complexity
+
+function useColors() {
+  // NB: In an Electron preload script, document will be defined but not fully
+  // initialized. Since we know we're in Chrome, we'll just detect this case
+  // explicitly
+  if (typeof window !== 'undefined' && window.process && (window.process.type === 'renderer' || window.process.__nwjs)) {
+    return true;
+  } // Internet Explorer and Edge do not support colors.
+
+
+  if (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
+    return false;
+  } // Is webkit? http://stackoverflow.com/a/16459606/376773
+  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+
+
+  return typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // Is firebug? http://stackoverflow.com/a/398120/376773
+  typeof window !== 'undefined' && window.console && (window.console.firebug || window.console.exception && window.console.table) || // Is firefox >= v31?
+  // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+  typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
+  typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
+}
+/**
+ * Colorize log arguments if enabled.
+ *
+ * @api public
+ */
+
+
+function formatArgs(args) {
+  args[0] = (this.useColors ? '%c' : '') + this.namespace + (this.useColors ? ' %c' : ' ') + args[0] + (this.useColors ? '%c ' : ' ') + '+' + module.exports.humanize(this.diff);
+
+  if (!this.useColors) {
+    return;
+  }
+
+  const c = 'color: ' + this.color;
+  args.splice(1, 0, c, 'color: inherit'); // The final "%c" is somewhat tricky, because there could be other
+  // arguments passed either before or after the %c, so we need to
+  // figure out the correct index to insert the CSS into
+
+  let index = 0;
+  let lastC = 0;
+  args[0].replace(/%[a-zA-Z%]/g, match => {
+    if (match === '%%') {
+      return;
+    }
+
+    index++;
+
+    if (match === '%c') {
+      // We only are interested in the *last* %c
+      // (the user may have provided their own)
+      lastC = index;
+    }
+  });
+  args.splice(lastC, 0, c);
+}
+/**
+ * Invokes `console.log()` when available.
+ * No-op when `console.log` is not a "function".
+ *
+ * @api public
+ */
+
+
+function log(...args) {
+  // This hackery is required for IE8/9, where
+  // the `console.log` function doesn't have 'apply'
+  return typeof console === 'object' && console.log && console.log(...args);
+}
+/**
+ * Save `namespaces`.
+ *
+ * @param {String} namespaces
+ * @api private
+ */
+
+
+function save(namespaces) {
+  try {
+    if (namespaces) {
+      exports.storage.setItem('debug', namespaces);
+    } else {
+      exports.storage.removeItem('debug');
+    }
+  } catch (error) {// Swallow
+    // XXX (@Qix-) should we be logging these?
+  }
+}
+/**
+ * Load `namespaces`.
+ *
+ * @return {String} returns the previously persisted debug modes
+ * @api private
+ */
+
+
+function load() {
+  let r;
+
+  try {
+    r = exports.storage.getItem('debug');
+  } catch (error) {} // Swallow
+  // XXX (@Qix-) should we be logging these?
+  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+
+
+  if (!r && typeof process !== 'undefined' && 'env' in process) {
+    r = process.env.DEBUG;
+  }
+
+  return r;
+}
+/**
+ * Localstorage attempts to return the localstorage.
+ *
+ * This is necessary because safari throws
+ * when a user disables cookies/localstorage
+ * and you attempt to access it.
+ *
+ * @return {LocalStorage}
+ * @api private
+ */
+
+
+function localstorage() {
+  try {
+    // TVMLKit (Apple TV JS Runtime) does not have a window object, just localStorage in the global context
+    // The Browser also has localStorage in the global context.
+    return localStorage;
+  } catch (error) {// Swallow
+    // XXX (@Qix-) should we be logging these?
+  }
+}
+
+module.exports = __webpack_require__(/*! ./common */ "../dweb-transports/node_modules/debug/src/common.js")(exports);
+const {
+  formatters
+} = module.exports;
+/**
+ * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+ */
+
+formatters.j = function (v) {
+  try {
+    return JSON.stringify(v);
+  } catch (error) {
+    return '[UnexpectedJSONParseError]: ' + error.message;
+  }
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../corona-tracker/node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/debug/src/common.js":
+/*!***********************************************************!*\
+  !*** ../dweb-transports/node_modules/debug/src/common.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * This is the common logic for both the Node.js and web browser
+ * implementations of `debug()`.
+ */
+function setup(env) {
+  createDebug.debug = createDebug;
+  createDebug.default = createDebug;
+  createDebug.coerce = coerce;
+  createDebug.disable = disable;
+  createDebug.enable = enable;
+  createDebug.enabled = enabled;
+  createDebug.humanize = __webpack_require__(/*! ms */ "../dweb-transports/node_modules/ms/index.js");
+  Object.keys(env).forEach(key => {
+    createDebug[key] = env[key];
+  });
+  /**
+  * Active `debug` instances.
+  */
+
+  createDebug.instances = [];
+  /**
+  * The currently active debug mode names, and names to skip.
+  */
+
+  createDebug.names = [];
+  createDebug.skips = [];
+  /**
+  * Map of special "%n" handling functions, for the debug "format" argument.
+  *
+  * Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
+  */
+
+  createDebug.formatters = {};
+  /**
+  * Selects a color for a debug namespace
+  * @param {String} namespace The namespace string for the for the debug instance to be colored
+  * @return {Number|String} An ANSI color code for the given namespace
+  * @api private
+  */
+
+  function selectColor(namespace) {
+    let hash = 0;
+
+    for (let i = 0; i < namespace.length; i++) {
+      hash = (hash << 5) - hash + namespace.charCodeAt(i);
+      hash |= 0; // Convert to 32bit integer
+    }
+
+    return createDebug.colors[Math.abs(hash) % createDebug.colors.length];
+  }
+
+  createDebug.selectColor = selectColor;
+  /**
+  * Create a debugger with the given `namespace`.
+  *
+  * @param {String} namespace
+  * @return {Function}
+  * @api public
+  */
+
+  function createDebug(namespace) {
+    let prevTime;
+
+    function debug(...args) {
+      // Disabled?
+      if (!debug.enabled) {
+        return;
+      }
+
+      const self = debug; // Set `diff` timestamp
+
+      const curr = Number(new Date());
+      const ms = curr - (prevTime || curr);
+      self.diff = ms;
+      self.prev = prevTime;
+      self.curr = curr;
+      prevTime = curr;
+      args[0] = createDebug.coerce(args[0]);
+
+      if (typeof args[0] !== 'string') {
+        // Anything else let's inspect with %O
+        args.unshift('%O');
+      } // Apply any `formatters` transformations
+
+
+      let index = 0;
+      args[0] = args[0].replace(/%([a-zA-Z%])/g, (match, format) => {
+        // If we encounter an escaped % then don't increase the array index
+        if (match === '%%') {
+          return match;
+        }
+
+        index++;
+        const formatter = createDebug.formatters[format];
+
+        if (typeof formatter === 'function') {
+          const val = args[index];
+          match = formatter.call(self, val); // Now we need to remove `args[index]` since it's inlined in the `format`
+
+          args.splice(index, 1);
+          index--;
+        }
+
+        return match;
+      }); // Apply env-specific formatting (colors, etc.)
+
+      createDebug.formatArgs.call(self, args);
+      const logFn = self.log || createDebug.log;
+      logFn.apply(self, args);
+    }
+
+    debug.namespace = namespace;
+    debug.enabled = createDebug.enabled(namespace);
+    debug.useColors = createDebug.useColors();
+    debug.color = selectColor(namespace);
+    debug.destroy = destroy;
+    debug.extend = extend; // Debug.formatArgs = formatArgs;
+    // debug.rawLog = rawLog;
+    // env-specific initialization logic for debug instances
+
+    if (typeof createDebug.init === 'function') {
+      createDebug.init(debug);
+    }
+
+    createDebug.instances.push(debug);
+    return debug;
+  }
+
+  function destroy() {
+    const index = createDebug.instances.indexOf(this);
+
+    if (index !== -1) {
+      createDebug.instances.splice(index, 1);
+      return true;
+    }
+
+    return false;
+  }
+
+  function extend(namespace, delimiter) {
+    const newDebug = createDebug(this.namespace + (typeof delimiter === 'undefined' ? ':' : delimiter) + namespace);
+    newDebug.log = this.log;
+    return newDebug;
+  }
+  /**
+  * Enables a debug mode by namespaces. This can include modes
+  * separated by a colon and wildcards.
+  *
+  * @param {String} namespaces
+  * @api public
+  */
+
+
+  function enable(namespaces) {
+    createDebug.save(namespaces);
+    createDebug.names = [];
+    createDebug.skips = [];
+    let i;
+    const split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
+    const len = split.length;
+
+    for (i = 0; i < len; i++) {
+      if (!split[i]) {
+        // ignore empty strings
+        continue;
+      }
+
+      namespaces = split[i].replace(/\*/g, '.*?');
+
+      if (namespaces[0] === '-') {
+        createDebug.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+      } else {
+        createDebug.names.push(new RegExp('^' + namespaces + '$'));
+      }
+    }
+
+    for (i = 0; i < createDebug.instances.length; i++) {
+      const instance = createDebug.instances[i];
+      instance.enabled = createDebug.enabled(instance.namespace);
+    }
+  }
+  /**
+  * Disable debug output.
+  *
+  * @return {String} namespaces
+  * @api public
+  */
+
+
+  function disable() {
+    const namespaces = [...createDebug.names.map(toNamespace), ...createDebug.skips.map(toNamespace).map(namespace => '-' + namespace)].join(',');
+    createDebug.enable('');
+    return namespaces;
+  }
+  /**
+  * Returns true if the given mode name is enabled, false otherwise.
+  *
+  * @param {String} name
+  * @return {Boolean}
+  * @api public
+  */
+
+
+  function enabled(name) {
+    if (name[name.length - 1] === '*') {
+      return true;
+    }
+
+    let i;
+    let len;
+
+    for (i = 0, len = createDebug.skips.length; i < len; i++) {
+      if (createDebug.skips[i].test(name)) {
+        return false;
+      }
+    }
+
+    for (i = 0, len = createDebug.names.length; i < len; i++) {
+      if (createDebug.names[i].test(name)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+  /**
+  * Convert regexp to namespace
+  *
+  * @param {RegExp} regxep
+  * @return {String} namespace
+  * @api private
+  */
+
+
+  function toNamespace(regexp) {
+    return regexp.toString().substring(2, regexp.toString().length - 2).replace(/\.\*\?$/, '*');
+  }
+  /**
+  * Coerce `val`.
+  *
+  * @param {Mixed} val
+  * @return {Mixed}
+  * @api private
+  */
+
+
+  function coerce(val) {
+    if (val instanceof Error) {
+      return val.stack || val.message;
+    }
+
+    return val;
+  }
+
+  createDebug.enable(createDebug.load());
+  return createDebug;
+}
+
+module.exports = setup;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/inherits/inherits_browser.js":
+/*!********************************************************************!*\
+  !*** ../dweb-transports/node_modules/inherits/inherits_browser.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    if (superCtor) {
+      ctor.super_ = superCtor;
+      ctor.prototype = Object.create(superCtor.prototype, {
+        constructor: {
+          value: ctor,
+          enumerable: false,
+          writable: true,
+          configurable: true
+        }
+      });
+    }
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    if (superCtor) {
+      ctor.super_ = superCtor;
+
+      var TempCtor = function () {};
+
+      TempCtor.prototype = superCtor.prototype;
+      ctor.prototype = new TempCtor();
+      ctor.prototype.constructor = ctor;
+    }
+  };
+}
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_Symbol.js":
+/*!*********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_Symbol.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__(/*! ./_root */ "../dweb-transports/node_modules/lodash/_root.js");
+/** Built-in value references. */
+
+
+var Symbol = root.Symbol;
+module.exports = Symbol;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_arrayLikeKeys.js":
+/*!****************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_arrayLikeKeys.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseTimes = __webpack_require__(/*! ./_baseTimes */ "../dweb-transports/node_modules/lodash/_baseTimes.js"),
+    isArguments = __webpack_require__(/*! ./isArguments */ "../dweb-transports/node_modules/lodash/isArguments.js"),
+    isArray = __webpack_require__(/*! ./isArray */ "../dweb-transports/node_modules/lodash/isArray.js"),
+    isBuffer = __webpack_require__(/*! ./isBuffer */ "../dweb-transports/node_modules/lodash/isBuffer.js"),
+    isIndex = __webpack_require__(/*! ./_isIndex */ "../dweb-transports/node_modules/lodash/_isIndex.js"),
+    isTypedArray = __webpack_require__(/*! ./isTypedArray */ "../dweb-transports/node_modules/lodash/isTypedArray.js");
+/** Used for built-in method references. */
+
+
+var objectProto = Object.prototype;
+/** Used to check objects for own properties. */
+
+var hasOwnProperty = objectProto.hasOwnProperty;
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+
+function arrayLikeKeys(value, inherited) {
+  var isArr = isArray(value),
+      isArg = !isArr && isArguments(value),
+      isBuff = !isArr && !isArg && isBuffer(value),
+      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+      skipIndexes = isArr || isArg || isBuff || isType,
+      result = skipIndexes ? baseTimes(value.length, String) : [],
+      length = result.length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && ( // Safari 9 has enumerable `arguments.length` in strict mode.
+    key == 'length' || // Node.js 0.10 has enumerable non-index properties on buffers.
+    isBuff && (key == 'offset' || key == 'parent') || // PhantomJS 2 has enumerable non-index properties on typed arrays.
+    isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset') || // Skip index properties.
+    isIndex(key, length)))) {
+      result.push(key);
+    }
+  }
+
+  return result;
+}
+
+module.exports = arrayLikeKeys;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_baseFindIndex.js":
+/*!****************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_baseFindIndex.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.findIndex` and `_.findLastIndex` without
+ * support for iteratee shorthands.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {Function} predicate The function invoked per iteration.
+ * @param {number} fromIndex The index to search from.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function baseFindIndex(array, predicate, fromIndex, fromRight) {
+  var length = array.length,
+      index = fromIndex + (fromRight ? 1 : -1);
+
+  while (fromRight ? index-- : ++index < length) {
+    if (predicate(array[index], index, array)) {
+      return index;
+    }
+  }
+
+  return -1;
+}
+
+module.exports = baseFindIndex;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_baseGetTag.js":
+/*!*************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_baseGetTag.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__(/*! ./_Symbol */ "../dweb-transports/node_modules/lodash/_Symbol.js"),
+    getRawTag = __webpack_require__(/*! ./_getRawTag */ "../dweb-transports/node_modules/lodash/_getRawTag.js"),
+    objectToString = __webpack_require__(/*! ./_objectToString */ "../dweb-transports/node_modules/lodash/_objectToString.js");
+/** `Object#toString` result references. */
+
+
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+/** Built-in value references. */
+
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+
+  return symToStringTag && symToStringTag in Object(value) ? getRawTag(value) : objectToString(value);
+}
+
+module.exports = baseGetTag;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_baseIndexOf.js":
+/*!**************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_baseIndexOf.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseFindIndex = __webpack_require__(/*! ./_baseFindIndex */ "../dweb-transports/node_modules/lodash/_baseFindIndex.js"),
+    baseIsNaN = __webpack_require__(/*! ./_baseIsNaN */ "../dweb-transports/node_modules/lodash/_baseIsNaN.js"),
+    strictIndexOf = __webpack_require__(/*! ./_strictIndexOf */ "../dweb-transports/node_modules/lodash/_strictIndexOf.js");
+/**
+ * The base implementation of `_.indexOf` without `fromIndex` bounds checks.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} value The value to search for.
+ * @param {number} fromIndex The index to search from.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+
+
+function baseIndexOf(array, value, fromIndex) {
+  return value === value ? strictIndexOf(array, value, fromIndex) : baseFindIndex(array, baseIsNaN, fromIndex);
+}
+
+module.exports = baseIndexOf;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_baseIsArguments.js":
+/*!******************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_baseIsArguments.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "../dweb-transports/node_modules/lodash/_baseGetTag.js"),
+    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "../dweb-transports/node_modules/lodash/isObjectLike.js");
+/** `Object#toString` result references. */
+
+
+var argsTag = '[object Arguments]';
+/**
+ * The base implementation of `_.isArguments`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ */
+
+function baseIsArguments(value) {
+  return isObjectLike(value) && baseGetTag(value) == argsTag;
+}
+
+module.exports = baseIsArguments;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_baseIsNaN.js":
+/*!************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_baseIsNaN.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.isNaN` without support for number objects.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
+ */
+function baseIsNaN(value) {
+  return value !== value;
+}
+
+module.exports = baseIsNaN;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_baseIsTypedArray.js":
+/*!*******************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_baseIsTypedArray.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "../dweb-transports/node_modules/lodash/_baseGetTag.js"),
+    isLength = __webpack_require__(/*! ./isLength */ "../dweb-transports/node_modules/lodash/isLength.js"),
+    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "../dweb-transports/node_modules/lodash/isObjectLike.js");
+/** `Object#toString` result references. */
+
+
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    weakMapTag = '[object WeakMap]';
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+/** Used to identify `toStringTag` values of typed arrays. */
+
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] = typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = typedArrayTags[dataViewTag] = typedArrayTags[dateTag] = typedArrayTags[errorTag] = typedArrayTags[funcTag] = typedArrayTags[mapTag] = typedArrayTags[numberTag] = typedArrayTags[objectTag] = typedArrayTags[regexpTag] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+/**
+ * The base implementation of `_.isTypedArray` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ */
+
+function baseIsTypedArray(value) {
+  return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+}
+
+module.exports = baseIsTypedArray;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_baseKeys.js":
+/*!***********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_baseKeys.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isPrototype = __webpack_require__(/*! ./_isPrototype */ "../dweb-transports/node_modules/lodash/_isPrototype.js"),
+    nativeKeys = __webpack_require__(/*! ./_nativeKeys */ "../dweb-transports/node_modules/lodash/_nativeKeys.js");
+/** Used for built-in method references. */
+
+
+var objectProto = Object.prototype;
+/** Used to check objects for own properties. */
+
+var hasOwnProperty = objectProto.hasOwnProperty;
+/**
+ * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+
+function baseKeys(object) {
+  if (!isPrototype(object)) {
+    return nativeKeys(object);
+  }
+
+  var result = [];
+
+  for (var key in Object(object)) {
+    if (hasOwnProperty.call(object, key) && key != 'constructor') {
+      result.push(key);
+    }
+  }
+
+  return result;
+}
+
+module.exports = baseKeys;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_baseTimes.js":
+/*!************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_baseTimes.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+
+  return result;
+}
+
+module.exports = baseTimes;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_baseUnary.js":
+/*!************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_baseUnary.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+function baseUnary(func) {
+  return function (value) {
+    return func(value);
+  };
+}
+
+module.exports = baseUnary;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_freeGlobal.js":
+/*!*************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_freeGlobal.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+module.exports = freeGlobal;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../corona-tracker/node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_getRawTag.js":
+/*!************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_getRawTag.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__(/*! ./_Symbol */ "../dweb-transports/node_modules/lodash/_Symbol.js");
+/** Used for built-in method references. */
+
+
+var objectProto = Object.prototype;
+/** Used to check objects for own properties. */
+
+var hasOwnProperty = objectProto.hasOwnProperty;
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+
+var nativeObjectToString = objectProto.toString;
+/** Built-in value references. */
+
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+
+  return result;
+}
+
+module.exports = getRawTag;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_isIndex.js":
+/*!**********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_isIndex.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+/** Used to detect unsigned integer values. */
+
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+
+function isIndex(value, length) {
+  var type = typeof value;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return !!length && (type == 'number' || type != 'symbol' && reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length;
+}
+
+module.exports = isIndex;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_isPrototype.js":
+/*!**************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_isPrototype.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
+  return value === proto;
+}
+
+module.exports = isPrototype;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_nativeKeys.js":
+/*!*************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_nativeKeys.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var overArg = __webpack_require__(/*! ./_overArg */ "../dweb-transports/node_modules/lodash/_overArg.js");
+/* Built-in method references for those with the same name as other `lodash` methods. */
+
+
+var nativeKeys = overArg(Object.keys, Object);
+module.exports = nativeKeys;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_nodeUtil.js":
+/*!***********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_nodeUtil.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "../dweb-transports/node_modules/lodash/_freeGlobal.js");
+/** Detect free variable `exports`. */
+
+
+var freeExports =  true && exports && !exports.nodeType && exports;
+/** Detect free variable `module`. */
+
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+/** Detect the popular CommonJS extension `module.exports`. */
+
+var moduleExports = freeModule && freeModule.exports === freeExports;
+/** Detect free variable `process` from Node.js. */
+
+var freeProcess = moduleExports && freeGlobal.process;
+/** Used to access faster Node.js helpers. */
+
+var nodeUtil = function () {
+  try {
+    // Use `util.types` for Node.js 10+.
+    var types = freeModule && freeModule.require && freeModule.require('util').types;
+
+    if (types) {
+      return types;
+    } // Legacy `process.binding('util')` for Node.js < 10.
+
+
+    return freeProcess && freeProcess.binding && freeProcess.binding('util');
+  } catch (e) {}
+}();
+
+module.exports = nodeUtil;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../corona-tracker/node_modules/webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_objectToString.js":
+/*!*****************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_objectToString.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+
+var nativeObjectToString = objectProto.toString;
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+module.exports = objectToString;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_overArg.js":
+/*!**********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_overArg.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function (arg) {
+    return func(transform(arg));
+  };
+}
+
+module.exports = overArg;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_root.js":
+/*!*******************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_root.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "../dweb-transports/node_modules/lodash/_freeGlobal.js");
+/** Detect free variable `self`. */
+
+
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+/** Used as a reference to the global object. */
+
+var root = freeGlobal || freeSelf || Function('return this')();
+module.exports = root;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/_strictIndexOf.js":
+/*!****************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/_strictIndexOf.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `_.indexOf` which performs strict equality
+ * comparisons of values, i.e. `===`.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} value The value to search for.
+ * @param {number} fromIndex The index to search from.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function strictIndexOf(array, value, fromIndex) {
+  var index = fromIndex - 1,
+      length = array.length;
+
+  while (++index < length) {
+    if (array[index] === value) {
+      return index;
+    }
+  }
+
+  return -1;
+}
+
+module.exports = strictIndexOf;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/identity.js":
+/*!**********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/identity.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/isArguments.js":
+/*!*************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/isArguments.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsArguments = __webpack_require__(/*! ./_baseIsArguments */ "../dweb-transports/node_modules/lodash/_baseIsArguments.js"),
+    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "../dweb-transports/node_modules/lodash/isObjectLike.js");
+/** Used for built-in method references. */
+
+
+var objectProto = Object.prototype;
+/** Used to check objects for own properties. */
+
+var hasOwnProperty = objectProto.hasOwnProperty;
+/** Built-in value references. */
+
+var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+
+var isArguments = baseIsArguments(function () {
+  return arguments;
+}()) ? baseIsArguments : function (value) {
+  return isObjectLike(value) && hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
+};
+module.exports = isArguments;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/isArray.js":
+/*!*********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/isArray.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+module.exports = isArray;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/isArrayLike.js":
+/*!*************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/isArrayLike.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isFunction = __webpack_require__(/*! ./isFunction */ "../dweb-transports/node_modules/lodash/isFunction.js"),
+    isLength = __webpack_require__(/*! ./isLength */ "../dweb-transports/node_modules/lodash/isLength.js");
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+
+
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+module.exports = isArrayLike;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/isBuffer.js":
+/*!**********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/isBuffer.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(/*! ./_root */ "../dweb-transports/node_modules/lodash/_root.js"),
+    stubFalse = __webpack_require__(/*! ./stubFalse */ "../dweb-transports/node_modules/lodash/stubFalse.js");
+/** Detect free variable `exports`. */
+
+
+var freeExports =  true && exports && !exports.nodeType && exports;
+/** Detect free variable `module`. */
+
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+/** Detect the popular CommonJS extension `module.exports`. */
+
+var moduleExports = freeModule && freeModule.exports === freeExports;
+/** Built-in value references. */
+
+var Buffer = moduleExports ? root.Buffer : undefined;
+/* Built-in method references for those with the same name as other `lodash` methods. */
+
+var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
+/**
+ * Checks if `value` is a buffer.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+ * @example
+ *
+ * _.isBuffer(new Buffer(2));
+ * // => true
+ *
+ * _.isBuffer(new Uint8Array(2));
+ * // => false
+ */
+
+var isBuffer = nativeIsBuffer || stubFalse;
+module.exports = isBuffer;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../corona-tracker/node_modules/webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/isFunction.js":
+/*!************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/isFunction.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "../dweb-transports/node_modules/lodash/_baseGetTag.js"),
+    isObject = __webpack_require__(/*! ./isObject */ "../dweb-transports/node_modules/lodash/isObject.js");
+/** `Object#toString` result references. */
+
+
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+
+function isFunction(value) {
+  if (!isObject(value)) {
+    return false;
+  } // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+
+
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+module.exports = isFunction;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/isLength.js":
+/*!**********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/isLength.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+module.exports = isLength;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/isObject.js":
+/*!**********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/isObject.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
+module.exports = isObject;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/isObjectLike.js":
+/*!**************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/isObjectLike.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+module.exports = isObjectLike;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/isTypedArray.js":
+/*!**************************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/isTypedArray.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsTypedArray = __webpack_require__(/*! ./_baseIsTypedArray */ "../dweb-transports/node_modules/lodash/_baseIsTypedArray.js"),
+    baseUnary = __webpack_require__(/*! ./_baseUnary */ "../dweb-transports/node_modules/lodash/_baseUnary.js"),
+    nodeUtil = __webpack_require__(/*! ./_nodeUtil */ "../dweb-transports/node_modules/lodash/_nodeUtil.js");
+/* Node.js helper references. */
+
+
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+module.exports = isTypedArray;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/keys.js":
+/*!******************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/keys.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeKeys = __webpack_require__(/*! ./_arrayLikeKeys */ "../dweb-transports/node_modules/lodash/_arrayLikeKeys.js"),
+    baseKeys = __webpack_require__(/*! ./_baseKeys */ "../dweb-transports/node_modules/lodash/_baseKeys.js"),
+    isArrayLike = __webpack_require__(/*! ./isArrayLike */ "../dweb-transports/node_modules/lodash/isArrayLike.js");
+/**
+ * Creates an array of the own enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects. See the
+ * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * for more details.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keys(new Foo);
+ * // => ['a', 'b'] (iteration order is not guaranteed)
+ *
+ * _.keys('hi');
+ * // => ['0', '1']
+ */
+
+
+function keys(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+}
+
+module.exports = keys;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/noop.js":
+/*!******************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/noop.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns `undefined`.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.3.0
+ * @category Util
+ * @example
+ *
+ * _.times(2, _.noop);
+ * // => [undefined, undefined]
+ */
+function noop() {// No operation performed.
+}
+
+module.exports = noop;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/lodash/stubFalse.js":
+/*!***********************************************************!*\
+  !*** ../dweb-transports/node_modules/lodash/stubFalse.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = stubFalse;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/ms/index.js":
+/*!***************************************************!*\
+  !*** ../dweb-transports/node_modules/ms/index.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Helpers.
+ */
+var s = 1000;
+var m = s * 60;
+var h = m * 60;
+var d = h * 24;
+var w = d * 7;
+var y = d * 365.25;
+/**
+ * Parse or format the given `val`.
+ *
+ * Options:
+ *
+ *  - `long` verbose formatting [false]
+ *
+ * @param {String|Number} val
+ * @param {Object} [options]
+ * @throws {Error} throw an error if val is not a non-empty string or a number
+ * @return {String|Number}
+ * @api public
+ */
+
+module.exports = function (val, options) {
+  options = options || {};
+  var type = typeof val;
+
+  if (type === 'string' && val.length > 0) {
+    return parse(val);
+  } else if (type === 'number' && isFinite(val)) {
+    return options.long ? fmtLong(val) : fmtShort(val);
+  }
+
+  throw new Error('val is not a non-empty string or a valid number. val=' + JSON.stringify(val));
+};
+/**
+ * Parse the given `str` and return milliseconds.
+ *
+ * @param {String} str
+ * @return {Number}
+ * @api private
+ */
+
+
+function parse(str) {
+  str = String(str);
+
+  if (str.length > 100) {
+    return;
+  }
+
+  var match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(str);
+
+  if (!match) {
+    return;
+  }
+
+  var n = parseFloat(match[1]);
+  var type = (match[2] || 'ms').toLowerCase();
+
+  switch (type) {
+    case 'years':
+    case 'year':
+    case 'yrs':
+    case 'yr':
+    case 'y':
+      return n * y;
+
+    case 'weeks':
+    case 'week':
+    case 'w':
+      return n * w;
+
+    case 'days':
+    case 'day':
+    case 'd':
+      return n * d;
+
+    case 'hours':
+    case 'hour':
+    case 'hrs':
+    case 'hr':
+    case 'h':
+      return n * h;
+
+    case 'minutes':
+    case 'minute':
+    case 'mins':
+    case 'min':
+    case 'm':
+      return n * m;
+
+    case 'seconds':
+    case 'second':
+    case 'secs':
+    case 'sec':
+    case 's':
+      return n * s;
+
+    case 'milliseconds':
+    case 'millisecond':
+    case 'msecs':
+    case 'msec':
+    case 'ms':
+      return n;
+
+    default:
+      return undefined;
+  }
+}
+/**
+ * Short format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+
+function fmtShort(ms) {
+  var msAbs = Math.abs(ms);
+
+  if (msAbs >= d) {
+    return Math.round(ms / d) + 'd';
+  }
+
+  if (msAbs >= h) {
+    return Math.round(ms / h) + 'h';
+  }
+
+  if (msAbs >= m) {
+    return Math.round(ms / m) + 'm';
+  }
+
+  if (msAbs >= s) {
+    return Math.round(ms / s) + 's';
+  }
+
+  return ms + 'ms';
+}
+/**
+ * Long format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+
+function fmtLong(ms) {
+  var msAbs = Math.abs(ms);
+
+  if (msAbs >= d) {
+    return plural(ms, msAbs, d, 'day');
+  }
+
+  if (msAbs >= h) {
+    return plural(ms, msAbs, h, 'hour');
+  }
+
+  if (msAbs >= m) {
+    return plural(ms, msAbs, m, 'minute');
+  }
+
+  if (msAbs >= s) {
+    return plural(ms, msAbs, s, 'second');
+  }
+
+  return ms + ' ms';
+}
+/**
+ * Pluralization helper.
+ */
+
+
+function plural(ms, msAbs, n, name) {
+  var isPlural = msAbs >= n * 1.5;
+  return Math.round(ms / n) + ' ' + name + (isPlural ? 's' : '');
+}
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/errors-browser.js":
+/*!*************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/errors-browser.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+var codes = {};
+
+function createErrorType(code, message, Base) {
+  if (!Base) {
+    Base = Error;
+  }
+
+  function getMessage(arg1, arg2, arg3) {
+    if (typeof message === 'string') {
+      return message;
+    } else {
+      return message(arg1, arg2, arg3);
+    }
+  }
+
+  var NodeError = /*#__PURE__*/function (_Base) {
+    _inheritsLoose(NodeError, _Base);
+
+    function NodeError(arg1, arg2, arg3) {
+      return _Base.call(this, getMessage(arg1, arg2, arg3)) || this;
+    }
+
+    return NodeError;
+  }(Base);
+
+  NodeError.prototype.name = Base.name;
+  NodeError.prototype.code = code;
+  codes[code] = NodeError;
+} // https://github.com/nodejs/node/blob/v10.8.0/lib/internal/errors.js
+
+
+function oneOf(expected, thing) {
+  if (Array.isArray(expected)) {
+    var len = expected.length;
+    expected = expected.map(function (i) {
+      return String(i);
+    });
+
+    if (len > 2) {
+      return "one of ".concat(thing, " ").concat(expected.slice(0, len - 1).join(', '), ", or ") + expected[len - 1];
+    } else if (len === 2) {
+      return "one of ".concat(thing, " ").concat(expected[0], " or ").concat(expected[1]);
+    } else {
+      return "of ".concat(thing, " ").concat(expected[0]);
+    }
+  } else {
+    return "of ".concat(thing, " ").concat(String(expected));
+  }
+} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
+
+
+function startsWith(str, search, pos) {
+  return str.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
+} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
+
+
+function endsWith(str, search, this_len) {
+  if (this_len === undefined || this_len > str.length) {
+    this_len = str.length;
+  }
+
+  return str.substring(this_len - search.length, this_len) === search;
+} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
+
+
+function includes(str, search, start) {
+  if (typeof start !== 'number') {
+    start = 0;
+  }
+
+  if (start + search.length > str.length) {
+    return false;
+  } else {
+    return str.indexOf(search, start) !== -1;
+  }
+}
+
+createErrorType('ERR_INVALID_OPT_VALUE', function (name, value) {
+  return 'The value "' + value + '" is invalid for option "' + name + '"';
+}, TypeError);
+createErrorType('ERR_INVALID_ARG_TYPE', function (name, expected, actual) {
+  // determiner: 'must be' or 'must not be'
+  var determiner;
+
+  if (typeof expected === 'string' && startsWith(expected, 'not ')) {
+    determiner = 'must not be';
+    expected = expected.replace(/^not /, '');
+  } else {
+    determiner = 'must be';
+  }
+
+  var msg;
+
+  if (endsWith(name, ' argument')) {
+    // For cases like 'first argument'
+    msg = "The ".concat(name, " ").concat(determiner, " ").concat(oneOf(expected, 'type'));
+  } else {
+    var type = includes(name, '.') ? 'property' : 'argument';
+    msg = "The \"".concat(name, "\" ").concat(type, " ").concat(determiner, " ").concat(oneOf(expected, 'type'));
+  }
+
+  msg += ". Received type ".concat(typeof actual);
+  return msg;
+}, TypeError);
+createErrorType('ERR_STREAM_PUSH_AFTER_EOF', 'stream.push() after EOF');
+createErrorType('ERR_METHOD_NOT_IMPLEMENTED', function (name) {
+  return 'The ' + name + ' method is not implemented';
+});
+createErrorType('ERR_STREAM_PREMATURE_CLOSE', 'Premature close');
+createErrorType('ERR_STREAM_DESTROYED', function (name) {
+  return 'Cannot call ' + name + ' after a stream was destroyed';
+});
+createErrorType('ERR_MULTIPLE_CALLBACK', 'Callback called multiple times');
+createErrorType('ERR_STREAM_CANNOT_PIPE', 'Cannot pipe, not readable');
+createErrorType('ERR_STREAM_WRITE_AFTER_END', 'write after end');
+createErrorType('ERR_STREAM_NULL_VALUES', 'May not write null values to stream', TypeError);
+createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
+  return 'Unknown encoding: ' + arg;
+}, TypeError);
+createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
+module.exports.codes = codes;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js":
+/*!*****************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+// a duplex stream is just a stream that is both readable and writable.
+// Since JS doesn't have multiple prototypal inheritance, this class
+// prototypally inherits from Readable, and then parasitically from
+// Writable.
+
+/*<replacement>*/
+
+var objectKeys = Object.keys || function (obj) {
+  var keys = [];
+
+  for (var key in obj) {
+    keys.push(key);
+  }
+
+  return keys;
+};
+/*</replacement>*/
+
+
+module.exports = Duplex;
+
+var Readable = __webpack_require__(/*! ./_stream_readable */ "../dweb-transports/node_modules/readable-stream/lib/_stream_readable.js");
+
+var Writable = __webpack_require__(/*! ./_stream_writable */ "../dweb-transports/node_modules/readable-stream/lib/_stream_writable.js");
+
+__webpack_require__(/*! inherits */ "../dweb-transports/node_modules/inherits/inherits_browser.js")(Duplex, Readable);
+
+{
+  // Allow the keys array to be GC'ed.
+  var keys = objectKeys(Writable.prototype);
+
+  for (var v = 0; v < keys.length; v++) {
+    var method = keys[v];
+    if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
+  }
+}
+
+function Duplex(options) {
+  if (!(this instanceof Duplex)) return new Duplex(options);
+  Readable.call(this, options);
+  Writable.call(this, options);
+  this.allowHalfOpen = true;
+
+  if (options) {
+    if (options.readable === false) this.readable = false;
+    if (options.writable === false) this.writable = false;
+
+    if (options.allowHalfOpen === false) {
+      this.allowHalfOpen = false;
+      this.once('end', onend);
+    }
+  }
+}
+
+Object.defineProperty(Duplex.prototype, 'writableHighWaterMark', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._writableState.highWaterMark;
+  }
+});
+Object.defineProperty(Duplex.prototype, 'writableBuffer', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._writableState && this._writableState.getBuffer();
+  }
+});
+Object.defineProperty(Duplex.prototype, 'writableLength', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._writableState.length;
+  }
+}); // the no-half-open enforcer
+
+function onend() {
+  // If the writable side ended, then we're ok.
+  if (this._writableState.ended) return; // no more data can be written.
+  // But allow more writes to happen in this tick.
+
+  process.nextTick(onEndNT, this);
+}
+
+function onEndNT(self) {
+  self.end();
+}
+
+Object.defineProperty(Duplex.prototype, 'destroyed', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    if (this._readableState === undefined || this._writableState === undefined) {
+      return false;
+    }
+
+    return this._readableState.destroyed && this._writableState.destroyed;
+  },
+  set: function set(value) {
+    // we ignore the value if the stream
+    // has not been initialized yet
+    if (this._readableState === undefined || this._writableState === undefined) {
+      return;
+    } // backward compatibility, the user is explicitly
+    // managing destroyed
+
+
+    this._readableState.destroyed = value;
+    this._writableState.destroyed = value;
+  }
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../corona-tracker/node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/_stream_passthrough.js":
+/*!**********************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/_stream_passthrough.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+// a passthrough stream.
+// basically just the most minimal sort of Transform stream.
+// Every written chunk gets output as-is.
+
+
+module.exports = PassThrough;
+
+var Transform = __webpack_require__(/*! ./_stream_transform */ "../dweb-transports/node_modules/readable-stream/lib/_stream_transform.js");
+
+__webpack_require__(/*! inherits */ "../dweb-transports/node_modules/inherits/inherits_browser.js")(PassThrough, Transform);
+
+function PassThrough(options) {
+  if (!(this instanceof PassThrough)) return new PassThrough(options);
+  Transform.call(this, options);
+}
+
+PassThrough.prototype._transform = function (chunk, encoding, cb) {
+  cb(null, chunk);
+};
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/_stream_readable.js":
+/*!*******************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/_stream_readable.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+module.exports = Readable;
+/*<replacement>*/
+
+var Duplex;
+/*</replacement>*/
+
+Readable.ReadableState = ReadableState;
+/*<replacement>*/
+
+var EE = __webpack_require__(/*! events */ "./node_modules/events/events.js").EventEmitter;
+
+var EElistenerCount = function EElistenerCount(emitter, type) {
+  return emitter.listeners(type).length;
+};
+/*</replacement>*/
+
+/*<replacement>*/
+
+
+var Stream = __webpack_require__(/*! ./internal/streams/stream */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js");
+/*</replacement>*/
+
+
+var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js").Buffer;
+
+var OurUint8Array = global.Uint8Array || function () {};
+
+function _uint8ArrayToBuffer(chunk) {
+  return Buffer.from(chunk);
+}
+
+function _isUint8Array(obj) {
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
+}
+/*<replacement>*/
+
+
+var debugUtil = __webpack_require__(/*! util */ 1);
+
+var debug;
+
+if (debugUtil && debugUtil.debuglog) {
+  debug = debugUtil.debuglog('stream');
+} else {
+  debug = function debug() {};
+}
+/*</replacement>*/
+
+
+var BufferList = __webpack_require__(/*! ./internal/streams/buffer_list */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/buffer_list.js");
+
+var destroyImpl = __webpack_require__(/*! ./internal/streams/destroy */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js");
+
+var _require = __webpack_require__(/*! ./internal/streams/state */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js"),
+    getHighWaterMark = _require.getHighWaterMark;
+
+var _require$codes = __webpack_require__(/*! ../errors */ "../dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
+    ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
+    ERR_STREAM_PUSH_AFTER_EOF = _require$codes.ERR_STREAM_PUSH_AFTER_EOF,
+    ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
+    ERR_STREAM_UNSHIFT_AFTER_END_EVENT = _require$codes.ERR_STREAM_UNSHIFT_AFTER_END_EVENT; // Lazy loaded to improve the startup performance.
+
+
+var StringDecoder;
+var createReadableStreamAsyncIterator;
+var from;
+
+__webpack_require__(/*! inherits */ "../dweb-transports/node_modules/inherits/inherits_browser.js")(Readable, Stream);
+
+var errorOrDestroy = destroyImpl.errorOrDestroy;
+var kProxyEvents = ['error', 'close', 'destroy', 'pause', 'resume'];
+
+function prependListener(emitter, event, fn) {
+  // Sadly this is not cacheable as some libraries bundle their own
+  // event emitter implementation with them.
+  if (typeof emitter.prependListener === 'function') return emitter.prependListener(event, fn); // This is a hack to make sure that our error handler is attached before any
+  // userland ones.  NEVER DO THIS. This is here only because this code needs
+  // to continue to work with older versions of Node.js that do not include
+  // the prependListener() method. The goal is to eventually remove this hack.
+
+  if (!emitter._events || !emitter._events[event]) emitter.on(event, fn);else if (Array.isArray(emitter._events[event])) emitter._events[event].unshift(fn);else emitter._events[event] = [fn, emitter._events[event]];
+}
+
+function ReadableState(options, stream, isDuplex) {
+  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "../dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+  options = options || {}; // Duplex streams are both readable and writable, but share
+  // the same options object.
+  // However, some cases require setting options to different
+  // values for the readable and the writable sides of the duplex stream.
+  // These options can be provided separately as readableXXX and writableXXX.
+
+  if (typeof isDuplex !== 'boolean') isDuplex = stream instanceof Duplex; // object stream flag. Used to make read(n) ignore n and to
+  // make all the buffer merging and length checks go away
+
+  this.objectMode = !!options.objectMode;
+  if (isDuplex) this.objectMode = this.objectMode || !!options.readableObjectMode; // the point at which it stops calling _read() to fill the buffer
+  // Note: 0 is a valid value, means "don't call _read preemptively ever"
+
+  this.highWaterMark = getHighWaterMark(this, options, 'readableHighWaterMark', isDuplex); // A linked list is used to store data chunks instead of an array because the
+  // linked list can remove elements from the beginning faster than
+  // array.shift()
+
+  this.buffer = new BufferList();
+  this.length = 0;
+  this.pipes = null;
+  this.pipesCount = 0;
+  this.flowing = null;
+  this.ended = false;
+  this.endEmitted = false;
+  this.reading = false; // a flag to be able to tell if the event 'readable'/'data' is emitted
+  // immediately, or on a later tick.  We set this to true at first, because
+  // any actions that shouldn't happen until "later" should generally also
+  // not happen before the first read call.
+
+  this.sync = true; // whenever we return null, then we set a flag to say
+  // that we're awaiting a 'readable' event emission.
+
+  this.needReadable = false;
+  this.emittedReadable = false;
+  this.readableListening = false;
+  this.resumeScheduled = false;
+  this.paused = true; // Should close be emitted on destroy. Defaults to true.
+
+  this.emitClose = options.emitClose !== false; // Should .destroy() be called after 'end' (and potentially 'finish')
+
+  this.autoDestroy = !!options.autoDestroy; // has it been destroyed
+
+  this.destroyed = false; // Crypto is kind of old and crusty.  Historically, its default string
+  // encoding is 'binary' so we have to make this configurable.
+  // Everything else in the universe uses 'utf8', though.
+
+  this.defaultEncoding = options.defaultEncoding || 'utf8'; // the number of writers that are awaiting a drain event in .pipe()s
+
+  this.awaitDrain = 0; // if true, a maybeReadMore has been scheduled
+
+  this.readingMore = false;
+  this.decoder = null;
+  this.encoding = null;
+
+  if (options.encoding) {
+    if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ "./node_modules/string_decoder/lib/string_decoder.js").StringDecoder;
+    this.decoder = new StringDecoder(options.encoding);
+    this.encoding = options.encoding;
+  }
+}
+
+function Readable(options) {
+  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "../dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+  if (!(this instanceof Readable)) return new Readable(options); // Checking for a Stream.Duplex instance is faster here instead of inside
+  // the ReadableState constructor, at least with V8 6.5
+
+  var isDuplex = this instanceof Duplex;
+  this._readableState = new ReadableState(options, this, isDuplex); // legacy
+
+  this.readable = true;
+
+  if (options) {
+    if (typeof options.read === 'function') this._read = options.read;
+    if (typeof options.destroy === 'function') this._destroy = options.destroy;
+  }
+
+  Stream.call(this);
+}
+
+Object.defineProperty(Readable.prototype, 'destroyed', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    if (this._readableState === undefined) {
+      return false;
+    }
+
+    return this._readableState.destroyed;
+  },
+  set: function set(value) {
+    // we ignore the value if the stream
+    // has not been initialized yet
+    if (!this._readableState) {
+      return;
+    } // backward compatibility, the user is explicitly
+    // managing destroyed
+
+
+    this._readableState.destroyed = value;
+  }
+});
+Readable.prototype.destroy = destroyImpl.destroy;
+Readable.prototype._undestroy = destroyImpl.undestroy;
+
+Readable.prototype._destroy = function (err, cb) {
+  cb(err);
+}; // Manually shove something into the read() buffer.
+// This returns true if the highWaterMark has not been hit yet,
+// similar to how Writable.write() returns true if you should
+// write() some more.
+
+
+Readable.prototype.push = function (chunk, encoding) {
+  var state = this._readableState;
+  var skipChunkCheck;
+
+  if (!state.objectMode) {
+    if (typeof chunk === 'string') {
+      encoding = encoding || state.defaultEncoding;
+
+      if (encoding !== state.encoding) {
+        chunk = Buffer.from(chunk, encoding);
+        encoding = '';
+      }
+
+      skipChunkCheck = true;
+    }
+  } else {
+    skipChunkCheck = true;
+  }
+
+  return readableAddChunk(this, chunk, encoding, false, skipChunkCheck);
+}; // Unshift should *always* be something directly out of read()
+
+
+Readable.prototype.unshift = function (chunk) {
+  return readableAddChunk(this, chunk, null, true, false);
+};
+
+function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
+  debug('readableAddChunk', chunk);
+  var state = stream._readableState;
+
+  if (chunk === null) {
+    state.reading = false;
+    onEofChunk(stream, state);
+  } else {
+    var er;
+    if (!skipChunkCheck) er = chunkInvalid(state, chunk);
+
+    if (er) {
+      errorOrDestroy(stream, er);
+    } else if (state.objectMode || chunk && chunk.length > 0) {
+      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
+        chunk = _uint8ArrayToBuffer(chunk);
+      }
+
+      if (addToFront) {
+        if (state.endEmitted) errorOrDestroy(stream, new ERR_STREAM_UNSHIFT_AFTER_END_EVENT());else addChunk(stream, state, chunk, true);
+      } else if (state.ended) {
+        errorOrDestroy(stream, new ERR_STREAM_PUSH_AFTER_EOF());
+      } else if (state.destroyed) {
+        return false;
+      } else {
+        state.reading = false;
+
+        if (state.decoder && !encoding) {
+          chunk = state.decoder.write(chunk);
+          if (state.objectMode || chunk.length !== 0) addChunk(stream, state, chunk, false);else maybeReadMore(stream, state);
+        } else {
+          addChunk(stream, state, chunk, false);
+        }
+      }
+    } else if (!addToFront) {
+      state.reading = false;
+      maybeReadMore(stream, state);
+    }
+  } // We can push more data if we are below the highWaterMark.
+  // Also, if we have no data yet, we can stand some more bytes.
+  // This is to work around cases where hwm=0, such as the repl.
+
+
+  return !state.ended && (state.length < state.highWaterMark || state.length === 0);
+}
+
+function addChunk(stream, state, chunk, addToFront) {
+  if (state.flowing && state.length === 0 && !state.sync) {
+    state.awaitDrain = 0;
+    stream.emit('data', chunk);
+  } else {
+    // update the buffer info.
+    state.length += state.objectMode ? 1 : chunk.length;
+    if (addToFront) state.buffer.unshift(chunk);else state.buffer.push(chunk);
+    if (state.needReadable) emitReadable(stream);
+  }
+
+  maybeReadMore(stream, state);
+}
+
+function chunkInvalid(state, chunk) {
+  var er;
+
+  if (!_isUint8Array(chunk) && typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
+    er = new ERR_INVALID_ARG_TYPE('chunk', ['string', 'Buffer', 'Uint8Array'], chunk);
+  }
+
+  return er;
+}
+
+Readable.prototype.isPaused = function () {
+  return this._readableState.flowing === false;
+}; // backwards compatibility.
+
+
+Readable.prototype.setEncoding = function (enc) {
+  if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ "./node_modules/string_decoder/lib/string_decoder.js").StringDecoder;
+  var decoder = new StringDecoder(enc);
+  this._readableState.decoder = decoder; // If setEncoding(null), decoder.encoding equals utf8
+
+  this._readableState.encoding = this._readableState.decoder.encoding; // Iterate over current buffer to convert already stored Buffers:
+
+  var p = this._readableState.buffer.head;
+  var content = '';
+
+  while (p !== null) {
+    content += decoder.write(p.data);
+    p = p.next;
+  }
+
+  this._readableState.buffer.clear();
+
+  if (content !== '') this._readableState.buffer.push(content);
+  this._readableState.length = content.length;
+  return this;
+}; // Don't raise the hwm > 1GB
+
+
+var MAX_HWM = 0x40000000;
+
+function computeNewHighWaterMark(n) {
+  if (n >= MAX_HWM) {
+    // TODO(ronag): Throw ERR_VALUE_OUT_OF_RANGE.
+    n = MAX_HWM;
+  } else {
+    // Get the next highest power of 2 to prevent increasing hwm excessively in
+    // tiny amounts
+    n--;
+    n |= n >>> 1;
+    n |= n >>> 2;
+    n |= n >>> 4;
+    n |= n >>> 8;
+    n |= n >>> 16;
+    n++;
+  }
+
+  return n;
+} // This function is designed to be inlinable, so please take care when making
+// changes to the function body.
+
+
+function howMuchToRead(n, state) {
+  if (n <= 0 || state.length === 0 && state.ended) return 0;
+  if (state.objectMode) return 1;
+
+  if (n !== n) {
+    // Only flow one buffer at a time
+    if (state.flowing && state.length) return state.buffer.head.data.length;else return state.length;
+  } // If we're asking for more than the current hwm, then raise the hwm.
+
+
+  if (n > state.highWaterMark) state.highWaterMark = computeNewHighWaterMark(n);
+  if (n <= state.length) return n; // Don't have enough
+
+  if (!state.ended) {
+    state.needReadable = true;
+    return 0;
+  }
+
+  return state.length;
+} // you can override either this method, or the async _read(n) below.
+
+
+Readable.prototype.read = function (n) {
+  debug('read', n);
+  n = parseInt(n, 10);
+  var state = this._readableState;
+  var nOrig = n;
+  if (n !== 0) state.emittedReadable = false; // if we're doing read(0) to trigger a readable event, but we
+  // already have a bunch of data in the buffer, then just trigger
+  // the 'readable' event and move on.
+
+  if (n === 0 && state.needReadable && ((state.highWaterMark !== 0 ? state.length >= state.highWaterMark : state.length > 0) || state.ended)) {
+    debug('read: emitReadable', state.length, state.ended);
+    if (state.length === 0 && state.ended) endReadable(this);else emitReadable(this);
+    return null;
+  }
+
+  n = howMuchToRead(n, state); // if we've ended, and we're now clear, then finish it up.
+
+  if (n === 0 && state.ended) {
+    if (state.length === 0) endReadable(this);
+    return null;
+  } // All the actual chunk generation logic needs to be
+  // *below* the call to _read.  The reason is that in certain
+  // synthetic stream cases, such as passthrough streams, _read
+  // may be a completely synchronous operation which may change
+  // the state of the read buffer, providing enough data when
+  // before there was *not* enough.
+  //
+  // So, the steps are:
+  // 1. Figure out what the state of things will be after we do
+  // a read from the buffer.
+  //
+  // 2. If that resulting state will trigger a _read, then call _read.
+  // Note that this may be asynchronous, or synchronous.  Yes, it is
+  // deeply ugly to write APIs this way, but that still doesn't mean
+  // that the Readable class should behave improperly, as streams are
+  // designed to be sync/async agnostic.
+  // Take note if the _read call is sync or async (ie, if the read call
+  // has returned yet), so that we know whether or not it's safe to emit
+  // 'readable' etc.
+  //
+  // 3. Actually pull the requested chunks out of the buffer and return.
+  // if we need a readable event, then we need to do some reading.
+
+
+  var doRead = state.needReadable;
+  debug('need readable', doRead); // if we currently have less than the highWaterMark, then also read some
+
+  if (state.length === 0 || state.length - n < state.highWaterMark) {
+    doRead = true;
+    debug('length less than watermark', doRead);
+  } // however, if we've ended, then there's no point, and if we're already
+  // reading, then it's unnecessary.
+
+
+  if (state.ended || state.reading) {
+    doRead = false;
+    debug('reading or ended', doRead);
+  } else if (doRead) {
+    debug('do read');
+    state.reading = true;
+    state.sync = true; // if the length is currently zero, then we *need* a readable event.
+
+    if (state.length === 0) state.needReadable = true; // call internal read method
+
+    this._read(state.highWaterMark);
+
+    state.sync = false; // If _read pushed data synchronously, then `reading` will be false,
+    // and we need to re-evaluate how much data we can return to the user.
+
+    if (!state.reading) n = howMuchToRead(nOrig, state);
+  }
+
+  var ret;
+  if (n > 0) ret = fromList(n, state);else ret = null;
+
+  if (ret === null) {
+    state.needReadable = state.length <= state.highWaterMark;
+    n = 0;
+  } else {
+    state.length -= n;
+    state.awaitDrain = 0;
+  }
+
+  if (state.length === 0) {
+    // If we have nothing in the buffer, then we want to know
+    // as soon as we *do* get something into the buffer.
+    if (!state.ended) state.needReadable = true; // If we tried to read() past the EOF, then emit end on the next tick.
+
+    if (nOrig !== n && state.ended) endReadable(this);
+  }
+
+  if (ret !== null) this.emit('data', ret);
+  return ret;
+};
+
+function onEofChunk(stream, state) {
+  debug('onEofChunk');
+  if (state.ended) return;
+
+  if (state.decoder) {
+    var chunk = state.decoder.end();
+
+    if (chunk && chunk.length) {
+      state.buffer.push(chunk);
+      state.length += state.objectMode ? 1 : chunk.length;
+    }
+  }
+
+  state.ended = true;
+
+  if (state.sync) {
+    // if we are sync, wait until next tick to emit the data.
+    // Otherwise we risk emitting data in the flow()
+    // the readable code triggers during a read() call
+    emitReadable(stream);
+  } else {
+    // emit 'readable' now to make sure it gets picked up.
+    state.needReadable = false;
+
+    if (!state.emittedReadable) {
+      state.emittedReadable = true;
+      emitReadable_(stream);
+    }
+  }
+} // Don't emit readable right away in sync mode, because this can trigger
+// another read() call => stack overflow.  This way, it might trigger
+// a nextTick recursion warning, but that's not so bad.
+
+
+function emitReadable(stream) {
+  var state = stream._readableState;
+  debug('emitReadable', state.needReadable, state.emittedReadable);
+  state.needReadable = false;
+
+  if (!state.emittedReadable) {
+    debug('emitReadable', state.flowing);
+    state.emittedReadable = true;
+    process.nextTick(emitReadable_, stream);
+  }
+}
+
+function emitReadable_(stream) {
+  var state = stream._readableState;
+  debug('emitReadable_', state.destroyed, state.length, state.ended);
+
+  if (!state.destroyed && (state.length || state.ended)) {
+    stream.emit('readable');
+    state.emittedReadable = false;
+  } // The stream needs another readable event if
+  // 1. It is not flowing, as the flow mechanism will take
+  //    care of it.
+  // 2. It is not ended.
+  // 3. It is below the highWaterMark, so we can schedule
+  //    another readable later.
+
+
+  state.needReadable = !state.flowing && !state.ended && state.length <= state.highWaterMark;
+  flow(stream);
+} // at this point, the user has presumably seen the 'readable' event,
+// and called read() to consume some data.  that may have triggered
+// in turn another _read(n) call, in which case reading = true if
+// it's in progress.
+// However, if we're not ended, or reading, and the length < hwm,
+// then go ahead and try to read some more preemptively.
+
+
+function maybeReadMore(stream, state) {
+  if (!state.readingMore) {
+    state.readingMore = true;
+    process.nextTick(maybeReadMore_, stream, state);
+  }
+}
+
+function maybeReadMore_(stream, state) {
+  // Attempt to read more data if we should.
+  //
+  // The conditions for reading more data are (one of):
+  // - Not enough data buffered (state.length < state.highWaterMark). The loop
+  //   is responsible for filling the buffer with enough data if such data
+  //   is available. If highWaterMark is 0 and we are not in the flowing mode
+  //   we should _not_ attempt to buffer any extra data. We'll get more data
+  //   when the stream consumer calls read() instead.
+  // - No data in the buffer, and the stream is in flowing mode. In this mode
+  //   the loop below is responsible for ensuring read() is called. Failing to
+  //   call read here would abort the flow and there's no other mechanism for
+  //   continuing the flow if the stream consumer has just subscribed to the
+  //   'data' event.
+  //
+  // In addition to the above conditions to keep reading data, the following
+  // conditions prevent the data from being read:
+  // - The stream has ended (state.ended).
+  // - There is already a pending 'read' operation (state.reading). This is a
+  //   case where the the stream has called the implementation defined _read()
+  //   method, but they are processing the call asynchronously and have _not_
+  //   called push() with new data. In this case we skip performing more
+  //   read()s. The execution ends in this method again after the _read() ends
+  //   up calling push() with more data.
+  while (!state.reading && !state.ended && (state.length < state.highWaterMark || state.flowing && state.length === 0)) {
+    var len = state.length;
+    debug('maybeReadMore read 0');
+    stream.read(0);
+    if (len === state.length) // didn't get any data, stop spinning.
+      break;
+  }
+
+  state.readingMore = false;
+} // abstract method.  to be overridden in specific implementation classes.
+// call cb(er, data) where data is <= n in length.
+// for virtual (non-string, non-buffer) streams, "length" is somewhat
+// arbitrary, and perhaps not very meaningful.
+
+
+Readable.prototype._read = function (n) {
+  errorOrDestroy(this, new ERR_METHOD_NOT_IMPLEMENTED('_read()'));
+};
+
+Readable.prototype.pipe = function (dest, pipeOpts) {
+  var src = this;
+  var state = this._readableState;
+
+  switch (state.pipesCount) {
+    case 0:
+      state.pipes = dest;
+      break;
+
+    case 1:
+      state.pipes = [state.pipes, dest];
+      break;
+
+    default:
+      state.pipes.push(dest);
+      break;
+  }
+
+  state.pipesCount += 1;
+  debug('pipe count=%d opts=%j', state.pipesCount, pipeOpts);
+  var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
+  var endFn = doEnd ? onend : unpipe;
+  if (state.endEmitted) process.nextTick(endFn);else src.once('end', endFn);
+  dest.on('unpipe', onunpipe);
+
+  function onunpipe(readable, unpipeInfo) {
+    debug('onunpipe');
+
+    if (readable === src) {
+      if (unpipeInfo && unpipeInfo.hasUnpiped === false) {
+        unpipeInfo.hasUnpiped = true;
+        cleanup();
+      }
+    }
+  }
+
+  function onend() {
+    debug('onend');
+    dest.end();
+  } // when the dest drains, it reduces the awaitDrain counter
+  // on the source.  This would be more elegant with a .once()
+  // handler in flow(), but adding and removing repeatedly is
+  // too slow.
+
+
+  var ondrain = pipeOnDrain(src);
+  dest.on('drain', ondrain);
+  var cleanedUp = false;
+
+  function cleanup() {
+    debug('cleanup'); // cleanup event handlers once the pipe is broken
+
+    dest.removeListener('close', onclose);
+    dest.removeListener('finish', onfinish);
+    dest.removeListener('drain', ondrain);
+    dest.removeListener('error', onerror);
+    dest.removeListener('unpipe', onunpipe);
+    src.removeListener('end', onend);
+    src.removeListener('end', unpipe);
+    src.removeListener('data', ondata);
+    cleanedUp = true; // if the reader is waiting for a drain event from this
+    // specific writer, then it would cause it to never start
+    // flowing again.
+    // So, if this is awaiting a drain, then we just call it now.
+    // If we don't know, then assume that we are waiting for one.
+
+    if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain)) ondrain();
+  }
+
+  src.on('data', ondata);
+
+  function ondata(chunk) {
+    debug('ondata');
+    var ret = dest.write(chunk);
+    debug('dest.write', ret);
+
+    if (ret === false) {
+      // If the user unpiped during `dest.write()`, it is possible
+      // to get stuck in a permanently paused state if that write
+      // also returned false.
+      // => Check whether `dest` is still a piping destination.
+      if ((state.pipesCount === 1 && state.pipes === dest || state.pipesCount > 1 && indexOf(state.pipes, dest) !== -1) && !cleanedUp) {
+        debug('false write response, pause', state.awaitDrain);
+        state.awaitDrain++;
+      }
+
+      src.pause();
+    }
+  } // if the dest has an error, then stop piping into it.
+  // however, don't suppress the throwing behavior for this.
+
+
+  function onerror(er) {
+    debug('onerror', er);
+    unpipe();
+    dest.removeListener('error', onerror);
+    if (EElistenerCount(dest, 'error') === 0) errorOrDestroy(dest, er);
+  } // Make sure our error handler is attached before userland ones.
+
+
+  prependListener(dest, 'error', onerror); // Both close and finish should trigger unpipe, but only once.
+
+  function onclose() {
+    dest.removeListener('finish', onfinish);
+    unpipe();
+  }
+
+  dest.once('close', onclose);
+
+  function onfinish() {
+    debug('onfinish');
+    dest.removeListener('close', onclose);
+    unpipe();
+  }
+
+  dest.once('finish', onfinish);
+
+  function unpipe() {
+    debug('unpipe');
+    src.unpipe(dest);
+  } // tell the dest that it's being piped to
+
+
+  dest.emit('pipe', src); // start the flow if it hasn't been started already.
+
+  if (!state.flowing) {
+    debug('pipe resume');
+    src.resume();
+  }
+
+  return dest;
+};
+
+function pipeOnDrain(src) {
+  return function pipeOnDrainFunctionResult() {
+    var state = src._readableState;
+    debug('pipeOnDrain', state.awaitDrain);
+    if (state.awaitDrain) state.awaitDrain--;
+
+    if (state.awaitDrain === 0 && EElistenerCount(src, 'data')) {
+      state.flowing = true;
+      flow(src);
+    }
+  };
+}
+
+Readable.prototype.unpipe = function (dest) {
+  var state = this._readableState;
+  var unpipeInfo = {
+    hasUnpiped: false
+  }; // if we're not piping anywhere, then do nothing.
+
+  if (state.pipesCount === 0) return this; // just one destination.  most common case.
+
+  if (state.pipesCount === 1) {
+    // passed in one, but it's not the right one.
+    if (dest && dest !== state.pipes) return this;
+    if (!dest) dest = state.pipes; // got a match.
+
+    state.pipes = null;
+    state.pipesCount = 0;
+    state.flowing = false;
+    if (dest) dest.emit('unpipe', this, unpipeInfo);
+    return this;
+  } // slow case. multiple pipe destinations.
+
+
+  if (!dest) {
+    // remove all.
+    var dests = state.pipes;
+    var len = state.pipesCount;
+    state.pipes = null;
+    state.pipesCount = 0;
+    state.flowing = false;
+
+    for (var i = 0; i < len; i++) {
+      dests[i].emit('unpipe', this, {
+        hasUnpiped: false
+      });
+    }
+
+    return this;
+  } // try to find the right one.
+
+
+  var index = indexOf(state.pipes, dest);
+  if (index === -1) return this;
+  state.pipes.splice(index, 1);
+  state.pipesCount -= 1;
+  if (state.pipesCount === 1) state.pipes = state.pipes[0];
+  dest.emit('unpipe', this, unpipeInfo);
+  return this;
+}; // set up data events if they are asked for
+// Ensure readable listeners eventually get something
+
+
+Readable.prototype.on = function (ev, fn) {
+  var res = Stream.prototype.on.call(this, ev, fn);
+  var state = this._readableState;
+
+  if (ev === 'data') {
+    // update readableListening so that resume() may be a no-op
+    // a few lines down. This is needed to support once('readable').
+    state.readableListening = this.listenerCount('readable') > 0; // Try start flowing on next tick if stream isn't explicitly paused
+
+    if (state.flowing !== false) this.resume();
+  } else if (ev === 'readable') {
+    if (!state.endEmitted && !state.readableListening) {
+      state.readableListening = state.needReadable = true;
+      state.flowing = false;
+      state.emittedReadable = false;
+      debug('on readable', state.length, state.reading);
+
+      if (state.length) {
+        emitReadable(this);
+      } else if (!state.reading) {
+        process.nextTick(nReadingNextTick, this);
+      }
+    }
+  }
+
+  return res;
+};
+
+Readable.prototype.addListener = Readable.prototype.on;
+
+Readable.prototype.removeListener = function (ev, fn) {
+  var res = Stream.prototype.removeListener.call(this, ev, fn);
+
+  if (ev === 'readable') {
+    // We need to check if there is someone still listening to
+    // readable and reset the state. However this needs to happen
+    // after readable has been emitted but before I/O (nextTick) to
+    // support once('readable', fn) cycles. This means that calling
+    // resume within the same tick will have no
+    // effect.
+    process.nextTick(updateReadableListening, this);
+  }
+
+  return res;
+};
+
+Readable.prototype.removeAllListeners = function (ev) {
+  var res = Stream.prototype.removeAllListeners.apply(this, arguments);
+
+  if (ev === 'readable' || ev === undefined) {
+    // We need to check if there is someone still listening to
+    // readable and reset the state. However this needs to happen
+    // after readable has been emitted but before I/O (nextTick) to
+    // support once('readable', fn) cycles. This means that calling
+    // resume within the same tick will have no
+    // effect.
+    process.nextTick(updateReadableListening, this);
+  }
+
+  return res;
+};
+
+function updateReadableListening(self) {
+  var state = self._readableState;
+  state.readableListening = self.listenerCount('readable') > 0;
+
+  if (state.resumeScheduled && !state.paused) {
+    // flowing needs to be set to true now, otherwise
+    // the upcoming resume will not flow.
+    state.flowing = true; // crude way to check if we should resume
+  } else if (self.listenerCount('data') > 0) {
+    self.resume();
+  }
+}
+
+function nReadingNextTick(self) {
+  debug('readable nexttick read 0');
+  self.read(0);
+} // pause() and resume() are remnants of the legacy readable stream API
+// If the user uses them, then switch into old mode.
+
+
+Readable.prototype.resume = function () {
+  var state = this._readableState;
+
+  if (!state.flowing) {
+    debug('resume'); // we flow only if there is no one listening
+    // for readable, but we still have to call
+    // resume()
+
+    state.flowing = !state.readableListening;
+    resume(this, state);
+  }
+
+  state.paused = false;
+  return this;
+};
+
+function resume(stream, state) {
+  if (!state.resumeScheduled) {
+    state.resumeScheduled = true;
+    process.nextTick(resume_, stream, state);
+  }
+}
+
+function resume_(stream, state) {
+  debug('resume', state.reading);
+
+  if (!state.reading) {
+    stream.read(0);
+  }
+
+  state.resumeScheduled = false;
+  stream.emit('resume');
+  flow(stream);
+  if (state.flowing && !state.reading) stream.read(0);
+}
+
+Readable.prototype.pause = function () {
+  debug('call pause flowing=%j', this._readableState.flowing);
+
+  if (this._readableState.flowing !== false) {
+    debug('pause');
+    this._readableState.flowing = false;
+    this.emit('pause');
+  }
+
+  this._readableState.paused = true;
+  return this;
+};
+
+function flow(stream) {
+  var state = stream._readableState;
+  debug('flow', state.flowing);
+
+  while (state.flowing && stream.read() !== null) {
+    ;
+  }
+} // wrap an old-style stream as the async data source.
+// This is *not* part of the readable stream interface.
+// It is an ugly unfortunate mess of history.
+
+
+Readable.prototype.wrap = function (stream) {
+  var _this = this;
+
+  var state = this._readableState;
+  var paused = false;
+  stream.on('end', function () {
+    debug('wrapped end');
+
+    if (state.decoder && !state.ended) {
+      var chunk = state.decoder.end();
+      if (chunk && chunk.length) _this.push(chunk);
+    }
+
+    _this.push(null);
+  });
+  stream.on('data', function (chunk) {
+    debug('wrapped data');
+    if (state.decoder) chunk = state.decoder.write(chunk); // don't skip over falsy values in objectMode
+
+    if (state.objectMode && (chunk === null || chunk === undefined)) return;else if (!state.objectMode && (!chunk || !chunk.length)) return;
+
+    var ret = _this.push(chunk);
+
+    if (!ret) {
+      paused = true;
+      stream.pause();
+    }
+  }); // proxy all the other methods.
+  // important when wrapping filters and duplexes.
+
+  for (var i in stream) {
+    if (this[i] === undefined && typeof stream[i] === 'function') {
+      this[i] = function methodWrap(method) {
+        return function methodWrapReturnFunction() {
+          return stream[method].apply(stream, arguments);
+        };
+      }(i);
+    }
+  } // proxy certain important events.
+
+
+  for (var n = 0; n < kProxyEvents.length; n++) {
+    stream.on(kProxyEvents[n], this.emit.bind(this, kProxyEvents[n]));
+  } // when we try to consume some more bytes, simply unpause the
+  // underlying stream.
+
+
+  this._read = function (n) {
+    debug('wrapped _read', n);
+
+    if (paused) {
+      paused = false;
+      stream.resume();
+    }
+  };
+
+  return this;
+};
+
+if (typeof Symbol === 'function') {
+  Readable.prototype[Symbol.asyncIterator] = function () {
+    if (createReadableStreamAsyncIterator === undefined) {
+      createReadableStreamAsyncIterator = __webpack_require__(/*! ./internal/streams/async_iterator */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/async_iterator.js");
+    }
+
+    return createReadableStreamAsyncIterator(this);
+  };
+}
+
+Object.defineProperty(Readable.prototype, 'readableHighWaterMark', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._readableState.highWaterMark;
+  }
+});
+Object.defineProperty(Readable.prototype, 'readableBuffer', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._readableState && this._readableState.buffer;
+  }
+});
+Object.defineProperty(Readable.prototype, 'readableFlowing', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._readableState.flowing;
+  },
+  set: function set(state) {
+    if (this._readableState) {
+      this._readableState.flowing = state;
+    }
+  }
+}); // exposed for testing purposes only.
+
+Readable._fromList = fromList;
+Object.defineProperty(Readable.prototype, 'readableLength', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._readableState.length;
+  }
+}); // Pluck off n bytes from an array of buffers.
+// Length is the combined lengths of all the buffers in the list.
+// This function is designed to be inlinable, so please take care when making
+// changes to the function body.
+
+function fromList(n, state) {
+  // nothing buffered
+  if (state.length === 0) return null;
+  var ret;
+  if (state.objectMode) ret = state.buffer.shift();else if (!n || n >= state.length) {
+    // read it all, truncate the list
+    if (state.decoder) ret = state.buffer.join('');else if (state.buffer.length === 1) ret = state.buffer.first();else ret = state.buffer.concat(state.length);
+    state.buffer.clear();
+  } else {
+    // read part of list
+    ret = state.buffer.consume(n, state.decoder);
+  }
+  return ret;
+}
+
+function endReadable(stream) {
+  var state = stream._readableState;
+  debug('endReadable', state.endEmitted);
+
+  if (!state.endEmitted) {
+    state.ended = true;
+    process.nextTick(endReadableNT, state, stream);
+  }
+}
+
+function endReadableNT(state, stream) {
+  debug('endReadableNT', state.endEmitted, state.length); // Check that we didn't get one last unshift.
+
+  if (!state.endEmitted && state.length === 0) {
+    state.endEmitted = true;
+    stream.readable = false;
+    stream.emit('end');
+
+    if (state.autoDestroy) {
+      // In case of duplex streams we need a way to detect
+      // if the writable side is ready for autoDestroy as well
+      var wState = stream._writableState;
+
+      if (!wState || wState.autoDestroy && wState.finished) {
+        stream.destroy();
+      }
+    }
+  }
+}
+
+if (typeof Symbol === 'function') {
+  Readable.from = function (iterable, opts) {
+    if (from === undefined) {
+      from = __webpack_require__(/*! ./internal/streams/from */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/from-browser.js");
+    }
+
+    return from(Readable, iterable, opts);
+  };
+}
+
+function indexOf(xs, x) {
+  for (var i = 0, l = xs.length; i < l; i++) {
+    if (xs[i] === x) return i;
+  }
+
+  return -1;
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../corona-tracker/node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../../corona-tracker/node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/_stream_transform.js":
+/*!********************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/_stream_transform.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+// a transform stream is a readable/writable stream where you do
+// something with the data.  Sometimes it's called a "filter",
+// but that's not a great name for it, since that implies a thing where
+// some bits pass through, and others are simply ignored.  (That would
+// be a valid example of a transform, of course.)
+//
+// While the output is causally related to the input, it's not a
+// necessarily symmetric or synchronous transformation.  For example,
+// a zlib stream might take multiple plain-text writes(), and then
+// emit a single compressed chunk some time in the future.
+//
+// Here's how this works:
+//
+// The Transform stream has all the aspects of the readable and writable
+// stream classes.  When you write(chunk), that calls _write(chunk,cb)
+// internally, and returns false if there's a lot of pending writes
+// buffered up.  When you call read(), that calls _read(n) until
+// there's enough pending readable data buffered up.
+//
+// In a transform stream, the written data is placed in a buffer.  When
+// _read(n) is called, it transforms the queued up data, calling the
+// buffered _write cb's as it consumes chunks.  If consuming a single
+// written chunk would result in multiple output chunks, then the first
+// outputted bit calls the readcb, and subsequent chunks just go into
+// the read buffer, and will cause it to emit 'readable' if necessary.
+//
+// This way, back-pressure is actually determined by the reading side,
+// since _read has to be called to start processing a new chunk.  However,
+// a pathological inflate type of transform can cause excessive buffering
+// here.  For example, imagine a stream where every byte of input is
+// interpreted as an integer from 0-255, and then results in that many
+// bytes of output.  Writing the 4 bytes {ff,ff,ff,ff} would result in
+// 1kb of data being output.  In this case, you could write a very small
+// amount of input, and end up with a very large amount of output.  In
+// such a pathological inflating mechanism, there'd be no way to tell
+// the system to stop doing the transform.  A single 4MB write could
+// cause the system to run out of memory.
+//
+// However, even in such a pathological case, only a single written chunk
+// would be consumed, and then the rest would wait (un-transformed) until
+// the results of the previous transformed chunk were consumed.
+
+
+module.exports = Transform;
+
+var _require$codes = __webpack_require__(/*! ../errors */ "../dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
+    ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
+    ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
+    ERR_TRANSFORM_ALREADY_TRANSFORMING = _require$codes.ERR_TRANSFORM_ALREADY_TRANSFORMING,
+    ERR_TRANSFORM_WITH_LENGTH_0 = _require$codes.ERR_TRANSFORM_WITH_LENGTH_0;
+
+var Duplex = __webpack_require__(/*! ./_stream_duplex */ "../dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+
+__webpack_require__(/*! inherits */ "../dweb-transports/node_modules/inherits/inherits_browser.js")(Transform, Duplex);
+
+function afterTransform(er, data) {
+  var ts = this._transformState;
+  ts.transforming = false;
+  var cb = ts.writecb;
+
+  if (cb === null) {
+    return this.emit('error', new ERR_MULTIPLE_CALLBACK());
+  }
+
+  ts.writechunk = null;
+  ts.writecb = null;
+  if (data != null) // single equals check for both `null` and `undefined`
+    this.push(data);
+  cb(er);
+  var rs = this._readableState;
+  rs.reading = false;
+
+  if (rs.needReadable || rs.length < rs.highWaterMark) {
+    this._read(rs.highWaterMark);
+  }
+}
+
+function Transform(options) {
+  if (!(this instanceof Transform)) return new Transform(options);
+  Duplex.call(this, options);
+  this._transformState = {
+    afterTransform: afterTransform.bind(this),
+    needTransform: false,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: null
+  }; // start out asking for a readable event once data is transformed.
+
+  this._readableState.needReadable = true; // we have implemented the _read method, and done the other things
+  // that Readable wants before the first _read call, so unset the
+  // sync guard flag.
+
+  this._readableState.sync = false;
+
+  if (options) {
+    if (typeof options.transform === 'function') this._transform = options.transform;
+    if (typeof options.flush === 'function') this._flush = options.flush;
+  } // When the writable side finishes, then flush out anything remaining.
+
+
+  this.on('prefinish', prefinish);
+}
+
+function prefinish() {
+  var _this = this;
+
+  if (typeof this._flush === 'function' && !this._readableState.destroyed) {
+    this._flush(function (er, data) {
+      done(_this, er, data);
+    });
+  } else {
+    done(this, null, null);
+  }
+}
+
+Transform.prototype.push = function (chunk, encoding) {
+  this._transformState.needTransform = false;
+  return Duplex.prototype.push.call(this, chunk, encoding);
+}; // This is the part where you do stuff!
+// override this function in implementation classes.
+// 'chunk' is an input chunk.
+//
+// Call `push(newChunk)` to pass along transformed output
+// to the readable side.  You may call 'push' zero or more times.
+//
+// Call `cb(err)` when you are done with this chunk.  If you pass
+// an error, then that'll put the hurt on the whole operation.  If you
+// never call cb(), then you'll never get another chunk.
+
+
+Transform.prototype._transform = function (chunk, encoding, cb) {
+  cb(new ERR_METHOD_NOT_IMPLEMENTED('_transform()'));
+};
+
+Transform.prototype._write = function (chunk, encoding, cb) {
+  var ts = this._transformState;
+  ts.writecb = cb;
+  ts.writechunk = chunk;
+  ts.writeencoding = encoding;
+
+  if (!ts.transforming) {
+    var rs = this._readableState;
+    if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark) this._read(rs.highWaterMark);
+  }
+}; // Doesn't matter what the args are here.
+// _transform does all the work.
+// That we got here means that the readable side wants more data.
+
+
+Transform.prototype._read = function (n) {
+  var ts = this._transformState;
+
+  if (ts.writechunk !== null && !ts.transforming) {
+    ts.transforming = true;
+
+    this._transform(ts.writechunk, ts.writeencoding, ts.afterTransform);
+  } else {
+    // mark that we need a transform, so that any data that comes in
+    // will get processed, now that we've asked for it.
+    ts.needTransform = true;
+  }
+};
+
+Transform.prototype._destroy = function (err, cb) {
+  Duplex.prototype._destroy.call(this, err, function (err2) {
+    cb(err2);
+  });
+};
+
+function done(stream, er, data) {
+  if (er) return stream.emit('error', er);
+  if (data != null) // single equals check for both `null` and `undefined`
+    stream.push(data); // TODO(BridgeAR): Write a test for these two error cases
+  // if there's nothing in the write buffer, then that means
+  // that nothing more will ever be provided
+
+  if (stream._writableState.length) throw new ERR_TRANSFORM_WITH_LENGTH_0();
+  if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
+  return stream.push(null);
+}
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/_stream_writable.js":
+/*!*******************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/_stream_writable.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+// A bit simpler than readable streams.
+// Implement an async ._write(chunk, encoding, cb), and it'll handle all
+// the drain event emission and buffering.
+
+
+module.exports = Writable;
+/* <replacement> */
+
+function WriteReq(chunk, encoding, cb) {
+  this.chunk = chunk;
+  this.encoding = encoding;
+  this.callback = cb;
+  this.next = null;
+} // It seems a linked list but it is not
+// there will be only 2 of these for each stream
+
+
+function CorkedRequest(state) {
+  var _this = this;
+
+  this.next = null;
+  this.entry = null;
+
+  this.finish = function () {
+    onCorkedFinish(_this, state);
+  };
+}
+/* </replacement> */
+
+/*<replacement>*/
+
+
+var Duplex;
+/*</replacement>*/
+
+Writable.WritableState = WritableState;
+/*<replacement>*/
+
+var internalUtil = {
+  deprecate: __webpack_require__(/*! util-deprecate */ "../dweb-transports/node_modules/util-deprecate/browser.js")
+};
+/*</replacement>*/
+
+/*<replacement>*/
+
+var Stream = __webpack_require__(/*! ./internal/streams/stream */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js");
+/*</replacement>*/
+
+
+var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js").Buffer;
+
+var OurUint8Array = global.Uint8Array || function () {};
+
+function _uint8ArrayToBuffer(chunk) {
+  return Buffer.from(chunk);
+}
+
+function _isUint8Array(obj) {
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
+}
+
+var destroyImpl = __webpack_require__(/*! ./internal/streams/destroy */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js");
+
+var _require = __webpack_require__(/*! ./internal/streams/state */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js"),
+    getHighWaterMark = _require.getHighWaterMark;
+
+var _require$codes = __webpack_require__(/*! ../errors */ "../dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
+    ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
+    ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
+    ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
+    ERR_STREAM_CANNOT_PIPE = _require$codes.ERR_STREAM_CANNOT_PIPE,
+    ERR_STREAM_DESTROYED = _require$codes.ERR_STREAM_DESTROYED,
+    ERR_STREAM_NULL_VALUES = _require$codes.ERR_STREAM_NULL_VALUES,
+    ERR_STREAM_WRITE_AFTER_END = _require$codes.ERR_STREAM_WRITE_AFTER_END,
+    ERR_UNKNOWN_ENCODING = _require$codes.ERR_UNKNOWN_ENCODING;
+
+var errorOrDestroy = destroyImpl.errorOrDestroy;
+
+__webpack_require__(/*! inherits */ "../dweb-transports/node_modules/inherits/inherits_browser.js")(Writable, Stream);
+
+function nop() {}
+
+function WritableState(options, stream, isDuplex) {
+  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "../dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+  options = options || {}; // Duplex streams are both readable and writable, but share
+  // the same options object.
+  // However, some cases require setting options to different
+  // values for the readable and the writable sides of the duplex stream,
+  // e.g. options.readableObjectMode vs. options.writableObjectMode, etc.
+
+  if (typeof isDuplex !== 'boolean') isDuplex = stream instanceof Duplex; // object stream flag to indicate whether or not this stream
+  // contains buffers or objects.
+
+  this.objectMode = !!options.objectMode;
+  if (isDuplex) this.objectMode = this.objectMode || !!options.writableObjectMode; // the point at which write() starts returning false
+  // Note: 0 is a valid value, means that we always return false if
+  // the entire buffer is not flushed immediately on write()
+
+  this.highWaterMark = getHighWaterMark(this, options, 'writableHighWaterMark', isDuplex); // if _final has been called
+
+  this.finalCalled = false; // drain event flag.
+
+  this.needDrain = false; // at the start of calling end()
+
+  this.ending = false; // when end() has been called, and returned
+
+  this.ended = false; // when 'finish' is emitted
+
+  this.finished = false; // has it been destroyed
+
+  this.destroyed = false; // should we decode strings into buffers before passing to _write?
+  // this is here so that some node-core streams can optimize string
+  // handling at a lower level.
+
+  var noDecode = options.decodeStrings === false;
+  this.decodeStrings = !noDecode; // Crypto is kind of old and crusty.  Historically, its default string
+  // encoding is 'binary' so we have to make this configurable.
+  // Everything else in the universe uses 'utf8', though.
+
+  this.defaultEncoding = options.defaultEncoding || 'utf8'; // not an actual buffer we keep track of, but a measurement
+  // of how much we're waiting to get pushed to some underlying
+  // socket or file.
+
+  this.length = 0; // a flag to see when we're in the middle of a write.
+
+  this.writing = false; // when true all writes will be buffered until .uncork() call
+
+  this.corked = 0; // a flag to be able to tell if the onwrite cb is called immediately,
+  // or on a later tick.  We set this to true at first, because any
+  // actions that shouldn't happen until "later" should generally also
+  // not happen before the first write call.
+
+  this.sync = true; // a flag to know if we're processing previously buffered items, which
+  // may call the _write() callback in the same tick, so that we don't
+  // end up in an overlapped onwrite situation.
+
+  this.bufferProcessing = false; // the callback that's passed to _write(chunk,cb)
+
+  this.onwrite = function (er) {
+    onwrite(stream, er);
+  }; // the callback that the user supplies to write(chunk,encoding,cb)
+
+
+  this.writecb = null; // the amount that is being written when _write is called.
+
+  this.writelen = 0;
+  this.bufferedRequest = null;
+  this.lastBufferedRequest = null; // number of pending user-supplied write callbacks
+  // this must be 0 before 'finish' can be emitted
+
+  this.pendingcb = 0; // emit prefinish if the only thing we're waiting for is _write cbs
+  // This is relevant for synchronous Transform streams
+
+  this.prefinished = false; // True if the error was already emitted and should not be thrown again
+
+  this.errorEmitted = false; // Should close be emitted on destroy. Defaults to true.
+
+  this.emitClose = options.emitClose !== false; // Should .destroy() be called after 'finish' (and potentially 'end')
+
+  this.autoDestroy = !!options.autoDestroy; // count buffered requests
+
+  this.bufferedRequestCount = 0; // allocate the first CorkedRequest, there is always
+  // one allocated and free to use, and we maintain at most two
+
+  this.corkedRequestsFree = new CorkedRequest(this);
+}
+
+WritableState.prototype.getBuffer = function getBuffer() {
+  var current = this.bufferedRequest;
+  var out = [];
+
+  while (current) {
+    out.push(current);
+    current = current.next;
+  }
+
+  return out;
+};
+
+(function () {
+  try {
+    Object.defineProperty(WritableState.prototype, 'buffer', {
+      get: internalUtil.deprecate(function writableStateBufferGetter() {
+        return this.getBuffer();
+      }, '_writableState.buffer is deprecated. Use _writableState.getBuffer ' + 'instead.', 'DEP0003')
+    });
+  } catch (_) {}
+})(); // Test _writableState for inheritance to account for Duplex streams,
+// whose prototype chain only points to Readable.
+
+
+var realHasInstance;
+
+if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.prototype[Symbol.hasInstance] === 'function') {
+  realHasInstance = Function.prototype[Symbol.hasInstance];
+  Object.defineProperty(Writable, Symbol.hasInstance, {
+    value: function value(object) {
+      if (realHasInstance.call(this, object)) return true;
+      if (this !== Writable) return false;
+      return object && object._writableState instanceof WritableState;
+    }
+  });
+} else {
+  realHasInstance = function realHasInstance(object) {
+    return object instanceof this;
+  };
+}
+
+function Writable(options) {
+  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "../dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js"); // Writable ctor is applied to Duplexes, too.
+  // `realHasInstance` is necessary because using plain `instanceof`
+  // would return false, as no `_writableState` property is attached.
+  // Trying to use the custom `instanceof` for Writable here will also break the
+  // Node.js LazyTransform implementation, which has a non-trivial getter for
+  // `_writableState` that would lead to infinite recursion.
+  // Checking for a Stream.Duplex instance is faster here instead of inside
+  // the WritableState constructor, at least with V8 6.5
+
+  var isDuplex = this instanceof Duplex;
+  if (!isDuplex && !realHasInstance.call(Writable, this)) return new Writable(options);
+  this._writableState = new WritableState(options, this, isDuplex); // legacy.
+
+  this.writable = true;
+
+  if (options) {
+    if (typeof options.write === 'function') this._write = options.write;
+    if (typeof options.writev === 'function') this._writev = options.writev;
+    if (typeof options.destroy === 'function') this._destroy = options.destroy;
+    if (typeof options.final === 'function') this._final = options.final;
+  }
+
+  Stream.call(this);
+} // Otherwise people can pipe Writable streams, which is just wrong.
+
+
+Writable.prototype.pipe = function () {
+  errorOrDestroy(this, new ERR_STREAM_CANNOT_PIPE());
+};
+
+function writeAfterEnd(stream, cb) {
+  var er = new ERR_STREAM_WRITE_AFTER_END(); // TODO: defer error events consistently everywhere, not just the cb
+
+  errorOrDestroy(stream, er);
+  process.nextTick(cb, er);
+} // Checks that a user-supplied chunk is valid, especially for the particular
+// mode the stream is in. Currently this means that `null` is never accepted
+// and undefined/non-string values are only allowed in object mode.
+
+
+function validChunk(stream, state, chunk, cb) {
+  var er;
+
+  if (chunk === null) {
+    er = new ERR_STREAM_NULL_VALUES();
+  } else if (typeof chunk !== 'string' && !state.objectMode) {
+    er = new ERR_INVALID_ARG_TYPE('chunk', ['string', 'Buffer'], chunk);
+  }
+
+  if (er) {
+    errorOrDestroy(stream, er);
+    process.nextTick(cb, er);
+    return false;
+  }
+
+  return true;
+}
+
+Writable.prototype.write = function (chunk, encoding, cb) {
+  var state = this._writableState;
+  var ret = false;
+
+  var isBuf = !state.objectMode && _isUint8Array(chunk);
+
+  if (isBuf && !Buffer.isBuffer(chunk)) {
+    chunk = _uint8ArrayToBuffer(chunk);
+  }
+
+  if (typeof encoding === 'function') {
+    cb = encoding;
+    encoding = null;
+  }
+
+  if (isBuf) encoding = 'buffer';else if (!encoding) encoding = state.defaultEncoding;
+  if (typeof cb !== 'function') cb = nop;
+  if (state.ending) writeAfterEnd(this, cb);else if (isBuf || validChunk(this, state, chunk, cb)) {
+    state.pendingcb++;
+    ret = writeOrBuffer(this, state, isBuf, chunk, encoding, cb);
+  }
+  return ret;
+};
+
+Writable.prototype.cork = function () {
+  this._writableState.corked++;
+};
+
+Writable.prototype.uncork = function () {
+  var state = this._writableState;
+
+  if (state.corked) {
+    state.corked--;
+    if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
+  }
+};
+
+Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
+  // node::ParseEncoding() requires lower case.
+  if (typeof encoding === 'string') encoding = encoding.toLowerCase();
+  if (!(['hex', 'utf8', 'utf-8', 'ascii', 'binary', 'base64', 'ucs2', 'ucs-2', 'utf16le', 'utf-16le', 'raw'].indexOf((encoding + '').toLowerCase()) > -1)) throw new ERR_UNKNOWN_ENCODING(encoding);
+  this._writableState.defaultEncoding = encoding;
+  return this;
+};
+
+Object.defineProperty(Writable.prototype, 'writableBuffer', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._writableState && this._writableState.getBuffer();
+  }
+});
+
+function decodeChunk(state, chunk, encoding) {
+  if (!state.objectMode && state.decodeStrings !== false && typeof chunk === 'string') {
+    chunk = Buffer.from(chunk, encoding);
+  }
+
+  return chunk;
+}
+
+Object.defineProperty(Writable.prototype, 'writableHighWaterMark', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._writableState.highWaterMark;
+  }
+}); // if we're already writing something, then just put this
+// in the queue, and wait our turn.  Otherwise, call _write
+// If we return false, then we need a drain event, so set that flag.
+
+function writeOrBuffer(stream, state, isBuf, chunk, encoding, cb) {
+  if (!isBuf) {
+    var newChunk = decodeChunk(state, chunk, encoding);
+
+    if (chunk !== newChunk) {
+      isBuf = true;
+      encoding = 'buffer';
+      chunk = newChunk;
+    }
+  }
+
+  var len = state.objectMode ? 1 : chunk.length;
+  state.length += len;
+  var ret = state.length < state.highWaterMark; // we must ensure that previous needDrain will not be reset to false.
+
+  if (!ret) state.needDrain = true;
+
+  if (state.writing || state.corked) {
+    var last = state.lastBufferedRequest;
+    state.lastBufferedRequest = {
+      chunk: chunk,
+      encoding: encoding,
+      isBuf: isBuf,
+      callback: cb,
+      next: null
+    };
+
+    if (last) {
+      last.next = state.lastBufferedRequest;
+    } else {
+      state.bufferedRequest = state.lastBufferedRequest;
+    }
+
+    state.bufferedRequestCount += 1;
+  } else {
+    doWrite(stream, state, false, len, chunk, encoding, cb);
+  }
+
+  return ret;
+}
+
+function doWrite(stream, state, writev, len, chunk, encoding, cb) {
+  state.writelen = len;
+  state.writecb = cb;
+  state.writing = true;
+  state.sync = true;
+  if (state.destroyed) state.onwrite(new ERR_STREAM_DESTROYED('write'));else if (writev) stream._writev(chunk, state.onwrite);else stream._write(chunk, encoding, state.onwrite);
+  state.sync = false;
+}
+
+function onwriteError(stream, state, sync, er, cb) {
+  --state.pendingcb;
+
+  if (sync) {
+    // defer the callback if we are being called synchronously
+    // to avoid piling up things on the stack
+    process.nextTick(cb, er); // this can emit finish, and it will always happen
+    // after error
+
+    process.nextTick(finishMaybe, stream, state);
+    stream._writableState.errorEmitted = true;
+    errorOrDestroy(stream, er);
+  } else {
+    // the caller expect this to happen before if
+    // it is async
+    cb(er);
+    stream._writableState.errorEmitted = true;
+    errorOrDestroy(stream, er); // this can emit finish, but finish must
+    // always follow error
+
+    finishMaybe(stream, state);
+  }
+}
+
+function onwriteStateUpdate(state) {
+  state.writing = false;
+  state.writecb = null;
+  state.length -= state.writelen;
+  state.writelen = 0;
+}
+
+function onwrite(stream, er) {
+  var state = stream._writableState;
+  var sync = state.sync;
+  var cb = state.writecb;
+  if (typeof cb !== 'function') throw new ERR_MULTIPLE_CALLBACK();
+  onwriteStateUpdate(state);
+  if (er) onwriteError(stream, state, sync, er, cb);else {
+    // Check if we're actually ready to finish, but don't emit yet
+    var finished = needFinish(state) || stream.destroyed;
+
+    if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
+      clearBuffer(stream, state);
+    }
+
+    if (sync) {
+      process.nextTick(afterWrite, stream, state, finished, cb);
+    } else {
+      afterWrite(stream, state, finished, cb);
+    }
+  }
+}
+
+function afterWrite(stream, state, finished, cb) {
+  if (!finished) onwriteDrain(stream, state);
+  state.pendingcb--;
+  cb();
+  finishMaybe(stream, state);
+} // Must force callback to be called on nextTick, so that we don't
+// emit 'drain' before the write() consumer gets the 'false' return
+// value, and has a chance to attach a 'drain' listener.
+
+
+function onwriteDrain(stream, state) {
+  if (state.length === 0 && state.needDrain) {
+    state.needDrain = false;
+    stream.emit('drain');
+  }
+} // if there's something in the buffer waiting, then process it
+
+
+function clearBuffer(stream, state) {
+  state.bufferProcessing = true;
+  var entry = state.bufferedRequest;
+
+  if (stream._writev && entry && entry.next) {
+    // Fast case, write everything using _writev()
+    var l = state.bufferedRequestCount;
+    var buffer = new Array(l);
+    var holder = state.corkedRequestsFree;
+    holder.entry = entry;
+    var count = 0;
+    var allBuffers = true;
+
+    while (entry) {
+      buffer[count] = entry;
+      if (!entry.isBuf) allBuffers = false;
+      entry = entry.next;
+      count += 1;
+    }
+
+    buffer.allBuffers = allBuffers;
+    doWrite(stream, state, true, state.length, buffer, '', holder.finish); // doWrite is almost always async, defer these to save a bit of time
+    // as the hot path ends with doWrite
+
+    state.pendingcb++;
+    state.lastBufferedRequest = null;
+
+    if (holder.next) {
+      state.corkedRequestsFree = holder.next;
+      holder.next = null;
+    } else {
+      state.corkedRequestsFree = new CorkedRequest(state);
+    }
+
+    state.bufferedRequestCount = 0;
+  } else {
+    // Slow case, write chunks one-by-one
+    while (entry) {
+      var chunk = entry.chunk;
+      var encoding = entry.encoding;
+      var cb = entry.callback;
+      var len = state.objectMode ? 1 : chunk.length;
+      doWrite(stream, state, false, len, chunk, encoding, cb);
+      entry = entry.next;
+      state.bufferedRequestCount--; // if we didn't call the onwrite immediately, then
+      // it means that we need to wait until it does.
+      // also, that means that the chunk and cb are currently
+      // being processed, so move the buffer counter past them.
+
+      if (state.writing) {
+        break;
+      }
+    }
+
+    if (entry === null) state.lastBufferedRequest = null;
+  }
+
+  state.bufferedRequest = entry;
+  state.bufferProcessing = false;
+}
+
+Writable.prototype._write = function (chunk, encoding, cb) {
+  cb(new ERR_METHOD_NOT_IMPLEMENTED('_write()'));
+};
+
+Writable.prototype._writev = null;
+
+Writable.prototype.end = function (chunk, encoding, cb) {
+  var state = this._writableState;
+
+  if (typeof chunk === 'function') {
+    cb = chunk;
+    chunk = null;
+    encoding = null;
+  } else if (typeof encoding === 'function') {
+    cb = encoding;
+    encoding = null;
+  }
+
+  if (chunk !== null && chunk !== undefined) this.write(chunk, encoding); // .end() fully uncorks
+
+  if (state.corked) {
+    state.corked = 1;
+    this.uncork();
+  } // ignore unnecessary end() calls.
+
+
+  if (!state.ending) endWritable(this, state, cb);
+  return this;
+};
+
+Object.defineProperty(Writable.prototype, 'writableLength', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    return this._writableState.length;
+  }
+});
+
+function needFinish(state) {
+  return state.ending && state.length === 0 && state.bufferedRequest === null && !state.finished && !state.writing;
+}
+
+function callFinal(stream, state) {
+  stream._final(function (err) {
+    state.pendingcb--;
+
+    if (err) {
+      errorOrDestroy(stream, err);
+    }
+
+    state.prefinished = true;
+    stream.emit('prefinish');
+    finishMaybe(stream, state);
+  });
+}
+
+function prefinish(stream, state) {
+  if (!state.prefinished && !state.finalCalled) {
+    if (typeof stream._final === 'function' && !state.destroyed) {
+      state.pendingcb++;
+      state.finalCalled = true;
+      process.nextTick(callFinal, stream, state);
+    } else {
+      state.prefinished = true;
+      stream.emit('prefinish');
+    }
+  }
+}
+
+function finishMaybe(stream, state) {
+  var need = needFinish(state);
+
+  if (need) {
+    prefinish(stream, state);
+
+    if (state.pendingcb === 0) {
+      state.finished = true;
+      stream.emit('finish');
+
+      if (state.autoDestroy) {
+        // In case of duplex streams we need a way to detect
+        // if the readable side is ready for autoDestroy as well
+        var rState = stream._readableState;
+
+        if (!rState || rState.autoDestroy && rState.endEmitted) {
+          stream.destroy();
+        }
+      }
+    }
+  }
+
+  return need;
+}
+
+function endWritable(stream, state, cb) {
+  state.ending = true;
+  finishMaybe(stream, state);
+
+  if (cb) {
+    if (state.finished) process.nextTick(cb);else stream.once('finish', cb);
+  }
+
+  state.ended = true;
+  stream.writable = false;
+}
+
+function onCorkedFinish(corkReq, state, err) {
+  var entry = corkReq.entry;
+  corkReq.entry = null;
+
+  while (entry) {
+    var cb = entry.callback;
+    state.pendingcb--;
+    cb(err);
+    entry = entry.next;
+  } // reuse the free corkReq.
+
+
+  state.corkedRequestsFree.next = corkReq;
+}
+
+Object.defineProperty(Writable.prototype, 'destroyed', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function get() {
+    if (this._writableState === undefined) {
+      return false;
+    }
+
+    return this._writableState.destroyed;
+  },
+  set: function set(value) {
+    // we ignore the value if the stream
+    // has not been initialized yet
+    if (!this._writableState) {
+      return;
+    } // backward compatibility, the user is explicitly
+    // managing destroyed
+
+
+    this._writableState.destroyed = value;
+  }
+});
+Writable.prototype.destroy = destroyImpl.destroy;
+Writable.prototype._undestroy = destroyImpl.undestroy;
+
+Writable.prototype._destroy = function (err, cb) {
+  cb(err);
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../corona-tracker/node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../../corona-tracker/node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/async_iterator.js":
+/*!**********************************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/internal/streams/async_iterator.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var _Object$setPrototypeO;
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+var finished = __webpack_require__(/*! ./end-of-stream */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
+
+var kLastResolve = Symbol('lastResolve');
+var kLastReject = Symbol('lastReject');
+var kError = Symbol('error');
+var kEnded = Symbol('ended');
+var kLastPromise = Symbol('lastPromise');
+var kHandlePromise = Symbol('handlePromise');
+var kStream = Symbol('stream');
+
+function createIterResult(value, done) {
+  return {
+    value: value,
+    done: done
+  };
+}
+
+function readAndResolve(iter) {
+  var resolve = iter[kLastResolve];
+
+  if (resolve !== null) {
+    var data = iter[kStream].read(); // we defer if data is null
+    // we can be expecting either 'end' or
+    // 'error'
+
+    if (data !== null) {
+      iter[kLastPromise] = null;
+      iter[kLastResolve] = null;
+      iter[kLastReject] = null;
+      resolve(createIterResult(data, false));
+    }
+  }
+}
+
+function onReadable(iter) {
+  // we wait for the next tick, because it might
+  // emit an error with process.nextTick
+  process.nextTick(readAndResolve, iter);
+}
+
+function wrapForNext(lastPromise, iter) {
+  return function (resolve, reject) {
+    lastPromise.then(function () {
+      if (iter[kEnded]) {
+        resolve(createIterResult(undefined, true));
+        return;
+      }
+
+      iter[kHandlePromise](resolve, reject);
+    }, reject);
+  };
+}
+
+var AsyncIteratorPrototype = Object.getPrototypeOf(function () {});
+var ReadableStreamAsyncIteratorPrototype = Object.setPrototypeOf((_Object$setPrototypeO = {
+  get stream() {
+    return this[kStream];
+  },
+
+  next: function next() {
+    var _this = this; // if we have detected an error in the meanwhile
+    // reject straight away
+
+
+    var error = this[kError];
+
+    if (error !== null) {
+      return Promise.reject(error);
+    }
+
+    if (this[kEnded]) {
+      return Promise.resolve(createIterResult(undefined, true));
+    }
+
+    if (this[kStream].destroyed) {
+      // We need to defer via nextTick because if .destroy(err) is
+      // called, the error will be emitted via nextTick, and
+      // we cannot guarantee that there is no error lingering around
+      // waiting to be emitted.
+      return new Promise(function (resolve, reject) {
+        process.nextTick(function () {
+          if (_this[kError]) {
+            reject(_this[kError]);
+          } else {
+            resolve(createIterResult(undefined, true));
+          }
+        });
+      });
+    } // if we have multiple next() calls
+    // we will wait for the previous Promise to finish
+    // this logic is optimized to support for await loops,
+    // where next() is only called once at a time
+
+
+    var lastPromise = this[kLastPromise];
+    var promise;
+
+    if (lastPromise) {
+      promise = new Promise(wrapForNext(lastPromise, this));
+    } else {
+      // fast path needed to support multiple this.push()
+      // without triggering the next() queue
+      var data = this[kStream].read();
+
+      if (data !== null) {
+        return Promise.resolve(createIterResult(data, false));
+      }
+
+      promise = new Promise(this[kHandlePromise]);
+    }
+
+    this[kLastPromise] = promise;
+    return promise;
+  }
+}, _defineProperty(_Object$setPrototypeO, Symbol.asyncIterator, function () {
+  return this;
+}), _defineProperty(_Object$setPrototypeO, "return", function _return() {
+  var _this2 = this; // destroy(err, cb) is a private API
+  // we can guarantee we have that here, because we control the
+  // Readable class this is attached to
+
+
+  return new Promise(function (resolve, reject) {
+    _this2[kStream].destroy(null, function (err) {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve(createIterResult(undefined, true));
+    });
+  });
+}), _Object$setPrototypeO), AsyncIteratorPrototype);
+
+var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterator(stream) {
+  var _Object$create;
+
+  var iterator = Object.create(ReadableStreamAsyncIteratorPrototype, (_Object$create = {}, _defineProperty(_Object$create, kStream, {
+    value: stream,
+    writable: true
+  }), _defineProperty(_Object$create, kLastResolve, {
+    value: null,
+    writable: true
+  }), _defineProperty(_Object$create, kLastReject, {
+    value: null,
+    writable: true
+  }), _defineProperty(_Object$create, kError, {
+    value: null,
+    writable: true
+  }), _defineProperty(_Object$create, kEnded, {
+    value: stream._readableState.endEmitted,
+    writable: true
+  }), _defineProperty(_Object$create, kHandlePromise, {
+    value: function value(resolve, reject) {
+      var data = iterator[kStream].read();
+
+      if (data) {
+        iterator[kLastPromise] = null;
+        iterator[kLastResolve] = null;
+        iterator[kLastReject] = null;
+        resolve(createIterResult(data, false));
+      } else {
+        iterator[kLastResolve] = resolve;
+        iterator[kLastReject] = reject;
+      }
+    },
+    writable: true
+  }), _Object$create));
+  iterator[kLastPromise] = null;
+  finished(stream, function (err) {
+    if (err && err.code !== 'ERR_STREAM_PREMATURE_CLOSE') {
+      var reject = iterator[kLastReject]; // reject if we are waiting for data in the Promise
+      // returned by next() and store the error
+
+      if (reject !== null) {
+        iterator[kLastPromise] = null;
+        iterator[kLastResolve] = null;
+        iterator[kLastReject] = null;
+        reject(err);
+      }
+
+      iterator[kError] = err;
+      return;
+    }
+
+    var resolve = iterator[kLastResolve];
+
+    if (resolve !== null) {
+      iterator[kLastPromise] = null;
+      iterator[kLastResolve] = null;
+      iterator[kLastReject] = null;
+      resolve(createIterResult(undefined, true));
+    }
+
+    iterator[kEnded] = true;
+  });
+  stream.on('readable', onReadable.bind(null, iterator));
+  return iterator;
+};
+
+module.exports = createReadableStreamAsyncIterator;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../corona-tracker/node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/buffer_list.js":
+/*!*******************************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/internal/streams/buffer_list.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+var _require = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js"),
+    Buffer = _require.Buffer;
+
+var _require2 = __webpack_require__(/*! util */ 2),
+    inspect = _require2.inspect;
+
+var custom = inspect && inspect.custom || 'inspect';
+
+function copyBuffer(src, target, offset) {
+  Buffer.prototype.copy.call(src, target, offset);
+}
+
+module.exports = /*#__PURE__*/function () {
+  function BufferList() {
+    _classCallCheck(this, BufferList);
+
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  _createClass(BufferList, [{
+    key: "push",
+    value: function push(v) {
+      var entry = {
+        data: v,
+        next: null
+      };
+      if (this.length > 0) this.tail.next = entry;else this.head = entry;
+      this.tail = entry;
+      ++this.length;
+    }
+  }, {
+    key: "unshift",
+    value: function unshift(v) {
+      var entry = {
+        data: v,
+        next: this.head
+      };
+      if (this.length === 0) this.tail = entry;
+      this.head = entry;
+      ++this.length;
+    }
+  }, {
+    key: "shift",
+    value: function shift() {
+      if (this.length === 0) return;
+      var ret = this.head.data;
+      if (this.length === 1) this.head = this.tail = null;else this.head = this.head.next;
+      --this.length;
+      return ret;
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      this.head = this.tail = null;
+      this.length = 0;
+    }
+  }, {
+    key: "join",
+    value: function join(s) {
+      if (this.length === 0) return '';
+      var p = this.head;
+      var ret = '' + p.data;
+
+      while (p = p.next) {
+        ret += s + p.data;
+      }
+
+      return ret;
+    }
+  }, {
+    key: "concat",
+    value: function concat(n) {
+      if (this.length === 0) return Buffer.alloc(0);
+      var ret = Buffer.allocUnsafe(n >>> 0);
+      var p = this.head;
+      var i = 0;
+
+      while (p) {
+        copyBuffer(p.data, ret, i);
+        i += p.data.length;
+        p = p.next;
+      }
+
+      return ret;
+    } // Consumes a specified amount of bytes or characters from the buffered data.
+
+  }, {
+    key: "consume",
+    value: function consume(n, hasStrings) {
+      var ret;
+
+      if (n < this.head.data.length) {
+        // `slice` is the same for buffers and strings.
+        ret = this.head.data.slice(0, n);
+        this.head.data = this.head.data.slice(n);
+      } else if (n === this.head.data.length) {
+        // First chunk is a perfect match.
+        ret = this.shift();
+      } else {
+        // Result spans more than one buffer.
+        ret = hasStrings ? this._getString(n) : this._getBuffer(n);
+      }
+
+      return ret;
+    }
+  }, {
+    key: "first",
+    value: function first() {
+      return this.head.data;
+    } // Consumes a specified amount of characters from the buffered data.
+
+  }, {
+    key: "_getString",
+    value: function _getString(n) {
+      var p = this.head;
+      var c = 1;
+      var ret = p.data;
+      n -= ret.length;
+
+      while (p = p.next) {
+        var str = p.data;
+        var nb = n > str.length ? str.length : n;
+        if (nb === str.length) ret += str;else ret += str.slice(0, n);
+        n -= nb;
+
+        if (n === 0) {
+          if (nb === str.length) {
+            ++c;
+            if (p.next) this.head = p.next;else this.head = this.tail = null;
+          } else {
+            this.head = p;
+            p.data = str.slice(nb);
+          }
+
+          break;
+        }
+
+        ++c;
+      }
+
+      this.length -= c;
+      return ret;
+    } // Consumes a specified amount of bytes from the buffered data.
+
+  }, {
+    key: "_getBuffer",
+    value: function _getBuffer(n) {
+      var ret = Buffer.allocUnsafe(n);
+      var p = this.head;
+      var c = 1;
+      p.data.copy(ret);
+      n -= p.data.length;
+
+      while (p = p.next) {
+        var buf = p.data;
+        var nb = n > buf.length ? buf.length : n;
+        buf.copy(ret, ret.length - n, 0, nb);
+        n -= nb;
+
+        if (n === 0) {
+          if (nb === buf.length) {
+            ++c;
+            if (p.next) this.head = p.next;else this.head = this.tail = null;
+          } else {
+            this.head = p;
+            p.data = buf.slice(nb);
+          }
+
+          break;
+        }
+
+        ++c;
+      }
+
+      this.length -= c;
+      return ret;
+    } // Make sure the linked list only shows the minimal necessary information.
+
+  }, {
+    key: custom,
+    value: function value(_, options) {
+      return inspect(this, _objectSpread({}, options, {
+        // Only inspect one level.
+        depth: 0,
+        // It should not recurse.
+        customInspect: false
+      }));
+    }
+  }]);
+
+  return BufferList;
+}();
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js":
+/*!***************************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/internal/streams/destroy.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) { // undocumented cb() API, needed for core, not for public API
+
+function destroy(err, cb) {
+  var _this = this;
+
+  var readableDestroyed = this._readableState && this._readableState.destroyed;
+  var writableDestroyed = this._writableState && this._writableState.destroyed;
+
+  if (readableDestroyed || writableDestroyed) {
+    if (cb) {
+      cb(err);
+    } else if (err) {
+      if (!this._writableState) {
+        process.nextTick(emitErrorNT, this, err);
+      } else if (!this._writableState.errorEmitted) {
+        this._writableState.errorEmitted = true;
+        process.nextTick(emitErrorNT, this, err);
+      }
+    }
+
+    return this;
+  } // we set destroyed to true before firing error callbacks in order
+  // to make it re-entrance safe in case destroy() is called within callbacks
+
+
+  if (this._readableState) {
+    this._readableState.destroyed = true;
+  } // if this is a duplex stream mark the writable part as destroyed as well
+
+
+  if (this._writableState) {
+    this._writableState.destroyed = true;
+  }
+
+  this._destroy(err || null, function (err) {
+    if (!cb && err) {
+      if (!_this._writableState) {
+        process.nextTick(emitErrorAndCloseNT, _this, err);
+      } else if (!_this._writableState.errorEmitted) {
+        _this._writableState.errorEmitted = true;
+        process.nextTick(emitErrorAndCloseNT, _this, err);
+      } else {
+        process.nextTick(emitCloseNT, _this);
+      }
+    } else if (cb) {
+      process.nextTick(emitCloseNT, _this);
+      cb(err);
+    } else {
+      process.nextTick(emitCloseNT, _this);
+    }
+  });
+
+  return this;
+}
+
+function emitErrorAndCloseNT(self, err) {
+  emitErrorNT(self, err);
+  emitCloseNT(self);
+}
+
+function emitCloseNT(self) {
+  if (self._writableState && !self._writableState.emitClose) return;
+  if (self._readableState && !self._readableState.emitClose) return;
+  self.emit('close');
+}
+
+function undestroy() {
+  if (this._readableState) {
+    this._readableState.destroyed = false;
+    this._readableState.reading = false;
+    this._readableState.ended = false;
+    this._readableState.endEmitted = false;
+  }
+
+  if (this._writableState) {
+    this._writableState.destroyed = false;
+    this._writableState.ended = false;
+    this._writableState.ending = false;
+    this._writableState.finalCalled = false;
+    this._writableState.prefinished = false;
+    this._writableState.finished = false;
+    this._writableState.errorEmitted = false;
+  }
+}
+
+function emitErrorNT(self, err) {
+  self.emit('error', err);
+}
+
+function errorOrDestroy(stream, err) {
+  // We have tests that rely on errors being emitted
+  // in the same tick, so changing this is semver major.
+  // For now when you opt-in to autoDestroy we allow
+  // the error to be emitted nextTick. In a future
+  // semver major update we should change the default to this.
+  var rState = stream._readableState;
+  var wState = stream._writableState;
+  if (rState && rState.autoDestroy || wState && wState.autoDestroy) stream.destroy(err);else stream.emit('error', err);
+}
+
+module.exports = {
+  destroy: destroy,
+  undestroy: undestroy,
+  errorOrDestroy: errorOrDestroy
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../corona-tracker/node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js":
+/*!*********************************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Ported from https://github.com/mafintosh/end-of-stream with
+// permission from the author, Mathias Buus (@mafintosh).
+
+
+var ERR_STREAM_PREMATURE_CLOSE = __webpack_require__(/*! ../../../errors */ "../dweb-transports/node_modules/readable-stream/errors-browser.js").codes.ERR_STREAM_PREMATURE_CLOSE;
+
+function once(callback) {
+  var called = false;
+  return function () {
+    if (called) return;
+    called = true;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    callback.apply(this, args);
+  };
+}
+
+function noop() {}
+
+function isRequest(stream) {
+  return stream.setHeader && typeof stream.abort === 'function';
+}
+
+function eos(stream, opts, callback) {
+  if (typeof opts === 'function') return eos(stream, null, opts);
+  if (!opts) opts = {};
+  callback = once(callback || noop);
+  var readable = opts.readable || opts.readable !== false && stream.readable;
+  var writable = opts.writable || opts.writable !== false && stream.writable;
+
+  var onlegacyfinish = function onlegacyfinish() {
+    if (!stream.writable) onfinish();
+  };
+
+  var writableEnded = stream._writableState && stream._writableState.finished;
+
+  var onfinish = function onfinish() {
+    writable = false;
+    writableEnded = true;
+    if (!readable) callback.call(stream);
+  };
+
+  var readableEnded = stream._readableState && stream._readableState.endEmitted;
+
+  var onend = function onend() {
+    readable = false;
+    readableEnded = true;
+    if (!writable) callback.call(stream);
+  };
+
+  var onerror = function onerror(err) {
+    callback.call(stream, err);
+  };
+
+  var onclose = function onclose() {
+    var err;
+
+    if (readable && !readableEnded) {
+      if (!stream._readableState || !stream._readableState.ended) err = new ERR_STREAM_PREMATURE_CLOSE();
+      return callback.call(stream, err);
+    }
+
+    if (writable && !writableEnded) {
+      if (!stream._writableState || !stream._writableState.ended) err = new ERR_STREAM_PREMATURE_CLOSE();
+      return callback.call(stream, err);
+    }
+  };
+
+  var onrequest = function onrequest() {
+    stream.req.on('finish', onfinish);
+  };
+
+  if (isRequest(stream)) {
+    stream.on('complete', onfinish);
+    stream.on('abort', onclose);
+    if (stream.req) onrequest();else stream.on('request', onrequest);
+  } else if (writable && !stream._writableState) {
+    // legacy streams
+    stream.on('end', onlegacyfinish);
+    stream.on('close', onlegacyfinish);
+  }
+
+  stream.on('end', onend);
+  stream.on('finish', onfinish);
+  if (opts.error !== false) stream.on('error', onerror);
+  stream.on('close', onclose);
+  return function () {
+    stream.removeListener('complete', onfinish);
+    stream.removeListener('abort', onclose);
+    stream.removeListener('request', onrequest);
+    if (stream.req) stream.req.removeListener('finish', onfinish);
+    stream.removeListener('end', onlegacyfinish);
+    stream.removeListener('close', onlegacyfinish);
+    stream.removeListener('finish', onfinish);
+    stream.removeListener('end', onend);
+    stream.removeListener('error', onerror);
+    stream.removeListener('close', onclose);
+  };
+}
+
+module.exports = eos;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/from-browser.js":
+/*!********************************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/internal/streams/from-browser.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function () {
+  throw new Error('Readable.from is not available in the browser');
+};
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/pipeline.js":
+/*!****************************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/internal/streams/pipeline.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Ported from https://github.com/mafintosh/pump with
+// permission from the author, Mathias Buus (@mafintosh).
+
+
+var eos;
+
+function once(callback) {
+  var called = false;
+  return function () {
+    if (called) return;
+    called = true;
+    callback.apply(void 0, arguments);
+  };
+}
+
+var _require$codes = __webpack_require__(/*! ../../../errors */ "../dweb-transports/node_modules/readable-stream/errors-browser.js").codes,
+    ERR_MISSING_ARGS = _require$codes.ERR_MISSING_ARGS,
+    ERR_STREAM_DESTROYED = _require$codes.ERR_STREAM_DESTROYED;
+
+function noop(err) {
+  // Rethrow the error if it exists to avoid swallowing it
+  if (err) throw err;
+}
+
+function isRequest(stream) {
+  return stream.setHeader && typeof stream.abort === 'function';
+}
+
+function destroyer(stream, reading, writing, callback) {
+  callback = once(callback);
+  var closed = false;
+  stream.on('close', function () {
+    closed = true;
+  });
+  if (eos === undefined) eos = __webpack_require__(/*! ./end-of-stream */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
+  eos(stream, {
+    readable: reading,
+    writable: writing
+  }, function (err) {
+    if (err) return callback(err);
+    closed = true;
+    callback();
+  });
+  var destroyed = false;
+  return function (err) {
+    if (closed) return;
+    if (destroyed) return;
+    destroyed = true; // request.destroy just do .end - .abort is what we want
+
+    if (isRequest(stream)) return stream.abort();
+    if (typeof stream.destroy === 'function') return stream.destroy();
+    callback(err || new ERR_STREAM_DESTROYED('pipe'));
+  };
+}
+
+function call(fn) {
+  fn();
+}
+
+function pipe(from, to) {
+  return from.pipe(to);
+}
+
+function popCallback(streams) {
+  if (!streams.length) return noop;
+  if (typeof streams[streams.length - 1] !== 'function') return noop;
+  return streams.pop();
+}
+
+function pipeline() {
+  for (var _len = arguments.length, streams = new Array(_len), _key = 0; _key < _len; _key++) {
+    streams[_key] = arguments[_key];
+  }
+
+  var callback = popCallback(streams);
+  if (Array.isArray(streams[0])) streams = streams[0];
+
+  if (streams.length < 2) {
+    throw new ERR_MISSING_ARGS('streams');
+  }
+
+  var error;
+  var destroys = streams.map(function (stream, i) {
+    var reading = i < streams.length - 1;
+    var writing = i > 0;
+    return destroyer(stream, reading, writing, function (err) {
+      if (!error) error = err;
+      if (err) destroys.forEach(call);
+      if (reading) return;
+      destroys.forEach(call);
+      callback(error);
+    });
+  });
+  return streams.reduce(pipe);
+}
+
+module.exports = pipeline;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js":
+/*!*************************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/internal/streams/state.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var ERR_INVALID_OPT_VALUE = __webpack_require__(/*! ../../../errors */ "../dweb-transports/node_modules/readable-stream/errors-browser.js").codes.ERR_INVALID_OPT_VALUE;
+
+function highWaterMarkFrom(options, isDuplex, duplexKey) {
+  return options.highWaterMark != null ? options.highWaterMark : isDuplex ? options[duplexKey] : null;
+}
+
+function getHighWaterMark(state, options, duplexKey, isDuplex) {
+  var hwm = highWaterMarkFrom(options, isDuplex, duplexKey);
+
+  if (hwm != null) {
+    if (!(isFinite(hwm) && Math.floor(hwm) === hwm) || hwm < 0) {
+      var name = isDuplex ? duplexKey : 'highWaterMark';
+      throw new ERR_INVALID_OPT_VALUE(name, hwm);
+    }
+
+    return Math.floor(hwm);
+  } // Default value
+
+
+  return state.objectMode ? 16 : 16 * 1024;
+}
+
+module.exports = {
+  getHighWaterMark: getHighWaterMark
+};
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js":
+/*!**********************************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/lib/internal/streams/stream-browser.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! events */ "./node_modules/events/events.js").EventEmitter;
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/readable-stream/readable-browser.js":
+/*!***************************************************************************!*\
+  !*** ../dweb-transports/node_modules/readable-stream/readable-browser.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ./lib/_stream_readable.js */ "../dweb-transports/node_modules/readable-stream/lib/_stream_readable.js");
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = __webpack_require__(/*! ./lib/_stream_writable.js */ "../dweb-transports/node_modules/readable-stream/lib/_stream_writable.js");
+exports.Duplex = __webpack_require__(/*! ./lib/_stream_duplex.js */ "../dweb-transports/node_modules/readable-stream/lib/_stream_duplex.js");
+exports.Transform = __webpack_require__(/*! ./lib/_stream_transform.js */ "../dweb-transports/node_modules/readable-stream/lib/_stream_transform.js");
+exports.PassThrough = __webpack_require__(/*! ./lib/_stream_passthrough.js */ "../dweb-transports/node_modules/readable-stream/lib/_stream_passthrough.js");
+exports.finished = __webpack_require__(/*! ./lib/internal/streams/end-of-stream.js */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
+exports.pipeline = __webpack_require__(/*! ./lib/internal/streams/pipeline.js */ "../dweb-transports/node_modules/readable-stream/lib/internal/streams/pipeline.js");
+
+/***/ }),
+
+/***/ "../dweb-transports/node_modules/util-deprecate/browser.js":
+/*!*****************************************************************!*\
+  !*** ../dweb-transports/node_modules/util-deprecate/browser.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/**
+ * Module exports.
+ */
+module.exports = deprecate;
+/**
+ * Mark that a method should not be used.
+ * Returns a modified function which warns once by default.
+ *
+ * If `localStorage.noDeprecation = true` is set, then it is a no-op.
+ *
+ * If `localStorage.throwDeprecation = true` is set, then deprecated functions
+ * will throw an Error when invoked.
+ *
+ * If `localStorage.traceDeprecation = true` is set, then deprecated functions
+ * will invoke `console.trace()` instead of `console.error()`.
+ *
+ * @param {Function} fn - the function to deprecate
+ * @param {String} msg - the string to print to the console when `fn` is invoked
+ * @returns {Function} a new "deprecated" version of `fn`
+ * @api public
+ */
+
+function deprecate(fn, msg) {
+  if (config('noDeprecation')) {
+    return fn;
+  }
+
+  var warned = false;
+
+  function deprecated() {
+    if (!warned) {
+      if (config('throwDeprecation')) {
+        throw new Error(msg);
+      } else if (config('traceDeprecation')) {
+        console.trace(msg);
+      } else {
+        console.warn(msg);
+      }
+
+      warned = true;
+    }
+
+    return fn.apply(this, arguments);
+  }
+
+  return deprecated;
+}
+/**
+ * Checks `localStorage` for boolean values for the given `name`.
+ *
+ * @param {String} name
+ * @returns {Boolean}
+ * @api private
+ */
+
+
+function config(name) {
+  // accessing global.localStorage can trigger a DOMException in sandboxed iframes
+  try {
+    if (!global.localStorage) return false;
+  } catch (_) {
+    return false;
+  }
+
+  var val = global.localStorage[name];
+  if (null == val) return false;
+  return String(val).toLowerCase() === 'true';
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../corona-tracker/node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "../dweb-transports/utils.js":
+/*!***********************************!*\
+  !*** ../dweb-transports/utils.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const {
+  CodingError,
+  TimeoutError
+} = __webpack_require__(/*! ./Errors */ "../dweb-transports/Errors.js");
+
+utils = {}; //utility functions
+// ==== OBJECT ORIENTED JAVASCRIPT ===============
+// This is a general purpose library of functions,
+//Parts of this file (consolearr, and createElement) are duplicated in dweb-transport; dweb-transports and dweb-objects repo
+// Utility function to print a array of items but just show number and last.
+
+utils.consolearr = arr => arr && arr.length > 0 ? [arr.length + " items inc:", arr[arr.length - 1]] : arr;
+
+utils.stringfrom = function (foo, hints = {}) {
+  try {
+    // Generic way to turn anything into a string
+    if (foo.constructor.name === "Url") // Can't use instanceof for some bizarre reason
+      return foo.href;
+    if (typeof foo === "string") return foo;
+    return foo.toString(); // Last chance try and convert to a string based on a method of the object (could check for its existence)
+  } catch (err) {
+    throw new CodingError(`Unable to turn ${foo} into a string ${err.message}`);
+  }
+};
+
+utils.p_timeout = function (promise, ms, errorstr) {
+  /* In a certain period, timeout and reject
+  promise:    A promise we want to watch to completion
+  ms:         Time in milliseconds to allow it to run
+  errorstr:   Error message in reject error
+  throws:     TimeoutError on timeout with message = errorstr
+   */
+  let timer = null;
+  return Promise.race([new Promise((resolve, reject) => {
+    timer = setTimeout(reject, ms, new TimeoutError(errorstr || `Timed out in ${ms}ms`));
+  }), promise.then(value => {
+    clearTimeout(timer);
+    return value;
+  })]);
+};
+
+utils.createElement = function (tag, attrs, children) {
+  // Note arguments is set to tag, attrs, child1, child2 etc
+  // Note identical version in dweb-transport/js/utils.js and dweb-transports/utils.js and dweb-objects/utils.js
+  var element = document.createElement(tag);
+
+  for (let name in attrs) {
+    let attrname = name.toLowerCase() === "classname" ? "class" : name;
+
+    if (name === "dangerouslySetInnerHTML") {
+      element.innerHTML = attrs[name]["__html"];
+      delete attrs.dangerouslySetInnerHTML;
+    }
+
+    if (attrs.hasOwnProperty(name)) {
+      let value = attrs[name];
+
+      if (value === true) {
+        element.setAttribute(attrname, name);
+      } else if (typeof value === "object" && !Array.isArray(value)) {
+        if (["style"].includes(attrname)) {
+          // e.g. style: {fontSize: "124px"}
+          for (let k in value) {
+            element[attrname][k] = value[k];
+          }
+        } else {
+          // Assume we are really trying to set the value to an object, allow it
+          element[attrname] = value; // Wont let us use setAttribute(attrname, value) unclear if because unknow attribute or object
+        }
+      } else if (value !== false && value != null) {
+        element.setAttribute(attrname, value.toString());
+      }
+    }
+  }
+
+  for (let i = 2; i < arguments.length; i++) {
+    // Everything after attrs
+    let child = arguments[i];
+
+    if (!child) {} else if (Array.isArray(child)) {
+      child.map(c => element.appendChild(c.nodeType == null ? document.createTextNode(c.toString()) : c));
+    } else {
+      element.appendChild(child.nodeType == null ? document.createTextNode(child.toString()) : child);
+    }
+  }
+
+  return element;
+};
+
+exports = module.exports = utils;
+
+/***/ }),
+
+/***/ "./languages/Languages.jsx":
+/*!*********************************!*\
+  !*** ./languages/Languages.jsx ***!
+  \*********************************/
+/*! exports provided: languages, languageConfig, currentISO, getLanguage, I18nSpan, setLanguage, I18n, I18nStr, I18nIcon */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "languages", function() { return languages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "languageConfig", function() { return languageConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "currentISO", function() { return currentISO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLanguage", function() { return getLanguage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nSpan", function() { return I18nSpan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLanguage", function() { return setLanguage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18n", function() { return I18n; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nStr", function() { return I18nStr; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nIcon", function() { return I18nIcon; });
+/* harmony import */ var async_waterfall__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! async/waterfall */ "./node_modules/async/waterfall.js");
+/* harmony import */ var async_waterfall__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(async_waterfall__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+const debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('corona-tracker:languages');
+
+const {
+  httptools
+} = __webpack_require__(/*! @internetarchive/dweb-transports */ "../dweb-transports/index.js"); // utilities - also duplicated in dweb-archivecontroller/Util and ia-components/util
+
+
+function ObjectFromEntries(arr) {
+  return arr.reduce((res, kv) => (res[kv[0]] = kv[1], res), {});
+} // [[ k0, v0],[k1,v1] => {k0:v0, k1:v1}
+
+
+function ObjectFilter(obj, f) {
+  return ObjectFromEntries(Object.entries(obj).filter(kv => f(kv[0], kv[1])));
+}
+/*
+  Implements a first cut at internationalization (I18n) with language files in json, built by languagebuild.
+ */
+
+
+const languages = {}; // SEE-OTHER-ADDLANGUAGE
+
+const languageConfig = {
+  // Note the flags are dragged out of the Mac Emoji and Symbol viewer
+  en: {
+    inEnglish: 'English',
+    inLocal: 'English',
+    flag: '🇬🇧'
+  },
+  fr: {
+    inEnglish: 'French',
+    inLocal: 'Française',
+    flag: '🇫🇷'
+  }
+  /*
+  de: { inEnglish: 'German', inLocal: 'Deutsche ', flag: '🇩🇪' },
+  es: { inEnglish: 'Spanish', inLocal: 'Española', flag: '🇪🇸' },
+  hi: { inEnglish: 'Hindi', inLocal: 'हिंदी', flag: '🇮🇳' },
+  id: { inEnglish: 'Indonesian', inLocal: 'Bahasa', flag: '🇮🇩' },
+  it: { inEnglish: 'Italian', inLocal: 'Italiana', flag: '🇮🇹' },
+  ja: { inEnglish: 'Japanese', inLocal: '日本語', flag: '🇯🇵' },
+  mr: { inEnglish: 'Marathi', inLocal: 'मराठी', flag: '🇮🇳' },
+  my: { inEnglish: 'Myanmar', inLocal: 'မြန်မာ', flag: '🇲🇲' },
+  pt: { inEnglish: 'Portugese', inLocal: 'Portuguesa', flag: '🇵🇹' },
+   */
+
+};
+/**
+ *
+ * @param iso if defined will set global.language to this value
+ * @returns {*} new state of global.language
+ */
+
+function currentISO(iso = undefined) {
+  // Note where we store this might change, so use this if want to set or get the code
+  if (iso) {
+    global.language = iso;
+  }
+
+  return global.language;
+}
+
+if (!currentISO()) currentISO('en');
+/**
+ * Fetch a supported language
+ * @param lang
+ * @param cb(err)
+ */
+
+function getLanguage(lang, cb) {
+  if (!languageConfig[lang]) {
+    cb(new Error('Do not support language: ' + lang));
+  } else if (languages[lang]) {
+    cb(null); // Already gotten
+  } else {
+    const url = ['/languages', languageConfig[lang].inEnglish.toLowerCase() + '.json'].join('/');
+    httptools.p_GET(url, {}, (err, languageObj) => {
+      if (!err) languages[lang] = languageObj;
+      cb(err);
+    });
+  }
+}
+/**
+ * Set to a supported language, displaying messages on UI and fetching file if needed
+ * @param lang
+ */
+
+
+function setLanguage(lang) {
+  // TODO-I18N const olditem = DwebArchive.page.state.item; // Should be an item, not a message
+  // Fetch the language file, and while doing so tell the user we are doing so in english and new languages
+  DwebArchive.page.setState({
+    message: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(I18nSpan, {
+      en: "Changing language from"
+    }, ' ', languageConfig[currentISO()].inEnglish)
+  });
+  async_waterfall__WEBPACK_IMPORTED_MODULE_0___default()([cb => {
+    if (languages[lang]) {
+      setTimeout(cb, 300);
+    } else {
+      // TODO-I18N replace this with appropriate code for corona-tracker
+
+      /*
+        DwebArchive.page.setState({
+          message: <I18nSpan en="Fetching language file for">
+            {' '}
+            {languageConfig[lang].inEnglish}
+          </I18nSpan>
+        });
+       */
+      getLanguage(lang, cb);
+    }
+  }, cb => {
+    // TODO-I18N replace this with appropriate code for corona-tracker
+
+    /*
+    DwebArchive.page.setState({
+      message: <I18nSpan en="Changing language to">
+        {' '}
+        {languageConfig[lang].inEnglish}
+      </I18nSpan>
+    });
+    */
+    setTimeout(cb, 300);
+  }, cb => {
+    currentISO(lang); // TODO-I18N replace this with appropriate code for corona-tracker
+    // DwebArchive.page.setState({ message: <I18nSpan en="Changing language to">{languageConfig[lang].inLocal}</I18nSpan> });
+
+    cb(); // No delay here as will also delay after err message
+  }], err => {
+    if (err) {
+      // If fails, tell them
+      currentISO('en'); // TODO-I18N replace this with appropriate code for corona-tracker
+
+      /*
+      DwebArchive.page.setState({ message: <I18nSpan en="Failed to set language to">{languageConfig[lang].inEnglish}</I18nSpan> });
+       */
+    } // TODO-I18N replace this with appropriate code for corona-tracker
+    // In both cases wait a short while then redisplay old page
+    // setTimeout(() => DwebArchive.page.setState({ item: olditem, message: undefined }), 1000);
+
+  });
+}
+
+function I18n(messageEnglish) {
+  let l = currentISO();
+  let s = languages[currentISO()][messageEnglish];
+
+  if (!s) {
+    l = 'en';
+    s = languages.en[messageEnglish];
+    debug('%s missing %s', currentISO(), messageEnglish);
+
+    if (!s) {
+      s = messageEnglish; // Render key, its probably right
+
+      debug('en missing %s', messageEnglish);
+    }
+  }
+
+  return {
+    s,
+    l
+  };
+}
+
+function I18nStr(messageEnglish) {
+  return I18n(messageEnglish).s;
+}
+
+class I18nSpan extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
+  /**
+   * <I18nSpan en="Yes" ... />
+   */
+  render() {
+    const {
+      s,
+      l
+    } = I18n(this.props.en);
+    const spanProps = ObjectFilter(this.props, (k, v) => k !== 'en');
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", _extends({
+      lang: l
+    }, spanProps), s, this.props.children);
+  }
+
+}
+
+class I18nIcon extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
+  /**
+   * <I18nIcon
+   *    className="iconochive-xxxx"
+   *    style={}
+   *    iconref=function to use as ref for icon - this is used in NavWebDiv to set a hideable element in the search
+   *    en=ENSTRING
+   *    xs=ENSTRING
+   * >
+   *    optional children of span (already translated) and sr-only
+   * </I18nIcon>
+   */
+  render() {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: this.props.className,
+      style: this.props.style,
+      ref: this.props.iconref,
+      "aria-hidden": "true"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(I18nSpan, {
+      className: "sr-only",
+      en: this.props.en
+    }, this.props.children), !this.props.xs ? null : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, "\xA0", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(I18nSpan, {
+      className: "hidden-xs-span",
+      en: this.props.xs
+    })));
+  }
+
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/async/asyncify.js":
+/*!****************************************!*\
+  !*** ./node_modules/async/asyncify.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = asyncify;
+
+var _initialParams = __webpack_require__(/*! ./internal/initialParams */ "./node_modules/async/internal/initialParams.js");
+
+var _initialParams2 = _interopRequireDefault(_initialParams);
+
+var _setImmediate = __webpack_require__(/*! ./internal/setImmediate */ "./node_modules/async/internal/setImmediate.js");
+
+var _setImmediate2 = _interopRequireDefault(_setImmediate);
+
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/async/internal/wrapAsync.js");
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+/**
+ * Take a sync function and make it async, passing its return value to a
+ * callback. This is useful for plugging sync functions into a waterfall,
+ * series, or other async functions. Any arguments passed to the generated
+ * function will be passed to the wrapped function (except for the final
+ * callback argument). Errors thrown will be passed to the callback.
+ *
+ * If the function passed to `asyncify` returns a Promise, that promises's
+ * resolved/rejected state will be used to call the callback, rather than simply
+ * the synchronous return value.
+ *
+ * This also means you can asyncify ES2017 `async` functions.
+ *
+ * @name asyncify
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @alias wrapSync
+ * @category Util
+ * @param {Function} func - The synchronous function, or Promise-returning
+ * function to convert to an {@link AsyncFunction}.
+ * @returns {AsyncFunction} An asynchronous wrapper of the `func`. To be
+ * invoked with `(args..., callback)`.
+ * @example
+ *
+ * // passing a regular synchronous function
+ * async.waterfall([
+ *     async.apply(fs.readFile, filename, "utf8"),
+ *     async.asyncify(JSON.parse),
+ *     function (data, next) {
+ *         // data is the result of parsing the text.
+ *         // If there was a parsing error, it would have been caught.
+ *     }
+ * ], callback);
+ *
+ * // passing a function returning a promise
+ * async.waterfall([
+ *     async.apply(fs.readFile, filename, "utf8"),
+ *     async.asyncify(function (contents) {
+ *         return db.model.create(contents);
+ *     }),
+ *     function (model, next) {
+ *         // `model` is the instantiated model object.
+ *         // If there was an error, this function would be skipped.
+ *     }
+ * ], callback);
+ *
+ * // es2017 example, though `asyncify` is not needed if your JS environment
+ * // supports async functions out of the box
+ * var q = async.queue(async.asyncify(async function(file) {
+ *     var intermediateStep = await processFile(file);
+ *     return await somePromise(intermediateStep)
+ * }));
+ *
+ * q.push(files);
+ */
+
+
+function asyncify(func) {
+  if ((0, _wrapAsync.isAsync)(func)) {
+    return function (...args
+    /*, callback*/
+    ) {
+      const callback = args.pop();
+      const promise = func.apply(this, args);
+      return handlePromise(promise, callback);
+    };
+  }
+
+  return (0, _initialParams2.default)(function (args, callback) {
+    var result;
+
+    try {
+      result = func.apply(this, args);
+    } catch (e) {
+      return callback(e);
+    } // if result is Promise object
+
+
+    if (result && typeof result.then === 'function') {
+      return handlePromise(result, callback);
+    } else {
+      callback(null, result);
+    }
+  });
+}
+
+function handlePromise(promise, callback) {
+  return promise.then(value => {
+    invokeCallback(callback, null, value);
+  }, err => {
+    invokeCallback(callback, err && err.message ? err : new Error(err));
+  });
+}
+
+function invokeCallback(callback, error, value) {
+  try {
+    callback(error, value);
+  } catch (err) {
+    (0, _setImmediate2.default)(e => {
+      throw e;
+    }, err);
+  }
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/async/internal/awaitify.js":
+/*!*************************************************!*\
+  !*** ./node_modules/async/internal/awaitify.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = awaitify; // conditionally promisify a function.
+// only return a promise if a callback is omitted
+
+function awaitify(asyncFn, arity = asyncFn.length) {
+  if (!arity) throw new Error('arity is undefined');
+
+  function awaitable(...args) {
+    if (typeof args[arity - 1] === 'function') {
+      return asyncFn.apply(this, args);
+    }
+
+    return new Promise((resolve, reject) => {
+      args[arity - 1] = (err, ...cbArgs) => {
+        if (err) return reject(err);
+        resolve(cbArgs.length > 1 ? cbArgs : cbArgs[0]);
+      };
+
+      asyncFn.apply(this, args);
+    });
+  }
+
+  return awaitable;
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/async/internal/initialParams.js":
+/*!******************************************************!*\
+  !*** ./node_modules/async/internal/initialParams.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (fn) {
+  return function (...args
+  /*, callback*/
+  ) {
+    var callback = args.pop();
+    return fn.call(this, args, callback);
+  };
+};
+
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/async/internal/once.js":
+/*!*********************************************!*\
+  !*** ./node_modules/async/internal/once.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = once;
+
+function once(fn) {
+  function wrapper(...args) {
+    if (fn === null) return;
+    var callFn = fn;
+    fn = null;
+    callFn.apply(this, args);
+  }
+
+  Object.assign(wrapper, fn);
+  return wrapper;
+}
+
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/async/internal/onlyOnce.js":
+/*!*************************************************!*\
+  !*** ./node_modules/async/internal/onlyOnce.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = onlyOnce;
+
+function onlyOnce(fn) {
+  return function (...args) {
+    if (fn === null) throw new Error("Callback was already called.");
+    var callFn = fn;
+    fn = null;
+    callFn.apply(this, args);
+  };
+}
+
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/async/internal/setImmediate.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/async/internal/setImmediate.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+/* istanbul ignore file */
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fallback = fallback;
+exports.wrap = wrap;
+var hasSetImmediate = exports.hasSetImmediate = typeof setImmediate === 'function' && setImmediate;
+var hasNextTick = exports.hasNextTick = typeof process === 'object' && typeof process.nextTick === 'function';
+
+function fallback(fn) {
+  setTimeout(fn, 0);
+}
+
+function wrap(defer) {
+  return (fn, ...args) => defer(() => fn(...args));
+}
+
+var _defer;
+
+if (hasSetImmediate) {
+  _defer = setImmediate;
+} else if (hasNextTick) {
+  _defer = process.nextTick;
+} else {
+  _defer = fallback;
+}
+
+exports.default = wrap(_defer);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/async/internal/wrapAsync.js":
+/*!**************************************************!*\
+  !*** ./node_modules/async/internal/wrapAsync.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isAsyncIterable = exports.isAsyncGenerator = exports.isAsync = undefined;
+
+var _asyncify = __webpack_require__(/*! ../asyncify */ "./node_modules/async/asyncify.js");
+
+var _asyncify2 = _interopRequireDefault(_asyncify);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+function isAsync(fn) {
+  return fn[Symbol.toStringTag] === 'AsyncFunction';
+}
+
+function isAsyncGenerator(fn) {
+  return fn[Symbol.toStringTag] === 'AsyncGenerator';
+}
+
+function isAsyncIterable(obj) {
+  return typeof obj[Symbol.asyncIterator] === 'function';
+}
+
+function wrapAsync(asyncFn) {
+  if (typeof asyncFn !== 'function') throw new Error('expected a function');
+  return isAsync(asyncFn) ? (0, _asyncify2.default)(asyncFn) : asyncFn;
+}
+
+exports.default = wrapAsync;
+exports.isAsync = isAsync;
+exports.isAsyncGenerator = isAsyncGenerator;
+exports.isAsyncIterable = isAsyncIterable;
+
+/***/ }),
+
+/***/ "./node_modules/async/waterfall.js":
+/*!*****************************************!*\
+  !*** ./node_modules/async/waterfall.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _once = __webpack_require__(/*! ./internal/once */ "./node_modules/async/internal/once.js");
+
+var _once2 = _interopRequireDefault(_once);
+
+var _onlyOnce = __webpack_require__(/*! ./internal/onlyOnce */ "./node_modules/async/internal/onlyOnce.js");
+
+var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
+
+var _wrapAsync = __webpack_require__(/*! ./internal/wrapAsync */ "./node_modules/async/internal/wrapAsync.js");
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+var _awaitify = __webpack_require__(/*! ./internal/awaitify */ "./node_modules/async/internal/awaitify.js");
+
+var _awaitify2 = _interopRequireDefault(_awaitify);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+/**
+ * Runs the `tasks` array of functions in series, each passing their results to
+ * the next in the array. However, if any of the `tasks` pass an error to their
+ * own callback, the next function is not executed, and the main `callback` is
+ * immediately called with the error.
+ *
+ * @name waterfall
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {Array} tasks - An array of [async functions]{@link AsyncFunction}
+ * to run.
+ * Each function should complete with any number of `result` values.
+ * The `result` values will be passed as arguments, in order, to the next task.
+ * @param {Function} [callback] - An optional callback to run once all the
+ * functions have completed. This will be passed the results of the last task's
+ * callback. Invoked with (err, [results]).
+ * @returns undefined
+ * @example
+ *
+ * async.waterfall([
+ *     function(callback) {
+ *         callback(null, 'one', 'two');
+ *     },
+ *     function(arg1, arg2, callback) {
+ *         // arg1 now equals 'one' and arg2 now equals 'two'
+ *         callback(null, 'three');
+ *     },
+ *     function(arg1, callback) {
+ *         // arg1 now equals 'three'
+ *         callback(null, 'done');
+ *     }
+ * ], function (err, result) {
+ *     // result now equals 'done'
+ * });
+ *
+ * // Or, with named functions:
+ * async.waterfall([
+ *     myFirstFunction,
+ *     mySecondFunction,
+ *     myLastFunction,
+ * ], function (err, result) {
+ *     // result now equals 'done'
+ * });
+ * function myFirstFunction(callback) {
+ *     callback(null, 'one', 'two');
+ * }
+ * function mySecondFunction(arg1, arg2, callback) {
+ *     // arg1 now equals 'one' and arg2 now equals 'two'
+ *     callback(null, 'three');
+ * }
+ * function myLastFunction(arg1, callback) {
+ *     // arg1 now equals 'three'
+ *     callback(null, 'done');
+ * }
+ */
+
+
+function waterfall(tasks, callback) {
+  callback = (0, _once2.default)(callback);
+  if (!Array.isArray(tasks)) return callback(new Error('First argument to waterfall must be an array of functions'));
+  if (!tasks.length) return callback();
+  var taskIndex = 0;
+
+  function nextTask(args) {
+    var task = (0, _wrapAsync2.default)(tasks[taskIndex++]);
+    task(...args, (0, _onlyOnce2.default)(next));
+  }
+
+  function next(err, ...args) {
+    if (err === false) return;
+
+    if (err || taskIndex === tasks.length) {
+      return callback(err, ...args);
+    }
+
+    nextTask(args);
+  }
+
+  nextTask([]);
+}
+
+exports.default = (0, _awaitify2.default)(waterfall);
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/base64-js/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/base64-js/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.byteLength = byteLength;
+exports.toByteArray = toByteArray;
+exports.fromByteArray = fromByteArray;
+var lookup = [];
+var revLookup = [];
+var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array;
+var code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+for (var i = 0, len = code.length; i < len; ++i) {
+  lookup[i] = code[i];
+  revLookup[code.charCodeAt(i)] = i;
+} // Support decoding URL-safe base64 strings, as Node.js does.
+// See: https://en.wikipedia.org/wiki/Base64#URL_applications
+
+
+revLookup['-'.charCodeAt(0)] = 62;
+revLookup['_'.charCodeAt(0)] = 63;
+
+function getLens(b64) {
+  var len = b64.length;
+
+  if (len % 4 > 0) {
+    throw new Error('Invalid string. Length must be a multiple of 4');
+  } // Trim off extra bytes after placeholder bytes are found
+  // See: https://github.com/beatgammit/base64-js/issues/42
+
+
+  var validLen = b64.indexOf('=');
+  if (validLen === -1) validLen = len;
+  var placeHoldersLen = validLen === len ? 0 : 4 - validLen % 4;
+  return [validLen, placeHoldersLen];
+} // base64 is 4/3 + up to two characters of the original data
+
+
+function byteLength(b64) {
+  var lens = getLens(b64);
+  var validLen = lens[0];
+  var placeHoldersLen = lens[1];
+  return (validLen + placeHoldersLen) * 3 / 4 - placeHoldersLen;
+}
+
+function _byteLength(b64, validLen, placeHoldersLen) {
+  return (validLen + placeHoldersLen) * 3 / 4 - placeHoldersLen;
+}
+
+function toByteArray(b64) {
+  var tmp;
+  var lens = getLens(b64);
+  var validLen = lens[0];
+  var placeHoldersLen = lens[1];
+  var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen));
+  var curByte = 0; // if there are placeholders, only get up to the last complete 4 chars
+
+  var len = placeHoldersLen > 0 ? validLen - 4 : validLen;
+  var i;
+
+  for (i = 0; i < len; i += 4) {
+    tmp = revLookup[b64.charCodeAt(i)] << 18 | revLookup[b64.charCodeAt(i + 1)] << 12 | revLookup[b64.charCodeAt(i + 2)] << 6 | revLookup[b64.charCodeAt(i + 3)];
+    arr[curByte++] = tmp >> 16 & 0xFF;
+    arr[curByte++] = tmp >> 8 & 0xFF;
+    arr[curByte++] = tmp & 0xFF;
+  }
+
+  if (placeHoldersLen === 2) {
+    tmp = revLookup[b64.charCodeAt(i)] << 2 | revLookup[b64.charCodeAt(i + 1)] >> 4;
+    arr[curByte++] = tmp & 0xFF;
+  }
+
+  if (placeHoldersLen === 1) {
+    tmp = revLookup[b64.charCodeAt(i)] << 10 | revLookup[b64.charCodeAt(i + 1)] << 4 | revLookup[b64.charCodeAt(i + 2)] >> 2;
+    arr[curByte++] = tmp >> 8 & 0xFF;
+    arr[curByte++] = tmp & 0xFF;
+  }
+
+  return arr;
+}
+
+function tripletToBase64(num) {
+  return lookup[num >> 18 & 0x3F] + lookup[num >> 12 & 0x3F] + lookup[num >> 6 & 0x3F] + lookup[num & 0x3F];
+}
+
+function encodeChunk(uint8, start, end) {
+  var tmp;
+  var output = [];
+
+  for (var i = start; i < end; i += 3) {
+    tmp = (uint8[i] << 16 & 0xFF0000) + (uint8[i + 1] << 8 & 0xFF00) + (uint8[i + 2] & 0xFF);
+    output.push(tripletToBase64(tmp));
+  }
+
+  return output.join('');
+}
+
+function fromByteArray(uint8) {
+  var tmp;
+  var len = uint8.length;
+  var extraBytes = len % 3; // if we have 1 byte left, pad 2 bytes
+
+  var parts = [];
+  var maxChunkLength = 16383; // must be multiple of 3
+  // go through the array every three bytes, we'll deal with trailing stuff later
+
+  for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
+    parts.push(encodeChunk(uint8, i, i + maxChunkLength > len2 ? len2 : i + maxChunkLength));
+  } // pad the end with zeros, but make sure to not forget the extra bytes
+
+
+  if (extraBytes === 1) {
+    tmp = uint8[len - 1];
+    parts.push(lookup[tmp >> 2] + lookup[tmp << 4 & 0x3F] + '==');
+  } else if (extraBytes === 2) {
+    tmp = (uint8[len - 2] << 8) + uint8[len - 1];
+    parts.push(lookup[tmp >> 10] + lookup[tmp >> 4 & 0x3F] + lookup[tmp << 2 & 0x3F] + '=');
+  }
+
+  return parts.join('');
+}
 
 /***/ }),
 
@@ -14970,45 +20238,6 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ }),
 
-/***/ "./node_modules/inherits/inherits_browser.js":
-/*!***************************************************!*\
-  !*** ./node_modules/inherits/inherits_browser.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor;
-      ctor.prototype = Object.create(superCtor.prototype, {
-        constructor: {
-          value: ctor,
-          enumerable: false,
-          writable: true,
-          configurable: true
-        }
-      });
-    }
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor;
-
-      var TempCtor = function () {};
-
-      TempCtor.prototype = superCtor.prototype;
-      ctor.prototype = new TempCtor();
-      ctor.prototype.constructor = ctor;
-    }
-  };
-}
-
-/***/ }),
-
 /***/ "./node_modules/isarray/index.js":
 /*!***************************************!*\
   !*** ./node_modules/isarray/index.js ***!
@@ -15021,1204 +20250,6 @@ var toString = {}.toString;
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_Symbol.js":
-/*!****************************************!*\
-  !*** ./node_modules/lodash/_Symbol.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
-/** Built-in value references. */
-
-
-var Symbol = root.Symbol;
-module.exports = Symbol;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_arrayLikeKeys.js":
-/*!***********************************************!*\
-  !*** ./node_modules/lodash/_arrayLikeKeys.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseTimes = __webpack_require__(/*! ./_baseTimes */ "./node_modules/lodash/_baseTimes.js"),
-    isArguments = __webpack_require__(/*! ./isArguments */ "./node_modules/lodash/isArguments.js"),
-    isArray = __webpack_require__(/*! ./isArray */ "./node_modules/lodash/isArray.js"),
-    isBuffer = __webpack_require__(/*! ./isBuffer */ "./node_modules/lodash/isBuffer.js"),
-    isIndex = __webpack_require__(/*! ./_isIndex */ "./node_modules/lodash/_isIndex.js"),
-    isTypedArray = __webpack_require__(/*! ./isTypedArray */ "./node_modules/lodash/isTypedArray.js");
-/** Used for built-in method references. */
-
-
-var objectProto = Object.prototype;
-/** Used to check objects for own properties. */
-
-var hasOwnProperty = objectProto.hasOwnProperty;
-/**
- * Creates an array of the enumerable property names of the array-like `value`.
- *
- * @private
- * @param {*} value The value to query.
- * @param {boolean} inherited Specify returning inherited property names.
- * @returns {Array} Returns the array of property names.
- */
-
-function arrayLikeKeys(value, inherited) {
-  var isArr = isArray(value),
-      isArg = !isArr && isArguments(value),
-      isBuff = !isArr && !isArg && isBuffer(value),
-      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
-      skipIndexes = isArr || isArg || isBuff || isType,
-      result = skipIndexes ? baseTimes(value.length, String) : [],
-      length = result.length;
-
-  for (var key in value) {
-    if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && ( // Safari 9 has enumerable `arguments.length` in strict mode.
-    key == 'length' || // Node.js 0.10 has enumerable non-index properties on buffers.
-    isBuff && (key == 'offset' || key == 'parent') || // PhantomJS 2 has enumerable non-index properties on typed arrays.
-    isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset') || // Skip index properties.
-    isIndex(key, length)))) {
-      result.push(key);
-    }
-  }
-
-  return result;
-}
-
-module.exports = arrayLikeKeys;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseFindIndex.js":
-/*!***********************************************!*\
-  !*** ./node_modules/lodash/_baseFindIndex.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.findIndex` and `_.findLastIndex` without
- * support for iteratee shorthands.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {Function} predicate The function invoked per iteration.
- * @param {number} fromIndex The index to search from.
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-function baseFindIndex(array, predicate, fromIndex, fromRight) {
-  var length = array.length,
-      index = fromIndex + (fromRight ? 1 : -1);
-
-  while (fromRight ? index-- : ++index < length) {
-    if (predicate(array[index], index, array)) {
-      return index;
-    }
-  }
-
-  return -1;
-}
-
-module.exports = baseFindIndex;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseGetTag.js":
-/*!********************************************!*\
-  !*** ./node_modules/lodash/_baseGetTag.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js"),
-    getRawTag = __webpack_require__(/*! ./_getRawTag */ "./node_modules/lodash/_getRawTag.js"),
-    objectToString = __webpack_require__(/*! ./_objectToString */ "./node_modules/lodash/_objectToString.js");
-/** `Object#toString` result references. */
-
-
-var nullTag = '[object Null]',
-    undefinedTag = '[object Undefined]';
-/** Built-in value references. */
-
-var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
-/**
- * The base implementation of `getTag` without fallbacks for buggy environments.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {string} Returns the `toStringTag`.
- */
-
-function baseGetTag(value) {
-  if (value == null) {
-    return value === undefined ? undefinedTag : nullTag;
-  }
-
-  return symToStringTag && symToStringTag in Object(value) ? getRawTag(value) : objectToString(value);
-}
-
-module.exports = baseGetTag;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseIndexOf.js":
-/*!*********************************************!*\
-  !*** ./node_modules/lodash/_baseIndexOf.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseFindIndex = __webpack_require__(/*! ./_baseFindIndex */ "./node_modules/lodash/_baseFindIndex.js"),
-    baseIsNaN = __webpack_require__(/*! ./_baseIsNaN */ "./node_modules/lodash/_baseIsNaN.js"),
-    strictIndexOf = __webpack_require__(/*! ./_strictIndexOf */ "./node_modules/lodash/_strictIndexOf.js");
-/**
- * The base implementation of `_.indexOf` without `fromIndex` bounds checks.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {*} value The value to search for.
- * @param {number} fromIndex The index to search from.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-
-
-function baseIndexOf(array, value, fromIndex) {
-  return value === value ? strictIndexOf(array, value, fromIndex) : baseFindIndex(array, baseIsNaN, fromIndex);
-}
-
-module.exports = baseIndexOf;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseIsArguments.js":
-/*!*************************************************!*\
-  !*** ./node_modules/lodash/_baseIsArguments.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
-    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "./node_modules/lodash/isObjectLike.js");
-/** `Object#toString` result references. */
-
-
-var argsTag = '[object Arguments]';
-/**
- * The base implementation of `_.isArguments`.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an `arguments` object,
- */
-
-function baseIsArguments(value) {
-  return isObjectLike(value) && baseGetTag(value) == argsTag;
-}
-
-module.exports = baseIsArguments;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseIsNaN.js":
-/*!*******************************************!*\
-  !*** ./node_modules/lodash/_baseIsNaN.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.isNaN` without support for number objects.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
- */
-function baseIsNaN(value) {
-  return value !== value;
-}
-
-module.exports = baseIsNaN;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseIsTypedArray.js":
-/*!**************************************************!*\
-  !*** ./node_modules/lodash/_baseIsTypedArray.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
-    isLength = __webpack_require__(/*! ./isLength */ "./node_modules/lodash/isLength.js"),
-    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "./node_modules/lodash/isObjectLike.js");
-/** `Object#toString` result references. */
-
-
-var argsTag = '[object Arguments]',
-    arrayTag = '[object Array]',
-    boolTag = '[object Boolean]',
-    dateTag = '[object Date]',
-    errorTag = '[object Error]',
-    funcTag = '[object Function]',
-    mapTag = '[object Map]',
-    numberTag = '[object Number]',
-    objectTag = '[object Object]',
-    regexpTag = '[object RegExp]',
-    setTag = '[object Set]',
-    stringTag = '[object String]',
-    weakMapTag = '[object WeakMap]';
-var arrayBufferTag = '[object ArrayBuffer]',
-    dataViewTag = '[object DataView]',
-    float32Tag = '[object Float32Array]',
-    float64Tag = '[object Float64Array]',
-    int8Tag = '[object Int8Array]',
-    int16Tag = '[object Int16Array]',
-    int32Tag = '[object Int32Array]',
-    uint8Tag = '[object Uint8Array]',
-    uint8ClampedTag = '[object Uint8ClampedArray]',
-    uint16Tag = '[object Uint16Array]',
-    uint32Tag = '[object Uint32Array]';
-/** Used to identify `toStringTag` values of typed arrays. */
-
-var typedArrayTags = {};
-typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = typedArrayTags[uint32Tag] = true;
-typedArrayTags[argsTag] = typedArrayTags[arrayTag] = typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = typedArrayTags[dataViewTag] = typedArrayTags[dateTag] = typedArrayTags[errorTag] = typedArrayTags[funcTag] = typedArrayTags[mapTag] = typedArrayTags[numberTag] = typedArrayTags[objectTag] = typedArrayTags[regexpTag] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
-/**
- * The base implementation of `_.isTypedArray` without Node.js optimizations.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
- */
-
-function baseIsTypedArray(value) {
-  return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
-}
-
-module.exports = baseIsTypedArray;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseKeys.js":
-/*!******************************************!*\
-  !*** ./node_modules/lodash/_baseKeys.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isPrototype = __webpack_require__(/*! ./_isPrototype */ "./node_modules/lodash/_isPrototype.js"),
-    nativeKeys = __webpack_require__(/*! ./_nativeKeys */ "./node_modules/lodash/_nativeKeys.js");
-/** Used for built-in method references. */
-
-
-var objectProto = Object.prototype;
-/** Used to check objects for own properties. */
-
-var hasOwnProperty = objectProto.hasOwnProperty;
-/**
- * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- */
-
-function baseKeys(object) {
-  if (!isPrototype(object)) {
-    return nativeKeys(object);
-  }
-
-  var result = [];
-
-  for (var key in Object(object)) {
-    if (hasOwnProperty.call(object, key) && key != 'constructor') {
-      result.push(key);
-    }
-  }
-
-  return result;
-}
-
-module.exports = baseKeys;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseTimes.js":
-/*!*******************************************!*\
-  !*** ./node_modules/lodash/_baseTimes.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.times` without support for iteratee shorthands
- * or max array length checks.
- *
- * @private
- * @param {number} n The number of times to invoke `iteratee`.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns the array of results.
- */
-function baseTimes(n, iteratee) {
-  var index = -1,
-      result = Array(n);
-
-  while (++index < n) {
-    result[index] = iteratee(index);
-  }
-
-  return result;
-}
-
-module.exports = baseTimes;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseUnary.js":
-/*!*******************************************!*\
-  !*** ./node_modules/lodash/_baseUnary.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.unary` without support for storing metadata.
- *
- * @private
- * @param {Function} func The function to cap arguments for.
- * @returns {Function} Returns the new capped function.
- */
-function baseUnary(func) {
-  return function (value) {
-    return func(value);
-  };
-}
-
-module.exports = baseUnary;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_freeGlobal.js":
-/*!********************************************!*\
-  !*** ./node_modules/lodash/_freeGlobal.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
-module.exports = freeGlobal;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_getRawTag.js":
-/*!*******************************************!*\
-  !*** ./node_modules/lodash/_getRawTag.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js");
-/** Used for built-in method references. */
-
-
-var objectProto = Object.prototype;
-/** Used to check objects for own properties. */
-
-var hasOwnProperty = objectProto.hasOwnProperty;
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-
-var nativeObjectToString = objectProto.toString;
-/** Built-in value references. */
-
-var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
-/**
- * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {string} Returns the raw `toStringTag`.
- */
-
-function getRawTag(value) {
-  var isOwn = hasOwnProperty.call(value, symToStringTag),
-      tag = value[symToStringTag];
-
-  try {
-    value[symToStringTag] = undefined;
-    var unmasked = true;
-  } catch (e) {}
-
-  var result = nativeObjectToString.call(value);
-
-  if (unmasked) {
-    if (isOwn) {
-      value[symToStringTag] = tag;
-    } else {
-      delete value[symToStringTag];
-    }
-  }
-
-  return result;
-}
-
-module.exports = getRawTag;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_isIndex.js":
-/*!*****************************************!*\
-  !*** ./node_modules/lodash/_isIndex.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/** Used as references for various `Number` constants. */
-var MAX_SAFE_INTEGER = 9007199254740991;
-/** Used to detect unsigned integer values. */
-
-var reIsUint = /^(?:0|[1-9]\d*)$/;
-/**
- * Checks if `value` is a valid array-like index.
- *
- * @private
- * @param {*} value The value to check.
- * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
- * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
- */
-
-function isIndex(value, length) {
-  var type = typeof value;
-  length = length == null ? MAX_SAFE_INTEGER : length;
-  return !!length && (type == 'number' || type != 'symbol' && reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length;
-}
-
-module.exports = isIndex;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_isPrototype.js":
-/*!*********************************************!*\
-  !*** ./node_modules/lodash/_isPrototype.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/** Used for built-in method references. */
-var objectProto = Object.prototype;
-/**
- * Checks if `value` is likely a prototype object.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
- */
-
-function isPrototype(value) {
-  var Ctor = value && value.constructor,
-      proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
-  return value === proto;
-}
-
-module.exports = isPrototype;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_nativeKeys.js":
-/*!********************************************!*\
-  !*** ./node_modules/lodash/_nativeKeys.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var overArg = __webpack_require__(/*! ./_overArg */ "./node_modules/lodash/_overArg.js");
-/* Built-in method references for those with the same name as other `lodash` methods. */
-
-
-var nativeKeys = overArg(Object.keys, Object);
-module.exports = nativeKeys;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_nodeUtil.js":
-/*!******************************************!*\
-  !*** ./node_modules/lodash/_nodeUtil.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "./node_modules/lodash/_freeGlobal.js");
-/** Detect free variable `exports`. */
-
-
-var freeExports =  true && exports && !exports.nodeType && exports;
-/** Detect free variable `module`. */
-
-var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
-/** Detect the popular CommonJS extension `module.exports`. */
-
-var moduleExports = freeModule && freeModule.exports === freeExports;
-/** Detect free variable `process` from Node.js. */
-
-var freeProcess = moduleExports && freeGlobal.process;
-/** Used to access faster Node.js helpers. */
-
-var nodeUtil = function () {
-  try {
-    // Use `util.types` for Node.js 10+.
-    var types = freeModule && freeModule.require && freeModule.require('util').types;
-
-    if (types) {
-      return types;
-    } // Legacy `process.binding('util')` for Node.js < 10.
-
-
-    return freeProcess && freeProcess.binding && freeProcess.binding('util');
-  } catch (e) {}
-}();
-
-module.exports = nodeUtil;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_objectToString.js":
-/*!************************************************!*\
-  !*** ./node_modules/lodash/_objectToString.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/** Used for built-in method references. */
-var objectProto = Object.prototype;
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-
-var nativeObjectToString = objectProto.toString;
-/**
- * Converts `value` to a string using `Object.prototype.toString`.
- *
- * @private
- * @param {*} value The value to convert.
- * @returns {string} Returns the converted string.
- */
-
-function objectToString(value) {
-  return nativeObjectToString.call(value);
-}
-
-module.exports = objectToString;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_overArg.js":
-/*!*****************************************!*\
-  !*** ./node_modules/lodash/_overArg.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * Creates a unary function that invokes `func` with its argument transformed.
- *
- * @private
- * @param {Function} func The function to wrap.
- * @param {Function} transform The argument transform.
- * @returns {Function} Returns the new function.
- */
-function overArg(func, transform) {
-  return function (arg) {
-    return func(transform(arg));
-  };
-}
-
-module.exports = overArg;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_root.js":
-/*!**************************************!*\
-  !*** ./node_modules/lodash/_root.js ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "./node_modules/lodash/_freeGlobal.js");
-/** Detect free variable `self`. */
-
-
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-/** Used as a reference to the global object. */
-
-var root = freeGlobal || freeSelf || Function('return this')();
-module.exports = root;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_strictIndexOf.js":
-/*!***********************************************!*\
-  !*** ./node_modules/lodash/_strictIndexOf.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * A specialized version of `_.indexOf` which performs strict equality
- * comparisons of values, i.e. `===`.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {*} value The value to search for.
- * @param {number} fromIndex The index to search from.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-function strictIndexOf(array, value, fromIndex) {
-  var index = fromIndex - 1,
-      length = array.length;
-
-  while (++index < length) {
-    if (array[index] === value) {
-      return index;
-    }
-  }
-
-  return -1;
-}
-
-module.exports = strictIndexOf;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/identity.js":
-/*!*****************************************!*\
-  !*** ./node_modules/lodash/identity.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * This method returns the first argument it receives.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Util
- * @param {*} value Any value.
- * @returns {*} Returns `value`.
- * @example
- *
- * var object = { 'a': 1 };
- *
- * console.log(_.identity(object) === object);
- * // => true
- */
-function identity(value) {
-  return value;
-}
-
-module.exports = identity;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/isArguments.js":
-/*!********************************************!*\
-  !*** ./node_modules/lodash/isArguments.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseIsArguments = __webpack_require__(/*! ./_baseIsArguments */ "./node_modules/lodash/_baseIsArguments.js"),
-    isObjectLike = __webpack_require__(/*! ./isObjectLike */ "./node_modules/lodash/isObjectLike.js");
-/** Used for built-in method references. */
-
-
-var objectProto = Object.prototype;
-/** Used to check objects for own properties. */
-
-var hasOwnProperty = objectProto.hasOwnProperty;
-/** Built-in value references. */
-
-var propertyIsEnumerable = objectProto.propertyIsEnumerable;
-/**
- * Checks if `value` is likely an `arguments` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an `arguments` object,
- *  else `false`.
- * @example
- *
- * _.isArguments(function() { return arguments; }());
- * // => true
- *
- * _.isArguments([1, 2, 3]);
- * // => false
- */
-
-var isArguments = baseIsArguments(function () {
-  return arguments;
-}()) ? baseIsArguments : function (value) {
-  return isObjectLike(value) && hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
-};
-module.exports = isArguments;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/isArray.js":
-/*!****************************************!*\
-  !*** ./node_modules/lodash/isArray.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * Checks if `value` is classified as an `Array` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array, else `false`.
- * @example
- *
- * _.isArray([1, 2, 3]);
- * // => true
- *
- * _.isArray(document.body.children);
- * // => false
- *
- * _.isArray('abc');
- * // => false
- *
- * _.isArray(_.noop);
- * // => false
- */
-var isArray = Array.isArray;
-module.exports = isArray;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/isArrayLike.js":
-/*!********************************************!*\
-  !*** ./node_modules/lodash/isArrayLike.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isFunction = __webpack_require__(/*! ./isFunction */ "./node_modules/lodash/isFunction.js"),
-    isLength = __webpack_require__(/*! ./isLength */ "./node_modules/lodash/isLength.js");
-/**
- * Checks if `value` is array-like. A value is considered array-like if it's
- * not a function and has a `value.length` that's an integer greater than or
- * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
- * @example
- *
- * _.isArrayLike([1, 2, 3]);
- * // => true
- *
- * _.isArrayLike(document.body.children);
- * // => true
- *
- * _.isArrayLike('abc');
- * // => true
- *
- * _.isArrayLike(_.noop);
- * // => false
- */
-
-
-function isArrayLike(value) {
-  return value != null && isLength(value.length) && !isFunction(value);
-}
-
-module.exports = isArrayLike;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/isBuffer.js":
-/*!*****************************************!*\
-  !*** ./node_modules/lodash/isBuffer.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js"),
-    stubFalse = __webpack_require__(/*! ./stubFalse */ "./node_modules/lodash/stubFalse.js");
-/** Detect free variable `exports`. */
-
-
-var freeExports =  true && exports && !exports.nodeType && exports;
-/** Detect free variable `module`. */
-
-var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
-/** Detect the popular CommonJS extension `module.exports`. */
-
-var moduleExports = freeModule && freeModule.exports === freeExports;
-/** Built-in value references. */
-
-var Buffer = moduleExports ? root.Buffer : undefined;
-/* Built-in method references for those with the same name as other `lodash` methods. */
-
-var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
-/**
- * Checks if `value` is a buffer.
- *
- * @static
- * @memberOf _
- * @since 4.3.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
- * @example
- *
- * _.isBuffer(new Buffer(2));
- * // => true
- *
- * _.isBuffer(new Uint8Array(2));
- * // => false
- */
-
-var isBuffer = nativeIsBuffer || stubFalse;
-module.exports = isBuffer;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
-
-/***/ }),
-
-/***/ "./node_modules/lodash/isFunction.js":
-/*!*******************************************!*\
-  !*** ./node_modules/lodash/isFunction.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
-    isObject = __webpack_require__(/*! ./isObject */ "./node_modules/lodash/isObject.js");
-/** `Object#toString` result references. */
-
-
-var asyncTag = '[object AsyncFunction]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]',
-    proxyTag = '[object Proxy]';
-/**
- * Checks if `value` is classified as a `Function` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a function, else `false`.
- * @example
- *
- * _.isFunction(_);
- * // => true
- *
- * _.isFunction(/abc/);
- * // => false
- */
-
-function isFunction(value) {
-  if (!isObject(value)) {
-    return false;
-  } // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in Safari 9 which returns 'object' for typed arrays and other constructors.
-
-
-  var tag = baseGetTag(value);
-  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
-}
-
-module.exports = isFunction;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/isLength.js":
-/*!*****************************************!*\
-  !*** ./node_modules/lodash/isLength.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/** Used as references for various `Number` constants. */
-var MAX_SAFE_INTEGER = 9007199254740991;
-/**
- * Checks if `value` is a valid array-like length.
- *
- * **Note:** This method is loosely based on
- * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
- * @example
- *
- * _.isLength(3);
- * // => true
- *
- * _.isLength(Number.MIN_VALUE);
- * // => false
- *
- * _.isLength(Infinity);
- * // => false
- *
- * _.isLength('3');
- * // => false
- */
-
-function isLength(value) {
-  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-}
-
-module.exports = isLength;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/isObject.js":
-/*!*****************************************!*\
-  !*** ./node_modules/lodash/isObject.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * Checks if `value` is the
- * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
- * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(_.noop);
- * // => true
- *
- * _.isObject(null);
- * // => false
- */
-function isObject(value) {
-  var type = typeof value;
-  return value != null && (type == 'object' || type == 'function');
-}
-
-module.exports = isObject;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/isObjectLike.js":
-/*!*********************************************!*\
-  !*** ./node_modules/lodash/isObjectLike.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * Checks if `value` is object-like. A value is object-like if it's not `null`
- * and has a `typeof` result of "object".
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- * @example
- *
- * _.isObjectLike({});
- * // => true
- *
- * _.isObjectLike([1, 2, 3]);
- * // => true
- *
- * _.isObjectLike(_.noop);
- * // => false
- *
- * _.isObjectLike(null);
- * // => false
- */
-function isObjectLike(value) {
-  return value != null && typeof value == 'object';
-}
-
-module.exports = isObjectLike;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/isTypedArray.js":
-/*!*********************************************!*\
-  !*** ./node_modules/lodash/isTypedArray.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseIsTypedArray = __webpack_require__(/*! ./_baseIsTypedArray */ "./node_modules/lodash/_baseIsTypedArray.js"),
-    baseUnary = __webpack_require__(/*! ./_baseUnary */ "./node_modules/lodash/_baseUnary.js"),
-    nodeUtil = __webpack_require__(/*! ./_nodeUtil */ "./node_modules/lodash/_nodeUtil.js");
-/* Node.js helper references. */
-
-
-var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
-/**
- * Checks if `value` is classified as a typed array.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
- * @example
- *
- * _.isTypedArray(new Uint8Array);
- * // => true
- *
- * _.isTypedArray([]);
- * // => false
- */
-
-var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
-module.exports = isTypedArray;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/keys.js":
-/*!*************************************!*\
-  !*** ./node_modules/lodash/keys.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeKeys = __webpack_require__(/*! ./_arrayLikeKeys */ "./node_modules/lodash/_arrayLikeKeys.js"),
-    baseKeys = __webpack_require__(/*! ./_baseKeys */ "./node_modules/lodash/_baseKeys.js"),
-    isArrayLike = __webpack_require__(/*! ./isArrayLike */ "./node_modules/lodash/isArrayLike.js");
-/**
- * Creates an array of the own enumerable property names of `object`.
- *
- * **Note:** Non-object values are coerced to objects. See the
- * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
- * for more details.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Object
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- * @example
- *
- * function Foo() {
- *   this.a = 1;
- *   this.b = 2;
- * }
- *
- * Foo.prototype.c = 3;
- *
- * _.keys(new Foo);
- * // => ['a', 'b'] (iteration order is not guaranteed)
- *
- * _.keys('hi');
- * // => ['0', '1']
- */
-
-
-function keys(object) {
-  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
-}
-
-module.exports = keys;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/noop.js":
-/*!*************************************!*\
-  !*** ./node_modules/lodash/noop.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * This method returns `undefined`.
- *
- * @static
- * @memberOf _
- * @since 2.3.0
- * @category Util
- * @example
- *
- * _.times(2, _.noop);
- * // => [undefined, undefined]
- */
-function noop() {// No operation performed.
-}
-
-module.exports = noop;
-
-/***/ }),
-
-/***/ "./node_modules/lodash/stubFalse.js":
-/*!******************************************!*\
-  !*** ./node_modules/lodash/stubFalse.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * This method returns `false`.
- *
- * @static
- * @memberOf _
- * @since 4.13.0
- * @category Util
- * @returns {boolean} Returns `false`.
- * @example
- *
- * _.times(2, _.stubFalse);
- * // => [false, false]
- */
-function stubFalse() {
-  return false;
-}
-
-module.exports = stubFalse;
 
 /***/ }),
 
@@ -24047,3332 +28078,83 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/readable-stream/errors-browser.js":
-/*!********************************************************!*\
-  !*** ./node_modules/readable-stream/errors-browser.js ***!
-  \********************************************************/
+/***/ "./node_modules/safe-buffer/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/safe-buffer/index.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/* eslint-disable node/no-deprecated-api */
+var buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js");
 
+var Buffer = buffer.Buffer; // alternative to using Object.keys for old browsers
 
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-
-var codes = {};
-
-function createErrorType(code, message, Base) {
-  if (!Base) {
-    Base = Error;
-  }
-
-  function getMessage(arg1, arg2, arg3) {
-    if (typeof message === 'string') {
-      return message;
-    } else {
-      return message(arg1, arg2, arg3);
-    }
-  }
-
-  var NodeError = /*#__PURE__*/function (_Base) {
-    _inheritsLoose(NodeError, _Base);
-
-    function NodeError(arg1, arg2, arg3) {
-      return _Base.call(this, getMessage(arg1, arg2, arg3)) || this;
-    }
-
-    return NodeError;
-  }(Base);
-
-  NodeError.prototype.name = Base.name;
-  NodeError.prototype.code = code;
-  codes[code] = NodeError;
-} // https://github.com/nodejs/node/blob/v10.8.0/lib/internal/errors.js
-
-
-function oneOf(expected, thing) {
-  if (Array.isArray(expected)) {
-    var len = expected.length;
-    expected = expected.map(function (i) {
-      return String(i);
-    });
-
-    if (len > 2) {
-      return "one of ".concat(thing, " ").concat(expected.slice(0, len - 1).join(', '), ", or ") + expected[len - 1];
-    } else if (len === 2) {
-      return "one of ".concat(thing, " ").concat(expected[0], " or ").concat(expected[1]);
-    } else {
-      return "of ".concat(thing, " ").concat(expected[0]);
-    }
-  } else {
-    return "of ".concat(thing, " ").concat(String(expected));
-  }
-} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
-
-
-function startsWith(str, search, pos) {
-  return str.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
-} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
-
-
-function endsWith(str, search, this_len) {
-  if (this_len === undefined || this_len > str.length) {
-    this_len = str.length;
-  }
-
-  return str.substring(this_len - search.length, this_len) === search;
-} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
-
-
-function includes(str, search, start) {
-  if (typeof start !== 'number') {
-    start = 0;
-  }
-
-  if (start + search.length > str.length) {
-    return false;
-  } else {
-    return str.indexOf(search, start) !== -1;
+function copyProps(src, dst) {
+  for (var key in src) {
+    dst[key] = src[key];
   }
 }
 
-createErrorType('ERR_INVALID_OPT_VALUE', function (name, value) {
-  return 'The value "' + value + '" is invalid for option "' + name + '"';
-}, TypeError);
-createErrorType('ERR_INVALID_ARG_TYPE', function (name, expected, actual) {
-  // determiner: 'must be' or 'must not be'
-  var determiner;
-
-  if (typeof expected === 'string' && startsWith(expected, 'not ')) {
-    determiner = 'must not be';
-    expected = expected.replace(/^not /, '');
-  } else {
-    determiner = 'must be';
-  }
-
-  var msg;
-
-  if (endsWith(name, ' argument')) {
-    // For cases like 'first argument'
-    msg = "The ".concat(name, " ").concat(determiner, " ").concat(oneOf(expected, 'type'));
-  } else {
-    var type = includes(name, '.') ? 'property' : 'argument';
-    msg = "The \"".concat(name, "\" ").concat(type, " ").concat(determiner, " ").concat(oneOf(expected, 'type'));
-  }
-
-  msg += ". Received type ".concat(typeof actual);
-  return msg;
-}, TypeError);
-createErrorType('ERR_STREAM_PUSH_AFTER_EOF', 'stream.push() after EOF');
-createErrorType('ERR_METHOD_NOT_IMPLEMENTED', function (name) {
-  return 'The ' + name + ' method is not implemented';
-});
-createErrorType('ERR_STREAM_PREMATURE_CLOSE', 'Premature close');
-createErrorType('ERR_STREAM_DESTROYED', function (name) {
-  return 'Cannot call ' + name + ' after a stream was destroyed';
-});
-createErrorType('ERR_MULTIPLE_CALLBACK', 'Callback called multiple times');
-createErrorType('ERR_STREAM_CANNOT_PIPE', 'Cannot pipe, not readable');
-createErrorType('ERR_STREAM_WRITE_AFTER_END', 'write after end');
-createErrorType('ERR_STREAM_NULL_VALUES', 'May not write null values to stream', TypeError);
-createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
-  return 'Unknown encoding: ' + arg;
-}, TypeError);
-createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
-module.exports.codes = codes;
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/_stream_duplex.js":
-/*!************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/_stream_duplex.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-// a duplex stream is just a stream that is both readable and writable.
-// Since JS doesn't have multiple prototypal inheritance, this class
-// prototypally inherits from Readable, and then parasitically from
-// Writable.
-
-/*<replacement>*/
-
-var objectKeys = Object.keys || function (obj) {
-  var keys = [];
-
-  for (var key in obj) {
-    keys.push(key);
-  }
-
-  return keys;
-};
-/*</replacement>*/
-
-
-module.exports = Duplex;
-
-var Readable = __webpack_require__(/*! ./_stream_readable */ "./node_modules/readable-stream/lib/_stream_readable.js");
-
-var Writable = __webpack_require__(/*! ./_stream_writable */ "./node_modules/readable-stream/lib/_stream_writable.js");
-
-__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(Duplex, Readable);
-
-{
-  // Allow the keys array to be GC'ed.
-  var keys = objectKeys(Writable.prototype);
-
-  for (var v = 0; v < keys.length; v++) {
-    var method = keys[v];
-    if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
-  }
-}
-
-function Duplex(options) {
-  if (!(this instanceof Duplex)) return new Duplex(options);
-  Readable.call(this, options);
-  Writable.call(this, options);
-  this.allowHalfOpen = true;
-
-  if (options) {
-    if (options.readable === false) this.readable = false;
-    if (options.writable === false) this.writable = false;
-
-    if (options.allowHalfOpen === false) {
-      this.allowHalfOpen = false;
-      this.once('end', onend);
-    }
-  }
-}
-
-Object.defineProperty(Duplex.prototype, 'writableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState.highWaterMark;
-  }
-});
-Object.defineProperty(Duplex.prototype, 'writableBuffer', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState && this._writableState.getBuffer();
-  }
-});
-Object.defineProperty(Duplex.prototype, 'writableLength', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState.length;
-  }
-}); // the no-half-open enforcer
-
-function onend() {
-  // If the writable side ended, then we're ok.
-  if (this._writableState.ended) return; // no more data can be written.
-  // But allow more writes to happen in this tick.
-
-  process.nextTick(onEndNT, this);
-}
-
-function onEndNT(self) {
-  self.end();
-}
-
-Object.defineProperty(Duplex.prototype, 'destroyed', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return false;
-    }
-
-    return this._readableState.destroyed && this._writableState.destroyed;
-  },
-  set: function set(value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return;
-    } // backward compatibility, the user is explicitly
-    // managing destroyed
-
-
-    this._readableState.destroyed = value;
-    this._writableState.destroyed = value;
-  }
-});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/_stream_passthrough.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/_stream_passthrough.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-// a passthrough stream.
-// basically just the most minimal sort of Transform stream.
-// Every written chunk gets output as-is.
-
-
-module.exports = PassThrough;
-
-var Transform = __webpack_require__(/*! ./_stream_transform */ "./node_modules/readable-stream/lib/_stream_transform.js");
-
-__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(PassThrough, Transform);
-
-function PassThrough(options) {
-  if (!(this instanceof PassThrough)) return new PassThrough(options);
-  Transform.call(this, options);
-}
-
-PassThrough.prototype._transform = function (chunk, encoding, cb) {
-  cb(null, chunk);
-};
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/_stream_readable.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/_stream_readable.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-module.exports = Readable;
-/*<replacement>*/
-
-var Duplex;
-/*</replacement>*/
-
-Readable.ReadableState = ReadableState;
-/*<replacement>*/
-
-var EE = __webpack_require__(/*! events */ "./node_modules/events/events.js").EventEmitter;
-
-var EElistenerCount = function EElistenerCount(emitter, type) {
-  return emitter.listeners(type).length;
-};
-/*</replacement>*/
-
-/*<replacement>*/
-
-
-var Stream = __webpack_require__(/*! ./internal/streams/stream */ "./node_modules/readable-stream/lib/internal/streams/stream-browser.js");
-/*</replacement>*/
-
-
-var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js").Buffer;
-
-var OurUint8Array = global.Uint8Array || function () {};
-
-function _uint8ArrayToBuffer(chunk) {
-  return Buffer.from(chunk);
-}
-
-function _isUint8Array(obj) {
-  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
-}
-/*<replacement>*/
-
-
-var debugUtil = __webpack_require__(/*! util */ 1);
-
-var debug;
-
-if (debugUtil && debugUtil.debuglog) {
-  debug = debugUtil.debuglog('stream');
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer;
 } else {
-  debug = function debug() {};
-}
-/*</replacement>*/
-
-
-var BufferList = __webpack_require__(/*! ./internal/streams/buffer_list */ "./node_modules/readable-stream/lib/internal/streams/buffer_list.js");
-
-var destroyImpl = __webpack_require__(/*! ./internal/streams/destroy */ "./node_modules/readable-stream/lib/internal/streams/destroy.js");
-
-var _require = __webpack_require__(/*! ./internal/streams/state */ "./node_modules/readable-stream/lib/internal/streams/state.js"),
-    getHighWaterMark = _require.getHighWaterMark;
-
-var _require$codes = __webpack_require__(/*! ../errors */ "./node_modules/readable-stream/errors-browser.js").codes,
-    ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
-    ERR_STREAM_PUSH_AFTER_EOF = _require$codes.ERR_STREAM_PUSH_AFTER_EOF,
-    ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
-    ERR_STREAM_UNSHIFT_AFTER_END_EVENT = _require$codes.ERR_STREAM_UNSHIFT_AFTER_END_EVENT; // Lazy loaded to improve the startup performance.
-
-
-var StringDecoder;
-var createReadableStreamAsyncIterator;
-var from;
-
-__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(Readable, Stream);
-
-var errorOrDestroy = destroyImpl.errorOrDestroy;
-var kProxyEvents = ['error', 'close', 'destroy', 'pause', 'resume'];
-
-function prependListener(emitter, event, fn) {
-  // Sadly this is not cacheable as some libraries bundle their own
-  // event emitter implementation with them.
-  if (typeof emitter.prependListener === 'function') return emitter.prependListener(event, fn); // This is a hack to make sure that our error handler is attached before any
-  // userland ones.  NEVER DO THIS. This is here only because this code needs
-  // to continue to work with older versions of Node.js that do not include
-  // the prependListener() method. The goal is to eventually remove this hack.
-
-  if (!emitter._events || !emitter._events[event]) emitter.on(event, fn);else if (Array.isArray(emitter._events[event])) emitter._events[event].unshift(fn);else emitter._events[event] = [fn, emitter._events[event]];
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports);
+  exports.Buffer = SafeBuffer;
 }
 
-function ReadableState(options, stream, isDuplex) {
-  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "./node_modules/readable-stream/lib/_stream_duplex.js");
-  options = options || {}; // Duplex streams are both readable and writable, but share
-  // the same options object.
-  // However, some cases require setting options to different
-  // values for the readable and the writable sides of the duplex stream.
-  // These options can be provided separately as readableXXX and writableXXX.
-
-  if (typeof isDuplex !== 'boolean') isDuplex = stream instanceof Duplex; // object stream flag. Used to make read(n) ignore n and to
-  // make all the buffer merging and length checks go away
-
-  this.objectMode = !!options.objectMode;
-  if (isDuplex) this.objectMode = this.objectMode || !!options.readableObjectMode; // the point at which it stops calling _read() to fill the buffer
-  // Note: 0 is a valid value, means "don't call _read preemptively ever"
-
-  this.highWaterMark = getHighWaterMark(this, options, 'readableHighWaterMark', isDuplex); // A linked list is used to store data chunks instead of an array because the
-  // linked list can remove elements from the beginning faster than
-  // array.shift()
-
-  this.buffer = new BufferList();
-  this.length = 0;
-  this.pipes = null;
-  this.pipesCount = 0;
-  this.flowing = null;
-  this.ended = false;
-  this.endEmitted = false;
-  this.reading = false; // a flag to be able to tell if the event 'readable'/'data' is emitted
-  // immediately, or on a later tick.  We set this to true at first, because
-  // any actions that shouldn't happen until "later" should generally also
-  // not happen before the first read call.
-
-  this.sync = true; // whenever we return null, then we set a flag to say
-  // that we're awaiting a 'readable' event emission.
-
-  this.needReadable = false;
-  this.emittedReadable = false;
-  this.readableListening = false;
-  this.resumeScheduled = false;
-  this.paused = true; // Should close be emitted on destroy. Defaults to true.
-
-  this.emitClose = options.emitClose !== false; // Should .destroy() be called after 'end' (and potentially 'finish')
-
-  this.autoDestroy = !!options.autoDestroy; // has it been destroyed
-
-  this.destroyed = false; // Crypto is kind of old and crusty.  Historically, its default string
-  // encoding is 'binary' so we have to make this configurable.
-  // Everything else in the universe uses 'utf8', though.
-
-  this.defaultEncoding = options.defaultEncoding || 'utf8'; // the number of writers that are awaiting a drain event in .pipe()s
-
-  this.awaitDrain = 0; // if true, a maybeReadMore has been scheduled
-
-  this.readingMore = false;
-  this.decoder = null;
-  this.encoding = null;
-
-  if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ "./node_modules/string_decoder/lib/string_decoder.js").StringDecoder;
-    this.decoder = new StringDecoder(options.encoding);
-    this.encoding = options.encoding;
-  }
+function SafeBuffer(arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length);
 }
 
-function Readable(options) {
-  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "./node_modules/readable-stream/lib/_stream_duplex.js");
-  if (!(this instanceof Readable)) return new Readable(options); // Checking for a Stream.Duplex instance is faster here instead of inside
-  // the ReadableState constructor, at least with V8 6.5
+SafeBuffer.prototype = Object.create(Buffer.prototype); // Copy static methods from Buffer
 
-  var isDuplex = this instanceof Duplex;
-  this._readableState = new ReadableState(options, this, isDuplex); // legacy
+copyProps(Buffer, SafeBuffer);
 
-  this.readable = true;
-
-  if (options) {
-    if (typeof options.read === 'function') this._read = options.read;
-    if (typeof options.destroy === 'function') this._destroy = options.destroy;
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number');
   }
 
-  Stream.call(this);
-}
-
-Object.defineProperty(Readable.prototype, 'destroyed', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    if (this._readableState === undefined) {
-      return false;
-    }
-
-    return this._readableState.destroyed;
-  },
-  set: function set(value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (!this._readableState) {
-      return;
-    } // backward compatibility, the user is explicitly
-    // managing destroyed
-
-
-    this._readableState.destroyed = value;
-  }
-});
-Readable.prototype.destroy = destroyImpl.destroy;
-Readable.prototype._undestroy = destroyImpl.undestroy;
-
-Readable.prototype._destroy = function (err, cb) {
-  cb(err);
-}; // Manually shove something into the read() buffer.
-// This returns true if the highWaterMark has not been hit yet,
-// similar to how Writable.write() returns true if you should
-// write() some more.
-
-
-Readable.prototype.push = function (chunk, encoding) {
-  var state = this._readableState;
-  var skipChunkCheck;
-
-  if (!state.objectMode) {
-    if (typeof chunk === 'string') {
-      encoding = encoding || state.defaultEncoding;
-
-      if (encoding !== state.encoding) {
-        chunk = Buffer.from(chunk, encoding);
-        encoding = '';
-      }
-
-      skipChunkCheck = true;
-    }
-  } else {
-    skipChunkCheck = true;
-  }
-
-  return readableAddChunk(this, chunk, encoding, false, skipChunkCheck);
-}; // Unshift should *always* be something directly out of read()
-
-
-Readable.prototype.unshift = function (chunk) {
-  return readableAddChunk(this, chunk, null, true, false);
+  return Buffer(arg, encodingOrOffset, length);
 };
 
-function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
-  debug('readableAddChunk', chunk);
-  var state = stream._readableState;
-
-  if (chunk === null) {
-    state.reading = false;
-    onEofChunk(stream, state);
-  } else {
-    var er;
-    if (!skipChunkCheck) er = chunkInvalid(state, chunk);
-
-    if (er) {
-      errorOrDestroy(stream, er);
-    } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
-        chunk = _uint8ArrayToBuffer(chunk);
-      }
-
-      if (addToFront) {
-        if (state.endEmitted) errorOrDestroy(stream, new ERR_STREAM_UNSHIFT_AFTER_END_EVENT());else addChunk(stream, state, chunk, true);
-      } else if (state.ended) {
-        errorOrDestroy(stream, new ERR_STREAM_PUSH_AFTER_EOF());
-      } else if (state.destroyed) {
-        return false;
-      } else {
-        state.reading = false;
-
-        if (state.decoder && !encoding) {
-          chunk = state.decoder.write(chunk);
-          if (state.objectMode || chunk.length !== 0) addChunk(stream, state, chunk, false);else maybeReadMore(stream, state);
-        } else {
-          addChunk(stream, state, chunk, false);
-        }
-      }
-    } else if (!addToFront) {
-      state.reading = false;
-      maybeReadMore(stream, state);
-    }
-  } // We can push more data if we are below the highWaterMark.
-  // Also, if we have no data yet, we can stand some more bytes.
-  // This is to work around cases where hwm=0, such as the repl.
-
-
-  return !state.ended && (state.length < state.highWaterMark || state.length === 0);
-}
-
-function addChunk(stream, state, chunk, addToFront) {
-  if (state.flowing && state.length === 0 && !state.sync) {
-    state.awaitDrain = 0;
-    stream.emit('data', chunk);
-  } else {
-    // update the buffer info.
-    state.length += state.objectMode ? 1 : chunk.length;
-    if (addToFront) state.buffer.unshift(chunk);else state.buffer.push(chunk);
-    if (state.needReadable) emitReadable(stream);
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number');
   }
 
-  maybeReadMore(stream, state);
-}
-
-function chunkInvalid(state, chunk) {
-  var er;
-
-  if (!_isUint8Array(chunk) && typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
-    er = new ERR_INVALID_ARG_TYPE('chunk', ['string', 'Buffer', 'Uint8Array'], chunk);
-  }
-
-  return er;
-}
-
-Readable.prototype.isPaused = function () {
-  return this._readableState.flowing === false;
-}; // backwards compatibility.
-
-
-Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ "./node_modules/string_decoder/lib/string_decoder.js").StringDecoder;
-  var decoder = new StringDecoder(enc);
-  this._readableState.decoder = decoder; // If setEncoding(null), decoder.encoding equals utf8
-
-  this._readableState.encoding = this._readableState.decoder.encoding; // Iterate over current buffer to convert already stored Buffers:
-
-  var p = this._readableState.buffer.head;
-  var content = '';
-
-  while (p !== null) {
-    content += decoder.write(p.data);
-    p = p.next;
-  }
-
-  this._readableState.buffer.clear();
-
-  if (content !== '') this._readableState.buffer.push(content);
-  this._readableState.length = content.length;
-  return this;
-}; // Don't raise the hwm > 1GB
-
-
-var MAX_HWM = 0x40000000;
-
-function computeNewHighWaterMark(n) {
-  if (n >= MAX_HWM) {
-    // TODO(ronag): Throw ERR_VALUE_OUT_OF_RANGE.
-    n = MAX_HWM;
-  } else {
-    // Get the next highest power of 2 to prevent increasing hwm excessively in
-    // tiny amounts
-    n--;
-    n |= n >>> 1;
-    n |= n >>> 2;
-    n |= n >>> 4;
-    n |= n >>> 8;
-    n |= n >>> 16;
-    n++;
-  }
-
-  return n;
-} // This function is designed to be inlinable, so please take care when making
-// changes to the function body.
-
-
-function howMuchToRead(n, state) {
-  if (n <= 0 || state.length === 0 && state.ended) return 0;
-  if (state.objectMode) return 1;
-
-  if (n !== n) {
-    // Only flow one buffer at a time
-    if (state.flowing && state.length) return state.buffer.head.data.length;else return state.length;
-  } // If we're asking for more than the current hwm, then raise the hwm.
-
-
-  if (n > state.highWaterMark) state.highWaterMark = computeNewHighWaterMark(n);
-  if (n <= state.length) return n; // Don't have enough
-
-  if (!state.ended) {
-    state.needReadable = true;
-    return 0;
-  }
-
-  return state.length;
-} // you can override either this method, or the async _read(n) below.
-
-
-Readable.prototype.read = function (n) {
-  debug('read', n);
-  n = parseInt(n, 10);
-  var state = this._readableState;
-  var nOrig = n;
-  if (n !== 0) state.emittedReadable = false; // if we're doing read(0) to trigger a readable event, but we
-  // already have a bunch of data in the buffer, then just trigger
-  // the 'readable' event and move on.
-
-  if (n === 0 && state.needReadable && ((state.highWaterMark !== 0 ? state.length >= state.highWaterMark : state.length > 0) || state.ended)) {
-    debug('read: emitReadable', state.length, state.ended);
-    if (state.length === 0 && state.ended) endReadable(this);else emitReadable(this);
-    return null;
-  }
-
-  n = howMuchToRead(n, state); // if we've ended, and we're now clear, then finish it up.
-
-  if (n === 0 && state.ended) {
-    if (state.length === 0) endReadable(this);
-    return null;
-  } // All the actual chunk generation logic needs to be
-  // *below* the call to _read.  The reason is that in certain
-  // synthetic stream cases, such as passthrough streams, _read
-  // may be a completely synchronous operation which may change
-  // the state of the read buffer, providing enough data when
-  // before there was *not* enough.
-  //
-  // So, the steps are:
-  // 1. Figure out what the state of things will be after we do
-  // a read from the buffer.
-  //
-  // 2. If that resulting state will trigger a _read, then call _read.
-  // Note that this may be asynchronous, or synchronous.  Yes, it is
-  // deeply ugly to write APIs this way, but that still doesn't mean
-  // that the Readable class should behave improperly, as streams are
-  // designed to be sync/async agnostic.
-  // Take note if the _read call is sync or async (ie, if the read call
-  // has returned yet), so that we know whether or not it's safe to emit
-  // 'readable' etc.
-  //
-  // 3. Actually pull the requested chunks out of the buffer and return.
-  // if we need a readable event, then we need to do some reading.
-
-
-  var doRead = state.needReadable;
-  debug('need readable', doRead); // if we currently have less than the highWaterMark, then also read some
-
-  if (state.length === 0 || state.length - n < state.highWaterMark) {
-    doRead = true;
-    debug('length less than watermark', doRead);
-  } // however, if we've ended, then there's no point, and if we're already
-  // reading, then it's unnecessary.
-
-
-  if (state.ended || state.reading) {
-    doRead = false;
-    debug('reading or ended', doRead);
-  } else if (doRead) {
-    debug('do read');
-    state.reading = true;
-    state.sync = true; // if the length is currently zero, then we *need* a readable event.
-
-    if (state.length === 0) state.needReadable = true; // call internal read method
-
-    this._read(state.highWaterMark);
-
-    state.sync = false; // If _read pushed data synchronously, then `reading` will be false,
-    // and we need to re-evaluate how much data we can return to the user.
-
-    if (!state.reading) n = howMuchToRead(nOrig, state);
-  }
-
-  var ret;
-  if (n > 0) ret = fromList(n, state);else ret = null;
-
-  if (ret === null) {
-    state.needReadable = state.length <= state.highWaterMark;
-    n = 0;
-  } else {
-    state.length -= n;
-    state.awaitDrain = 0;
-  }
-
-  if (state.length === 0) {
-    // If we have nothing in the buffer, then we want to know
-    // as soon as we *do* get something into the buffer.
-    if (!state.ended) state.needReadable = true; // If we tried to read() past the EOF, then emit end on the next tick.
-
-    if (nOrig !== n && state.ended) endReadable(this);
-  }
-
-  if (ret !== null) this.emit('data', ret);
-  return ret;
-};
-
-function onEofChunk(stream, state) {
-  debug('onEofChunk');
-  if (state.ended) return;
-
-  if (state.decoder) {
-    var chunk = state.decoder.end();
-
-    if (chunk && chunk.length) {
-      state.buffer.push(chunk);
-      state.length += state.objectMode ? 1 : chunk.length;
-    }
-  }
-
-  state.ended = true;
-
-  if (state.sync) {
-    // if we are sync, wait until next tick to emit the data.
-    // Otherwise we risk emitting data in the flow()
-    // the readable code triggers during a read() call
-    emitReadable(stream);
-  } else {
-    // emit 'readable' now to make sure it gets picked up.
-    state.needReadable = false;
-
-    if (!state.emittedReadable) {
-      state.emittedReadable = true;
-      emitReadable_(stream);
-    }
-  }
-} // Don't emit readable right away in sync mode, because this can trigger
-// another read() call => stack overflow.  This way, it might trigger
-// a nextTick recursion warning, but that's not so bad.
-
-
-function emitReadable(stream) {
-  var state = stream._readableState;
-  debug('emitReadable', state.needReadable, state.emittedReadable);
-  state.needReadable = false;
-
-  if (!state.emittedReadable) {
-    debug('emitReadable', state.flowing);
-    state.emittedReadable = true;
-    process.nextTick(emitReadable_, stream);
-  }
-}
-
-function emitReadable_(stream) {
-  var state = stream._readableState;
-  debug('emitReadable_', state.destroyed, state.length, state.ended);
-
-  if (!state.destroyed && (state.length || state.ended)) {
-    stream.emit('readable');
-    state.emittedReadable = false;
-  } // The stream needs another readable event if
-  // 1. It is not flowing, as the flow mechanism will take
-  //    care of it.
-  // 2. It is not ended.
-  // 3. It is below the highWaterMark, so we can schedule
-  //    another readable later.
-
-
-  state.needReadable = !state.flowing && !state.ended && state.length <= state.highWaterMark;
-  flow(stream);
-} // at this point, the user has presumably seen the 'readable' event,
-// and called read() to consume some data.  that may have triggered
-// in turn another _read(n) call, in which case reading = true if
-// it's in progress.
-// However, if we're not ended, or reading, and the length < hwm,
-// then go ahead and try to read some more preemptively.
-
-
-function maybeReadMore(stream, state) {
-  if (!state.readingMore) {
-    state.readingMore = true;
-    process.nextTick(maybeReadMore_, stream, state);
-  }
-}
-
-function maybeReadMore_(stream, state) {
-  // Attempt to read more data if we should.
-  //
-  // The conditions for reading more data are (one of):
-  // - Not enough data buffered (state.length < state.highWaterMark). The loop
-  //   is responsible for filling the buffer with enough data if such data
-  //   is available. If highWaterMark is 0 and we are not in the flowing mode
-  //   we should _not_ attempt to buffer any extra data. We'll get more data
-  //   when the stream consumer calls read() instead.
-  // - No data in the buffer, and the stream is in flowing mode. In this mode
-  //   the loop below is responsible for ensuring read() is called. Failing to
-  //   call read here would abort the flow and there's no other mechanism for
-  //   continuing the flow if the stream consumer has just subscribed to the
-  //   'data' event.
-  //
-  // In addition to the above conditions to keep reading data, the following
-  // conditions prevent the data from being read:
-  // - The stream has ended (state.ended).
-  // - There is already a pending 'read' operation (state.reading). This is a
-  //   case where the the stream has called the implementation defined _read()
-  //   method, but they are processing the call asynchronously and have _not_
-  //   called push() with new data. In this case we skip performing more
-  //   read()s. The execution ends in this method again after the _read() ends
-  //   up calling push() with more data.
-  while (!state.reading && !state.ended && (state.length < state.highWaterMark || state.flowing && state.length === 0)) {
-    var len = state.length;
-    debug('maybeReadMore read 0');
-    stream.read(0);
-    if (len === state.length) // didn't get any data, stop spinning.
-      break;
-  }
-
-  state.readingMore = false;
-} // abstract method.  to be overridden in specific implementation classes.
-// call cb(er, data) where data is <= n in length.
-// for virtual (non-string, non-buffer) streams, "length" is somewhat
-// arbitrary, and perhaps not very meaningful.
-
-
-Readable.prototype._read = function (n) {
-  errorOrDestroy(this, new ERR_METHOD_NOT_IMPLEMENTED('_read()'));
-};
-
-Readable.prototype.pipe = function (dest, pipeOpts) {
-  var src = this;
-  var state = this._readableState;
-
-  switch (state.pipesCount) {
-    case 0:
-      state.pipes = dest;
-      break;
-
-    case 1:
-      state.pipes = [state.pipes, dest];
-      break;
-
-    default:
-      state.pipes.push(dest);
-      break;
-  }
-
-  state.pipesCount += 1;
-  debug('pipe count=%d opts=%j', state.pipesCount, pipeOpts);
-  var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
-  var endFn = doEnd ? onend : unpipe;
-  if (state.endEmitted) process.nextTick(endFn);else src.once('end', endFn);
-  dest.on('unpipe', onunpipe);
-
-  function onunpipe(readable, unpipeInfo) {
-    debug('onunpipe');
-
-    if (readable === src) {
-      if (unpipeInfo && unpipeInfo.hasUnpiped === false) {
-        unpipeInfo.hasUnpiped = true;
-        cleanup();
-      }
-    }
-  }
-
-  function onend() {
-    debug('onend');
-    dest.end();
-  } // when the dest drains, it reduces the awaitDrain counter
-  // on the source.  This would be more elegant with a .once()
-  // handler in flow(), but adding and removing repeatedly is
-  // too slow.
-
-
-  var ondrain = pipeOnDrain(src);
-  dest.on('drain', ondrain);
-  var cleanedUp = false;
-
-  function cleanup() {
-    debug('cleanup'); // cleanup event handlers once the pipe is broken
-
-    dest.removeListener('close', onclose);
-    dest.removeListener('finish', onfinish);
-    dest.removeListener('drain', ondrain);
-    dest.removeListener('error', onerror);
-    dest.removeListener('unpipe', onunpipe);
-    src.removeListener('end', onend);
-    src.removeListener('end', unpipe);
-    src.removeListener('data', ondata);
-    cleanedUp = true; // if the reader is waiting for a drain event from this
-    // specific writer, then it would cause it to never start
-    // flowing again.
-    // So, if this is awaiting a drain, then we just call it now.
-    // If we don't know, then assume that we are waiting for one.
-
-    if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain)) ondrain();
-  }
-
-  src.on('data', ondata);
-
-  function ondata(chunk) {
-    debug('ondata');
-    var ret = dest.write(chunk);
-    debug('dest.write', ret);
-
-    if (ret === false) {
-      // If the user unpiped during `dest.write()`, it is possible
-      // to get stuck in a permanently paused state if that write
-      // also returned false.
-      // => Check whether `dest` is still a piping destination.
-      if ((state.pipesCount === 1 && state.pipes === dest || state.pipesCount > 1 && indexOf(state.pipes, dest) !== -1) && !cleanedUp) {
-        debug('false write response, pause', state.awaitDrain);
-        state.awaitDrain++;
-      }
-
-      src.pause();
-    }
-  } // if the dest has an error, then stop piping into it.
-  // however, don't suppress the throwing behavior for this.
-
-
-  function onerror(er) {
-    debug('onerror', er);
-    unpipe();
-    dest.removeListener('error', onerror);
-    if (EElistenerCount(dest, 'error') === 0) errorOrDestroy(dest, er);
-  } // Make sure our error handler is attached before userland ones.
-
-
-  prependListener(dest, 'error', onerror); // Both close and finish should trigger unpipe, but only once.
-
-  function onclose() {
-    dest.removeListener('finish', onfinish);
-    unpipe();
-  }
-
-  dest.once('close', onclose);
-
-  function onfinish() {
-    debug('onfinish');
-    dest.removeListener('close', onclose);
-    unpipe();
-  }
-
-  dest.once('finish', onfinish);
-
-  function unpipe() {
-    debug('unpipe');
-    src.unpipe(dest);
-  } // tell the dest that it's being piped to
-
-
-  dest.emit('pipe', src); // start the flow if it hasn't been started already.
-
-  if (!state.flowing) {
-    debug('pipe resume');
-    src.resume();
-  }
-
-  return dest;
-};
-
-function pipeOnDrain(src) {
-  return function pipeOnDrainFunctionResult() {
-    var state = src._readableState;
-    debug('pipeOnDrain', state.awaitDrain);
-    if (state.awaitDrain) state.awaitDrain--;
-
-    if (state.awaitDrain === 0 && EElistenerCount(src, 'data')) {
-      state.flowing = true;
-      flow(src);
-    }
-  };
-}
-
-Readable.prototype.unpipe = function (dest) {
-  var state = this._readableState;
-  var unpipeInfo = {
-    hasUnpiped: false
-  }; // if we're not piping anywhere, then do nothing.
-
-  if (state.pipesCount === 0) return this; // just one destination.  most common case.
-
-  if (state.pipesCount === 1) {
-    // passed in one, but it's not the right one.
-    if (dest && dest !== state.pipes) return this;
-    if (!dest) dest = state.pipes; // got a match.
-
-    state.pipes = null;
-    state.pipesCount = 0;
-    state.flowing = false;
-    if (dest) dest.emit('unpipe', this, unpipeInfo);
-    return this;
-  } // slow case. multiple pipe destinations.
-
-
-  if (!dest) {
-    // remove all.
-    var dests = state.pipes;
-    var len = state.pipesCount;
-    state.pipes = null;
-    state.pipesCount = 0;
-    state.flowing = false;
-
-    for (var i = 0; i < len; i++) {
-      dests[i].emit('unpipe', this, {
-        hasUnpiped: false
-      });
-    }
-
-    return this;
-  } // try to find the right one.
-
-
-  var index = indexOf(state.pipes, dest);
-  if (index === -1) return this;
-  state.pipes.splice(index, 1);
-  state.pipesCount -= 1;
-  if (state.pipesCount === 1) state.pipes = state.pipes[0];
-  dest.emit('unpipe', this, unpipeInfo);
-  return this;
-}; // set up data events if they are asked for
-// Ensure readable listeners eventually get something
-
-
-Readable.prototype.on = function (ev, fn) {
-  var res = Stream.prototype.on.call(this, ev, fn);
-  var state = this._readableState;
-
-  if (ev === 'data') {
-    // update readableListening so that resume() may be a no-op
-    // a few lines down. This is needed to support once('readable').
-    state.readableListening = this.listenerCount('readable') > 0; // Try start flowing on next tick if stream isn't explicitly paused
-
-    if (state.flowing !== false) this.resume();
-  } else if (ev === 'readable') {
-    if (!state.endEmitted && !state.readableListening) {
-      state.readableListening = state.needReadable = true;
-      state.flowing = false;
-      state.emittedReadable = false;
-      debug('on readable', state.length, state.reading);
-
-      if (state.length) {
-        emitReadable(this);
-      } else if (!state.reading) {
-        process.nextTick(nReadingNextTick, this);
-      }
-    }
-  }
-
-  return res;
-};
-
-Readable.prototype.addListener = Readable.prototype.on;
-
-Readable.prototype.removeListener = function (ev, fn) {
-  var res = Stream.prototype.removeListener.call(this, ev, fn);
-
-  if (ev === 'readable') {
-    // We need to check if there is someone still listening to
-    // readable and reset the state. However this needs to happen
-    // after readable has been emitted but before I/O (nextTick) to
-    // support once('readable', fn) cycles. This means that calling
-    // resume within the same tick will have no
-    // effect.
-    process.nextTick(updateReadableListening, this);
-  }
-
-  return res;
-};
-
-Readable.prototype.removeAllListeners = function (ev) {
-  var res = Stream.prototype.removeAllListeners.apply(this, arguments);
-
-  if (ev === 'readable' || ev === undefined) {
-    // We need to check if there is someone still listening to
-    // readable and reset the state. However this needs to happen
-    // after readable has been emitted but before I/O (nextTick) to
-    // support once('readable', fn) cycles. This means that calling
-    // resume within the same tick will have no
-    // effect.
-    process.nextTick(updateReadableListening, this);
-  }
-
-  return res;
-};
-
-function updateReadableListening(self) {
-  var state = self._readableState;
-  state.readableListening = self.listenerCount('readable') > 0;
-
-  if (state.resumeScheduled && !state.paused) {
-    // flowing needs to be set to true now, otherwise
-    // the upcoming resume will not flow.
-    state.flowing = true; // crude way to check if we should resume
-  } else if (self.listenerCount('data') > 0) {
-    self.resume();
-  }
-}
-
-function nReadingNextTick(self) {
-  debug('readable nexttick read 0');
-  self.read(0);
-} // pause() and resume() are remnants of the legacy readable stream API
-// If the user uses them, then switch into old mode.
-
-
-Readable.prototype.resume = function () {
-  var state = this._readableState;
-
-  if (!state.flowing) {
-    debug('resume'); // we flow only if there is no one listening
-    // for readable, but we still have to call
-    // resume()
-
-    state.flowing = !state.readableListening;
-    resume(this, state);
-  }
-
-  state.paused = false;
-  return this;
-};
-
-function resume(stream, state) {
-  if (!state.resumeScheduled) {
-    state.resumeScheduled = true;
-    process.nextTick(resume_, stream, state);
-  }
-}
-
-function resume_(stream, state) {
-  debug('resume', state.reading);
-
-  if (!state.reading) {
-    stream.read(0);
-  }
-
-  state.resumeScheduled = false;
-  stream.emit('resume');
-  flow(stream);
-  if (state.flowing && !state.reading) stream.read(0);
-}
-
-Readable.prototype.pause = function () {
-  debug('call pause flowing=%j', this._readableState.flowing);
-
-  if (this._readableState.flowing !== false) {
-    debug('pause');
-    this._readableState.flowing = false;
-    this.emit('pause');
-  }
-
-  this._readableState.paused = true;
-  return this;
-};
-
-function flow(stream) {
-  var state = stream._readableState;
-  debug('flow', state.flowing);
-
-  while (state.flowing && stream.read() !== null) {
-    ;
-  }
-} // wrap an old-style stream as the async data source.
-// This is *not* part of the readable stream interface.
-// It is an ugly unfortunate mess of history.
-
-
-Readable.prototype.wrap = function (stream) {
-  var _this = this;
-
-  var state = this._readableState;
-  var paused = false;
-  stream.on('end', function () {
-    debug('wrapped end');
-
-    if (state.decoder && !state.ended) {
-      var chunk = state.decoder.end();
-      if (chunk && chunk.length) _this.push(chunk);
-    }
-
-    _this.push(null);
-  });
-  stream.on('data', function (chunk) {
-    debug('wrapped data');
-    if (state.decoder) chunk = state.decoder.write(chunk); // don't skip over falsy values in objectMode
-
-    if (state.objectMode && (chunk === null || chunk === undefined)) return;else if (!state.objectMode && (!chunk || !chunk.length)) return;
-
-    var ret = _this.push(chunk);
-
-    if (!ret) {
-      paused = true;
-      stream.pause();
-    }
-  }); // proxy all the other methods.
-  // important when wrapping filters and duplexes.
-
-  for (var i in stream) {
-    if (this[i] === undefined && typeof stream[i] === 'function') {
-      this[i] = function methodWrap(method) {
-        return function methodWrapReturnFunction() {
-          return stream[method].apply(stream, arguments);
-        };
-      }(i);
-    }
-  } // proxy certain important events.
-
-
-  for (var n = 0; n < kProxyEvents.length; n++) {
-    stream.on(kProxyEvents[n], this.emit.bind(this, kProxyEvents[n]));
-  } // when we try to consume some more bytes, simply unpause the
-  // underlying stream.
-
-
-  this._read = function (n) {
-    debug('wrapped _read', n);
-
-    if (paused) {
-      paused = false;
-      stream.resume();
-    }
-  };
-
-  return this;
-};
-
-if (typeof Symbol === 'function') {
-  Readable.prototype[Symbol.asyncIterator] = function () {
-    if (createReadableStreamAsyncIterator === undefined) {
-      createReadableStreamAsyncIterator = __webpack_require__(/*! ./internal/streams/async_iterator */ "./node_modules/readable-stream/lib/internal/streams/async_iterator.js");
-    }
-
-    return createReadableStreamAsyncIterator(this);
-  };
-}
-
-Object.defineProperty(Readable.prototype, 'readableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._readableState.highWaterMark;
-  }
-});
-Object.defineProperty(Readable.prototype, 'readableBuffer', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._readableState && this._readableState.buffer;
-  }
-});
-Object.defineProperty(Readable.prototype, 'readableFlowing', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._readableState.flowing;
-  },
-  set: function set(state) {
-    if (this._readableState) {
-      this._readableState.flowing = state;
-    }
-  }
-}); // exposed for testing purposes only.
-
-Readable._fromList = fromList;
-Object.defineProperty(Readable.prototype, 'readableLength', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._readableState.length;
-  }
-}); // Pluck off n bytes from an array of buffers.
-// Length is the combined lengths of all the buffers in the list.
-// This function is designed to be inlinable, so please take care when making
-// changes to the function body.
-
-function fromList(n, state) {
-  // nothing buffered
-  if (state.length === 0) return null;
-  var ret;
-  if (state.objectMode) ret = state.buffer.shift();else if (!n || n >= state.length) {
-    // read it all, truncate the list
-    if (state.decoder) ret = state.buffer.join('');else if (state.buffer.length === 1) ret = state.buffer.first();else ret = state.buffer.concat(state.length);
-    state.buffer.clear();
-  } else {
-    // read part of list
-    ret = state.buffer.consume(n, state.decoder);
-  }
-  return ret;
-}
-
-function endReadable(stream) {
-  var state = stream._readableState;
-  debug('endReadable', state.endEmitted);
-
-  if (!state.endEmitted) {
-    state.ended = true;
-    process.nextTick(endReadableNT, state, stream);
-  }
-}
-
-function endReadableNT(state, stream) {
-  debug('endReadableNT', state.endEmitted, state.length); // Check that we didn't get one last unshift.
-
-  if (!state.endEmitted && state.length === 0) {
-    state.endEmitted = true;
-    stream.readable = false;
-    stream.emit('end');
-
-    if (state.autoDestroy) {
-      // In case of duplex streams we need a way to detect
-      // if the writable side is ready for autoDestroy as well
-      var wState = stream._writableState;
-
-      if (!wState || wState.autoDestroy && wState.finished) {
-        stream.destroy();
-      }
-    }
-  }
-}
-
-if (typeof Symbol === 'function') {
-  Readable.from = function (iterable, opts) {
-    if (from === undefined) {
-      from = __webpack_require__(/*! ./internal/streams/from */ "./node_modules/readable-stream/lib/internal/streams/from-browser.js");
-    }
-
-    return from(Readable, iterable, opts);
-  };
-}
-
-function indexOf(xs, x) {
-  for (var i = 0, l = xs.length; i < l; i++) {
-    if (xs[i] === x) return i;
-  }
-
-  return -1;
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/_stream_transform.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/_stream_transform.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-// a transform stream is a readable/writable stream where you do
-// something with the data.  Sometimes it's called a "filter",
-// but that's not a great name for it, since that implies a thing where
-// some bits pass through, and others are simply ignored.  (That would
-// be a valid example of a transform, of course.)
-//
-// While the output is causally related to the input, it's not a
-// necessarily symmetric or synchronous transformation.  For example,
-// a zlib stream might take multiple plain-text writes(), and then
-// emit a single compressed chunk some time in the future.
-//
-// Here's how this works:
-//
-// The Transform stream has all the aspects of the readable and writable
-// stream classes.  When you write(chunk), that calls _write(chunk,cb)
-// internally, and returns false if there's a lot of pending writes
-// buffered up.  When you call read(), that calls _read(n) until
-// there's enough pending readable data buffered up.
-//
-// In a transform stream, the written data is placed in a buffer.  When
-// _read(n) is called, it transforms the queued up data, calling the
-// buffered _write cb's as it consumes chunks.  If consuming a single
-// written chunk would result in multiple output chunks, then the first
-// outputted bit calls the readcb, and subsequent chunks just go into
-// the read buffer, and will cause it to emit 'readable' if necessary.
-//
-// This way, back-pressure is actually determined by the reading side,
-// since _read has to be called to start processing a new chunk.  However,
-// a pathological inflate type of transform can cause excessive buffering
-// here.  For example, imagine a stream where every byte of input is
-// interpreted as an integer from 0-255, and then results in that many
-// bytes of output.  Writing the 4 bytes {ff,ff,ff,ff} would result in
-// 1kb of data being output.  In this case, you could write a very small
-// amount of input, and end up with a very large amount of output.  In
-// such a pathological inflating mechanism, there'd be no way to tell
-// the system to stop doing the transform.  A single 4MB write could
-// cause the system to run out of memory.
-//
-// However, even in such a pathological case, only a single written chunk
-// would be consumed, and then the rest would wait (un-transformed) until
-// the results of the previous transformed chunk were consumed.
-
-
-module.exports = Transform;
-
-var _require$codes = __webpack_require__(/*! ../errors */ "./node_modules/readable-stream/errors-browser.js").codes,
-    ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
-    ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
-    ERR_TRANSFORM_ALREADY_TRANSFORMING = _require$codes.ERR_TRANSFORM_ALREADY_TRANSFORMING,
-    ERR_TRANSFORM_WITH_LENGTH_0 = _require$codes.ERR_TRANSFORM_WITH_LENGTH_0;
-
-var Duplex = __webpack_require__(/*! ./_stream_duplex */ "./node_modules/readable-stream/lib/_stream_duplex.js");
-
-__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(Transform, Duplex);
-
-function afterTransform(er, data) {
-  var ts = this._transformState;
-  ts.transforming = false;
-  var cb = ts.writecb;
-
-  if (cb === null) {
-    return this.emit('error', new ERR_MULTIPLE_CALLBACK());
-  }
-
-  ts.writechunk = null;
-  ts.writecb = null;
-  if (data != null) // single equals check for both `null` and `undefined`
-    this.push(data);
-  cb(er);
-  var rs = this._readableState;
-  rs.reading = false;
-
-  if (rs.needReadable || rs.length < rs.highWaterMark) {
-    this._read(rs.highWaterMark);
-  }
-}
-
-function Transform(options) {
-  if (!(this instanceof Transform)) return new Transform(options);
-  Duplex.call(this, options);
-  this._transformState = {
-    afterTransform: afterTransform.bind(this),
-    needTransform: false,
-    transforming: false,
-    writecb: null,
-    writechunk: null,
-    writeencoding: null
-  }; // start out asking for a readable event once data is transformed.
-
-  this._readableState.needReadable = true; // we have implemented the _read method, and done the other things
-  // that Readable wants before the first _read call, so unset the
-  // sync guard flag.
-
-  this._readableState.sync = false;
-
-  if (options) {
-    if (typeof options.transform === 'function') this._transform = options.transform;
-    if (typeof options.flush === 'function') this._flush = options.flush;
-  } // When the writable side finishes, then flush out anything remaining.
-
-
-  this.on('prefinish', prefinish);
-}
-
-function prefinish() {
-  var _this = this;
-
-  if (typeof this._flush === 'function' && !this._readableState.destroyed) {
-    this._flush(function (er, data) {
-      done(_this, er, data);
-    });
-  } else {
-    done(this, null, null);
-  }
-}
-
-Transform.prototype.push = function (chunk, encoding) {
-  this._transformState.needTransform = false;
-  return Duplex.prototype.push.call(this, chunk, encoding);
-}; // This is the part where you do stuff!
-// override this function in implementation classes.
-// 'chunk' is an input chunk.
-//
-// Call `push(newChunk)` to pass along transformed output
-// to the readable side.  You may call 'push' zero or more times.
-//
-// Call `cb(err)` when you are done with this chunk.  If you pass
-// an error, then that'll put the hurt on the whole operation.  If you
-// never call cb(), then you'll never get another chunk.
-
-
-Transform.prototype._transform = function (chunk, encoding, cb) {
-  cb(new ERR_METHOD_NOT_IMPLEMENTED('_transform()'));
-};
-
-Transform.prototype._write = function (chunk, encoding, cb) {
-  var ts = this._transformState;
-  ts.writecb = cb;
-  ts.writechunk = chunk;
-  ts.writeencoding = encoding;
-
-  if (!ts.transforming) {
-    var rs = this._readableState;
-    if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark) this._read(rs.highWaterMark);
-  }
-}; // Doesn't matter what the args are here.
-// _transform does all the work.
-// That we got here means that the readable side wants more data.
-
-
-Transform.prototype._read = function (n) {
-  var ts = this._transformState;
-
-  if (ts.writechunk !== null && !ts.transforming) {
-    ts.transforming = true;
-
-    this._transform(ts.writechunk, ts.writeencoding, ts.afterTransform);
-  } else {
-    // mark that we need a transform, so that any data that comes in
-    // will get processed, now that we've asked for it.
-    ts.needTransform = true;
-  }
-};
-
-Transform.prototype._destroy = function (err, cb) {
-  Duplex.prototype._destroy.call(this, err, function (err2) {
-    cb(err2);
-  });
-};
-
-function done(stream, er, data) {
-  if (er) return stream.emit('error', er);
-  if (data != null) // single equals check for both `null` and `undefined`
-    stream.push(data); // TODO(BridgeAR): Write a test for these two error cases
-  // if there's nothing in the write buffer, then that means
-  // that nothing more will ever be provided
-
-  if (stream._writableState.length) throw new ERR_TRANSFORM_WITH_LENGTH_0();
-  if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
-  return stream.push(null);
-}
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/_stream_writable.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/_stream_writable.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-// A bit simpler than readable streams.
-// Implement an async ._write(chunk, encoding, cb), and it'll handle all
-// the drain event emission and buffering.
-
-
-module.exports = Writable;
-/* <replacement> */
-
-function WriteReq(chunk, encoding, cb) {
-  this.chunk = chunk;
-  this.encoding = encoding;
-  this.callback = cb;
-  this.next = null;
-} // It seems a linked list but it is not
-// there will be only 2 of these for each stream
-
-
-function CorkedRequest(state) {
-  var _this = this;
-
-  this.next = null;
-  this.entry = null;
-
-  this.finish = function () {
-    onCorkedFinish(_this, state);
-  };
-}
-/* </replacement> */
-
-/*<replacement>*/
-
-
-var Duplex;
-/*</replacement>*/
-
-Writable.WritableState = WritableState;
-/*<replacement>*/
-
-var internalUtil = {
-  deprecate: __webpack_require__(/*! util-deprecate */ "./node_modules/util-deprecate/browser.js")
-};
-/*</replacement>*/
-
-/*<replacement>*/
-
-var Stream = __webpack_require__(/*! ./internal/streams/stream */ "./node_modules/readable-stream/lib/internal/streams/stream-browser.js");
-/*</replacement>*/
-
-
-var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js").Buffer;
-
-var OurUint8Array = global.Uint8Array || function () {};
-
-function _uint8ArrayToBuffer(chunk) {
-  return Buffer.from(chunk);
-}
-
-function _isUint8Array(obj) {
-  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
-}
-
-var destroyImpl = __webpack_require__(/*! ./internal/streams/destroy */ "./node_modules/readable-stream/lib/internal/streams/destroy.js");
-
-var _require = __webpack_require__(/*! ./internal/streams/state */ "./node_modules/readable-stream/lib/internal/streams/state.js"),
-    getHighWaterMark = _require.getHighWaterMark;
-
-var _require$codes = __webpack_require__(/*! ../errors */ "./node_modules/readable-stream/errors-browser.js").codes,
-    ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
-    ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
-    ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
-    ERR_STREAM_CANNOT_PIPE = _require$codes.ERR_STREAM_CANNOT_PIPE,
-    ERR_STREAM_DESTROYED = _require$codes.ERR_STREAM_DESTROYED,
-    ERR_STREAM_NULL_VALUES = _require$codes.ERR_STREAM_NULL_VALUES,
-    ERR_STREAM_WRITE_AFTER_END = _require$codes.ERR_STREAM_WRITE_AFTER_END,
-    ERR_UNKNOWN_ENCODING = _require$codes.ERR_UNKNOWN_ENCODING;
-
-var errorOrDestroy = destroyImpl.errorOrDestroy;
-
-__webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js")(Writable, Stream);
-
-function nop() {}
-
-function WritableState(options, stream, isDuplex) {
-  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "./node_modules/readable-stream/lib/_stream_duplex.js");
-  options = options || {}; // Duplex streams are both readable and writable, but share
-  // the same options object.
-  // However, some cases require setting options to different
-  // values for the readable and the writable sides of the duplex stream,
-  // e.g. options.readableObjectMode vs. options.writableObjectMode, etc.
-
-  if (typeof isDuplex !== 'boolean') isDuplex = stream instanceof Duplex; // object stream flag to indicate whether or not this stream
-  // contains buffers or objects.
-
-  this.objectMode = !!options.objectMode;
-  if (isDuplex) this.objectMode = this.objectMode || !!options.writableObjectMode; // the point at which write() starts returning false
-  // Note: 0 is a valid value, means that we always return false if
-  // the entire buffer is not flushed immediately on write()
-
-  this.highWaterMark = getHighWaterMark(this, options, 'writableHighWaterMark', isDuplex); // if _final has been called
-
-  this.finalCalled = false; // drain event flag.
-
-  this.needDrain = false; // at the start of calling end()
-
-  this.ending = false; // when end() has been called, and returned
-
-  this.ended = false; // when 'finish' is emitted
-
-  this.finished = false; // has it been destroyed
-
-  this.destroyed = false; // should we decode strings into buffers before passing to _write?
-  // this is here so that some node-core streams can optimize string
-  // handling at a lower level.
-
-  var noDecode = options.decodeStrings === false;
-  this.decodeStrings = !noDecode; // Crypto is kind of old and crusty.  Historically, its default string
-  // encoding is 'binary' so we have to make this configurable.
-  // Everything else in the universe uses 'utf8', though.
-
-  this.defaultEncoding = options.defaultEncoding || 'utf8'; // not an actual buffer we keep track of, but a measurement
-  // of how much we're waiting to get pushed to some underlying
-  // socket or file.
-
-  this.length = 0; // a flag to see when we're in the middle of a write.
-
-  this.writing = false; // when true all writes will be buffered until .uncork() call
-
-  this.corked = 0; // a flag to be able to tell if the onwrite cb is called immediately,
-  // or on a later tick.  We set this to true at first, because any
-  // actions that shouldn't happen until "later" should generally also
-  // not happen before the first write call.
-
-  this.sync = true; // a flag to know if we're processing previously buffered items, which
-  // may call the _write() callback in the same tick, so that we don't
-  // end up in an overlapped onwrite situation.
-
-  this.bufferProcessing = false; // the callback that's passed to _write(chunk,cb)
-
-  this.onwrite = function (er) {
-    onwrite(stream, er);
-  }; // the callback that the user supplies to write(chunk,encoding,cb)
-
-
-  this.writecb = null; // the amount that is being written when _write is called.
-
-  this.writelen = 0;
-  this.bufferedRequest = null;
-  this.lastBufferedRequest = null; // number of pending user-supplied write callbacks
-  // this must be 0 before 'finish' can be emitted
-
-  this.pendingcb = 0; // emit prefinish if the only thing we're waiting for is _write cbs
-  // This is relevant for synchronous Transform streams
-
-  this.prefinished = false; // True if the error was already emitted and should not be thrown again
-
-  this.errorEmitted = false; // Should close be emitted on destroy. Defaults to true.
-
-  this.emitClose = options.emitClose !== false; // Should .destroy() be called after 'finish' (and potentially 'end')
-
-  this.autoDestroy = !!options.autoDestroy; // count buffered requests
-
-  this.bufferedRequestCount = 0; // allocate the first CorkedRequest, there is always
-  // one allocated and free to use, and we maintain at most two
-
-  this.corkedRequestsFree = new CorkedRequest(this);
-}
-
-WritableState.prototype.getBuffer = function getBuffer() {
-  var current = this.bufferedRequest;
-  var out = [];
-
-  while (current) {
-    out.push(current);
-    current = current.next;
-  }
-
-  return out;
-};
-
-(function () {
-  try {
-    Object.defineProperty(WritableState.prototype, 'buffer', {
-      get: internalUtil.deprecate(function writableStateBufferGetter() {
-        return this.getBuffer();
-      }, '_writableState.buffer is deprecated. Use _writableState.getBuffer ' + 'instead.', 'DEP0003')
-    });
-  } catch (_) {}
-})(); // Test _writableState for inheritance to account for Duplex streams,
-// whose prototype chain only points to Readable.
-
-
-var realHasInstance;
-
-if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.prototype[Symbol.hasInstance] === 'function') {
-  realHasInstance = Function.prototype[Symbol.hasInstance];
-  Object.defineProperty(Writable, Symbol.hasInstance, {
-    value: function value(object) {
-      if (realHasInstance.call(this, object)) return true;
-      if (this !== Writable) return false;
-      return object && object._writableState instanceof WritableState;
-    }
-  });
-} else {
-  realHasInstance = function realHasInstance(object) {
-    return object instanceof this;
-  };
-}
-
-function Writable(options) {
-  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ "./node_modules/readable-stream/lib/_stream_duplex.js"); // Writable ctor is applied to Duplexes, too.
-  // `realHasInstance` is necessary because using plain `instanceof`
-  // would return false, as no `_writableState` property is attached.
-  // Trying to use the custom `instanceof` for Writable here will also break the
-  // Node.js LazyTransform implementation, which has a non-trivial getter for
-  // `_writableState` that would lead to infinite recursion.
-  // Checking for a Stream.Duplex instance is faster here instead of inside
-  // the WritableState constructor, at least with V8 6.5
-
-  var isDuplex = this instanceof Duplex;
-  if (!isDuplex && !realHasInstance.call(Writable, this)) return new Writable(options);
-  this._writableState = new WritableState(options, this, isDuplex); // legacy.
-
-  this.writable = true;
-
-  if (options) {
-    if (typeof options.write === 'function') this._write = options.write;
-    if (typeof options.writev === 'function') this._writev = options.writev;
-    if (typeof options.destroy === 'function') this._destroy = options.destroy;
-    if (typeof options.final === 'function') this._final = options.final;
-  }
-
-  Stream.call(this);
-} // Otherwise people can pipe Writable streams, which is just wrong.
-
-
-Writable.prototype.pipe = function () {
-  errorOrDestroy(this, new ERR_STREAM_CANNOT_PIPE());
-};
-
-function writeAfterEnd(stream, cb) {
-  var er = new ERR_STREAM_WRITE_AFTER_END(); // TODO: defer error events consistently everywhere, not just the cb
-
-  errorOrDestroy(stream, er);
-  process.nextTick(cb, er);
-} // Checks that a user-supplied chunk is valid, especially for the particular
-// mode the stream is in. Currently this means that `null` is never accepted
-// and undefined/non-string values are only allowed in object mode.
-
-
-function validChunk(stream, state, chunk, cb) {
-  var er;
-
-  if (chunk === null) {
-    er = new ERR_STREAM_NULL_VALUES();
-  } else if (typeof chunk !== 'string' && !state.objectMode) {
-    er = new ERR_INVALID_ARG_TYPE('chunk', ['string', 'Buffer'], chunk);
-  }
-
-  if (er) {
-    errorOrDestroy(stream, er);
-    process.nextTick(cb, er);
-    return false;
-  }
-
-  return true;
-}
-
-Writable.prototype.write = function (chunk, encoding, cb) {
-  var state = this._writableState;
-  var ret = false;
-
-  var isBuf = !state.objectMode && _isUint8Array(chunk);
-
-  if (isBuf && !Buffer.isBuffer(chunk)) {
-    chunk = _uint8ArrayToBuffer(chunk);
-  }
-
-  if (typeof encoding === 'function') {
-    cb = encoding;
-    encoding = null;
-  }
-
-  if (isBuf) encoding = 'buffer';else if (!encoding) encoding = state.defaultEncoding;
-  if (typeof cb !== 'function') cb = nop;
-  if (state.ending) writeAfterEnd(this, cb);else if (isBuf || validChunk(this, state, chunk, cb)) {
-    state.pendingcb++;
-    ret = writeOrBuffer(this, state, isBuf, chunk, encoding, cb);
-  }
-  return ret;
-};
-
-Writable.prototype.cork = function () {
-  this._writableState.corked++;
-};
-
-Writable.prototype.uncork = function () {
-  var state = this._writableState;
-
-  if (state.corked) {
-    state.corked--;
-    if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
-  }
-};
-
-Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
-  // node::ParseEncoding() requires lower case.
-  if (typeof encoding === 'string') encoding = encoding.toLowerCase();
-  if (!(['hex', 'utf8', 'utf-8', 'ascii', 'binary', 'base64', 'ucs2', 'ucs-2', 'utf16le', 'utf-16le', 'raw'].indexOf((encoding + '').toLowerCase()) > -1)) throw new ERR_UNKNOWN_ENCODING(encoding);
-  this._writableState.defaultEncoding = encoding;
-  return this;
-};
-
-Object.defineProperty(Writable.prototype, 'writableBuffer', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState && this._writableState.getBuffer();
-  }
-});
-
-function decodeChunk(state, chunk, encoding) {
-  if (!state.objectMode && state.decodeStrings !== false && typeof chunk === 'string') {
-    chunk = Buffer.from(chunk, encoding);
-  }
-
-  return chunk;
-}
-
-Object.defineProperty(Writable.prototype, 'writableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState.highWaterMark;
-  }
-}); // if we're already writing something, then just put this
-// in the queue, and wait our turn.  Otherwise, call _write
-// If we return false, then we need a drain event, so set that flag.
-
-function writeOrBuffer(stream, state, isBuf, chunk, encoding, cb) {
-  if (!isBuf) {
-    var newChunk = decodeChunk(state, chunk, encoding);
-
-    if (chunk !== newChunk) {
-      isBuf = true;
-      encoding = 'buffer';
-      chunk = newChunk;
-    }
-  }
-
-  var len = state.objectMode ? 1 : chunk.length;
-  state.length += len;
-  var ret = state.length < state.highWaterMark; // we must ensure that previous needDrain will not be reset to false.
-
-  if (!ret) state.needDrain = true;
-
-  if (state.writing || state.corked) {
-    var last = state.lastBufferedRequest;
-    state.lastBufferedRequest = {
-      chunk: chunk,
-      encoding: encoding,
-      isBuf: isBuf,
-      callback: cb,
-      next: null
-    };
-
-    if (last) {
-      last.next = state.lastBufferedRequest;
+  var buf = Buffer(size);
+
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding);
     } else {
-      state.bufferedRequest = state.lastBufferedRequest;
+      buf.fill(fill);
     }
-
-    state.bufferedRequestCount += 1;
   } else {
-    doWrite(stream, state, false, len, chunk, encoding, cb);
+    buf.fill(0);
   }
 
-  return ret;
-}
-
-function doWrite(stream, state, writev, len, chunk, encoding, cb) {
-  state.writelen = len;
-  state.writecb = cb;
-  state.writing = true;
-  state.sync = true;
-  if (state.destroyed) state.onwrite(new ERR_STREAM_DESTROYED('write'));else if (writev) stream._writev(chunk, state.onwrite);else stream._write(chunk, encoding, state.onwrite);
-  state.sync = false;
-}
-
-function onwriteError(stream, state, sync, er, cb) {
-  --state.pendingcb;
-
-  if (sync) {
-    // defer the callback if we are being called synchronously
-    // to avoid piling up things on the stack
-    process.nextTick(cb, er); // this can emit finish, and it will always happen
-    // after error
-
-    process.nextTick(finishMaybe, stream, state);
-    stream._writableState.errorEmitted = true;
-    errorOrDestroy(stream, er);
-  } else {
-    // the caller expect this to happen before if
-    // it is async
-    cb(er);
-    stream._writableState.errorEmitted = true;
-    errorOrDestroy(stream, er); // this can emit finish, but finish must
-    // always follow error
-
-    finishMaybe(stream, state);
-  }
-}
-
-function onwriteStateUpdate(state) {
-  state.writing = false;
-  state.writecb = null;
-  state.length -= state.writelen;
-  state.writelen = 0;
-}
-
-function onwrite(stream, er) {
-  var state = stream._writableState;
-  var sync = state.sync;
-  var cb = state.writecb;
-  if (typeof cb !== 'function') throw new ERR_MULTIPLE_CALLBACK();
-  onwriteStateUpdate(state);
-  if (er) onwriteError(stream, state, sync, er, cb);else {
-    // Check if we're actually ready to finish, but don't emit yet
-    var finished = needFinish(state) || stream.destroyed;
-
-    if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
-      clearBuffer(stream, state);
-    }
-
-    if (sync) {
-      process.nextTick(afterWrite, stream, state, finished, cb);
-    } else {
-      afterWrite(stream, state, finished, cb);
-    }
-  }
-}
-
-function afterWrite(stream, state, finished, cb) {
-  if (!finished) onwriteDrain(stream, state);
-  state.pendingcb--;
-  cb();
-  finishMaybe(stream, state);
-} // Must force callback to be called on nextTick, so that we don't
-// emit 'drain' before the write() consumer gets the 'false' return
-// value, and has a chance to attach a 'drain' listener.
-
-
-function onwriteDrain(stream, state) {
-  if (state.length === 0 && state.needDrain) {
-    state.needDrain = false;
-    stream.emit('drain');
-  }
-} // if there's something in the buffer waiting, then process it
-
-
-function clearBuffer(stream, state) {
-  state.bufferProcessing = true;
-  var entry = state.bufferedRequest;
-
-  if (stream._writev && entry && entry.next) {
-    // Fast case, write everything using _writev()
-    var l = state.bufferedRequestCount;
-    var buffer = new Array(l);
-    var holder = state.corkedRequestsFree;
-    holder.entry = entry;
-    var count = 0;
-    var allBuffers = true;
-
-    while (entry) {
-      buffer[count] = entry;
-      if (!entry.isBuf) allBuffers = false;
-      entry = entry.next;
-      count += 1;
-    }
-
-    buffer.allBuffers = allBuffers;
-    doWrite(stream, state, true, state.length, buffer, '', holder.finish); // doWrite is almost always async, defer these to save a bit of time
-    // as the hot path ends with doWrite
-
-    state.pendingcb++;
-    state.lastBufferedRequest = null;
-
-    if (holder.next) {
-      state.corkedRequestsFree = holder.next;
-      holder.next = null;
-    } else {
-      state.corkedRequestsFree = new CorkedRequest(state);
-    }
-
-    state.bufferedRequestCount = 0;
-  } else {
-    // Slow case, write chunks one-by-one
-    while (entry) {
-      var chunk = entry.chunk;
-      var encoding = entry.encoding;
-      var cb = entry.callback;
-      var len = state.objectMode ? 1 : chunk.length;
-      doWrite(stream, state, false, len, chunk, encoding, cb);
-      entry = entry.next;
-      state.bufferedRequestCount--; // if we didn't call the onwrite immediately, then
-      // it means that we need to wait until it does.
-      // also, that means that the chunk and cb are currently
-      // being processed, so move the buffer counter past them.
-
-      if (state.writing) {
-        break;
-      }
-    }
-
-    if (entry === null) state.lastBufferedRequest = null;
-  }
-
-  state.bufferedRequest = entry;
-  state.bufferProcessing = false;
-}
-
-Writable.prototype._write = function (chunk, encoding, cb) {
-  cb(new ERR_METHOD_NOT_IMPLEMENTED('_write()'));
+  return buf;
 };
 
-Writable.prototype._writev = null;
-
-Writable.prototype.end = function (chunk, encoding, cb) {
-  var state = this._writableState;
-
-  if (typeof chunk === 'function') {
-    cb = chunk;
-    chunk = null;
-    encoding = null;
-  } else if (typeof encoding === 'function') {
-    cb = encoding;
-    encoding = null;
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number');
   }
 
-  if (chunk !== null && chunk !== undefined) this.write(chunk, encoding); // .end() fully uncorks
-
-  if (state.corked) {
-    state.corked = 1;
-    this.uncork();
-  } // ignore unnecessary end() calls.
-
-
-  if (!state.ending) endWritable(this, state, cb);
-  return this;
+  return Buffer(size);
 };
 
-Object.defineProperty(Writable.prototype, 'writableLength', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState.length;
-  }
-});
-
-function needFinish(state) {
-  return state.ending && state.length === 0 && state.bufferedRequest === null && !state.finished && !state.writing;
-}
-
-function callFinal(stream, state) {
-  stream._final(function (err) {
-    state.pendingcb--;
-
-    if (err) {
-      errorOrDestroy(stream, err);
-    }
-
-    state.prefinished = true;
-    stream.emit('prefinish');
-    finishMaybe(stream, state);
-  });
-}
-
-function prefinish(stream, state) {
-  if (!state.prefinished && !state.finalCalled) {
-    if (typeof stream._final === 'function' && !state.destroyed) {
-      state.pendingcb++;
-      state.finalCalled = true;
-      process.nextTick(callFinal, stream, state);
-    } else {
-      state.prefinished = true;
-      stream.emit('prefinish');
-    }
-  }
-}
-
-function finishMaybe(stream, state) {
-  var need = needFinish(state);
-
-  if (need) {
-    prefinish(stream, state);
-
-    if (state.pendingcb === 0) {
-      state.finished = true;
-      stream.emit('finish');
-
-      if (state.autoDestroy) {
-        // In case of duplex streams we need a way to detect
-        // if the readable side is ready for autoDestroy as well
-        var rState = stream._readableState;
-
-        if (!rState || rState.autoDestroy && rState.endEmitted) {
-          stream.destroy();
-        }
-      }
-    }
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number');
   }
 
-  return need;
-}
-
-function endWritable(stream, state, cb) {
-  state.ending = true;
-  finishMaybe(stream, state);
-
-  if (cb) {
-    if (state.finished) process.nextTick(cb);else stream.once('finish', cb);
-  }
-
-  state.ended = true;
-  stream.writable = false;
-}
-
-function onCorkedFinish(corkReq, state, err) {
-  var entry = corkReq.entry;
-  corkReq.entry = null;
-
-  while (entry) {
-    var cb = entry.callback;
-    state.pendingcb--;
-    cb(err);
-    entry = entry.next;
-  } // reuse the free corkReq.
-
-
-  state.corkedRequestsFree.next = corkReq;
-}
-
-Object.defineProperty(Writable.prototype, 'destroyed', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    if (this._writableState === undefined) {
-      return false;
-    }
-
-    return this._writableState.destroyed;
-  },
-  set: function set(value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (!this._writableState) {
-      return;
-    } // backward compatibility, the user is explicitly
-    // managing destroyed
-
-
-    this._writableState.destroyed = value;
-  }
-});
-Writable.prototype.destroy = destroyImpl.destroy;
-Writable.prototype._undestroy = destroyImpl.undestroy;
-
-Writable.prototype._destroy = function (err, cb) {
-  cb(err);
+  return buffer.SlowBuffer(size);
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/internal/streams/async_iterator.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/internal/streams/async_iterator.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var _Object$setPrototypeO;
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var finished = __webpack_require__(/*! ./end-of-stream */ "./node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
-
-var kLastResolve = Symbol('lastResolve');
-var kLastReject = Symbol('lastReject');
-var kError = Symbol('error');
-var kEnded = Symbol('ended');
-var kLastPromise = Symbol('lastPromise');
-var kHandlePromise = Symbol('handlePromise');
-var kStream = Symbol('stream');
-
-function createIterResult(value, done) {
-  return {
-    value: value,
-    done: done
-  };
-}
-
-function readAndResolve(iter) {
-  var resolve = iter[kLastResolve];
-
-  if (resolve !== null) {
-    var data = iter[kStream].read(); // we defer if data is null
-    // we can be expecting either 'end' or
-    // 'error'
-
-    if (data !== null) {
-      iter[kLastPromise] = null;
-      iter[kLastResolve] = null;
-      iter[kLastReject] = null;
-      resolve(createIterResult(data, false));
-    }
-  }
-}
-
-function onReadable(iter) {
-  // we wait for the next tick, because it might
-  // emit an error with process.nextTick
-  process.nextTick(readAndResolve, iter);
-}
-
-function wrapForNext(lastPromise, iter) {
-  return function (resolve, reject) {
-    lastPromise.then(function () {
-      if (iter[kEnded]) {
-        resolve(createIterResult(undefined, true));
-        return;
-      }
-
-      iter[kHandlePromise](resolve, reject);
-    }, reject);
-  };
-}
-
-var AsyncIteratorPrototype = Object.getPrototypeOf(function () {});
-var ReadableStreamAsyncIteratorPrototype = Object.setPrototypeOf((_Object$setPrototypeO = {
-  get stream() {
-    return this[kStream];
-  },
-
-  next: function next() {
-    var _this = this; // if we have detected an error in the meanwhile
-    // reject straight away
-
-
-    var error = this[kError];
-
-    if (error !== null) {
-      return Promise.reject(error);
-    }
-
-    if (this[kEnded]) {
-      return Promise.resolve(createIterResult(undefined, true));
-    }
-
-    if (this[kStream].destroyed) {
-      // We need to defer via nextTick because if .destroy(err) is
-      // called, the error will be emitted via nextTick, and
-      // we cannot guarantee that there is no error lingering around
-      // waiting to be emitted.
-      return new Promise(function (resolve, reject) {
-        process.nextTick(function () {
-          if (_this[kError]) {
-            reject(_this[kError]);
-          } else {
-            resolve(createIterResult(undefined, true));
-          }
-        });
-      });
-    } // if we have multiple next() calls
-    // we will wait for the previous Promise to finish
-    // this logic is optimized to support for await loops,
-    // where next() is only called once at a time
-
-
-    var lastPromise = this[kLastPromise];
-    var promise;
-
-    if (lastPromise) {
-      promise = new Promise(wrapForNext(lastPromise, this));
-    } else {
-      // fast path needed to support multiple this.push()
-      // without triggering the next() queue
-      var data = this[kStream].read();
-
-      if (data !== null) {
-        return Promise.resolve(createIterResult(data, false));
-      }
-
-      promise = new Promise(this[kHandlePromise]);
-    }
-
-    this[kLastPromise] = promise;
-    return promise;
-  }
-}, _defineProperty(_Object$setPrototypeO, Symbol.asyncIterator, function () {
-  return this;
-}), _defineProperty(_Object$setPrototypeO, "return", function _return() {
-  var _this2 = this; // destroy(err, cb) is a private API
-  // we can guarantee we have that here, because we control the
-  // Readable class this is attached to
-
-
-  return new Promise(function (resolve, reject) {
-    _this2[kStream].destroy(null, function (err) {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(createIterResult(undefined, true));
-    });
-  });
-}), _Object$setPrototypeO), AsyncIteratorPrototype);
-
-var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterator(stream) {
-  var _Object$create;
-
-  var iterator = Object.create(ReadableStreamAsyncIteratorPrototype, (_Object$create = {}, _defineProperty(_Object$create, kStream, {
-    value: stream,
-    writable: true
-  }), _defineProperty(_Object$create, kLastResolve, {
-    value: null,
-    writable: true
-  }), _defineProperty(_Object$create, kLastReject, {
-    value: null,
-    writable: true
-  }), _defineProperty(_Object$create, kError, {
-    value: null,
-    writable: true
-  }), _defineProperty(_Object$create, kEnded, {
-    value: stream._readableState.endEmitted,
-    writable: true
-  }), _defineProperty(_Object$create, kHandlePromise, {
-    value: function value(resolve, reject) {
-      var data = iterator[kStream].read();
-
-      if (data) {
-        iterator[kLastPromise] = null;
-        iterator[kLastResolve] = null;
-        iterator[kLastReject] = null;
-        resolve(createIterResult(data, false));
-      } else {
-        iterator[kLastResolve] = resolve;
-        iterator[kLastReject] = reject;
-      }
-    },
-    writable: true
-  }), _Object$create));
-  iterator[kLastPromise] = null;
-  finished(stream, function (err) {
-    if (err && err.code !== 'ERR_STREAM_PREMATURE_CLOSE') {
-      var reject = iterator[kLastReject]; // reject if we are waiting for data in the Promise
-      // returned by next() and store the error
-
-      if (reject !== null) {
-        iterator[kLastPromise] = null;
-        iterator[kLastResolve] = null;
-        iterator[kLastReject] = null;
-        reject(err);
-      }
-
-      iterator[kError] = err;
-      return;
-    }
-
-    var resolve = iterator[kLastResolve];
-
-    if (resolve !== null) {
-      iterator[kLastPromise] = null;
-      iterator[kLastResolve] = null;
-      iterator[kLastReject] = null;
-      resolve(createIterResult(undefined, true));
-    }
-
-    iterator[kEnded] = true;
-  });
-  stream.on('readable', onReadable.bind(null, iterator));
-  return iterator;
-};
-
-module.exports = createReadableStreamAsyncIterator;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/internal/streams/buffer_list.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/internal/streams/buffer_list.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-var _require = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js"),
-    Buffer = _require.Buffer;
-
-var _require2 = __webpack_require__(/*! util */ 2),
-    inspect = _require2.inspect;
-
-var custom = inspect && inspect.custom || 'inspect';
-
-function copyBuffer(src, target, offset) {
-  Buffer.prototype.copy.call(src, target, offset);
-}
-
-module.exports = /*#__PURE__*/function () {
-  function BufferList() {
-    _classCallCheck(this, BufferList);
-
-    this.head = null;
-    this.tail = null;
-    this.length = 0;
-  }
-
-  _createClass(BufferList, [{
-    key: "push",
-    value: function push(v) {
-      var entry = {
-        data: v,
-        next: null
-      };
-      if (this.length > 0) this.tail.next = entry;else this.head = entry;
-      this.tail = entry;
-      ++this.length;
-    }
-  }, {
-    key: "unshift",
-    value: function unshift(v) {
-      var entry = {
-        data: v,
-        next: this.head
-      };
-      if (this.length === 0) this.tail = entry;
-      this.head = entry;
-      ++this.length;
-    }
-  }, {
-    key: "shift",
-    value: function shift() {
-      if (this.length === 0) return;
-      var ret = this.head.data;
-      if (this.length === 1) this.head = this.tail = null;else this.head = this.head.next;
-      --this.length;
-      return ret;
-    }
-  }, {
-    key: "clear",
-    value: function clear() {
-      this.head = this.tail = null;
-      this.length = 0;
-    }
-  }, {
-    key: "join",
-    value: function join(s) {
-      if (this.length === 0) return '';
-      var p = this.head;
-      var ret = '' + p.data;
-
-      while (p = p.next) {
-        ret += s + p.data;
-      }
-
-      return ret;
-    }
-  }, {
-    key: "concat",
-    value: function concat(n) {
-      if (this.length === 0) return Buffer.alloc(0);
-      var ret = Buffer.allocUnsafe(n >>> 0);
-      var p = this.head;
-      var i = 0;
-
-      while (p) {
-        copyBuffer(p.data, ret, i);
-        i += p.data.length;
-        p = p.next;
-      }
-
-      return ret;
-    } // Consumes a specified amount of bytes or characters from the buffered data.
-
-  }, {
-    key: "consume",
-    value: function consume(n, hasStrings) {
-      var ret;
-
-      if (n < this.head.data.length) {
-        // `slice` is the same for buffers and strings.
-        ret = this.head.data.slice(0, n);
-        this.head.data = this.head.data.slice(n);
-      } else if (n === this.head.data.length) {
-        // First chunk is a perfect match.
-        ret = this.shift();
-      } else {
-        // Result spans more than one buffer.
-        ret = hasStrings ? this._getString(n) : this._getBuffer(n);
-      }
-
-      return ret;
-    }
-  }, {
-    key: "first",
-    value: function first() {
-      return this.head.data;
-    } // Consumes a specified amount of characters from the buffered data.
-
-  }, {
-    key: "_getString",
-    value: function _getString(n) {
-      var p = this.head;
-      var c = 1;
-      var ret = p.data;
-      n -= ret.length;
-
-      while (p = p.next) {
-        var str = p.data;
-        var nb = n > str.length ? str.length : n;
-        if (nb === str.length) ret += str;else ret += str.slice(0, n);
-        n -= nb;
-
-        if (n === 0) {
-          if (nb === str.length) {
-            ++c;
-            if (p.next) this.head = p.next;else this.head = this.tail = null;
-          } else {
-            this.head = p;
-            p.data = str.slice(nb);
-          }
-
-          break;
-        }
-
-        ++c;
-      }
-
-      this.length -= c;
-      return ret;
-    } // Consumes a specified amount of bytes from the buffered data.
-
-  }, {
-    key: "_getBuffer",
-    value: function _getBuffer(n) {
-      var ret = Buffer.allocUnsafe(n);
-      var p = this.head;
-      var c = 1;
-      p.data.copy(ret);
-      n -= p.data.length;
-
-      while (p = p.next) {
-        var buf = p.data;
-        var nb = n > buf.length ? buf.length : n;
-        buf.copy(ret, ret.length - n, 0, nb);
-        n -= nb;
-
-        if (n === 0) {
-          if (nb === buf.length) {
-            ++c;
-            if (p.next) this.head = p.next;else this.head = this.tail = null;
-          } else {
-            this.head = p;
-            p.data = buf.slice(nb);
-          }
-
-          break;
-        }
-
-        ++c;
-      }
-
-      this.length -= c;
-      return ret;
-    } // Make sure the linked list only shows the minimal necessary information.
-
-  }, {
-    key: custom,
-    value: function value(_, options) {
-      return inspect(this, _objectSpread({}, options, {
-        // Only inspect one level.
-        depth: 0,
-        // It should not recurse.
-        customInspect: false
-      }));
-    }
-  }]);
-
-  return BufferList;
-}();
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/internal/streams/destroy.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/internal/streams/destroy.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) { // undocumented cb() API, needed for core, not for public API
-
-function destroy(err, cb) {
-  var _this = this;
-
-  var readableDestroyed = this._readableState && this._readableState.destroyed;
-  var writableDestroyed = this._writableState && this._writableState.destroyed;
-
-  if (readableDestroyed || writableDestroyed) {
-    if (cb) {
-      cb(err);
-    } else if (err) {
-      if (!this._writableState) {
-        process.nextTick(emitErrorNT, this, err);
-      } else if (!this._writableState.errorEmitted) {
-        this._writableState.errorEmitted = true;
-        process.nextTick(emitErrorNT, this, err);
-      }
-    }
-
-    return this;
-  } // we set destroyed to true before firing error callbacks in order
-  // to make it re-entrance safe in case destroy() is called within callbacks
-
-
-  if (this._readableState) {
-    this._readableState.destroyed = true;
-  } // if this is a duplex stream mark the writable part as destroyed as well
-
-
-  if (this._writableState) {
-    this._writableState.destroyed = true;
-  }
-
-  this._destroy(err || null, function (err) {
-    if (!cb && err) {
-      if (!_this._writableState) {
-        process.nextTick(emitErrorAndCloseNT, _this, err);
-      } else if (!_this._writableState.errorEmitted) {
-        _this._writableState.errorEmitted = true;
-        process.nextTick(emitErrorAndCloseNT, _this, err);
-      } else {
-        process.nextTick(emitCloseNT, _this);
-      }
-    } else if (cb) {
-      process.nextTick(emitCloseNT, _this);
-      cb(err);
-    } else {
-      process.nextTick(emitCloseNT, _this);
-    }
-  });
-
-  return this;
-}
-
-function emitErrorAndCloseNT(self, err) {
-  emitErrorNT(self, err);
-  emitCloseNT(self);
-}
-
-function emitCloseNT(self) {
-  if (self._writableState && !self._writableState.emitClose) return;
-  if (self._readableState && !self._readableState.emitClose) return;
-  self.emit('close');
-}
-
-function undestroy() {
-  if (this._readableState) {
-    this._readableState.destroyed = false;
-    this._readableState.reading = false;
-    this._readableState.ended = false;
-    this._readableState.endEmitted = false;
-  }
-
-  if (this._writableState) {
-    this._writableState.destroyed = false;
-    this._writableState.ended = false;
-    this._writableState.ending = false;
-    this._writableState.finalCalled = false;
-    this._writableState.prefinished = false;
-    this._writableState.finished = false;
-    this._writableState.errorEmitted = false;
-  }
-}
-
-function emitErrorNT(self, err) {
-  self.emit('error', err);
-}
-
-function errorOrDestroy(stream, err) {
-  // We have tests that rely on errors being emitted
-  // in the same tick, so changing this is semver major.
-  // For now when you opt-in to autoDestroy we allow
-  // the error to be emitted nextTick. In a future
-  // semver major update we should change the default to this.
-  var rState = stream._readableState;
-  var wState = stream._writableState;
-  if (rState && rState.autoDestroy || wState && wState.autoDestroy) stream.destroy(err);else stream.emit('error', err);
-}
-
-module.exports = {
-  destroy: destroy,
-  undestroy: undestroy,
-  errorOrDestroy: errorOrDestroy
-};
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/internal/streams/end-of-stream.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/internal/streams/end-of-stream.js ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Ported from https://github.com/mafintosh/end-of-stream with
-// permission from the author, Mathias Buus (@mafintosh).
-
-
-var ERR_STREAM_PREMATURE_CLOSE = __webpack_require__(/*! ../../../errors */ "./node_modules/readable-stream/errors-browser.js").codes.ERR_STREAM_PREMATURE_CLOSE;
-
-function once(callback) {
-  var called = false;
-  return function () {
-    if (called) return;
-    called = true;
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    callback.apply(this, args);
-  };
-}
-
-function noop() {}
-
-function isRequest(stream) {
-  return stream.setHeader && typeof stream.abort === 'function';
-}
-
-function eos(stream, opts, callback) {
-  if (typeof opts === 'function') return eos(stream, null, opts);
-  if (!opts) opts = {};
-  callback = once(callback || noop);
-  var readable = opts.readable || opts.readable !== false && stream.readable;
-  var writable = opts.writable || opts.writable !== false && stream.writable;
-
-  var onlegacyfinish = function onlegacyfinish() {
-    if (!stream.writable) onfinish();
-  };
-
-  var writableEnded = stream._writableState && stream._writableState.finished;
-
-  var onfinish = function onfinish() {
-    writable = false;
-    writableEnded = true;
-    if (!readable) callback.call(stream);
-  };
-
-  var readableEnded = stream._readableState && stream._readableState.endEmitted;
-
-  var onend = function onend() {
-    readable = false;
-    readableEnded = true;
-    if (!writable) callback.call(stream);
-  };
-
-  var onerror = function onerror(err) {
-    callback.call(stream, err);
-  };
-
-  var onclose = function onclose() {
-    var err;
-
-    if (readable && !readableEnded) {
-      if (!stream._readableState || !stream._readableState.ended) err = new ERR_STREAM_PREMATURE_CLOSE();
-      return callback.call(stream, err);
-    }
-
-    if (writable && !writableEnded) {
-      if (!stream._writableState || !stream._writableState.ended) err = new ERR_STREAM_PREMATURE_CLOSE();
-      return callback.call(stream, err);
-    }
-  };
-
-  var onrequest = function onrequest() {
-    stream.req.on('finish', onfinish);
-  };
-
-  if (isRequest(stream)) {
-    stream.on('complete', onfinish);
-    stream.on('abort', onclose);
-    if (stream.req) onrequest();else stream.on('request', onrequest);
-  } else if (writable && !stream._writableState) {
-    // legacy streams
-    stream.on('end', onlegacyfinish);
-    stream.on('close', onlegacyfinish);
-  }
-
-  stream.on('end', onend);
-  stream.on('finish', onfinish);
-  if (opts.error !== false) stream.on('error', onerror);
-  stream.on('close', onclose);
-  return function () {
-    stream.removeListener('complete', onfinish);
-    stream.removeListener('abort', onclose);
-    stream.removeListener('request', onrequest);
-    if (stream.req) stream.req.removeListener('finish', onfinish);
-    stream.removeListener('end', onlegacyfinish);
-    stream.removeListener('close', onlegacyfinish);
-    stream.removeListener('finish', onfinish);
-    stream.removeListener('end', onend);
-    stream.removeListener('error', onerror);
-    stream.removeListener('close', onclose);
-  };
-}
-
-module.exports = eos;
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/internal/streams/from-browser.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/internal/streams/from-browser.js ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = function () {
-  throw new Error('Readable.from is not available in the browser');
-};
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/internal/streams/pipeline.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/internal/streams/pipeline.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Ported from https://github.com/mafintosh/pump with
-// permission from the author, Mathias Buus (@mafintosh).
-
-
-var eos;
-
-function once(callback) {
-  var called = false;
-  return function () {
-    if (called) return;
-    called = true;
-    callback.apply(void 0, arguments);
-  };
-}
-
-var _require$codes = __webpack_require__(/*! ../../../errors */ "./node_modules/readable-stream/errors-browser.js").codes,
-    ERR_MISSING_ARGS = _require$codes.ERR_MISSING_ARGS,
-    ERR_STREAM_DESTROYED = _require$codes.ERR_STREAM_DESTROYED;
-
-function noop(err) {
-  // Rethrow the error if it exists to avoid swallowing it
-  if (err) throw err;
-}
-
-function isRequest(stream) {
-  return stream.setHeader && typeof stream.abort === 'function';
-}
-
-function destroyer(stream, reading, writing, callback) {
-  callback = once(callback);
-  var closed = false;
-  stream.on('close', function () {
-    closed = true;
-  });
-  if (eos === undefined) eos = __webpack_require__(/*! ./end-of-stream */ "./node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
-  eos(stream, {
-    readable: reading,
-    writable: writing
-  }, function (err) {
-    if (err) return callback(err);
-    closed = true;
-    callback();
-  });
-  var destroyed = false;
-  return function (err) {
-    if (closed) return;
-    if (destroyed) return;
-    destroyed = true; // request.destroy just do .end - .abort is what we want
-
-    if (isRequest(stream)) return stream.abort();
-    if (typeof stream.destroy === 'function') return stream.destroy();
-    callback(err || new ERR_STREAM_DESTROYED('pipe'));
-  };
-}
-
-function call(fn) {
-  fn();
-}
-
-function pipe(from, to) {
-  return from.pipe(to);
-}
-
-function popCallback(streams) {
-  if (!streams.length) return noop;
-  if (typeof streams[streams.length - 1] !== 'function') return noop;
-  return streams.pop();
-}
-
-function pipeline() {
-  for (var _len = arguments.length, streams = new Array(_len), _key = 0; _key < _len; _key++) {
-    streams[_key] = arguments[_key];
-  }
-
-  var callback = popCallback(streams);
-  if (Array.isArray(streams[0])) streams = streams[0];
-
-  if (streams.length < 2) {
-    throw new ERR_MISSING_ARGS('streams');
-  }
-
-  var error;
-  var destroys = streams.map(function (stream, i) {
-    var reading = i < streams.length - 1;
-    var writing = i > 0;
-    return destroyer(stream, reading, writing, function (err) {
-      if (!error) error = err;
-      if (err) destroys.forEach(call);
-      if (reading) return;
-      destroys.forEach(call);
-      callback(error);
-    });
-  });
-  return streams.reduce(pipe);
-}
-
-module.exports = pipeline;
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/internal/streams/state.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/internal/streams/state.js ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var ERR_INVALID_OPT_VALUE = __webpack_require__(/*! ../../../errors */ "./node_modules/readable-stream/errors-browser.js").codes.ERR_INVALID_OPT_VALUE;
-
-function highWaterMarkFrom(options, isDuplex, duplexKey) {
-  return options.highWaterMark != null ? options.highWaterMark : isDuplex ? options[duplexKey] : null;
-}
-
-function getHighWaterMark(state, options, duplexKey, isDuplex) {
-  var hwm = highWaterMarkFrom(options, isDuplex, duplexKey);
-
-  if (hwm != null) {
-    if (!(isFinite(hwm) && Math.floor(hwm) === hwm) || hwm < 0) {
-      var name = isDuplex ? duplexKey : 'highWaterMark';
-      throw new ERR_INVALID_OPT_VALUE(name, hwm);
-    }
-
-    return Math.floor(hwm);
-  } // Default value
-
-
-  return state.objectMode ? 16 : 16 * 1024;
-}
-
-module.exports = {
-  getHighWaterMark: getHighWaterMark
-};
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/lib/internal/streams/stream-browser.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/readable-stream/lib/internal/streams/stream-browser.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! events */ "./node_modules/events/events.js").EventEmitter;
-
-/***/ }),
-
-/***/ "./node_modules/readable-stream/readable-browser.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/readable-stream/readable-browser.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ./lib/_stream_readable.js */ "./node_modules/readable-stream/lib/_stream_readable.js");
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = __webpack_require__(/*! ./lib/_stream_writable.js */ "./node_modules/readable-stream/lib/_stream_writable.js");
-exports.Duplex = __webpack_require__(/*! ./lib/_stream_duplex.js */ "./node_modules/readable-stream/lib/_stream_duplex.js");
-exports.Transform = __webpack_require__(/*! ./lib/_stream_transform.js */ "./node_modules/readable-stream/lib/_stream_transform.js");
-exports.PassThrough = __webpack_require__(/*! ./lib/_stream_passthrough.js */ "./node_modules/readable-stream/lib/_stream_passthrough.js");
-exports.finished = __webpack_require__(/*! ./lib/internal/streams/end-of-stream.js */ "./node_modules/readable-stream/lib/internal/streams/end-of-stream.js");
-exports.pipeline = __webpack_require__(/*! ./lib/internal/streams/pipeline.js */ "./node_modules/readable-stream/lib/internal/streams/pipeline.js");
 
 /***/ }),
 
@@ -28662,7 +29444,7 @@ if (false) {} else {
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(/*! safe-buffer */ "./node_modules/string_decoder/node_modules/safe-buffer/index.js").Buffer;
+var Buffer = __webpack_require__(/*! safe-buffer */ "./node_modules/safe-buffer/index.js").Buffer;
 /*</replacement>*/
 
 
@@ -28980,86 +29762,6 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-
-/***/ }),
-
-/***/ "./node_modules/string_decoder/node_modules/safe-buffer/index.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/string_decoder/node_modules/safe-buffer/index.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js");
-
-var Buffer = buffer.Buffer; // alternative to using Object.keys for old browsers
-
-function copyProps(src, dst) {
-  for (var key in src) {
-    dst[key] = src[key];
-  }
-}
-
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer;
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports);
-  exports.Buffer = SafeBuffer;
-}
-
-function SafeBuffer(arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length);
-}
-
-SafeBuffer.prototype = Object.create(Buffer.prototype); // Copy static methods from Buffer
-
-copyProps(Buffer, SafeBuffer);
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number');
-  }
-
-  return Buffer(arg, encodingOrOffset, length);
-};
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number');
-  }
-
-  var buf = Buffer(size);
-
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding);
-    } else {
-      buf.fill(fill);
-    }
-  } else {
-    buf.fill(0);
-  }
-
-  return buf;
-};
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number');
-  }
-
-  return Buffer(size);
-};
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number');
-  }
-
-  return buffer.SlowBuffer(size);
-};
 
 /***/ }),
 
@@ -29828,85 +30530,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/util-deprecate/browser.js":
-/*!************************************************!*\
-  !*** ./node_modules/util-deprecate/browser.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {/**
- * Module exports.
- */
-module.exports = deprecate;
-/**
- * Mark that a method should not be used.
- * Returns a modified function which warns once by default.
- *
- * If `localStorage.noDeprecation = true` is set, then it is a no-op.
- *
- * If `localStorage.throwDeprecation = true` is set, then deprecated functions
- * will throw an Error when invoked.
- *
- * If `localStorage.traceDeprecation = true` is set, then deprecated functions
- * will invoke `console.trace()` instead of `console.error()`.
- *
- * @param {Function} fn - the function to deprecate
- * @param {String} msg - the string to print to the console when `fn` is invoked
- * @returns {Function} a new "deprecated" version of `fn`
- * @api public
- */
-
-function deprecate(fn, msg) {
-  if (config('noDeprecation')) {
-    return fn;
-  }
-
-  var warned = false;
-
-  function deprecated() {
-    if (!warned) {
-      if (config('throwDeprecation')) {
-        throw new Error(msg);
-      } else if (config('traceDeprecation')) {
-        console.trace(msg);
-      } else {
-        console.warn(msg);
-      }
-
-      warned = true;
-    }
-
-    return fn.apply(this, arguments);
-  }
-
-  return deprecated;
-}
-/**
- * Checks `localStorage` for boolean values for the given `name`.
- *
- * @param {String} name
- * @returns {Boolean}
- * @api private
- */
-
-
-function config(name) {
-  // accessing global.localStorage can trigger a DOMException in sandboxed iframes
-  try {
-    if (!global.localStorage) return false;
-  } catch (_) {
-    return false;
-  }
-
-  var val = global.localStorage[name];
-  if (null == val) return false;
-  return String(val).toLowerCase() === 'true';
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -30004,7 +30627,7 @@ const Home = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(re
   en: "_welcome1"
 })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_Languages__WEBPACK_IMPORTED_MODULE_2__["I18nSpan"], {
   en: "_welcome2"
-})), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "foo At the moment its just a data portal where data can be accessed in different formats."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please see our \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+})), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "At the moment its just a data portal where data can be accessed in different formats."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please see our \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
   href: "https://github.com/mitra42/corona-tracker"
 }, "github repo"), "\xA0 for a more frequently updated explanation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Quick links to data sets"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, [{
   name: 'Israel',
@@ -30035,6 +30658,9 @@ const Home = () => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(re
 }, {
   name: 'KML',
   key: 'kml'
+}, {
+  name: 'Upload to Strava',
+  key: 'strava'
 }].map(outp => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
   key: outp.key
 }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {

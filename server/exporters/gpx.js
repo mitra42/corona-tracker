@@ -32,8 +32,8 @@ function convertBounds(o) {
  * @returns {{timelineObjects: {placeVisit: {duration: {startTimestampMs: *, endTimestampMs: *}, location: {longitudeE7: *, name: string, latitudeE7: *}}}[]}}
  */
 
-function convertCommonToExportFormat(obj, { dataset } = {}) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
+function convertCommonToExportFormat(obj, { dataset } = {}, cb) {
+  cb(null, `<?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.0">
   <name>${obj.meta.source.name}</name>
   <url>https://c19.mitra.biz/data/${dataset}?output=gpx</url>
@@ -48,7 +48,7 @@ ${obj.positions.map(o => convertOneCommonToExportFormat(o)).join('\n')}
     </trkseg>
   </trk>
   ${convertBounds(obj.bounding_box)}
-</gpx>`;
+</gpx>`);
 }
 
 const mimetype = 'application/gpx+xml';

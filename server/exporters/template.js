@@ -26,10 +26,10 @@ function convertOneCommonToExportFormat(obj) {
  * @returns {{timelineObjects: {placeVisit: {duration: {startTimestampMs: *, endTimestampMs: *}, location: {longitudeE7: *, name: string, latitudeE7: *}}}[]}}
  */
 
-function convertCommonToExportFormat(obj, { dataset } = {}) {
-  return {
+function convertCommonToExportFormat(obj, { dataset } = {}, cb) {
+  cb(null, {
     xxx: obj.positions.map(o => convertOneCommonToExportFormat(o))
-  };
+  });
 }
 
 exports = module.exports = { convertCommonToExportFormat };

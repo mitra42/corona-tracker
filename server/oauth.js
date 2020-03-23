@@ -1,11 +1,23 @@
+/* eslint-disable camelcase *//* camelcase because passing to API */
 const debug = require('debug')('corona-tracker:oauth');
 const { httptools } = require('@internetarchive/dweb-transports');
+const url = require('url');
 
 // Support for OAUTH, currently used by Strava
 function oauthGetCode(req, res, { domainOauthUrl, clientId, protoHostPort } = {}) {
-  const redirectUrl = protoHostPort + req.originalUrl; // May need to overwrite this, but presume goes to SAME path with 'code' parameter
-  const url = `https://${domainOauthUrl}/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUrl}&approval_prompt=force&scope=read,activity:write`;
-  res.redirect(url);
+  // May need to overwrite this, but presume goes to SAME path with 'code' parameter
+  const redirect_uri = protoHostPort + req.originalUrl;
+  const newUrl = url.format({
+    pathname: `https://${domainOauthUrl}/authorize`,
+    query: {
+      client_id: clientId,
+      response_type: 'code',
+      redirect_uri,
+      approval_prompt: 'force',
+      scope: 'read,activity:write'
+    }
+  });
+  res.redirect(newUrl);
 }
 function oauthGetToken(req, res, { domainOauthUrl, clientId, clientSecret, name } = {}, cb) {
   const data = {

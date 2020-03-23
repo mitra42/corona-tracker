@@ -22,10 +22,10 @@ function convertOneCommonToExportFormat(obj) {
   };
 }
 
-function convertCommonToExportFormat(obj, { dataset } = {}) {
-  return {
+function convertCommonToExportFormat(obj, { dataset } = {}, cb) {
+  cb(null, {
     timelineObjects: obj.positions.map(o => convertOneCommonToExportFormat(o))
-  };
+  });
 }
 
 const mimetype = 'application/json';

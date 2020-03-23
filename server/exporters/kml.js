@@ -46,8 +46,8 @@ function convertOneCommonToExportFormat(obj) {
  * @returns {{timelineObjects: {placeVisit: {duration: {startTimestampMs: *, endTimestampMs: *}, location: {longitudeE7: *, name: string, latitudeE7: *}}}[]}}
  */
 
-function convertCommonToExportFormat(obj, { dataset } = {}) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
+function convertCommonToExportFormat(obj, { dataset } = {}, cb) {
+  cb(null, `<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
   <Document>
     <name>${obj.meta.name}</name>
@@ -66,7 +66,7 @@ ${obj.positions.map(o => convertOneCommonToExportFormat(o)).join('\n')}
     </Folder>
   </Document>
   </kml>
-`;
+`);
 }
 
 exports = module.exports = { mimetype, convertCommonToExportFormat };

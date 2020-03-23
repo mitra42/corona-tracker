@@ -2,6 +2,8 @@
 const takeout = require('./googleTakeout');
 const gpx = require('./gpx');
 const kml = require('./kml');
+const common = require('./common');
+const strava = require('./strava');
 
 // ADD-IMPORTER - add import name here
-exports = module.exports = { gpx, kml, takeout, googletakeout: takeout };
+exports = module.exports = { common, gpx, kml, strava, takeout, googletakeout: takeout };

@@ -45,6 +45,7 @@ const Home = () => (
                 { name: 'Google Takeout', key: 'takeout' },
                 { name: 'GPX', key: 'gpx' },
                 { name: 'KML', key: 'kml' },
+                { name: 'Upload to Strava', key: 'strava'},
               ].map(outp => (
                 <td key={outp.key}>
                   <a href={`/data/${dataset.key}?output=${outp.key}`}>
