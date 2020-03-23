@@ -2,6 +2,15 @@ const debug = require('debug')('corona-tracker:strava');
 const { httptools } = require('@internetarchive/dweb-transports');
 const FormData = require('form-data');
 
+const stravaOauthConfig = {
+  name: 'Strava', // For debug messages etc
+  domainOauthUrl: 'www.strava.com/oauth',
+  clientId: '44623',
+  clientSecret: '2b8f90e1995ea9699af363e140f5aeffb5f17939',
+  external_id: 'upload_from_api', // Maybe should be random, or supplied in req.query
+  protoHostPort: 'http://localhost:5000', // Fiendishly hard to get in express; TODO-STRAVA change to cs19.mitra.biz
+};
+
 function uploadToStrava({ name, authorization, str } = {}, cb) {
   const url = 'https://www.strava.com/api/v3/uploads';
   const data = {
@@ -20,5 +29,5 @@ function uploadToStrava({ name, authorization, str } = {}, cb) {
     data: form
   }, cb);
 }
-exports = module.exports = { uploadToStrava };
+exports = module.exports = { stravaOauthConfig, uploadToStrava };
 

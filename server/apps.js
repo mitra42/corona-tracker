@@ -6,7 +6,7 @@ const debug = require('debug')('corona-tracker:apps');
 const importers = require('./importers');
 const exporters = require('./exporters');
 const { oauthGetCode, oauthGetToken } = require('./oauth');
-const { uploadToStrava } = require('./exporters/strava'); //TODO-STRAVA this will be an exporter (probably)
+const { stravaOauthConfig, uploadToStrava } = require('./exporters/strava'); //TODO-STRAVA this will be an exporter (probably)
 
 function sendIt(res, mimetype, exported) {
   if (mimetype === 'application/json') { // exported should be an object
@@ -69,20 +69,12 @@ const fs = require('fs');
 function appUploadToStrava(req, res) {
   // See https://developers.strava.com/docs/reference/#api-Uploads-createUpload
   try {
-    const config = {
-      name: 'Strava', // For debug messages etc
-      domainOauthUrl: 'www.strava.com/oauth',
-      clientId: '44623',
-      clientSecret: '2b8f90e1995ea9699af363e140f5aeffb5f17939',
-      external_id: 'upload_from_api', // Maybe should be random, or supplied in req.query
-      protoHostPort: 'http://localhost:5000', // Fiendishly hard to get in express; TODO-STRAVA change to cs19.mitra.biz
-    };
     if (!req.query.code) {
       // Stage 1 - get authorization by human and then get code
-      oauthGetCode(req, res, config);
+      oauthGetCode(req, res, stravaOauthConfig);
     } else {
       // Stage 2 - get token
-      oauthGetToken(req, res, config, (err, authorization) => { // Error handled inside oauthGetToken
+      oauthGetToken(req, res, stravaOauthConfig, (err, authorization) => { // Error handled inside oauthGetToken
         if (!err) {
           // Stage 3 - have token
           //Used for testing: debug("File uploading %O", fs.statSync('./exporters/strava/israel.gpx'));
@@ -93,13 +85,13 @@ function appUploadToStrava(req, res) {
             authorization,
             str: fs.createReadStream('./exporters/strava/israel.gpx')
           }, (err, obj) => {
-            debug('%s Upload returned %o', config.name, err || obj);
+            debug('%s Upload returned %o', stravaOauthConfig.name, err || obj);
             if (err) {
               res.status(err.response.status)
-                .send(`Strava upload: ${err.response.statusText}`)
+                .send(`${stravaOauthConfig.name}: ${err.response.statusText}`)
             } else {
               res.status(200)
-                .send(`Strava Upload activity id: ${obj.id_str}`);
+                .send(`${stravaOauthConfig.name} Upload activity id: ${obj.id_str}`);
             }
           });
         }
