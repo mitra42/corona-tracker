@@ -4,7 +4,7 @@ See https://developers.google.com/kml/documentation/kmlreference
 */
 
 
-const { addressFromCommon, floatFromCommonLat, floatFromCommonLng, isoTimeFromCommonTime } = require('./utils');
+const { addressFromCommon, floatFromCommonLat, floatFromCommonLng, isoTimeFromCommonTime, xmlEncode } = require('./utils');
 
 const mimetype = 'application/vnd.google-earth.kml+xml; charset=UTF-8';
 
@@ -30,8 +30,8 @@ function convertOneCommonToExportFormat(obj) {
   const address = addressFromCommon(obj);
   // TODO-KML this <styleUrl> points back at something in the head, of the KML doc which we lose going to common
   return `      <Placemark>
-        <name>${name}</name>
-        <address>${address}</address>
+        <name>${xmlEncode(name)}</name>
+        <address>${xmlEncode(address)}</address>
         <styleUrl>#pushpin</styleUrl>
         <Point><coordinates>${floatFromCommonLng(lng)},${floatFromCommonLat(lat)},0</coordinates></Point>
         <TimeSpan><begin>${isoTimeFromCommonTime(start)}</begin><end>${isoTimeFromCommonTime(end)}</end></TimeSpan>

@@ -3,6 +3,7 @@ const waterfall = require('async/waterfall');
 const FormData = require('form-data');
 const { httptools } = require('@internetarchive/dweb-transports');
 const gpx = require('./gpx'); // Have to convert to GPX first
+const fs = require('fs');
 
 const oauthConfig = {
   name: 'Strava', // For debug messages etc
@@ -10,7 +11,8 @@ const oauthConfig = {
   clientId: '44623',
   clientSecret: '2b8f90e1995ea9699af363e140f5aeffb5f17939',
   external_id: 'upload_from_api', // Maybe should be random, or supplied in req.query
-  protoHostPort: 'https://c19.mitra.biz', // Fiendishly hard to get in express;
+  protoHostPort: 'http://localhost:5000',
+  //protoHostPort: 'https://c19.mitra.biz', // Fiendishly hard to get in express;
 };
 
 function uploadToStrava({ dataset, authorization, str } = {}, cb) {
@@ -25,7 +27,8 @@ function uploadToStrava({ dataset, authorization, str } = {}, cb) {
   const form = new FormData();
   Object.entries(data)
     .forEach(kv => form.append(kv[0], kv[1]));
-  form.append('file', str);
+  //form.append('file', fs.createReadStream('./exporters/strava/korea1.gpx')); //FOR TESTING WITH KNOWN GOOD DATA (uncomment 'const fs = ...' above as well
+  form.append('file', str, {filename: `${dataset}.gpx`, contentType: 'application/gpx+xml' });
   // Alternative fetch(new Request(url, {method: 'post', headers, body: form}).then(res1 => res1.json()).then(j => res.send(`Success %{j.sid_str}`)).catch(...)
   httptools.POST(url, {
     headers: { Authorization: authorization, ...form.getHeaders() },

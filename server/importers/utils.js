@@ -65,6 +65,14 @@ function boundingBoxFromCommonArray(oo) {
   oo.forEach(o => box.insert(o.lat, o.lng));
   return box.get();
 }
+// Encode for an XML string (not xmlEncode is in exporters/utils.js
+function xmlDecode(str) {
+  return str.replace(/&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&gt;/g, '>')
+    .replace(/&lt;/g, '<')
+    .replace(/&amp;/g, '&');
+};
 exports = module.exports = {
-  BoundingBox, boundingBoxFromCommonArray, commonLatLngFromFloat, commonLatLngFromFloatString, commonTimeFromMS
+  BoundingBox, boundingBoxFromCommonArray, commonLatLngFromFloat, commonLatLngFromFloatString, commonTimeFromMS, xmlDecode
 };

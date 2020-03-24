@@ -11,7 +11,7 @@
 
 const debug = require('debug')('corona-tracker:importers-diamondtaiwan');
 const { httptools } = require('@internetarchive/dweb-transports');
-const { boundingBoxFromCommonArray, commonLatLngFromFloat, commonTimeFromMS } = require('./utils');
+const { boundingBoxFromCommonArray, commonLatLngFromFloat, commonTimeFromMS, xmlDecode } = require('./utils');
 
 const kmlParser = require('./diamond/parsers.js');
 const mimetype = 'application/vnd. google-earth. kml+xml';
@@ -91,15 +91,20 @@ function fetchDataFromRemoteServer(cb) {
  * @returns {{comments: (*|string), lng: number, start: *, name: string | string, end: *, place: (*|string), lat: number}|undefined}
  */
 function convertOnePointToCommonFormat(record) {
-  const start = commonTimeFromMS(record.begin * 1000 - config.TIME_OFFSET);
-  const end = commonTimeFromMS(record.begin * 1000 - config.TIME_OFFSET);
-  const lat = commonLatLngFromFloat(record.lat);
-  const lng = commonLatLngFromFloat(record.lng);
-  const name = [record.name, record.description && record.description.split('#!metadata')[0]].filter(o => !!o).join(' ');
-  const place = { address: record.address };
-  return {
-    lat, lng, start, end, name, place
-  };
+  try {
+    const start = commonTimeFromMS(record.begin * 1000 - config.TIME_OFFSET);
+    const end = commonTimeFromMS(record.begin * 1000 - config.TIME_OFFSET);
+    const lat = commonLatLngFromFloat(record.lat);
+    const lng = commonLatLngFromFloat(record.lng);
+    const name = [record.name, record.description && record.description.split('#!metadata')[0]].filter(o => !!o).map(o=>xmlDecode(o)).join(' ');
+    const place = { address: xmlDecode(record.address) };
+    return {
+      lat, lng, start, end, name, place
+    };
+  } catch (err) {
+    debug("Failed to convert %O %O",record, err);
+    return undefined;
+  }
 }
 
 /**
@@ -110,9 +115,9 @@ function convertOnePointToCommonFormat(record) {
 function convertImportToCommonFormat(imp) {
   // This is just an example
   const ii = kmlParser.parseKml(imp);
-  debug('Loaded %s points from %s', ii.length, config.siteShortName);
+  debug('Loaded %s points from %s, converting to common', ii.length, config.siteShortName);
 
-  const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
+  const positions = ii.map(record => convertOnePointToCommonFormat(record)).filter(o => !!o) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.
   // TODO-KML get name and description from KML
   return { // Return in common format

@@ -3,7 +3,7 @@
  */
 const debug = require('debug')('corona-tracker:gpx')
 
-const { addressFromCommon, floatFromCommonLng, floatFromCommonLat, isoTimeFromCommonTime } = require('./utils');
+const { addressFromCommon, floatFromCommonLng, floatFromCommonLat, isoTimeFromCommonTime, xmlEncode } = require('./utils');
 
 /**
  * This function should take a single record in the common format and convert to the wanted format
@@ -19,7 +19,7 @@ function convertOneCommonToExportFormat(obj) {
   const t2 = isoTimeFromCommonTime(obj.end);
   const name = obj.name.replace('\n', ' ');
   const desc = [addressFromCommon(obj, '; '), obj.comments].filter(s => !!s).join('; ');
-  return [t1, t2].map(t => `        <trkpt lat="${lat}" lon="${lon}"><time>${t}</time><name>${name}</name><desc>${desc}</desc></trkpt>`).join('\n');
+  return [t1, t2].map(t => `        <trkpt lat="${lat}" lon="${lon}"><time>${t}</time><name>${xmlEncode(name)}</name><desc>${xmlEncode(desc)}</desc></trkpt>`).join('\n');
 }
 
 function convertBounds(o) {
@@ -43,7 +43,7 @@ function convertCommonToExportFormat(obj, { dataset } = {}, cb) {
   <time>${isoTimeFromCommonTime(obj.meta.source.retrieved)}</time>
   <keywords>Covid19</keywords>
   <trk>
-    <name>${obj.meta.source.name}</name>
+    <name>${xmlEncode(obj.meta.source.name)}</name>
     <number>1</number>
     <trkseg>
 ${obj.positions.map(o => convertOneCommonToExportFormat(o)).join('\n')}

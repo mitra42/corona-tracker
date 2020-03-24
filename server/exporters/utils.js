@@ -27,6 +27,16 @@ function addressFromCommon(obj, sep) {
   return [place.address_name, place.type, place.address, place.address_english, place.city, place.province].filter(s => !!s).join(sep);
 }
 
+// Encode for an XML string (not xmlDecode is in importers/utils.js
+function xmlEncode(str) {
+  return str.replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+};
+
 exports = module.exports = {
+  xmlEncode,
   floatFromCommonLat, floatFromCommonLng, isoTimeFromCommonTime, longIntFromCommonLat, longIntFromCommonLng, timeMS, addressFromCommon };
 
