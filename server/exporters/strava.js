@@ -45,7 +45,7 @@ function uploadToStrava({ dataset, authorization, str } = {}, cb) {
 function convertCommonToExportFormat(obj, { dataset, authorization } = {}, cb) {
   waterfall([
     cb1 => gpx.convertCommonToExportFormat(obj, { dataset }, cb1),
-    (gpxStr, cb1) => { debug('XXX gpx convertion returned %s bytes', gpxStr.length); cb1(null, gpxStr); },
+    (gpxStr, cb1) => { debug('XXX gpx conversion returned %s bytes', gpxStr.length); cb1(null, gpxStr); },
     (gpxStr, cb1) => uploadToStrava({ dataset, authorization, str: Buffer.from(gpxStr, 'utf8') }, cb1)
   ], (err, res) => {
     debug('Strava upload returned %o', err || res);

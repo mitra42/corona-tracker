@@ -1,6 +1,7 @@
 /* Export to GPX
  * https://www.topografix.com/gpx_manual.asp
  */
+const debug = require('debug')('corona-tracker:gpx')
 
 const { addressFromCommon, floatFromCommonLng, floatFromCommonLat, isoTimeFromCommonTime } = require('./utils');
 
