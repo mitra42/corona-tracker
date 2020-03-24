@@ -32,7 +32,6 @@ const Home = () => (
           [
             { name: 'Israel', key: 'israel' },
             { name: 'Korea 1', key: 'korea1' },
-            { name: 'Korea 2', key: 'korea2' },
             { name: 'Diamond Princess tour of Taiwan', key: 'diamondtaiwan' },
           ].map(dataset => (
             <tr key={dataset.key}>
