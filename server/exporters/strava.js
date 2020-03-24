@@ -11,8 +11,8 @@ const oauthConfig = {
   clientId: '44623',
   clientSecret: '2b8f90e1995ea9699af363e140f5aeffb5f17939',
   external_id: 'upload_from_api', // Maybe should be random, or supplied in req.query
-  protoHostPort: 'http://localhost:5000',
-  //protoHostPort: 'https://c19.mitra.biz', // Fiendishly hard to get in express;
+  // protoHostPort: 'http://localhost:5000',
+  protoHostPort: 'https://c19.mitra.biz', // Fiendishly hard to get in express;
 };
 
 function uploadToStrava({ dataset, authorization, str } = {}, cb) {
