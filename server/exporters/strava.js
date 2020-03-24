@@ -1,8 +1,8 @@
 const debug = require('debug')('corona-tracker:strava');
+const waterfall = require('async/waterfall');
+const FormData = require('form-data');
 const { httptools } = require('@internetarchive/dweb-transports');
 const gpx = require('./gpx'); // Have to convert to GPX first
-
-const FormData = require('form-data');
 
 const oauthConfig = {
   name: 'Strava', // For debug messages etc
@@ -44,10 +44,10 @@ function uploadToStrava({ dataset, authorization, str } = {}, cb) {
 
 function convertCommonToExportFormat(obj, { dataset, authorization } = {}, cb) {
   waterfall([
-    cb1 => gpx.convertCommonToExportFormat(obj, {dataset}, cb1),
-    (gpxStr, cb1) => { debug("XXX gpx convertion returned %s bytes", gpxStr.length); cb1(null, gpxStr); }
-    (gpxStr, cb1) => uploadToStrava({dataset, authorization, str: Buffer.from(gpxStr, 'utf8') }, cb1)
-    ], (err, res) => {
+    cb1 => gpx.convertCommonToExportFormat(obj, { dataset }, cb1),
+    (gpxStr, cb1) => { debug('XXX gpx convertion returned %s bytes', gpxStr.length); cb1(null, gpxStr); },
+    (gpxStr, cb1) => uploadToStrava({ dataset, authorization, str: Buffer.from(gpxStr, 'utf8') }, cb1)
+  ], (err, res) => {
     debug('Strava upload returned %o', err || res);
     cb(err, res);
   });
@@ -55,4 +55,3 @@ function convertCommonToExportFormat(obj, { dataset, authorization } = {}, cb) {
 const mimetype = 'application/json';
 
 exports = module.exports = { mimetype, convertCommonToExportFormat, oauthConfig, uploadToStrava };
-
