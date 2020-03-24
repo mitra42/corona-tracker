@@ -4,8 +4,9 @@ const { httptools } = require('@internetarchive/dweb-transports');
 const url = require('url');
 
 // Support for OAUTH, currently used by Strava
-function oauthGetCode(req, res, { domainOauthUrl, clientId, protoHostPort } = {}) {
+function oauthGetCode(req, res, { name, domainOauthUrl, clientId, protoHostPort } = {}) {
   // May need to overwrite this, but presume goes to SAME path with 'code' parameter
+  debug('requesting authentication code for %s', name);
   const redirect_uri = protoHostPort + req.originalUrl;
   const newUrl = url.format({
     pathname: `https://${domainOauthUrl}/authorize`,
@@ -20,6 +21,7 @@ function oauthGetCode(req, res, { domainOauthUrl, clientId, protoHostPort } = {}
   res.redirect(newUrl);
 }
 function oauthGetToken(req, res, { domainOauthUrl, clientId, clientSecret, name } = {}, cb) {
+  debug('requesting authentication token for %s', name);
   const data = {
     grant_type: 'authorization_code',
     client_id: clientId,

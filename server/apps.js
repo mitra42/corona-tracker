@@ -21,52 +21,56 @@ function sendErr(res, err) {
   res.status(500).send(err.message);
 }
 function appDataset(req, res) {
-  const { dataset } = req.params;
-  const { output } = req.query;
-  // TODO treat dataset: korea as korea1 + korea2 - handle "groups"
-  const specialExport = ['original'].includes(output);
-  const importer = importers[dataset];
-  const exporter = !specialExport && exporters[output];
-  if (!importer) {
-    res.status(500).send(`No importer for dataset ${dataset}`);
-  } else if (!exporter && !specialExport) {
-    res.status(500)
-      .send(`No export format ${output}`);
-  } else if (exporter.oauthConfig && !req.query.code) { // If specified Oauth, but no code then redirect
-    oauthGetCode(req, res, exporter.oauthConfig);
-  } else {
-    let authorization;
-    waterfall([
-      // If there is oauthConfig required then do it, (skips over if none)
-      cb => {
-        if (exporter.oauthConfig) {
-          oauthGetToken(req, res, exporter.oauthConfig,
-            (err, auth) => {
-              authorization = auth;
-              cb(err);
-            });
-        } else {
-          cb(null);
+  try {
+    const { dataset } = req.params;
+    const { output } = req.query;
+    // TODO treat dataset: korea as korea1 + korea2 - handle "groups"
+    const specialExport = ['original'].includes(output);
+    const importer = importers[dataset];
+    const exporter = !specialExport && exporters[output];
+    if (!importer) {
+      res.status(500).send(`No importer for dataset ${dataset}`);
+    } else if (!exporter && !specialExport) {
+      res.status(500)
+        .send(`No export format ${output}`);
+    } else if (exporter.oauthConfig && !req.query.code) { // If specified Oauth, but no code then redirect
+      oauthGetCode(req, res, exporter.oauthConfig);
+    } else {
+      let authorization;
+      waterfall([
+        // If there is oauthConfig required then do it, (skips over if none)
+        cb => {
+          if (exporter.oauthConfig) {
+            oauthGetToken(req, res, exporter.oauthConfig,
+              (err, auth) => {
+                authorization = auth;
+                cb(err);
+              });
+          } else {
+            cb(null);
+          }
+        },
+        cb => importer.fetchDataFromRemoteServer(cb),
+        (imported, cb) => {
+          if (output === 'original') {
+            cb(null, [importer.mimetype, imported]);
+          } else {
+            const common = importer.convertImportToCommonFormat(imported);
+            exporter.convertCommonToExportFormat(common, { dataset, authorization },
+              (err, exported) => cb(err, [exporter.mimetype, exported]));
+          }
         }
-      },
-      cb => importer.fetchDataFromRemoteServer(cb),
-      (imported, cb) => {
-        if (output === 'original') {
-          cb(null, [importer.mimetype, imported]);
+      ],
+      (err, mimetypeData) => {
+        if (err) {
+          sendErr(res, err);
         } else {
-          const common = importer.convertImportToCommonFormat(imported);
-          exporter.convertCommonToExportFormat(common, { dataset, authorization },
-            (err, exported) => cb(err, [exporter.mimetype, exported]));
+          sendIt(res, mimetypeData[0], mimetypeData[1]);
         }
-      }
-    ],
-    (err, mimetypeData) => {
-      if (err) {
-        sendErr(res, err);
-      } else {
-        sendIt(res, mimetypeData[0], mimetypeData[1]);
-      }
-    });
+      });
+    }
+  } catch (err) {
+    debug("ERROR uncaught in appDataset %O", err);
   }
 }
 

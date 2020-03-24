@@ -33,6 +33,7 @@ function convertBounds(o) {
  */
 
 function convertCommonToExportFormat(obj, { dataset } = {}, cb) {
+  debug('Converting %s from common', dataset);
   cb(null, `<?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.0">
   <name>${obj.meta.source.name}</name>

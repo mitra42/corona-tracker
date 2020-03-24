@@ -54,6 +54,7 @@ const config = {
  * @param cb(err, json obj in Israel's format
  */
 function fetchDataFromRemoteServer(cb) {
+  debug("Fetching data from %s", config.dataUrl);
   httptools.GET(config.dataUrl, {}, (err, res) => {
     if (err) {
       debug('%s.fetchDataFromRemoteServer failed %s', config.siteShortName, err.message);
@@ -130,6 +131,7 @@ function convertOnePointToCommonFormat(record) {
  */
 function convertImportToCommonFormat(imp) {
   // This is just an example
+  debug('Converting data to common');
   const ii = imp.features; // Find the point array
   const positions = ii.map(record => convertOnePointToCommonFormat(record)) // Convert each point
     .filter(o => !!o); // Strip any that are unconvertable.

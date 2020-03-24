@@ -14,6 +14,7 @@ const oauthConfig = {
 };
 
 function uploadToStrava({ dataset, authorization, str } = {}, cb) {
+  debug('Uploading %s to Strava', dataset);
   const url = 'https://www.strava.com/api/v3/uploads';
   const dateStr = (new Date()).toISOString();
   const data = {
@@ -26,7 +27,6 @@ function uploadToStrava({ dataset, authorization, str } = {}, cb) {
     .forEach(kv => form.append(kv[0], kv[1]));
   form.append('file', str);
   // Alternative fetch(new Request(url, {method: 'post', headers, body: form}).then(res1 => res1.json()).then(j => res.send(`Success %{j.sid_str}`)).catch(...)
-  debug('Uploading to Strava');
   httptools.POST(url, {
     headers: { Authorization: authorization, ...form.getHeaders() },
     data: form
@@ -45,6 +45,7 @@ function uploadToStrava({ dataset, authorization, str } = {}, cb) {
 function convertCommonToExportFormat(obj, { dataset, authorization } = {}, cb) {
   waterfall([
     cb1 => gpx.convertCommonToExportFormat(obj, {dataset}, cb1),
+    (gpxStr, cb1) => { debug("XXX gpx convertion returned %s bytes", gpxStr.length); cb1(null, gpxStr); }
     (gpxStr, cb1) => uploadToStrava({dataset, authorization, str: Buffer.from(gpxStr, 'utf8') }, cb1)
     ], (err, res) => {
     debug('Strava upload returned %o', err || res);
