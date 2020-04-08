@@ -1,4 +1,6 @@
-# corona-tracker
+# corona-tracker - DEAD PROJECT
+
+**We have dropped this project - feel free to use code but its not maintained**
 
 Note the idea is evolving rapidly, faster than I can get around to update this README
 so please check for updates! 
